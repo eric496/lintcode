@@ -1,8 +1,7 @@
 /*
 Find the maximum node in a binary tree, return the node.
-Have you met this question in a real interview?
-Example
 
+Example
 Given a binary tree:
 
      1
