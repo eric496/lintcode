@@ -9,15 +9,17 @@ Your function should return length = 5, and A is now [1,1,2,2,3].
 
 public class Solution {
     public int removeDuplicates(int[] nums) {
-        int count = 0;
-        for(int n : nums) {
-            if(count < 2 || n != nums[count-2]) nums[count++] = n;
+        if(nums == null) return 0;
+        if(nums.length < 2) return nums.length;
+        int count = 2;
+        for(int i = 2; i < nums.length; i++) {
+            if(nums[i] != nums[count-2]) nums[count++] = nums[i];
         }
         return count;
     }
 }
 
-//Generalization: what if most k duplicates are allowed?
+//Generalization: what if at most k duplicates are allowed?
 public class Solution {
     public removeDuplicates(int[] nums, int k) {
         if(nums.length <= k) return nums.length;
