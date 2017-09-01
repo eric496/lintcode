@@ -25,6 +25,5 @@ public class Solution {
             str[j] = temp;
         }
     }
-    
 }
 
