@@ -8,12 +8,32 @@ Your function should return length = 5, and A is now [1,1,2,2,3].
 */
 
 public class Solution {
-    public int removeDuplicates(int[] A) {
-        if (A == null || A.length == 0) return 0;
-        int end = 1;
-        for(int i = 2; i < A.length; i++) {
-            if(A[i] != A[end - 1]) A[++end] = A[i];
+    public int removeDuplicates(int[] nums) {
+        int count = 0;
+        for(int n : nums) {
+            if(count < 2 || n != nums[count-2]) nums[count++] = n;
         }
-        return end + 1;
+        return count;
+    }
+}
+
+//Generalization: what if most k duplicates are allowed?
+public class Solution {
+    public removeDuplicates(int[] nums, int k) {
+        if(nums.length <= k) return nums.length;
+        int i = 1, j = 1, cnt = 1;
+        while(j < nums.length) {
+            if(nums[j] != A[j-1]) {
+                cnt = 1;
+                A[j++] = A[j];
+            } else {
+                if(cnt < k) {
+                    A[i++] = A[j];
+                    cnt++;
+                }
+            }
+            j++;
+        }
+        return i;
     }
 }
