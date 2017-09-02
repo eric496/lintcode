@@ -30,18 +30,25 @@ Given [4,[3,[2,[1]]]], return [4,3,2,1].
  * }
  */
 
+/*
+Thought process
+1. Since it is a problem of flattening a nested list, it is intuitive to think about solving it with recursion.
+*/
+
+//recursion
 public class Solution {
     public List<Integer> flatten(List<NestedInteger> nestedList) {
         if(nestedList == null) return null;
-        if(nestedList.size() == 0) return [];
-        ArrayList<Integer> result = new ArrayList<Integer>();
+        ArrayList<Integer> res = new ArrayList<Integer>();
         for(NestedInteger i : nestedList) {
             if(i.isInteger()) {
-                result.add(i.getInteger());
+                res.add(i.getInteger());
             } else {
-                result.addAll(flatten(i.getList()));
+                res.addAll(flatten(i.getList()));
             }
         }
-        return result;
+        return res;
     }
 }
+
+//non-recursion
