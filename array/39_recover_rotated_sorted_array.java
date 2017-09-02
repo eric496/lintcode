@@ -9,6 +9,15 @@ Example
 [4, 5, 1, 2, 3] -> [1, 2, 3, 4, 5]
 */
 
+/*
+Thought process
+1. 3-step reversal to solve it in place. 
+   Firstly, find the verge where the head of the sorted array meets the tail of the array.
+   Second, split the array into two halves by the verge. Reverse the first and second half respectively.
+   After this step, the array is already sorted, but in descending order.
+   Lastly, reverse the entire array to get the ascending order. 
+*/
+
 public class Solution {
     public void recoverRotatedSortedArray(ArrayList<Integer> nums) {
         for(int i = 0; i < nums.size() - 1; i++) {
@@ -20,11 +29,13 @@ public class Solution {
         }
     }
     
-    private void reverse(ArrayList<Integer> nums, int start, int end) {
-        for(int i = start, j = end; i < j; i++, j--) {
-            int temp = nums.get(i);
+    public void reverse(ArrayList<Integer> nums, int start, int end) {
+	while(start < end) {
+	    int temp = nums.get(i);
             nums.set(i, nums.get(j));
             nums.set(j, temp);
-        }
+	    start++;
+	    end--;
+	}        
     }
 }
