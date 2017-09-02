@@ -25,7 +25,11 @@ Given [1,2,3,4,5,6,7], return
  *     }
  * }
  */
- 
+
+/*
+1. Build a tree recursively
+*/
+
 public class Solution {
     public TreeNode sortedArrayToBST(int[] A) {  
         if(A == null || A.length == 0) return null;
@@ -34,9 +38,9 @@ public class Solution {
     
     public TreeNode buildTree(int[] A, int start, int end) {
         if(start > end) return null;
-        TreeNode node = new TreeNode(A[(start + end) / 2]);
-        node.left = buildTree(A, start, (start + end) / 2 - 1);
-        node.right = buildTree(A, (start + end) / 2 + 1, end);
+        TreeNode node = new TreeNode(A[start + (end - start) / 2]);
+        node.left = buildTree(A, start, start + (end - start) / 2 - 1);
+        node.right = buildTree(A, start + (end - start) / 2 + 1, end);
         return node;
     }
-}
+} 
