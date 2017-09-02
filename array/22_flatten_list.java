@@ -32,7 +32,9 @@ Given [4,[3,[2,[1]]]], return [4,3,2,1].
 
 /*
 Thought process
-1. Since it is a problem of flattening a nested list, it is intuitive to think about solving it with recursion.
+1. Since it is a problem of flattening a nested list, it is intuitive to think about recursive flatten.
+2. For non-recursive solution, we will use stack. Push all elements into a stack. Loop through the stack, 
+   if current element is a number, add to the result list, if not flatten it and push all the inner elements into the stack.
 */
 
 //recursion
@@ -52,3 +54,22 @@ public class Solution {
 }
 
 //non-recursion
+public class Solution {
+    public void pushStack(Stack<NestedInteger> stack, List<NestedInteger> nl) {
+        for(int i = nl.size() - 1; i >= 0; i--) stack.push(nl.get(i));
+    }
+    
+    public List<Integer> flatten(List<NestedInteger> nestedList) {
+        Stack<NestedInteger> stack = new Stack<NestedInteger>();
+        ArrayList<Integer> res = new ArrayList<Integer>();
+        for(int i = nestedList.size() - 1; i >= 0; i--) stack.push(nestedList.get(i));
+        while(!stack.isEmpty()) {
+            if(stack.peek().isInteger()) {
+                res.add(stack.pop().getInteger());
+            } else {
+                pushStack(stack, stack.pop().getList());
+            }
+        }
+        return res;
+    }
+}
