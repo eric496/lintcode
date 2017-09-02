@@ -8,6 +8,13 @@ Example
 Given [-3, 1, 2, -3, 4], return [0, 2] or [1, 3].
 */
 
+/*
+Thought process
+1. Keep track of every sum, if two sums equal, then the numbers in between add up to 0
+2. Use hash map to store sums: sum as key and index as value
+3. Notice the base case - first value of the hash map. Given two sums (i and j) equals, then numbers from index i+1 to j (inclusive) add up to 0. So first index should be -1. 
+*/
+
 public class Solution {
     public ArrayList<Integer> subarraySum(int[] nums) {
         int len = nums.length;
