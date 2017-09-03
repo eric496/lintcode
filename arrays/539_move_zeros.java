@@ -6,6 +6,16 @@ Notice
     Minimize the total number of operations.
 */
 
+/*
+Thought process:
+    1. In-place: think about using two pointers with a position variable 
+       keeping track of the first zero in the current array. 
+       Swap it with the next non-zero number.
+    2. NOTICE to set the rest of the elements to zeros after the for loop
+       in order to put all zeros at the end of the array. 
+*/
+
+//O(n) time and O(1) space
 public class Solution {
     public void moveZeroes(int[] nums) {
         int len = nums.length;
