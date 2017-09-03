@@ -9,10 +9,15 @@ Example
 Given nums1 = [1, 2, 2, 1], nums2 = [2, 2], return [2, 2].
 */
 
+/*
+Thought process: 
+    1. Similar to 547, but keep track of the number of appearance of each element.
+       So use hash map instead of hash set to store <number, count> pairs.
+*/
+
 public class Solution {
     public int[] intersection(int[] nums1, int[] nums2) {
         HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-
         for(Integer n : nums1) {
             if(map.containsKey(n)) {
                 map.put(n, map.get(n) + 1);
@@ -20,18 +25,19 @@ public class Solution {
                 map.put(n, 1);
             }
         }
-
-        ArrayList<Integer> list = new ArrayList<Integer>();
+        ArrayList<Integer> res = new ArrayList<Integer>();
         for(Integer n : nums2) {
-            if(map.containsKey(n) && map.get(n) > 0) {
-                list.add(n);
-                map.put(n, map.get(n) - 1);
+            if(map.containsKey(n)) {
+                res.add(n);
+                if(map.get(n) - 1 == 0) {
+                    map.remove(n);
+                } else {
+                    map.put(n, map.get(n) - 1);   
+                }
             }
         }
-
-        int[] result = new int[list.size()];
-        int ix = 0;
-        for(Integer n : list) result[ix++] = n;
+        int[] result = new int[res.size()];
+        for(int i = 0; i < res.size(); i++) result[i] = res.get(i);
         return result;
     }
 }
