@@ -6,14 +6,17 @@ Notice
 The subarray should contain one integer at least.
 */
 
+/*
+Thought process: the same to 41, using Kadane's algorithm
+*/
+
 public class Solution {
     public int minSubArray(ArrayList<Integer> nums) {
-        int sum = nums.get(0);
-        int min = nums.get(0);
+        int localMin = nums.get(0), globalMin = nums.get(0);
         for(int i = 1; i < nums.size(); i++) {
-            sum = Math.min(nums.get(i), sum + nums.get(i));
-            min = Math.min(sum, min);
+            localMin = Math.min(localMin + nums.get(i), nums.get(i));
+            if(localMin < globalMin) globalMin = localMin;
         }
-        return min;
+        return globalMin;
     }
 }
