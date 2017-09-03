@@ -5,6 +5,14 @@ Example
 Given [3, 2, 1, 4, 5], return [1, 2, 3, 4, 5].
 */
 
+/*
+Thought process:
+    This is a review of all the brute-force sorting algorithms with a time complexity of O(n2).
+    1. Bubble sort
+    2. Selection sort
+    3. Insertion sort
+*/
+
 public class Solution {
     public void sortIntegers(int[] A) {
         for(int i = 0; i < A.length; i++) {

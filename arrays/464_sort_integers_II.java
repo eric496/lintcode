@@ -5,6 +5,14 @@ Example
 Given [3, 2, 1, 4, 5], return [1, 2, 3, 4, 5].
 */
 
+/*
+Thought process:
+    This is a review of all the efficient sorting algorithms with a time complexity of O(nlogn).
+    1. Quick sort
+    2. Merge sort
+    3. Heap sort
+*/
+
 public class Solution {
     public void sortIntegers2(int[] A) {
         quickSort(A, 0, A.length - 1);

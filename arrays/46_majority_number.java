@@ -8,22 +8,52 @@ Example
 Given [1, 1, 1, 1, 2, 2, 2], return 1
 */
 
+/*
+Thought process:
+    1. O(n) time and O(n) space solution: use hash map to store <number, count> pairs.
+       Keep track of the max count in the for loop to avoid two passes. 
+    2. O(n) time and O(1) space solution: Boyer-Moore majority vote algorithm: (from Wikipedia: https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_majority_vote_algorithm)
+       The algorithm maintains in its local variables a sequence element and a counter, with the counter initially zero. 
+       It then processes the elements of the sequence, one at a time. When processing an element x, if the counter is zero, 
+       the algorithm stores x as its remembered sequence element and sets the counter to one. 
+       Otherwise, it compares x to the stored element and either increments the counter (if they are equal) or decrements the counter (otherwise). 
+       At the end of this process, if the sequence has a majority, it will be the element stored by the algorithm.
+*/
+
+//O(n) time and O(n) space via hash map
 public class Solution {
     public int majorityNumber(ArrayList<Integer> nums) {
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-        int max = -1;
-        int ix = -1;
+        HashMap<Integer, Integer> res = new HashMap<Integer, Integer>();
+        int max = Integer.MIN_VALUE, majority = Integer.MIN_VALUE;
         for(Integer i : nums) {
-            if(map.containsKey(i)) {
-                map.put(i, map.get(i) + 1);
+            if(res.containsKey(i)) {
+                res.put(i, res.get(i) + 1);
             } else {
-                map.put(i, 1);
+                res.put(i, 1);
             }
-            if(map.get(i) > max) {
-                max = map.get(i);
-                ix = i;
+            if(res.get(i) > max) {
+                max = res.get(i);
+                majority = i;
             }
         }
-        return ix;
+        return majority;
+    }
+}
+
+//O(n) time and O(1) space
+public class Solution {
+    public int majorityNumber(ArrayList<Integer> nums) {
+        int majority = Integer.MIN_VALUE, count = 0;
+        for(Integer n : nums) {
+            if(count == 0) {
+                majority = n;
+                count++;
+            } else if(majority == n) {
+                count++;
+            } else if(majority != n) {
+                count--;
+            }
+        }
+        return majority;
     }
 }
