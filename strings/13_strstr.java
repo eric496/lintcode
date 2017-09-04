@@ -11,16 +11,38 @@ If source = "source" and target = "target", return -1.
 If source = "abcdabcdefg" and target = "bcd", return 1.
 */
 
+/*
+Thought process:
+    1. Use string methods (substring, equals) to search for the substring.
+       Notice that indices in substring method are inclusive. 
+       "=" should be included in the for condition.
+    2. Use two for loops - outter loop for source, inner loop for target.
+    3. KMP algorithm (TO DO)
+*/
+
+// O(n2) time solution: use string methods
 class Solution {
     public int strStr(String source, String target) {
-        if(source == null || target == null) return -1;
-        for(int i = 0; i < source.length() - target.length() + 1; i++) {
-            int j = 0;
-            for(j = 0; j < target.length(); j++) {
-               if(source.charAt(i + j) != target.charAt(j)) break;
-            }
-            if(j == target.length()) return i;
+        if(source == null || target == null || source.length() < target.length()) return -1;
+        if(target.length() == 0) return 0;
+        for(int i = 0; i <= source.length() - target.length(); i++) {
+            if(source.substring(i, i+target.length()).equals(target)) return i;
         }
         return -1;
+    }
+}
+
+// O(n2) time solution: do not use string methods
+class Solution {
+    public int strStr(String source, String target) {
+        if(source == null || target == null || source.length() < target.length()) return -1;
+        if(target.length() == 0) return 0;
+        for (int i = 0; ; i++) {
+            for (int j = 0; ; j++) {
+              if (j == target.length()) return i;
+              if (i + j == source.length()) return -1;
+              if (target.charAt(j) != source.charAt(i + j)) break;
+            }
+        }
     }
 }
