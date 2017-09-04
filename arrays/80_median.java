@@ -10,32 +10,30 @@ Given [7, 9, 4, 5], return 5.
 
 public class Solution {
     public int median(int[] nums) {
-        int len = nums.length;
-        quicksort(nums, 0, nums.length - 1);
-        if(len % 2 == 0) {
-            return nums[len / 2 - 1];
-        } else {
-            return nums[len / 2];
-        }
+        if (nums == null || nums.length == 0) return -1;
+        return quickSort(nums, 0, nums.length - 1, (nums.length + 1) / 2);
     }
-    
-    public void quicksort(int[] A, int low, int high) {
-        if(A.length == 0 || A.length == 1 || A == null) return;
-        int pivot = A[low + (high - low) / 2];
-        int i = low;
-        int j = high;
-        while(i <= j) {
-            while(A[i] < pivot) i++;
-            while(A[j] > pivot) j--;
-            if(i <= j) {
-                int temp = A[i];
-                A[i] = A[j];
-                A[j] = temp;
-                i++;
-                j--;
+
+    private int quickSort(int[] nums, int low, int high, int size) {
+        if (low >= high) return nums[high];
+        int mid = low;
+        for (int i = low + 1; i <= high; i++) {
+            if (nums[i] < nums[low]) {
+                mid++;
+                int temp = nums[mid];
+                nums[mid] = nums[i];
+                nums[i] = temp;
             }
         }
-        if(low < j) quicksort(A, low, j);
-        if(i < high) quicksort(A, i, high);
+        int temp = nums[mid];
+        nums[mid] = nums[low];
+        nums[low] = temp;
+        if (mid - low + 1 == size) {
+            return nums[mid];
+        } else if (mid - low + 1 > size) {
+            return quickSort(nums, low, mid - 1, size);
+        } else {
+            return quickSort(nums, mid + 1, high, size - (mid - low + 1));
+        }
     }
 }
