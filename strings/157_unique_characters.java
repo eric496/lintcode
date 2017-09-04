@@ -16,7 +16,7 @@ Thought process:
     3. O(1) space solution: use two for loops with O(n2) time
 */
 
-// O(n) time and O(n) space - with an extra array
+// O(n) time and O(1) space - with an extra array
 public class Solution {
     public boolean isUnique(String str) {
         if(str == null || str.length() == 0) return false;
