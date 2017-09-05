@@ -9,6 +9,13 @@ offset=2 => "fgabcde"
 offset=3 => "efgabcd"
 */
 
+/*
+Thought process:
+    1. 3-step reversal, but be careful of the order of the 3 reversal. 
+    2. Notice the offset can be larger than the length of the string, so use the modulus as the offset.
+*/
+
+//
 public class Solution {
     public void rotateString(char[] str, int offset) {
         if(str == null || str.length == 0) return;
@@ -19,11 +26,12 @@ public class Solution {
     }
     
     private void reverse(char[] str, int start, int end) {
-        for(int i = start, j = end; i < j; i++, j--) {
-            char temp = str[i];
-            str[i] = str[j];
-            str[j] = temp;
+        while(start < end) {
+            char temp = str[start];
+            str[start] = str[end];
+            str[end] = temp;
+            start++;
+            end--;
         }
     }
 }
-
