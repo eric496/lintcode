@@ -14,7 +14,7 @@ Example
 
 /*
 Thought process:
-
+    1. 
 */
 
 public class Solution {

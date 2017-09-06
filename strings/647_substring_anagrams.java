@@ -10,6 +10,14 @@ The substring with start index = 0 is "cba", which is an anagram of "abc".
 The substring with start index = 6 is "bac", which is an anagram of "abc".
 */
 
+/*
+Thought process:
+    1. It is easy to come up with the brute-force algorithm:
+       loop through s, at each element e, check whether the substring starting at e that has length of p 
+       is an anagram of p. It uses O(n2) time and O(1) space.
+    2. Sliding window method
+*/
+
 public class Solution {
     public List<Integer> findAnagrams(String s, String p) {
         List<Integer> indices = new ArrayList<Integer>();
