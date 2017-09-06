@@ -14,9 +14,11 @@ Example
 
 /*
 Thought process:
-    1. 
+    1. O(n) time O(1) space solution: use two arrays to store characters as indices, 
+       and index of first apperance as value. 
 */
 
+// O(n) time and O(n) space - with two hash maps
 public class Solution {
     public boolean isIsomorphic(String s, String t) {
         if(s == null || t == null) return false;
@@ -36,6 +38,21 @@ public class Solution {
         }
         for(int i = 0; i < n; i++){
             if(index1[i] != index2[i]) return false;
+        }
+        return true;
+    }
+}
+
+// O(n) time and O(1) space - with two arrays
+public class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        if(s == null || t == null) return false;
+        int[] m1 = new int[256];
+        int[] m2 = new int[256];
+        for(int i = 0; i < s.length(); i++) {
+            if(m1[s.charAt(i)] != m2[t.charAt(i)]) return false;
+            m1[s.charAt(i)] = i + 1;
+            m2[t.charAt(i)] = i + 1;
         }
         return true;
     }
