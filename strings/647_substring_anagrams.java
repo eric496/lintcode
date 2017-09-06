@@ -13,35 +13,33 @@ The substring with start index = 6 is "bac", which is an anagram of "abc".
 /*
 Thought process:
     1. It is easy to come up with the brute-force algorithm:
-       loop through s, at each element e, check whether the substring starting at e that has length of p 
+       loop through s, at each element e, check whether the substring starting at e with the same length as p 
        is an anagram of p. It uses O(n2) time and O(1) space.
     2. Sliding window method
 */
 
+
+// O(n2) time 
 public class Solution {
     public List<Integer> findAnagrams(String s, String p) {
-        List<Integer> indices = new ArrayList<Integer>();
-        if(s == null || s.length() < p.length()) return indices;
-        int[] sMap = new int[26];
-        int[] pMap = new int[26];
-        for(int i = 0; i < p.length(); i++) pMap[p.charAt(i) - 'a']++;
-        Queue<Character> queue = new LinkedList<Character>();
-        int index = 0; 
-        while(index < s.length()){
-            queue.add(s.charAt(index));
-            sMap[s.charAt(index) - 'a']++;
-            if(queue.size() == p.length()){
-                if(isAnagrams(sMap, pMap)) indices.add(index - p.length() + 1);
-                sMap[queue.poll() - 'a']--;
-            }
-            index++;
+        List<Integer> res = new ArrayList<Integer>();
+        if(s == null || s.length() < p.length()) return null;
+        char[] schar = s.toCharArray();
+        char[] pchar = p.toCharArray();
+        for(int i = 0; i <= schar.length - p.length(); i++) {
+            if(isAnagrams(Arrays.copyOfRange(schar, i, i+pchar.length), pchar)) res.add(i);
         }
-        return indices;
+        return res;
     }
-    
-    private boolean isAnagrams(int[] sMap, int[] pMap){
-        for(int i = 0; i < sMap.length; i++){
-            if(sMap[i] != pMap[i]) return false;
+
+    private boolean isAnagrams(char[] schar, char[] pchar){
+        int[] count = new int[26];
+        for(int i = 0; i < schar.length; i++) {
+            count[schar[i]-'a']++;
+            count[pchar[i]-'a']--;
+        }
+        for(int n : count) {
+            if(n != 0) return false;
         }
         return true;
     }
