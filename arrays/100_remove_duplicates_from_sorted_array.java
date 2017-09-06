@@ -3,14 +3,14 @@ Given a sorted array, remove the duplicates in place such that each element appe
 Do not allocate extra space for another array, you must do this in place with constant memory.
 
 Example
-Given input array A = [1,1,2],
-Your function should return length = 2, and A is now [1,2].
+    Given input array A = [1,1,2],
+    Your function should return length = 2, and A is now [1,2].
 */
 
 /*
 Thought process
-1. Corner cases when the array is null or empty
-2. The question requires not only counting the length but changing the array IN PLACE as well
+    1. Corner cases when the array is null or empty
+    2. The question requires not only counting the length but changing the array IN PLACE as well
 */
 
 /*

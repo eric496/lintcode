@@ -2,30 +2,30 @@
 Given a dictionary, find all of the longest words in the dictionary.
 
 Example
-Given
-{
-  "dog",
-  "google",
-  "facebook",
-  "internationalization",
-  "blabla"
-}
-the longest words are(is) ["internationalization"].
-Given
-{
-  "like",
-  "love",
-  "hate",
-  "yes"
-}
-the longest words are ["like", "love", "hate"].
+    Given
+    {
+      "dog",
+      "google",
+      "facebook",
+      "internationalization",
+      "blabla"
+    }
+    the longest words are(is) ["internationalization"].
+    Given
+    {
+      "like",
+      "love",
+      "hate",
+      "yes"
+    }
+    the longest words are ["like", "love", "hate"].
 */
 
 /*
 Thought process
-1. An obvious approach is two passes: first for loop to count the max length of all words; 
-second for loop to pick out the words which are of the max length.
-2. Don't forget the corner case when the dictionary is null or empty.
+    1. An obvious approach is two passes: first for loop to count the max length of all words; 
+       second for loop to pick out the words which are of the max length.
+    2. Don't forget the corner case when the dictionary is null or empty.
 */
 
 //two passes
