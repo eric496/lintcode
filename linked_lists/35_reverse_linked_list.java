@@ -2,7 +2,7 @@
 Reverse a linked list.
 
 Example
-For linked list 1->2->3, the reversed linked list is 3->2->1
+    For linked list 1->2->3, the reversed linked list is 3->2->1
 */
 
 /**
@@ -16,6 +16,11 @@ For linked list 1->2->3, the reversed linked list is 3->2->1
  *     }
  * }
  */ 
+
+/*
+Thought process:
+    1. Use a prev pointer. Do a 4-step swap.
+*/
  
 public class Solution {
     public ListNode reverse(ListNode head) {
