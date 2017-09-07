@@ -3,8 +3,8 @@ Given a linked list and a value x, partition it such that all nodes less than x 
 You should preserve the original relative order of the nodes in each of the two partitions.
 
 Example
-Given 1->4->3->2->5->2->null and x = 3,
-return 1->2->2->4->3->5->null.
+    Given 1->4->3->2->5->2->null and x = 3,
+    return 1->2->2->4->3->5->null.
 */
 
 /**
@@ -18,6 +18,12 @@ return 1->2->2->4->3->5->null.
  *     }
  * }
  */ 
+
+/*
+Thought process:
+    1. Use two lists: one to store all nodes less than x; one to store all nodes greater than or equals to x.
+       Merge the two lists at the end.
+*/
  
 public class Solution {
     public ListNode partition(ListNode head, int x) {
