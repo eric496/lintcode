@@ -2,8 +2,8 @@
 Given a sorted linked list, delete all duplicates such that each element appear only once.
 
 Example
-Given 1->1->2, return 1->2.
-Given 1->1->2->3->3, return 1->2->3.
+    Given 1->1->2, return 1->2.
+    Given 1->1->2->3->3, return 1->2->3.
 */
 
 /**
@@ -17,6 +17,12 @@ Given 1->1->2->3->3, return 1->2->3.
  *     }
  * }
  */
+
+/*
+Thought process:
+    1. Create a dummy head, if the value of the current node equals the value of the next node, 
+       remove next node by point the current node to the node after next node.
+*/
  
 public class Solution {
     public ListNode deleteDuplicates(ListNode head) {
