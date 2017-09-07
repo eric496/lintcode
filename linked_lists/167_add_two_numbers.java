@@ -19,6 +19,12 @@ Given 3->1->5 and 5->9->2, return 8->0->8.
  * }
  */
 
+/*
+Thought process:
+    1. It is the same trick applied to 408 and 655, except that here we need a linked list implementation.
+       Use two pointers to solve this problem.
+*/
+
 public class Solution {
 	public ListNode addLists(ListNode A, ListNode B) {
 		if(A == null && B == null) return null;
