@@ -2,7 +2,7 @@
 Given a linked list, swap every two adjacent nodes and return its head.
 
 Example
-Given 1->2->3->4, you should return the list as 2->1->4->3.
+    Given 1->2->3->4, you should return the list as 2->1->4->3.
 */
 
 /**
@@ -13,7 +13,12 @@ Given 1->2->3->4, you should return the list as 2->1->4->3.
  *     ListNode(int x) { val = x; }
  * }
  */
- 
+
+/*
+Thought process:
+    1. Use two pointers. Be careful of the order of swap. 
+*/
+
 public class Solution {
     public ListNode swapPairs(ListNode head) {
         if(head == null) return null;
