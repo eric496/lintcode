@@ -2,11 +2,11 @@
 Given a linked list, remove the nth node from the end of list and return its head.
 
 Notice
-The minimum number of nodes in list is n.
+    The minimum number of nodes in list is n.
 
 Example
-Given linked list: 1->2->3->4->5->null, and n = 2.
-After removing the second node from the end, the linked list becomes 1->2->3->5->null.
+    Given linked list: 1->2->3->4->5->null, and n = 2.
+    After removing the second node from the end, the linked list becomes 1->2->3->5->null.
 */
 
 /**
@@ -20,6 +20,11 @@ After removing the second node from the end, the linked list becomes 1->2->3->5-
  *     }
  * }
  */ 
+
+/*
+Thought process:
+    1. Same to 166, except that we need one more step to remove the specified node. 
+*/
  
 public class Solution {
     ListNode removeNthFromEnd(ListNode head, int n) {
