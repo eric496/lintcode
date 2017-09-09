@@ -2,15 +2,15 @@
 Given a binary tree, return the inorder traversal of its nodes' values.
 
 Example
-Given binary tree {1,#,2,3},
+    Given binary tree {1,#,2,3},
 
-   1
-    \
-     2
-    /
-   3
+       1
+        \
+         2
+        /
+       3
 
-return [1,3,2].
+    return [1,3,2].
 */
 
 /**
@@ -24,6 +24,16 @@ return [1,3,2].
  *     }
  * }
  */
+
+/*
+Thought process:
+    1. Recursive method:
+       First, traverse the left subtree recursively. 
+       Second, add the root value.
+       Last, traverse the right subtree recursively.
+    2. Iterative method:
+*/
+
 public class Solution {
     public ArrayList<Integer> inorderTraversal(TreeNode root) {
         ArrayList<Integer> result = new ArrayList<Integer>();
