@@ -27,9 +27,10 @@ Example
 /*
 Thought process:
     1. Recursive method: left - right - add
-    2. Iterative method:
+    2. Iterative method: use stack, basically an reverse opertion of preorder iterative solution.
 */
 
+// recursive
 public class Solution {
     public ArrayList<Integer> postorderTraversal(TreeNode root) {
         ArrayList<Integer> result = new ArrayList<Integer>();
@@ -45,3 +46,21 @@ public class Solution {
     }
 }
 
+// iterative
+public class Solution {
+    public ArrayList<Integer> postorderTraversal(TreeNode root) {
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        Stack<TreeNode> s = new Stack<TreeNode>();
+        while(!s.isEmpty() || root != null) {
+            if(root != null) {
+                s.push(root);
+                result.add(root.val);
+                root = root.right;
+            } else {
+                root = s.pop().left;
+            }
+        }
+        Collections.reverse(result);
+        return result;
+    }
+}

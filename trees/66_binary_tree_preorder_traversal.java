@@ -49,20 +49,16 @@ public class Solution {
 
 // iterative solution
 public class Solution {
-    public ArrayList<Integer> preorderTraversal(TreeNode root) {    
+    public ArrayList<Integer> preorderTraversal(TreeNode root) {
         if(root == null) return null;
         ArrayList<Integer> result = new ArrayList<Integer>();
-        Stack<TreeNode> stack = new Stack<TreeNode>();
-        stack.push(root);
-        while(!stack.empty()) {
-            TreeNode node = stack.pop();
-            result.add(node.val);
-            if(node.right != null) {
-                stack.push(node.right);
-            }
-            if(node.left != null) {
-                stack.push(node.left);
-            }
+        Stack<TreeNode> s = new Stack<TreeNode>();
+        s.push(root);
+        while(!s.isEmpty()) {
+            TreeNode cur = s.pop();
+            result.add(cur.val);
+            if(cur.right != null) s.push(cur.right);
+            if(cur.left != null) s.push(cur.left);
         }
         return result;
     }
