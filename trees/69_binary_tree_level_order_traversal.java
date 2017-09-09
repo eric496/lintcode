@@ -28,30 +28,50 @@ Example
  *         this.left = this.right = null;
  *     }
  * }
-
  */
+
+/*
+Thought process:
+    1. Recursive solution: use DFS. If current level is greater than or equals to the result size, 
+       add a new array list to store the values from the new level. Recursively loop through the 
+       left and right subtrees. 
+    2. Iterative solution: use a queue.
+*/
+
+// recursive with DFS
 public class Solution {
-    public ArrayList<ArrayList<Integer>> levelOrder(TreeNode root) {
-        ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
-        if(root == null) return result;
-        int maxLevel = 0;
-        while(true) {
-            ArrayList<Integer> level = new ArrayList<Integer>();
-            dfs(root, level, 0, maxLevel);
-            if(level.size() == 0) break;
-            result.add(level);
-            maxLevel++;
-        }
-       return result;
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        dfs(result, root, 0);
+        return result;
     }
     
-    private void dfs(TreeNode root, ArrayList<Integer> level, int curtLevel, int maxLevel) {
-        if(root == null || curtLevel > maxLevel) return;
-        if(curtLevel == maxLevel) {
-            level.add(root.val);
-            return;
+    private void dfs(List<List<Integer>> result, TreeNode node, int level) {
+        if(node == null) return;
+        if(level >= result.size()) result.add(new ArrayList<Integer>());
+        result.get(level).add(node.val);
+        dfs(result, node.left, level+1);
+        dfs(result, node.right, level+1);
+    }
+}
+
+// iterative (BFS) using queue
+public class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        if(root == null) return result;
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        q.offer(root);
+        while(!q.isEmpty()) {
+            ArrayList<Integer> level = new ArrayList<Integer>();
+            int levelCount = q.size();
+            for(int i = 0; i < levelCount; i++) {
+                if(q.peek().left != null) q.offer(q.peek().left);
+                if(q.peek().right != null) q.offer(q.peek().right);
+                level.add(q.poll().val);
+            }
+            result.add(level);
         }
-        dfs(root.left, level, curtLevel + 1, maxLevel);
-        dfs(root.right, level, curtLevel + 1, maxLevel);
+        return result;
     }
 }
