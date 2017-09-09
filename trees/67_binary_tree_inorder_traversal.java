@@ -34,6 +34,7 @@ Thought process:
     2. Iterative method:
 */
 
+// recursive
 public class Solution {
     public ArrayList<Integer> inorderTraversal(TreeNode root) {
         ArrayList<Integer> result = new ArrayList<Integer>();
@@ -46,5 +47,25 @@ public class Solution {
         traverse(root.left, result);
         result.add(root.val);
         traverse(root.right, result);
+    }
+}
+
+// iterative
+public class Solution {
+    public ArrayList<Integer> inorderTraversal(TreeNode root) {
+        if(root == null) return null;
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        Stack<TreeNode> s = new Stack<TreeNode>();
+        while(!s.isEmpty() || root != null) {
+            if(root != null) {
+                s.push(root);
+                root = root.left;
+            } else {
+                TreeNode node = s.pop();
+                result.add(node.val);
+                root = node.right;
+            }
+        }
+        return result;
     }
 }
