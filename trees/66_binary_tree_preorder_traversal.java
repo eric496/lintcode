@@ -2,15 +2,13 @@
 Given a binary tree, return the preorder traversal of its nodes' values.
 
 Example
-Given:
-
-    1
-   / \
-  2   3
- / \
-4   5
-
-return [1,2,4,5,3].
+    Given:
+        1
+       / \
+      2   3
+     / \
+    4   5
+    return [1,2,4,5,3].
 */
 
 /**
@@ -24,6 +22,24 @@ return [1,2,4,5,3].
  *     }
  * }
  */
+
+// recursive solution
+public class Solution {
+    public ArrayList<Integer> preorderTraversal(TreeNode root) {    
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        traverse(root, result);
+        return result;
+    }
+    
+    private void traverse(TreeNode root, ArrayList<Integer> result) {
+        if(root == null) return;
+        result.add(root.val);
+        traverse(root.left, result);
+        traverse(root.right, result);
+    }
+}
+
+// iterative solution
 public class Solution {
     public ArrayList<Integer> preorderTraversal(TreeNode root) {    
         ArrayList<Integer> result = new ArrayList<Integer>();
