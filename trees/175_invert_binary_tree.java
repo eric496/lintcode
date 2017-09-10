@@ -2,11 +2,11 @@
 Invert a binary tree.
 
 Example
-  1         1
- / \       / \
-2   3  => 3   2
-   /       \
-  4         4
+      1         1
+     / \       / \
+    2   3  => 3   2
+       /       \
+      4         4
 */
 
 /**
@@ -20,6 +20,12 @@ Example
  *     }
  * }
  */
+
+/*
+Thought process:
+    1. Recursive solution: swap nodes with an intermediate variable. 
+       Then call the function recursively for left and right subtrees.
+*/
 
 public class Solution {
     public void invertBinaryTree(TreeNode root) {
