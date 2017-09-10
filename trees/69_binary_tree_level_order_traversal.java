@@ -55,7 +55,9 @@ public class Solution {
     }
 }
 
-// iterative (BFS) using queue
+// iterative - DFS using two stacks
+
+// iterative - BFS using queue
 public class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
