@@ -2,19 +2,17 @@
 Given a binary tree, return all root-to-leaf paths.
 
 Example
-Given the following binary tree:
-
-   1
- /   \
-2     3
- \
-  5
-
-All root-to-leaf paths are:
-[
-  "1->2->5",
-  "1->3"
-]
+    Given the following binary tree:
+       1
+     /   \
+    2     3
+     \
+      5
+    All root-to-leaf paths are:
+    [
+      "1->2->5",
+      "1->3"
+    ]
 */
 
 /**
@@ -28,6 +26,13 @@ All root-to-leaf paths are:
  *     }
  * }
  */
+
+/*
+Thought process:
+    1. Recursive solution
+*/
+
+// recursive
 public class Solution {
     public List<String> binaryTreePaths(TreeNode root) {
         List<String> result = new ArrayList<String>();
@@ -42,11 +47,7 @@ public class Solution {
             result.add(path);
             return;
         }
-        if(node.left != null) {
-            findPaths(node.left, path + "->" + String.valueOf(node.left.val), result);
-        }
-        if(node.right != null) {
-            findPaths(node.right, path + "->" + String.valueOf(node.right.val), result);
-        }
+        if(node.left != null) findPaths(node.left, path + "->" + String.valueOf(node.left.val), result);
+        if(node.right != null) findPaths(node.right, path + "->" + String.valueOf(node.right.val), result);
     }
 }
