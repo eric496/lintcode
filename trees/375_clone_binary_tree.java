@@ -2,21 +2,18 @@
 For the given binary tree, return a deep copy of it.
 
 Example
-Given a binary tree:
-
-     1
-   /  \
-  2    3
- / \
-4   5
-
-return the new binary tree with same structure and same value:
-
-     1
-   /  \
-  2    3
- / \
-4   5
+    Given a binary tree:
+         1
+       /  \
+      2    3
+     / \
+    4   5
+    return the new binary tree with same structure and same value:
+         1
+       /  \
+      2    3
+     / \
+    4   5
 */
 
 /**
@@ -31,12 +28,17 @@ return the new binary tree with same structure and same value:
  * }
  */
 
+/*
+Thought process:
+    1. Recursive solution
+*/
+
 public class Solution {
     public TreeNode cloneTree(TreeNode root) {
         if(root == null) return null;
-        TreeNode clone_root = new TreeNode(root.val);
-        clone_root.left = cloneTree(root.left);
-        clone_root.right = cloneTree(root.right);
+        TreeNode cloneroot = new TreeNode(root.val);
+        cloneroot.left = cloneTree(root.left);
+        cloneroot.right = cloneTree(root.right);
         return clone_root;
     }
 }
