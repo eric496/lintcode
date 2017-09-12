@@ -8,8 +8,8 @@ Given [3, 2, 1, 4, 5], return [1, 2, 3, 4, 5].
 /*
 Thought process:
     This is a review of all the efficient sorting algorithms with a time complexity of O(nlogn).
-    1. Quick sort
-    2. Merge sort
+    1. Quicksort
+    2. Mergesort
     3. Heap sort
 */
 

@@ -62,3 +62,13 @@ Arrays.fill(arrInt, 1, 5);
 // convert an array to a list
 // the list points to the original array
 List<Integer> list = Arrays.asList(arrInt);
+
+// check equality of two arrays, return true if a and b have the same number of elements and each pair of elements are equal
+Arrays.equals(a, b);
+
+
+
+/*
+Strings
+
+*/
