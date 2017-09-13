@@ -1,5 +1,3 @@
-
-
 /*
 Find the Nth number in Fibonacci sequence.
 A Fibonacci sequence is defined as follow:
@@ -9,12 +7,19 @@ The first ten numbers in Fibonacci sequence is:
 0, 1, 1, 2, 3, 5, 8, 13, 21, 34 ...
 
 Notice
-The Nth fibonacci number won't exceed the max value of signed 32-bit integer in the test cases.
+    The Nth fibonacci number won't exceed the max value of signed 32-bit integer in the test cases.
 
 Example
-Given 1, return 0
-Given 2, return 1
-Given 10, return 34
+    Given 1, return 0
+    Given 2, return 1
+    Given 10, return 34
+*/
+
+/*
+Thought process:
+    1. Be careful of the base case, different fibonacci sequence might start with different initial values, 
+       such as 0 or 1.
+    2. Similar to 111. Climbing stairs
 */
 
 // recursive 
