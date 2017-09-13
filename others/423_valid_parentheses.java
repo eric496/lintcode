@@ -2,7 +2,13 @@
 Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
 
 Example
-The brackets must close in the correct order, "()" and "()[]{}" are all valid but "(]" and "([)]" are no
+    The brackets must close in the correct order, "()" and "()[]{}" are all valid but "(]" and "([)]" are no
+*/
+
+/*
+Thought process:
+    1. Use stack to pair the parentheses, if a character is '(', '{' or '[',
+       then push it to the stack. Otherwise, compare it to the topmost element.
 */
 
 public class Solution {

@@ -7,10 +7,10 @@ The count-and-say sequence is the sequence of integers beginning as follows:
 Given an integer n, generate the nth sequence.
 
 Notice
-The sequence of integers will be represented as a string.
+    The sequence of integers will be represented as a string.
 
 Example
-Given n = 5, return "111221".
+    Given n = 5, return "111221".
 */
 
 public class Solution {
