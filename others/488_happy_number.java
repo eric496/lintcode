@@ -22,9 +22,7 @@ public class Solution {
         while(sum != 1) {
             String s = String.valueOf(sum);
             sum = 0;
-            for(char c : s.toCharArray()) {
-                sum += Math.pow((c - '0'), 2);
-            }
+            for(char c : s.toCharArray()) sum += Math.pow((c - '0'), 2);
             if(table.contains(sum)) {
                 return false;
             } else {
