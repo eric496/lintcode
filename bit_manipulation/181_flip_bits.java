@@ -2,10 +2,15 @@
 Determine the number of bits required to flip if you want to convert integer n to integer m.
 
 Notice
-Both n and m are 32-bit integers.
+    Both n and m are 32-bit integers.
 
 Example
-Given n = 31 (11111), m = 14 (01110), return 2.
+    Given n = 31 (11111), m = 14 (01110), return 2.
+*/
+
+/*
+Thought process:
+    1. 
 */
 
 class Solution {
