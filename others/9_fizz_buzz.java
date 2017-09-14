@@ -15,6 +15,11 @@ If n = 15, you should return:
 ]
 */
 
+/*
+Thought process:
+    A "Hello World" programming question.
+*/
+
 class Solution {
     public ArrayList<String> fizzBuzz(int n) {
         ArrayList<String> results = new ArrayList<String>();
