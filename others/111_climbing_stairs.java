@@ -11,7 +11,8 @@ Example
 Thought process:
     1. Recursive solution
     2. Iterative solution
-    3. DP
+    3. DP - similar to fibonacci sequence, 
+       1,1,2,3,5, ...
 */
 
 // recursive
