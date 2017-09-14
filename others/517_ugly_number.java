@@ -11,6 +11,12 @@ Example
     Given num = 14 return false
 */
 
+/*
+Thought process:
+    1. Divide by 2, 3, 5 repeatedly until it cannot be divided. 
+    2. Check if the result equals 1. 
+*/
+
 public class Solution {
     public boolean isUgly(int num) {
         if(num <= 0) return false;
