@@ -5,8 +5,13 @@ Every time you guess wrong, I'll tell you whether the number is higher or lower.
 You call a pre-defined API guess(int num) which returns 3 possible results (-1, 1, or 0):
 
 Example
-n = 10, I pick 4 (but you don't know)
-Return 4. Correct !
+    n = 10, I pick 4 (but you don't know)
+    Return 4. Correct !
+*/
+
+/*
+Thought process:
+    1. Typical binary search
 */
 
 public class Solution extends GuessGame {
