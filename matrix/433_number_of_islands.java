@@ -3,15 +3,15 @@ Given a boolean 2D matrix, 0 is represented as the sea, 1 is represented as the 
 Find the number of islands.
 
 Example
-Given graph:
-[
-  [1, 1, 0, 0, 0],
-  [0, 1, 0, 0, 1],
-  [0, 0, 0, 1, 1],
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 1]
-]
-return 3.
+    Given graph:
+    [
+      [1, 1, 0, 0, 0],
+      [0, 1, 0, 0, 1],
+      [0, 0, 0, 1, 1],
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 1]
+    ]
+    return 3.
 */
 
 public class Solution {

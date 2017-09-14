@@ -4,17 +4,17 @@ You have to paint all the posts such that no more than two adjacent fence posts 
 Return the total number of ways you can paint the fence.
 
 Notice
-n and k are non-negative integers.
+    n and k are non-negative integers.
 
 Example
-Given n=3, k=2 return 6
-      post 1,   post 2, post 3
-way1    0         0       1 
-way2    0         1       0
-way3    0         1       1
-way4    1         0       0
-way5    1         0       1
-way6    1         1       0
+    Given n=3, k=2 return 6
+          post 1,   post 2, post 3
+    way1    0         0       1 
+    way2    0         1       0
+    way3    0         1       1
+    way4    1         0       0
+    way5    1         0       1
+    way6    1         1       0
 */
 
 public class Solution {
