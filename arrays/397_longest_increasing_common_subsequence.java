@@ -5,11 +5,19 @@ An increasing continuous subsequence:
     Indices of the integers in the subsequence should be continuous.
 
 Notice
-O(n) time and O(1) extra space.
+    O(n) time and O(1) extra space.
 
 Example
-For [5, 4, 2, 1, 3], the LICS is [5, 4, 2, 1], return 4.
-For [5, 1, 2, 3, 4], the LICS is [1, 2, 3, 4], return 4.
+    For [5, 4, 2, 1, 3], the LICS is [5, 4, 2, 1], return 4.
+    For [5, 1, 2, 3, 4], the LICS is [1, 2, 3, 4], return 4.
+*/
+
+/*
+Thought process:
+    1. A straightforward approach is just loop through the array from left and right respectively.
+       If latter element is greater than the previous, then counter increments by 1. Otherwise, 
+       set counter to 1. At the end of each loop, compare the current count with the max count 
+       and save the larger one as max count.
 */
 
 public class Solution {
