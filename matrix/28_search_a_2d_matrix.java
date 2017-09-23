@@ -12,6 +12,15 @@ Example
         [23, 30, 34, 50]
     ]
     Given target = 3, return true.
+
+Challenge
+    O(log(n) + log(m)) time
+*/
+
+/*
+Thought process:
+    1. A 2-D binary search problem. Nothing different from a typical binary search.
+       Binary search the row index first, and then the column index.
 */
 
 public class Solution {
