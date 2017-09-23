@@ -15,21 +15,60 @@ Example
     The minimum path sum from top to bottom is 11 (i.e., 2 + 3 + 5 + 1 = 11).
 */
 
+/*
+Thought process:
+    1. O(n) time and O(1) space: Bottom-up method, from the second to the last row,
+       add the current element value with the smaller value from its two children,
+       store it at the current position. Keep moving upward until top and return 
+       triangle[0][0] which stores the min path sum. Notice this method saves space
+       at the expense of changing the values of the triangle.
+  
+*/
+
+// O(n) time and O(1) space
 public class Solution {
     public int minimumTotal(int[][] triangle) {
         if(triangle == null || triangle.length == 0) return 0;
-
         if(triangle[0] == null || triangle[0].length == 0) return 0;
-
-        int n = triangle.length;
-        int[][] f = new int[2][n];
-        for(int i = 0; i < n; i++) f[(n - 1) % 2][i] = triangle[n - 1][i];
-
-        for(int i = n - 2; i >= 0; i--){
-            for(int j = 0; j <= i; j++){
-                f[i % 2][j] = triangle[i][j] + Math.min(f[(i + 1) % 2][j], f[(i + 1) % 2][j + 1]);
+        if(triangle.length == 1) return triangle[0][0];
+        for(int layer = triangle.length - 2; layer >= 0; layer--) {
+            for(int i = 0; i < triangle[layer].length; i++) {
+                triangle[layer][i] += Math.min(triangle[layer+1][i], triangle[layer+1][i+1]);
             }
         }
-        return f[0][0];
+        return triangle[0][0];
+    }
+} 
+
+// O(n) time and O(n^2) space
+public class Solution {
+    public int minimumTotal(int[][] triangle) {
+        if(triangle == null || triangle.length == 0) return 0;
+        if(triangle[0] == null || triangle[0].length == 0) return 0;
+        if(triangle.length == 1) return triangle[0][0];
+        int[][] result = new int[triangle.length][triangle[triangle.length-1].length];
+        result[triangle.length-1] = triangle[triangle.length-1];
+        for(int layer = triangle.length - 2; layer >= 0; layer--) {
+            for(int i = 0; i < triangle[layer].length; i++) {
+                result[layer][i] += Math.min(result[layer+1][i], result[layer+1][i+1]) + triangle[layer][i];
+            }
+        }
+        return result[0][0];
+    }
+}
+
+// O(n) time and O(n) space
+public class Solution {
+    public int minimumTotal(int[][] triangle) {
+        if(triangle == null || triangle.length == 0) return 0;
+        if(triangle[0] == null || triangle[0].length == 0) return 0;
+        if(triangle.length == 1) return triangle[0][0];
+        int[] result = new int[triangle.length + 1];
+        for(int layer = triangle.length-1; layer >= 0; layer--) {
+            for(int i = 0; i < triangle[layer].length; i++) {
+                result[i] = Math.min(result[i], result[i+1]) + triangle[layer][i];
+            }
+        }
+        return result[0];
     }
 }
