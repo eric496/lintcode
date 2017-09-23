@@ -11,6 +11,16 @@ Example
     Given m = 4 and n = 5, return 35.
 */
 
+/*
+Thought process:
+    1. Typical DP problem. It is similar to 111. Climb stairs. 
+       the number of possible paths for the current position is
+       the sum of the number of possible paths of its left position 
+       and that of its up position.
+    2. Remember to handle the first row and column as they have only
+       one possible path.  
+*/
+
 public class Solution {
     public int uniquePaths(int m, int n) {
         if (m <= 1 || n <= 1) return 1;
