@@ -11,22 +11,31 @@ Challenge
     O(n x m) memory is acceptable, can you do it in O(m) memory?
 */
 
+/*
+Thought process:
+    1. Similar to 92. backpack. The only difference is to add value instead of weight. 
+*/
+
 public class Solution {
     public int backPackII(int m, int[] A, int V[]) {  
-        int[][] dp = new int[A.length+1][m+1];  
-        for (int i = 0; i <= A.length; i++) {  
-            for (int j = 0; j <= m; j++) {  
-                if (i == 0 || j == 0) {  
-                    dp[i][j] = 0;  
+        int[][] dp = new int[A.length][m+1];
+        for(int i = 0; i < m + 1; i++) {
+            if(A[0] > i) {
+                dp[0][i] = 0;
+            } else {
+                dp[0][i] = V[0];
+            }
+        }
+        
+        for (int i = 1; i < A.length; i++) {  
+            for (int j = 1; j < m + 1; j++) {  
+                if (A[i] <= j) {  
+                    dp[i][j] = Math.max(dp[i-1][j], dp[i-1][j-A[i]] + V[i]);  
                 } else {  
-                    if (A[i-1] <= j) {  
-                        dp[i][j] = Math.max(dp[i-1][j], dp[i-1][j-A[i-1]] + V[i-1]);  
-                    } else {  
-                        dp[i][j] = dp[i-1][j];  
-                    }  
+                    dp[i][j] = dp[i-1][j];  
                 }  
             }  
         }  
-        return dp[A.length][m];  
+        return dp[A.length-1][m];  
     }  
 }
