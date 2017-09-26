@@ -28,6 +28,13 @@ Example
  * }
  */
  
+/*
+Thought process:
+    1. Push root to a queue, then iteratively get the head value as well as pushing its
+       left and right children into the queue. 
+    2. Finally when queus is empty, reverse the order of the result.
+*/
+
 public class Solution {
     public ArrayList<ArrayList<Integer>> levelOrderBottom(TreeNode root) {
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
