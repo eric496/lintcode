@@ -16,6 +16,15 @@ Example
     ]
 */
 
+/*
+Thought process:
+    1. Use queue to store each level. 
+    2. Use a flag variable to switch forward and backward traversal for each level.
+       In this question, if order = true then add append element. Otherwise, insert at the head.
+    3. Pop each element, add its value to the list. At the same time, add its children 
+       to the queue.
+*/
+
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -27,29 +36,31 @@ Example
  *     }
  * }
  */
- 
+
 public class Solution {
-    public ArrayList<ArrayList<Integer>> zigzagLevelOrder(TreeNode root) {
-        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
-        traverse(result, root, 0);
-        for (int i = 1; i < result.size(); i+=2) {
-            int len = result.get(i).size();
-            List<Integer> list = result.get(i);
-            for (int j = 0; j < len / 2; j++) {
-                int tmp = list.get(j);
-                list.set(j, list.get(len - 1 - j));
-                list.set(len - 1 - j, tmp);
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if(root == null) return result;
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        q.add(root);
+        boolean order = true;
+        while(!q.isEmpty()) {
+            ArrayList<Integer> level = new ArrayList<Integer>();
+            int size = q.size();
+            for(int i = 0; i < size; i++) {
+                TreeNode node = q.poll();
+                if(order) {
+                    level.add(node.val);
+                } else {
+                    level.add(0, node.val);
+                }
+                if(node.left != null) q.add(node.left);
+                if(node.right != null) q.add(node.right);
             }
+            order = !order;
+            result.add(level);
         }
         return result;
     }
-
-    private void traverse(ArrayList<ArrayList<Integer>> result, TreeNode node, int level) {
-        if (node == null) return;
-        while (result.size() < level + 1) result.add(new ArrayList<Integer>());
-        ArrayList<Integer> list = result.get(level);
-        list.add(node.val);
-        traverse(result, node.left, level + 1);
-        traverse(result, node.right, level + 1);
-    }
 }
+ 
