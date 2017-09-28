@@ -11,6 +11,8 @@ Example
 /*
 Thought process:
     1. Refer to: https://leetcode.com/problems/container-with-most-water/discuss/
+    2. Notice that if heights[left] == heights[right], we should move both pointers, 
+       because moving any single pointer unilaterally will reduce the area.
 */
 
 public class Solution {
@@ -21,7 +23,10 @@ public class Solution {
             maxArea = Math.max(maxArea, (right - left) * Math.min(heights[left], heights[right]));
             if(heights[left] < heights[right]) {
                 left++;
+            } else if(heights[left] > heights[right]) {
+                right--;
             } else {
+                left++;
                 right--;
             }
         }

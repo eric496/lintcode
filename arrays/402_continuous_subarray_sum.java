@@ -14,6 +14,8 @@ Thought process:
        update the last index to current index.
        Update global index if local max is greater than global max, 
        and update the indices accordingly.
+    3. Remember to add values to result at first, or ArrayList set() method 
+       won't work for an empty arraylist.
 */
 
 public class Solution {
