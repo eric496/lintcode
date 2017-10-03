@@ -10,6 +10,8 @@ Challenge
     O(n2) memory is also acceptable if you do not know how to optimize memory.
 */
 
+
+// O(n^2) time and O(n^2) space
 public class Solution {
     public int numDistinct(String S, String T) {
         if (S == null || T == null) return 0;
