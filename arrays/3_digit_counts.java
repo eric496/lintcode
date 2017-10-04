@@ -12,6 +12,7 @@ Thought process:
     1. Brute force: loop through all numbers, digit by digit. Keep the number of apperance of the target digit
 */
 
+// O(n^2) time and O(1) space
 class Solution {
     public int digitCounts(int k, int n) {
         if(k < 0 || k > 9 || n < 0) return 0;
