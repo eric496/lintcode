@@ -57,7 +57,7 @@ Arrays.copyOfRange(arrInt, 1, 5);
 // fill an array with specified value
 Arrays.fill(arrInt, 10);
 // fill subarray with specified value, provided the start and end indices: [1,5)
-Arrays.fill(arrInt, 1, 5);
+Arrays.fill(arrInt, 1, 5, 10);
 
 // convert an array to a list
 // the list points to the original array
@@ -70,5 +70,40 @@ Arrays.equals(a, b);
 
 /*
 Strings
-
+A string is an object that represents a sequence of char values.
+String is immutable.
 */
+
+// create a string by converting a char array
+char[] c = {'a', 'b', 'c', 'd'};
+String s = new String(c);
+// create a string by new keyword
+String s = new String("abc");
+// create a string by string literal
+String s = "abc";
+
+// String methods
+str.length()                              // length of the string str
+str.concat(str1)                          // concatenate two strings
+str + str1                                // equivalent to .concat() method but even simple
+str.charAt(i)                             // character at index i
+str.toCharArray()                         // convert a string to char array
+str.equals(str1)                          // compare two strings
+str.equalsIgnoreCase                      // compare two strings, case insensitive
+str.indexOf('a')                          // returns the index within this string of the first occurrence of the specified character 
+str.indexOf('a', i)                       // same but search from index i
+str.indexOf("abc")                        // returns the index within this string of the first occurrence of the specified substring
+str.indexOf("abc", i)                     // same but search from index i
+str.lastIndexOf('a') 
+str.lastIndexOf('a', i)
+str.lastIndexOf("abc")
+str.lastIndexOf("abc", i)
+str.replace(oldChar, newChar)             // replace the old char with new char
+str.replaceAll(oldStr, newStr)            // replace the old substring with new substring
+str.replaceFirst(oldStr, newStr)          // replace the first substring with new substring
+str.split(",")                            // split string to an array of strings with a certain delimiter
+str.substring(1,5)                        // return substring from index [1,5)
+str.toLowerCase()
+str.toUpperCase()
+str.trim()                                // remove leading and trailing spaces
+String.valueOf(123)                       // convert a primitive data type to string
