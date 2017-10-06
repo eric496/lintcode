@@ -109,6 +109,30 @@ str.trim()                                // remove leading and trailing spaces
 String.valueOf(123)                       // convert a primitive data type to string
 
 
+/*
+StringBuffer: a thread-safe mutable sequence of characters
+StringBuilder: 
+*/
+
+sb.append(e)                              // append e at the end
+sb.charAt(i)                              // return character at position i
+sb.deleteCharAt(i)                        // remove character at position i
+sb.setCharAt(i, c)                        // set character at position i to c 
+sb.delete(i, j)                           // remove sub string with index range [i,j)
+sb.length()                                 // return the number of elements
+sb.indexOf(e)                             // return the index of the first occurence of e
+sb.indexOf(e, i)                          // return the index of the first occurence of e, starting from position i
+sb.lastIndexOf(e)                         // return the index of the last occurence of e
+sb.lastIndexOf(e, i)                      // ?
+sb.insert(i, e)                           // insert e at position i
+sb.reverse()                              // reverse the string buffer
+sb.replace(i, j, str)                     // replace a substring [i,j) in sb with str
+sb.toString()                             // convert sb to string
+sb.substring(i)                           // return a new string that contains a substring starting from position i
+sb.substring(i, j)                        // return a new string that contains a substring with range [i, j)
+
+
+
 
 /*
 ArrayList
@@ -127,7 +151,7 @@ aList.indexOf(e)                          // return the index of the first occur
 aList.isEmpty()                           // return true if the list is empty
 aList.lastIndexOf(e)                      // return the index of the last occurence of e
 aList.remove(i)                           // remove the element at position i
-aList.remove(e)                           // remove the first occurence of e
+aList.remove(obj e)                       // remove the first occurence of obj e, e.g. aList.remove(new Integer(1))
 aList.removeAll(Collection)               // remove from the list all of its elements that are contained in the specified collection
 aList.set(i, e)                           // replace element at position i with e
 aList.size()                              // return the number of elements in the list
