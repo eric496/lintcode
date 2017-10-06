@@ -178,6 +178,9 @@ s.isEmpty()                               // return true if s is empty
 s.size()                                  // return the number of elements in s
 s.search(e)                               // return 1-based position from the top of s where e is located
 
+
+
+
 /*
 Queue
 FIFO linked list
@@ -194,4 +197,24 @@ q.poll()                                   // remove the head of q and return th
 q.element()                                // retrieve the head of q wihtout removing it, otherwise throw an exception
 q.peek()                                   // retrieve the head of q without removing it, otherwise return null
 
+
+
+
+/*
+Deque
+Double ended queue
+*/
+
+deq.addFirst(e)                            // insert e at the front of deq, throw an exception upon error
+deq.offerFirst(e)                          // insert e at the front of deq, return false upon error
+deq.removeFirst()                          // q.remove()
+deq.pollFirst()                            // q.poll()
+deq.getFirst()                             // q.element()
+deq.peekFirst()                            // q.peek()
+deq.addLast(e)                             // q.add(e)
+deq.offerLast(e)                           // q.offer(e)
+deq.removeLast()                           // remove the last element in deq, throw an exception upon error
+deq.pollLast()                             // remove the last element in deq, return null upon error
+deq.getLast()                              // retrieve the last element of deq, throw an exception upon error
+deq.peekLast()                             // retrieve the last element of deq, return null upon error
 
