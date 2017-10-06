@@ -218,3 +218,27 @@ deq.pollLast()                             // remove the last element in deq, re
 deq.getLast()                              // retrieve the last element of deq, throw an exception upon error
 deq.peekLast()                             // retrieve the last element of deq, return null upon error
 
+
+
+
+
+/*
+HashMap
+Hash table with key - value pair
+*/
+
+// create a new HashMap
+HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+
+// methods
+map.put(key, value)                        // associate the specified value with the specified key in this map
+map.get(key)                               // returns the value to which the specified key is mapped
+map.remove(key)                            // remove the mapping for the specified key from map
+map.size()                                 // return the number of key-value mappings in map
+map.values()                               // return a Collection of the values contained in map
+map.keySet()                               // return a Set of the keys contained in map
+map.isEmpty()                              // return true if map contains no key-value mappings
+map.containsKey(key)                       // return true if map contains a mapping for the specified key
+map.containsValue(value)                   // return true if map maps one or more keys to the specified value
+map.clear()                                // remove all of the mappings from map
+
