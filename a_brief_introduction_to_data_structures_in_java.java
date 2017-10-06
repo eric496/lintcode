@@ -107,3 +107,30 @@ str.toLowerCase()
 str.toUpperCase()
 str.trim()                                // remove leading and trailing spaces
 String.valueOf(123)                       // convert a primitive data type to string
+
+
+
+/*
+ArrayList
+Resizable array
+*/
+
+// methods
+aList.add(e)                              // append e to the end of the list
+aList.add(i, e)                           // insert e at position i
+aList.addAll(Collection)                  // append all of the elements in the specified collection to the end of the list
+aList.addAll(i, Collection)               // append all of the elements at position i
+aList.clear()                             // remove all of the elements
+aList.contains(e)                         // return true if the list contains e
+aList.get(i)                              // return the element at position i
+aList.indexOf(e)                          // return the index of the first occurence of e
+aList.isEmpty()                           // return true if the list is empty
+aList.lastIndexOf(e)                      // return the index of the last occurence of e
+aList.remove(i)                           // remove the element at position i
+aList.remove(e)                           // remove the first occurence of e
+aList.removeAll(Collection)               // remove from the list all of its elements that are contained in the specified collection
+aList.set(i, e)                           // replace element at position i with e
+aList.size()                              // return the number of elements in the list
+aList.subList(i, j)                       // return a sub list with index range [i, j)
+aList.toArray()                           // convert the array list to array
+
