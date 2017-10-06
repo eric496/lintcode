@@ -106,6 +106,7 @@ str.substring(1,5)                        // return substring from index [1,5)
 str.toLowerCase()
 str.toUpperCase()
 str.trim()                                // remove leading and trailing spaces
+// java.lang.String method
 String.valueOf(123)                       // convert a primitive data type to string
 
 
@@ -157,4 +158,40 @@ aList.set(i, e)                           // replace element at position i with 
 aList.size()                              // return the number of elements in the list
 aList.subList(i, j)                       // return a sub list with index range [i, j)
 aList.toArray()                           // convert the array list to array
+
+
+
+
+/*
+Stack
+LIFO linked list
+*/
+
+// create a new stack
+Stack<Integer> s = new Stack<Integer>();
+
+// methods
+s.push(e)                                 // push an item e onto the top of stack s
+s.pop()                                   // remove the object at the top and return the object
+s.peek()                                  // retrieve the object at the top without removing it
+s.isEmpty()                               // return true if s is empty
+s.size()                                  // return the number of elements in s
+s.search(e)                               // return 1-based position from the top of s where e is located
+
+/*
+Queue
+FIFO linked list
+*/
+
+// create a new queue
+Queue<Integer> q = new LinkedList<Integer>();
+
+// methods
+q.add(e)                                   // insert e into the queue, return true upon success, otherwise throw an exception
+q.offer(e)                                 // insert e into the queue, otherwise return false
+q.remove()                                 // remove the head of q and return the object, throw an exception when q is empty
+q.poll()                                   // remove the head of q and return the object, return null when q is empty
+q.element()                                // retrieve the head of q wihtout removing it, otherwise throw an exception
+q.peek()                                   // retrieve the head of q without removing it, otherwise return null
+
 
