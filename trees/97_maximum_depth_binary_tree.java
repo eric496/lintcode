@@ -26,11 +26,18 @@ Example
 
 /*
 Thought process: 
-    1. Recursive solution: check max depth of left and right subtrees recursively. Get the max and plus one (for the root level).
-    2. Iterative solutions: simlilar to 69 (use two stacks for DFS or use queue for BFS)
+    1. Recursive solution: 
+           Base case: return 0 when current node is null.
+           Recursive steps: run recursively on the left and the right children of the current node, 
+                            return the larger value PLUS ONE
+    2. Iterative solution: 
+           BFS: Similar to level order traversal, with a count variable to keep the number of levels.
+           DFS: Use two stacks, push each node into stack s, meanwhile push the current number of levels into stack v,
+                At each iteration, update a max variable. 
+           
 */
 
-// recursive
+// recursive - trivial
 public class Solution {
     public int maxDepth(TreeNode root) {
         if(root == null) return 0;
@@ -44,22 +51,22 @@ public class Solution {
 public class Solution {
     public int maxDepth(TreeNode root) {
         if(root == null) return 0;
-        Stack<TreeNode> stack = new Stack<TreeNode>();
-        Stack<Integer> value = new Stack<Integer>();
-        stack.push(root);
-        value.push(1);
+        Stack<TreeNode> s = new Stack<TreeNode>();
+        Stack<Integer> v = new Stack<Integer>();
+        s.push(root);
+        v.push(1);
         int max = 0;
-        while(!stack.isEmpty()) {
-            TreeNode node = stack.pop();
-            int temp = value.pop();
-            max = Math.max(temp, max);
+        while(!s.isEmpty()) {
+            TreeNode node = s.pop();
+            int height = v.pop();
+            max = Math.max(height, max);
             if(node.left != null) {
-                stack.push(node.left);
-                value.push(temp + 1);
+                s.push(node.left);
+                v.push(height + 1);
             }
             if(node.right != null) {
-                stack.push(node.right);
-                value.push(temp + 1);
+                s.push(node.right);
+                v.push(height + 1);
             }
         }
         return max;
@@ -70,15 +77,15 @@ public class Solution {
 public class Solution {
     public int maxDepth(TreeNode root) {
         if(root == null) return 0;
-        Queue<TreeNode> queue = new LinkedList<TreeNode>();
-        queue.offer(root);
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        q.offer(root);
         int count = 0;
-        while(!queue.isEmpty()) {
-            int size = queue.size();
-            while(size-- > 0) {
-                TreeNode node = queue.poll();
-                if(node.left != null) queue.offer(node.left);
-                if(node.right != null) queue.offer(node.right);
+        while(!q.isEmpty()) {
+            int size = q.size();
+            for(int i = 0; i < size; i++) {
+                TreeNode node = q.poll();
+                if(node.left != null) q.offer(node.left);
+                if(node.right != null) q.offer(node.right);
             }
             count++;
         }
