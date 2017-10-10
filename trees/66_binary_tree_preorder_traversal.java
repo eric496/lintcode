@@ -25,25 +25,30 @@ Example
 
 /*
 Thought process:
-    1. Recursive solution 
-    2. Iterative solution using stack
-       push root -> while stack not empty -> pop item and add to result list -> push right child -> push left child
-       Notice stack is LIFO, so for preorder traversal, we need to push right child first then the left.
+    1. DFS:
+           Base case: return when current node is null
+           Recursive steps: add the value of the current node to the list,
+                            run recursively the left child first and then the right child.
+    2. Iterative solution using stack:
+           Push root into stack
+           Pop the top node in the stack, add its value to the result list
+           Push its RIGHT child first, then its left child into the stack
+       	   Because stack is a LIFO data structure, we need to push right child before the left in order for preorder traversal.
 */
 
 // recursive solution
 public class Solution {
     public ArrayList<Integer> preorderTraversal(TreeNode root) {    
         ArrayList<Integer> result = new ArrayList<Integer>();
-        traverse(root, result);
+        dfs(root, result);
         return result;
     }
     
-    private void traverse(TreeNode root, ArrayList<Integer> result) {
+    private void dfs(TreeNode root, ArrayList<Integer> result) {
         if(root == null) return;
         result.add(root.val);
-        traverse(root.left, result);
-        traverse(root.right, result);
+        dfs(root.left, result);
+        dfs(root.right, result);
     }
 }
 
@@ -55,10 +60,10 @@ public class Solution {
         Stack<TreeNode> s = new Stack<TreeNode>();
         s.push(root);
         while(!s.isEmpty()) {
-            TreeNode cur = s.pop();
-            result.add(cur.val);
-            if(cur.right != null) s.push(cur.right);
-            if(cur.left != null) s.push(cur.left);
+            TreeNode node = s.pop();
+            result.add(node.val);
+            if(node.right != null) s.push(node.right);
+            if(node.left != null) s.push(node.left);
         }
         return result;
     }
