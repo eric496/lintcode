@@ -16,6 +16,10 @@ Example
       [9,20],
       [15,7]
     ]
+
+Challenge
+    Challenge 1: Using only 1 queue to implement it.
+    Challenge 2: Use DFS algorithm to do it.
 */
 
 /**

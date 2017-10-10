@@ -49,9 +49,27 @@ public class Solution {
                 if (head.left != null) queue.offer(head.left);
                 if (head.right != null) queue.offer(head.right);
             }
-            result.add(level);
+            result.add(0, level);
         }
+        return result;
+    }
+}
+
+// DFS
+public class Solution {
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        if(root == null) return result;
+        dfs(root, result, 0);
         Collections.reverse(result);
         return result;
+    }
+    
+    private void dfs(TreeNode node, List<List<Integer>> result, int level) {
+        if(node == null) return;
+        if(level >= result.size()) result.add(new ArrayList<Integer>());
+        result.get(level).add(node.val);
+        dfs(node.left, result, level+1);
+        dfs(node.right, result, level+1);
     }
 }
