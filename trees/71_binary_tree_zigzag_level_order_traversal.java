@@ -18,11 +18,7 @@ Example
 
 /*
 Thought process:
-    1. Use queue to store each level. 
-    2. Use a flag variable to switch forward and backward traversal for each level.
-       In this question, if order = true then add append element. Otherwise, insert at the head.
-    3. Pop each element, add its value to the list. At the same time, add its children 
-       to the queue.
+    Similar to 70. But add a flag variable to toggle traversal orders at each level.
 */
 
 /**
@@ -37,6 +33,7 @@ Thought process:
  * }
  */
 
+// BFS
 public class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
@@ -63,4 +60,24 @@ public class Solution {
         return result;
     }
 }
- 
+
+// DFS
+public class Solution {
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        if(root == null) return result;
+        dfs(root, result, 0);
+        return result;
+    }
+    
+    private void dfs(TreeNode node, List<List<Integer>> result, int level) {
+        if(node == null) return;
+        if(level >= result.size()) result.add(new ArrayList<Integer>());
+        if(level % 2 == 0) 
+            result.get(level).add(node.val);
+        else
+            result.get(level).add(0, node.val);
+        dfs(node.left, result, level+1);
+        dfs(node.right, result, level+1);
+    }
+}
