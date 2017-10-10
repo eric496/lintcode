@@ -23,23 +23,26 @@ Example
  * }
  */
 
+// 
 public class Solution {
-    public TreeNode buildTree(int[] inorder, int[] postorder) {
-        return helper(postorder, inorder, postorder.length-1, inorder.length-1, 0);
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        if(preorder.length != inorder.length) return null;
+        return build(preorder, 0, preorder.length-1, inorder, 0, inorder.length-1);
     }
-
-    private TreeNode helper(int[] postorder, int[] inorder, int postStart, int inStart, int inEnd) {
-        if (postStart < 0 || inStart < inEnd) return null;
-        //The last element in postorder is the root.
-        TreeNode root = new TreeNode(postorder[postStart]);
-        //find the index of the root from inorder. Iterating from the end.
-        int inIndex = inStart;
-        for (int i = inStart; i >= inEnd; i--) {
-            if (inorder[i] == postorder[postStart]) inIndex = i;
+    
+    public TreeNode build(int [] preorder, int preLow, int preHigh, int[] inorder, int inLow, int inHigh){
+        if(preLow > preHigh || inLow > inHigh) return null;
+        TreeNode root = new TreeNode(preorder[preLow]);
+        int inorderRoot = inLow;
+        for(int i = inLow;i <= inHigh; i++) {
+            if(inorder[i] == root.val) {
+                inorderRoot = i; 
+                break;
+            }
         }
-        //build right and left subtrees. Again, scanning from the end to find the sections.
-        root.right = helper(postorder, inorder, postStart-1, inStart, inIndex + 1);
-        root.left = helper(postorder, inorder, postStart - (inStart - inIndex) -1, inIndex - 1, inEnd);
-        return root;
+        int leftTreeLen = inorderRoot - inLow;
+        root.left = build(preorder, preLow+1, preLow+leftTreeLen, inorder, inLow, inorderRoot-1);
+        root.right = build(preorder, preLow+leftTreeLen+1, preHigh, inorder, inorderRoot+1, preHigh);       
+        return root;        
     }
 }
