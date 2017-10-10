@@ -27,10 +27,13 @@ Example
 
 /*
 Thought process:
-    1. Similar to 97. Calculate the depth of the left and right subtrees recursively, check if their difference is smaller than or equal to 1. 
-       Remember to check whether the left and right subtrees are balanced as well.
+    1. Recursive solution: (similar to 93. Maximum depth of binary tree)
+           Base case: return true when the current node is null.
+           Recursive steps: calculate the maximum depth of the left and right subtrees,
+                            check balance of the left subtree, and that of the right subtree.
 */
 
+// recursive 
 public class Solution {
         public boolean isBalanced(TreeNode root) {
                 if(root == null) return true;
