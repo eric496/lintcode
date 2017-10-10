@@ -30,15 +30,18 @@ Example
 
 /*
 Thought process:
-    1. Recursive solution
+    1. Recursive solution:
+           Base case: return null when current node is null.
+           Recursive steps: clone the left subtree first, then the right subtree.     
 */
 
+// recursive (trivial)
 public class Solution {
     public TreeNode cloneTree(TreeNode root) {
         if(root == null) return null;
-        TreeNode cloneroot = new TreeNode(root.val);
-        cloneroot.left = cloneTree(root.left);
-        cloneroot.right = cloneTree(root.right);
-        return clone_root;
+        TreeNode cloneRoot = new TreeNode(root.val);
+        cloneRoot.left = cloneTree(root.left);
+        cloneRoot.right = cloneTree(root.right);
+        return cloneRoot;
     }
 }
