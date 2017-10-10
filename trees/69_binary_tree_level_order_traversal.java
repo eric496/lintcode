@@ -71,11 +71,12 @@ public class Solution {
         q.offer(root);
         while(!q.isEmpty()) {
             ArrayList<Integer> level = new ArrayList<Integer>();
-            int levelCount = q.size();
-            for(int i = 0; i < levelCount; i++) {
-                if(q.peek().left != null) q.offer(q.peek().left);
-                if(q.peek().right != null) q.offer(q.peek().right);
-                level.add(q.poll().val);
+            int size = q.size();
+            for(int i = 0; i < size; i++) {
+                TreeNode head = q.poll();
+                level.add(head.val);
+                if(head.left != null) q.offer(head.left);
+                if(head.right != null) q.offer(head.right);
             }
             result.add(level);
         }

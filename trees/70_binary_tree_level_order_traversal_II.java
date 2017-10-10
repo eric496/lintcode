@@ -30,19 +30,18 @@ Example
  
 /*
 Thought process:
-    1. Push root to a queue, then iteratively get the head value as well as pushing its
-       left and right children into the queue. 
-    2. Finally when queus is empty, reverse the order of the result.
+    Traverse in top-down order and reverse the result.
 */
 
+// BFS
 public class Solution {
     public ArrayList<ArrayList<Integer>> levelOrderBottom(TreeNode root) {
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
         if (root == null) return result;
-        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
         queue.offer(root);
-        while (!queue.isEmpty()) {
-            int size = queue.size();
+        while (!q.isEmpty()) {
+            int size = q.size();
             ArrayList<Integer> level = new ArrayList<>();
             for (int i = 0; i < size; i++) {
                 TreeNode head = queue.poll();
