@@ -54,19 +54,19 @@ public class Solution {
 
 // iterative
 public class Solution {
-    public ArrayList<Integer> inorderTraversal(TreeNode root) {
-        ArrayList<Integer> result = new ArrayList<Integer>();
-        if(root == null) return result;
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
         Stack<TreeNode> s = new Stack<TreeNode>();
         TreeNode node = root;
         while(!s.isEmpty() || node != null) {
-            while(node != null){
-                s.add(node);
+            if(node != null) {
+                s.push(node);
                 node = node.left;
+            } else {
+                node = s.pop();
+                result.add(node.val);    // Add after all left children
+                node = node.right;   
             }
-            node = s.pop();
-            result.add(node.val);
-            node = node.right;
         }
         return result;
     }

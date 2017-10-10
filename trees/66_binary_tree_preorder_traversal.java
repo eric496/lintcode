@@ -52,7 +52,7 @@ public class Solution {
     }
 }
 
-// iterative solution
+// iterative solution 1
 public class Solution {
     public ArrayList<Integer> preorderTraversal(TreeNode root) {
         if(root == null) return null;
@@ -64,6 +64,26 @@ public class Solution {
             result.add(node.val);
             if(node.right != null) s.push(node.right);
             if(node.left != null) s.push(node.left);
+        }
+        return result;
+    }
+}
+
+// iterative solution 2
+public class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        Stack<TreeNode> s = new Stack<>();
+        TreeNode node = root;
+        while(!s.isEmpty() || node != null) {
+            if(node != null) {
+                s.push(node);
+                result.add(node.val);    // Add before going to children
+                node = node.left;
+            } else {
+                node = s.pop();
+                node = node.right;   
+            }
         }
         return result;
     }

@@ -26,41 +26,45 @@ Example
 
 /*
 Thought process:
-    1. Recursive method: left - right - add
-    2. Iterative method: use stack, basically an reverse opertion of preorder iterative solution.
+    1. DFS:
+           Base case: return if current node is null
+           Recursive steps: run recursively on the left child first and then the right child, add the value of the current node 
+    2. Iterative method using stack:
+           Reverse operations of preorder traversal.
 */
 
 // recursive
 public class Solution {
     public ArrayList<Integer> postorderTraversal(TreeNode root) {
         ArrayList<Integer> result = new ArrayList<Integer>();
-        traverse(root, result);
+        dfs(root, result);
         return result;
     }
     
-    private void traverse(TreeNode root, ArrayList<Integer> result) {
-        if(root == null) return;
-        traverse(root.left, result);
-        traverse(root.right, result);
-        result.add(root.val);
+    private void traverse(TreeNode node, ArrayList<Integer> result) {
+        if(node == null) return;
+        traverse(node.left, result);
+        traverse(node.right, result);
+        result.add(node.val);
     }
 }
 
 // iterative
 public class Solution {
-    public ArrayList<Integer> postorderTraversal(TreeNode root) {
-        ArrayList<Integer> result = new ArrayList<Integer>();
-        Stack<TreeNode> s = new Stack<TreeNode>();
-        while(!s.isEmpty() || root != null) {
-            if(root != null) {
-                s.push(root);
-                result.add(root.val);
-                root = root.right;
+    public List<Integer> postorderTraversal(TreeNode root) {
+        LinkedList<Integer> result = new LinkedList<>();
+        Deque<TreeNode> s = new ArrayDeque<>();
+        TreeNode node = root;
+        while(!s.isEmpty() || node != null) {
+            if(node != null) {
+                s.push(node);
+                result.addFirst(node.val);     // Reverse the process of preorder
+                node = node.right;             // Reverse the process of preorder
             } else {
-                root = s.pop().left;
+                node = s.pop();
+                node = node.left;              // Reverse the process of preorder
             }
         }
-        Collections.reverse(result);
         return result;
     }
 }
