@@ -32,13 +32,20 @@ Example
 
 /*
 Thought process:
-    1. Recursive solution: use DFS. If current level is greater than or equals to the result size, 
-       add a new array list to store the values from the new level. Recursively loop through the 
-       left and right subtrees. 
-    2. Iterative solution: use a queue.
+    1. DFS: 
+           Observe that each sub list represents a tree level. 
+           Base case: return when current node is null.  
+           Recursive steps: if current level is greater than or equals to the result size 
+                            which means the current level is a new level, then add a new array list to store the value of the current node. 
+                            Recursively run on left child first and then right child with level parameter incremented by 1 at each step. 
+    2. BFS:
+           Use a queue data structure to solve the problem. 
+           Push the root to the queue. 
+           Pop the top node from the queue, add it to the sub list. 
+           Push its left and right children into the queue. Repeat until the queue is empty.
 */
 
-// recursive with DFS
+// DFS
 public class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
@@ -55,9 +62,7 @@ public class Solution {
     }
 }
 
-// iterative - DFS using two stacks
-
-// iterative - BFS using queue
+// BFS
 public class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
