@@ -27,44 +27,46 @@ Example
 
 /*
 Thought process:
-    1. Recursive method:
-       First, traverse the left subtree recursively. 
-       Second, add the root value.
-       Last, traverse the right subtree recursively.
-    2. Iterative method:
+    1. DFS: 
+           Base case: return when current node is null
+           Recursive steps: run recursively on the left child first, 
+                            add the value of the current node to the result list, 
+                            run recursively on the right child.
+    2. Iterative solution using stack:
+               
 */
 
 // recursive
 public class Solution {
     public ArrayList<Integer> inorderTraversal(TreeNode root) {
         ArrayList<Integer> result = new ArrayList<Integer>();
-        traverse(root, result);
+       	dfs(root, result);
         return result;
     }
     
     private void traverse(TreeNode root, ArrayList<Integer> result) {
         if(root == null) return;
-        traverse(root.left, result);
+        dfs(root.left, result);
         result.add(root.val);
-        traverse(root.right, result);
+        dfs(root.right, result);
     }
 }
 
 // iterative
 public class Solution {
     public ArrayList<Integer> inorderTraversal(TreeNode root) {
-        if(root == null) return null;
         ArrayList<Integer> result = new ArrayList<Integer>();
+        if(root == null) return result;
         Stack<TreeNode> s = new Stack<TreeNode>();
-        while(!s.isEmpty() || root != null) {
-            if(root != null) {
-                s.push(root);
-                root = root.left;
-            } else {
-                TreeNode node = s.pop();
-                result.add(node.val);
-                root = node.right;
+        TreeNode node = root;
+        while(!s.isEmpty() || node != null) {
+            while(node != null){
+                s.add(node);
+                node = node.left;
             }
+            node = s.pop();
+            result.add(node.val);
+            node = node.right;
         }
         return result;
     }
