@@ -37,11 +37,28 @@ Challenge
 /*
 Thought process:
     1. Recursive solution:
-           
+           Base case: return when current node is null.
+           Recursive steps: (bottom up) 
+                run recursively on the right subtree and then the left, 
+                set a global variable pre, for each iteration, set the right child of the current node to pre, 
+                set the left subtree to null, and update pre by pointing to the current node.
     2. Iterative solution:
 */
 
-// recursive 
+// recursive 1 (bottom-up)
+public class Solution {
+    private TreeNode pre = null;
+    public void flatten(TreeNode root) {
+        if (root == null) return;
+        flatten(root.right);
+        flatten(root.left);
+        root.right = pre;
+        root.left = null;
+        pre = root;
+    }
+}
+
+// recursive 2 (top-down)
 public class Solution {
     public void flatten(TreeNode root) {
         if (root == null) return;
@@ -62,18 +79,21 @@ public class Solution {
     }
 }
 
-// iterative using stack
+// iterative
 public class Solution {
+    private TreeNode pre = null;
     public void flatten(TreeNode root) {
         if (root == null) return;
-        Stack<TreeNode> s = new Stack<TreeNode>();
-        s.push(root);
-        while (!s.isEmpty()){
-            TreeNode node = stack.pop();
-            if (node.right!=null) s.push(curr.right);
-            if (node.left!=null) s.push(curr.left);
-            if (!s.isEmpty()) node.right = s.peek();
-            node.left = null;
+        TreeNode node = root; 
+        while(node != null) {
+            if(node.left != null) {
+                TreeNode pre = node.left;
+                while(pre.right != null) pre = pre.right;
+                pre.right = node.right;
+                node.right = node.left;
+                node.left = null;
+            }
+            node = node.right;
         }
     }
 }
