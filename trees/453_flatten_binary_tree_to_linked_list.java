@@ -17,6 +17,9 @@ Example
                           5
                            \
                             6
+
+Challenge
+    Do it in-place without any extra memory.
 */
 
 /**
@@ -33,39 +36,44 @@ Example
 
 /*
 Thought process:
-    
+    1. Recursive solution:
+           
+    2. Iterative solution:
 */
 
-public class Solution {
-    private TreeNode lastNode = null;
-    public void flatten(TreeNode root) {
-        if(root == null) return;
-        if(lastNode != null) {
-            lastNode.left = null;
-            lastNode.right = root;
-        }
-        lastNode = root;
-        TreeNode right = root.right;
-        flatten(root.left);
-        flatten(right);
-    }
-}
-
-// iterative 
+// recursive 
 public class Solution {
     public void flatten(TreeNode root) {
         if (root == null) return;
-        Stack<TreeNode> stack = new Stack<TreeNode>();
-        stack.push(root);
-        while (!stack.isEmpty()){
-            TreeNode curr = stack.pop();
-            if (curr.right!=null)  
-                 stack.push(curr.right);
-            if (curr.left!=null)  
-                 stack.push(curr.left);
-            if (!stack.isEmpty()) 
-                 curr.right = stack.peek();
-            curr.left = null;
+        flatten(root.left);
+        flatten(root.right);
+        // save current right for concatination
+        TreeNode right = root.right;
+        while(root.left != null) {
+            // step 1: concatinate root with left flatten subtree
+            root.right = root.left;
+            // set left to null
+            root.left = null;
+            // step 2: move to the end of new added flatten subtree
+            while(root.right != null) root = root.right;
+            // step 3: contatinate left flatten subtree with flatten right subtree
+            root.right = right;
+        }
+    }
+}
+
+// iterative using stack
+public class Solution {
+    public void flatten(TreeNode root) {
+        if (root == null) return;
+        Stack<TreeNode> s = new Stack<TreeNode>();
+        s.push(root);
+        while (!s.isEmpty()){
+            TreeNode node = stack.pop();
+            if (node.right!=null) s.push(curr.right);
+            if (node.left!=null) s.push(curr.left);
+            if (!s.isEmpty()) node.right = s.peek();
+            node.left = null;
         }
     }
 }
