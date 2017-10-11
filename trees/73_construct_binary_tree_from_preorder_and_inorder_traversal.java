@@ -13,7 +13,13 @@ Example
 
 /*
 Thought process:
-    
+    Preorder traversal implies that the preorder[0] is the root, 
+    then we look for the same value in the inorder array. The left part is the left subtree, and the right part is the right subtree.
+    Recursive solution:
+        Base case: return null when low index is greater than high index.
+        Recursive steps: set the first node from preorder array as root node, 
+                         find the same value in the inorder array,
+                         recursively build the left and right subtrees. 
 */
 
 /**
@@ -28,20 +34,50 @@ Thought process:
  * }
  */
 
+// recursive
 public class Solution {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        return helper(preorder, inorder, 0, 0, inorder.length - 1);
+        if(preorder.length!=inorder.length) return null;
+        return build(preorder, 0, preorder.length-1, inorder, 0, inorder.length-1);
     }
-
-    public TreeNode helper(int[] preorder, int[] inorder, int preStart, int inStart, int inEnd) {
-        if (preStart > preorder.length - 1 || inStart > inEnd) return null;
-        TreeNode root = new TreeNode(preorder[preStart]);
-        int inIndex = 0;
-        for (int i = inStart; i <= inEnd; i++) {
-            if (inorder[i] == root.val) inIndex = i;
+    
+    public TreeNode build(int[] preorder, int preLow, int preHigh, int[] inorder, int inLow, int inHigh){
+        if(preLow > preHigh || inLow > inHigh) return null;
+        TreeNode root = new TreeNode(preorder[preLow]);
+        int inorderRoot = inLow;
+        for(int i = inLow;i <= inHigh; i++) {
+            if(inorder[i] == root.val) {
+                inorderRoot = i; 
+                break;
+            }
         }
-        root.left = helper(preorder, inorder, preStart + 1, inStart, inIndex - 1);
-        root.right = helper(preorder, inorder, preStart + inIndex - inStart + 1, inIndex + 1, inEnd);
+        int leftTreeLen = inorderRoot - inLow;
+        root.left = build(preorder, preLow+1, preLow+leftTreeLen, inorder, inLow, inorderRoot-1);
+        root.right = build(preorder, preLow+leftTreeLen+1, preHigh, inorder, inorderRoot+1, preHigh);       
+        return root;        
+    }
+}
+
+// iterative
+public class Solution {
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        if (preorder.length == 0) return null;
+        Stack<TreeNode> s = new Stack<>();
+        TreeNode root = new TreeNode(preorder[0]), cur = root;
+        for (int i = 1, j = 0; i < preorder.length; i++) {
+            if (cur.val != inorder[j]) {
+                cur.left = new TreeNode(preorder[i]);
+                s.push(cur);
+                cur = cur.left;
+            } else {
+                j++;
+                while (!s.empty() && s.peek().val == inorder[j]) {
+                    cur = s.pop();
+                    j++;
+                }
+                cur = cur.right = new TreeNode(preorder[i]);
+            }
+        }
         return root;
     }
 }
