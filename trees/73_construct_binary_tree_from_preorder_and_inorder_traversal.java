@@ -37,7 +37,7 @@ Thought process:
 // recursive
 public class Solution {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        if(preorder.length!=inorder.length) return null;
+        if(preorder.length != inorder.length) return null;
         return build(preorder, 0, preorder.length-1, inorder, 0, inorder.length-1);
     }
     
