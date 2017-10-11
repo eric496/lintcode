@@ -23,10 +23,13 @@ Example
 
 /*
 Thought process:
-    1. Recursive solution: swap nodes with an intermediate variable. 
-       Then call the function recursively for left and right subtrees.
+    1. Recursive solution: 
+           Base case: return when current node is null.
+           Recursive steps: swap the left and right child. 
+                            invert the left child and then the right child.
 */
 
+// recursive - trivial
 public class Solution {
     public void invertBinaryTree(TreeNode root) {
         if(root == null) return;
@@ -38,3 +41,38 @@ public class Solution {
     }
 }
 
+// iterative using stack
+public class Solution {
+    public TreeNode invertBinaryTree(TreeNode root) {
+        if (root == null) return null;
+        Stack<TreeNode> s = new Stack<TreeNode>();
+        s.push(root);
+        while(!s.isEmpty()) {
+            TreeNode node = s.pop();
+            TreeNode left = node.left;
+            node.left = node.right;
+            node.right = left;
+            if(node.left != null) s.push(node.left);
+            if(node.right != null) s.push(node.right);
+        }
+        return root;
+    }
+}
+
+// BFS using queue
+public class Solution {
+    public TreeNode invertBinaryTree(TreeNode root) {
+        if (root == null) return null;
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        q.offer(root);
+        while(!q.isEmpty()) {
+            TreeNode node = q.poll();
+            TreeNode left = node.left;
+            node.left = node.right;
+            node.right = left;
+            if(node.left != null) q.offer(node.left);
+            if(node.right != null) q.offer(node.right);
+        }
+        return root;
+    }
+}
