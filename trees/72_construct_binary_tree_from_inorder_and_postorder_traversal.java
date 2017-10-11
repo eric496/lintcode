@@ -32,6 +32,31 @@ Thought process:
 */
 
 // recursive
+public class Solution {
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
+        if(postorder.length != inorder.length) return null;
+        return build(postorder, 0, postorder.length-1, inorder, 0, inorder.length-1);
+    }
+    
+    private TreeNode build(int[] postorder, int postLow, int postHigh, int[]inorder, int inLow, int inHigh) {
+        if (inLow > inHigh) return null;
+        //The last element in postorder is the root.
+        TreeNode root = new TreeNode(postorder[postHigh]);
+        //find the index of the root from inorder. Iterating from the end.
+        int inIndex = inLow;
+        for (int i = inLow; i <= inHigh; i++) {
+            if (inorder[i] == postorder[postHigh]) {
+                inIndex = i;
+                break;
+            }
+        }
+        //build right and left subtrees. Again, scanning from the end to find the sections.
+        int leftTreeLen = inIndex - inLow;
+        root.left = build(postorder, postLow, postLow+leftTreeLen-1, inorder, inLow, inIndex-1);
+        root.right = build(postorder, postLow+leftTreeLen, postHigh-1, inorder, inIndex+1, inHigh);
+        return root;
+    }
+}
 
 // iterative  
 public class Solution {
