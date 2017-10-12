@@ -16,6 +16,11 @@ Example
     ]
 */
 
+/*
+Thought process:
+    
+*/
+
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -30,28 +35,28 @@ Example
 
 public class Solution {
     public List<List<Integer>> binaryTreePathSum(TreeNode root, int target) {
-    	List<List<Integer>> rst = new ArrayList<List<Integer>>();
-    	if (root == null) return rst;
-    	ArrayList<Integer> list = new ArrayList<Integer>();
-    	list.add(root.val);
-    	traversal(rst, list, root, root.val, target);
-    	return rst;
+    	List<List<Integer>> result = new ArrayList<List<Integer>>();
+    	if (root == null) return result;
+    	ArrayList<Integer> path = new ArrayList<Integer>();
+    	path.add(root.val);
+    	traversal(result, path, root, root.val, target);
+    	return result;
     }
-    
-    public void traversal(List<List<Integer>> rst, ArrayList<Integer> list, TreeNode node, int sum, int target) {
+
+    public void traversal(List<List<Integer>> result, ArrayList<Integer> path, TreeNode node, int currentSum, int target) {
     	if (node.left == null && node.right == null) {
-    		if (sum == target) rst.add(new ArrayList<Integer>(list));
-    		return;
+    	    if(currentSum == target) result.add(new ArrayList<Integer>(path));
+    	    return;
     	}
     	if (node.left != null) {
-    	    list.add(node.left.val);
-    		traversal(rst, list, node.left, sum + node.left.val, target);
-    		list.remove(list.size() - 1);
+    	    path.add(node.left.val);
+    	    traversal(result, path, node.left, currentSum + node.left.val, target);
+    	    path.remove(path.size() - 1);
     	}
     	if (node.right != null) {
-    	    list.add(node.right.val);
-    		traversal(rst, list, node.right, sum + node.right.val, target);
-    		list.remove(list.size() - 1);
+    	    path.add(node.right.val);
+    	    traversal(result, path, node.right, currentSum + node.right.val, target);
+    	    path.remove(path.size() - 1);
     	}
     }
 }
