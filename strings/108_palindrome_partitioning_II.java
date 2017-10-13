@@ -27,30 +27,24 @@ public class Solution {
 // DP
 public class Solution {
     public int minCut(String s) {
-        if (s == null || s.length() == 0) return 0;
-        //Initiation
-        int length = s.length();
-        boolean[][] palindrome= new boolean[length][length];
-        for (int i = 0; i < length; i++)
-            Arrays.fill(palindrome[i], false);
-        int[] results = new int[length];
-       //Start looping 
-        for (int start = length - 1; start >= 0; start--){
-            results[start] = length - start - 1; //Worst case:need length-start-i cuts
-            for (int end = start; end < length; end++){
-                if (s.charAt(start) == s.charAt(end)){
-                    if (end - start < 2)    //Refer to these two cases: xx OR xyx
-                        palindrome[start][end] = true;
-                    else //Depends on the inner substring,if the inner substring is palindrome,the outer is
-                        palindrome[start][end] = palindrome[start+1][end-1];
+        int len = s.length();
+        int[] dp = new int[len + 1];
+        boolean[][] p = new boolean[len+1][len+1];
+        for (int i = 1; i <= len; i++) {
+            dp[i] = i;
+            for (int j = 1; j <= i; j++) {
+                if (s.charAt(i-1) == s.charAt(j-1)) {
+                    if (i - j < 2 || p[j+1][i-1]) {
+                        p[j][i] = true;
+                        if (j == 1) 
+                            dp[i] = 0;
+                        else {
+                            dp[i] = Math.min(dp[i], dp[j-1]+1);
+                        }
+                    }
                 }
-                if (palindrome[start][end])
-                    if (end == length-1)
-                        results[start]=0;
-                    else
-                        results[start] = Math.min(results[start], results[end+1]+1);
             }
         }
-        return results[0];
+        return dp[len];
     }
 }
