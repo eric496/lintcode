@@ -5,6 +5,13 @@ Example
     Given 1->2->3->3->4->5->3, val = 3, you should return the list as 1->2->4->5
 */
 
+/*
+Thought process:
+    The head pointer points to the first node in the list, which will lost track if it was removed.
+    So we introduce a dummy head "runner" and let runner.next = head. 
+    Runner iterates the whole list and remove eligible values, we return head.next which points to the real head node.
+*/
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -14,23 +21,17 @@ Example
  * }
  */
 
-/*
-Thought process:
-    1. Use two pointers.
-*/
-
 public class Solution {
     public ListNode removeElements(ListNode head, int val) {
-        ListNode dummyhead = new ListNode(Integer.MIN_VALUE);
-        dummyhead.next = head;
-        head = dummyhead;
-        while(head.next != null) {
-            if(head.next.val == val) {
-                head.next = head.next.next;
-            } else {
-                head = head.next;
-            }
+        ListNode runner = new ListNode(Integer.MIN_VALUE);
+        runner.next = head;
+        head = runner;
+        while(runner.next != null) {
+            if(runner.next.val == val)
+                runner.next = runner.next.next;
+            else
+                runner = runner.next;
         }
-        return dummyhead.next;
+        return head.next;
     }
 }
