@@ -11,17 +11,14 @@ Example
     return the node with value 3.
 */
 
+// in-order traversal
 public class Solution {
     public TreeNode maxNode(TreeNode root) {
-        if(root == null) return null;
+        if (root == null) return null;
         TreeNode left = maxNode(root.left);
         TreeNode right = maxNode(root.right);
-        return max(root, max(left, right));
-    }
-    
-    TreeNode max(TreeNode left, TreeNode right) {
-        if(left == null) return right;
-        if(right == null) return left;
-        return left.val < right.val ? right : left;
+        if(left != null && left.val > root.val) root = left;
+        if(right != null && right.val > root.val) root = right;
+        return root;
     }
 }
