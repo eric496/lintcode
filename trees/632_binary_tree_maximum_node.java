@@ -22,6 +22,7 @@ Thought process:
                      Root node is always the current maximum node. 
 */
 
+// recursive
 public class Solution {
     public TreeNode maxNode(TreeNode root) {
         if(root == null) return null;
@@ -30,5 +31,25 @@ public class Solution {
         if(left != null && left.val > root.val) root = left;
         if(right != null && right.val > root.val) root = right;
         return root;
+    }
+}
+
+// iterative using a queue
+public class Solution {
+    public TreeNode maxNode(TreeNode root) {
+        if(root == null) return null;
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        q.offer(root);
+        TreeNode max = new TreeNode(Integer.MIN_VALUE);
+        while(!q.isEmpty()) {
+            int size = q.size();
+            for(int i = 0; i < size; i++) {
+                TreeNode node = q.poll();
+                if(node.left != null) q.offer(node.left);
+                if(node.right != null) q.offer(node.right);
+                if(node.val > max.val) max = node;
+            }
+        }
+        return max;
     }
 }
