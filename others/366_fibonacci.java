@@ -17,9 +17,12 @@ Example
 
 /*
 Thought process:
-    1. Be careful of the base case, different fibonacci sequence might start with different initial values, 
-       such as 0 or 1.
-    2. Similar to 111. Climbing stairs
+    1. Recursive solution:
+           Base case: return 0 when n equals 1; return 1 when n equals 2.
+           Recursive steps: current value equals addition of the previous two values.
+    2. Iterative solution:
+           Use three pointers to represent current value, previous value, and the value prior to the previous value.
+           Starting at 3rd value, iterately update the current, the previous, and the value prior to the previous.   
 */
 
 // recursive 
@@ -32,13 +35,11 @@ class Solution {
 }
 
 // non-recursive
-class Solution {
+public class Solution {
     public int fibonacci(int n) {
         if(n == 1) return 0;
         if(n == 2) return 1;
-        int prevPrev = 0;
-        int prev = 1;
-        int cur = 0;
+        int prevPrev = 0, prev = 1, cur = prevPrev + prev;
         for(int i = 3; i <= n; i++) {
             cur = prevPrev + prev;
             prevPrev = prev;
