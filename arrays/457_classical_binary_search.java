@@ -10,27 +10,22 @@ For target = 6, return -1.
 
 /*
 Thought process: 
-    Remember to check the values at "start" and "end", 
-    because the while loop ends at where "start" meets "end", 
-    while the values at "start" and "end" haven't been checked yet.
+    Set high = mid -1 and low = mid + 1 because nums[mid] is strictly greater than or less than target.
 */
 
 public class Solution {
     public int findPosition(int[] nums, int target) {
         if(nums == null || nums.length == 0) return -1;
-        int start = 0, end = nums.length - 1;
-        while(start < end) {
-            int mid = start + (end - start) / 2;
-            if(target == nums[mid]) {
+        int low = 0, high = nums.length - 1;
+        while(low <= high) {
+            int mid = low + (high - low) / 2;
+            if(nums[mid] == target)
                 return mid;
-            } else if(target > nums[mid]) {
-                start = mid + 1;
-            } else if(target < nums[mid]) {
-                end = mid - 1;
-            }
+            else if(nums[mid] > target)
+                high = mid - 1;
+            else if(nums[mid] < target) 
+                low = mid + 1;
         }
-        if(target == nums[start]) return start;
-        if(target == nums[end]) return end;
         return -1;
     }
 }
