@@ -33,6 +33,7 @@ public class Solution {
     public void sortIntegers(int[] A) {
         for(int i = 1; i < A.length; i++) {
             int key = A[i], j = i - 1;
+            // Notice j >= 0 must come before A[j] > key, or it will possibly throw and "index out of bound" error
             while(j >= 0 && A[j] > key) A[j+1] = A[j--];
             A[j+1] = key;
         }
@@ -51,9 +52,11 @@ public class Solution {
                     ixMin = j;
                 }
             }
-            int temp = A[i];
-            A[i] = A[ixMin];
-            A[ixMin] = temp;
+	    if(min < A[i]) {
+                int temp = A[ixMin];
+                A[ixMin] = A[i];
+                A[i] = temp;   
+            }
         }
     }
 }
