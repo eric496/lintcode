@@ -7,7 +7,7 @@ Example
 
 /*
 Thought process:
-    This is a review of all the brute-force sorting algorithms with time complexity of O(n2).
+    This is a review of some common brute-force sorting algorithms with time complexity of O(n2).
     1. Bubble sort
     2. Insertion sort
     3. Selection sort
