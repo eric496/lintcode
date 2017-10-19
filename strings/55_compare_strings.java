@@ -16,7 +16,7 @@ Thought process:
     2. If unicode, use a hash map.
 */
 
-// O(n) time and O(1) space - with fixed size array
+// O(n) time and O(1) space by using array
 public class Solution {
     public boolean compareStrings(String A, String B) {
         if(A.length() < B.length() || A == null || B == null) return false;
@@ -30,7 +30,7 @@ public class Solution {
     }
 }
 
-// O(n) time and O(n) space - with hash map
+// O(n) time and O(n) space by using hash map
 public class Solution {
     public boolean compareStrings(String A, String B) {
         if(A.length() < B.length() || A == null || B == null) return false;
