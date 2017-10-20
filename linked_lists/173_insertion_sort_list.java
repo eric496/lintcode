@@ -28,7 +28,6 @@ public class Solution {
             node.next = head;
             head = temp;
         }
-
         return dummy.next;
     }
 }
