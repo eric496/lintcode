@@ -13,28 +13,20 @@ leftpad("1", 2, "0")
 >> "01"
 */
 
-/*
-Thought process:
-    1. Straightforward, but just notice that in Java we can create two functions with exactly same name
-       while distinguishing them by their arguments.
-*/
-
 public class StringUtils {
     static public String leftPad(String originalStr, int size) {
         int diff = size - originalStr.length();
         if(diff <= 0) return originalStr;
         StringBuffer sb = new StringBuffer();
         for(int i = 0; i < diff; i++) sb.append(" ");
-        sb.append(originalStr);
-        return sb.toString();
+        return sb.append(originalStr).toString();
     }
 
     static public String leftPad(String originalStr, int size, char padChar) {
         int diff = size - originalStr.length();
         if(diff <= 0) return originalStr;
-        StringBuffer sb = new StringBuffer("");
-        for(int i = 0; i < diff; i++) sb.append(Character.toString(padChar));
-        sb.append(originalStr);
-        return sb.toString();
+        StringBuffer sb = new StringBuffer();
+        for(int i = 0; i < diff; i++) sb.append(String.valueOf(padChar));
+        return sb.append(originalStr).toString();
     }
 }
