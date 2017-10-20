@@ -48,11 +48,14 @@ public class Solution {
     public int majorityNumber(ArrayList<Integer> nums) {
         int majority = Integer.MIN_VALUE, count = 0;
         for(Integer n : nums) {
+            // start a new majority number if count equals 0
             if(count == 0) {
                 majority = n;
                 count++;
+            // increment count by 1 if identical number occurs
             } else if(majority == n) {
                 count++;
+            // decrease count by 1 if different number occurs
             } else if(majority != n) {
                 count--;
             }
