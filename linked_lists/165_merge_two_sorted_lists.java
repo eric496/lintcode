@@ -5,6 +5,13 @@ Example
     Given 1->3->8->11->15->null, 2->null , return 1->2->3->8->11->15->null.
 */
 
+/*
+Thought process:
+    Do a pair comparison, one node from each list at one time. Append the smaller node to the new list.
+    Keep three pointers moving forward accordingly.
+    Notice that we need to return the first node of the new list, so we create a dummy head to point to the first node.
+*/
+
 /**
  * Definition for ListNode.
  * public class ListNode {
@@ -16,13 +23,6 @@ Example
  *     }
  * }
  */
-
-/*
-Thought process:
-    1. Create two head pointers, one pointing to the head node of the array, 
-       one as a runner to loop through two linked lists.
-       Check if two lists reach their end, if not, merge the rest of the list.
-*/
 
 public class Solution {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
