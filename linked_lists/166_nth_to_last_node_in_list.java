@@ -20,16 +20,18 @@ Example
 
 /*
 Thought process:
-    1. Two pointers: let first run till it reaches nth element. 
-       Then let both run, when the first reaches the end of the array, 
-       the second is the nth to the last element.
+    Two pointers: 
+        The basic idea is let the first pointer run at the n-th node first.
+        Then let both of them run with the same pace. When the first pointer runs at the tail, 
+        the second pointer is right at the n-th to last node.
 */
 
 public class Solution {
     ListNode nthToLast(ListNode head, int n) {
-        if(head == null) return null;
+        if(head == null || n < 1) return null;
         ListNode runner = head;
-        for(int i = 0; i < n; i++) head = head.next;
+        for(int i = 0; i < n; i++) 
+            head = head.next;
         while(head != null) {
             head = head.next;
             runner = runner.next;
