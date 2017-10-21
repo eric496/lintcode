@@ -11,6 +11,7 @@ Example
     return [1, 2, 5, 9, 6, 3, 4, 7, 10, 11, 8, 12]
 */
 
+// method 1
 public class Solution {
     public int[] printZMatrix(int[][] matrix) {
         if(matrix.length == 0 || matrix == null) return null;
@@ -30,10 +31,9 @@ public class Solution {
                     result[ix++] = matrix[++row][col];
                 }
             }
-
             //move down-left
-            while(col - 1 >= 0 && row + 1 < m) result[ix++] = matrix[++row][--col];
-
+            while(col - 1 >= 0 && row + 1 < m) 
+                result[ix++] = matrix[++row][--col];
             //move down or right by 1
             if(row + 1 < m || col + 1 < n) {
                 if(row + 1 < m) {
@@ -42,9 +42,33 @@ public class Solution {
                     result[ix++] = matrix[row][++col];
                 }
             }
-            
             //move up-right
-            while(row - 1 >= 0 && col + 1 < n) result[ix++] = matrix[--row][++col];
+            while(row - 1 >= 0 && col + 1 < n) 
+                result[ix++] = matrix[--row][++col];
+        }
+        return result;
+    }
+}
+
+// method 2
+public class Solution {
+    public int[] printZMatrix(int[][] matrix) {
+        if(matrix == null || matrix.length == 0) return null;
+        int row = matrix.length, col = matrix[0].length;
+        int[] result = new int[row*col];
+        int ix = 0;
+        for(int i = 0; i < row + col; i++) {
+            if(i % 2 == 0) {
+                for(int x = i; x >= 0; x--) {
+                    if(x < row && i - x < col)
+                        result[ix++] = matrix[x][i-x];
+                }
+            } else {
+                for(int x = 0; x <= i; x++) {
+                    if(x < row && i - x < col)
+                        result[ix++] = matrix[x][i-x];
+                }
+            }
         }
         return result;
     }
