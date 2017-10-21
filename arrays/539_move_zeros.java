@@ -8,21 +8,17 @@ Notice
 
 /*
 Thought process:
-    1. In-place: think about using two pointers with a position variable 
-       keeping track of the first zero in the current array. 
-       Swap it with the next non-zero number.
-    2. NOTICE to set the rest of the elements to zeros after the for loop
-       in order to put all zeros at the end of the array. 
+    Two pointers: One position pointer starting at 0 and incrementing by 1, 
+    the other pointer iterates the array, find the next non-zero element, and fill the position where the first pointer is at.
+    Fill all left positions with zeroes after the iteration. 
 */
 
-//O(n) time and O(1) space
+//O(n) time and O(1) space by two pointers
 public class Solution {
     public void moveZeroes(int[] nums) {
-        int len = nums.length;
         int pos = 0;
-        for(int i = 0; i < len; i++) {
+        for(int i = 0; i < nums.length; i++)
             if(nums[i] != 0) nums[pos++] = nums[i];
-        }
-        while(pos < len) nums[pos++] = 0;
+        while(pos < nums.length) nums[pos++] = 0;
     }
 }
