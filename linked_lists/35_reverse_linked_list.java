@@ -3,6 +3,9 @@ Reverse a linked list.
 
 Example
     For linked list 1->2->3, the reversed linked list is 3->2->1
+
+Challenge
+    Reverse it in-place and in one-pass
 */
 
 /**
@@ -19,7 +22,7 @@ Example
 
 /*
 Thought process:
-    1. Use a prev pointer. Do a 4-step swap.
+    Better walk through the 4-step swapping by drawing a graph.
 */
  
 public class Solution {
