@@ -2,19 +2,20 @@
 Partition an integers array into odd number first and even number second.
 
 Example
-Given [1, 2, 3, 4], return [1, 3, 2, 4]
+    Given [1, 2, 3, 4], return [1, 3, 2, 4]
+
+Challenge
+    Do it in-place.
 */
 
 /*
 Thought process
-1. An intuitive approach is to use two array lists: one to store the odd, the other the even. 
-   This is O(n) time and O(n) space.
-2. In-place solution: consider using two pointers: one from head to end, one the other way around.
-   swap elements when the head pointer at a non-odd value AND the tail pointer at a non-even value. 
-   NOTICE: the if(start < end) condition inside while loop is required, because head pointer could overstep the end pointer. 
+     1. Use two lists to store odd and even elements separately. Return the concatenated list.
+     2. Use two pointers: one starting at head, the other at end, swap elements when the head pointer at a non-odd value AND the tail pointer at a non-even value.
+        Remember to check if(start < end) in each iteration, because head pointer can overstep the end pointer in the corner case. 
 */
 
-//O(n) space
+// O(n) space
 public class Solution {
     public int[] partitionArray(int[] nums) {
 	if(nums == null || nums.length == 0) return null;
@@ -25,26 +26,26 @@ public class Solution {
 	    if(i % 2 == 1) odd.add(i);
 	}
 	odd.addAll(even);
-	int[] res = odd.toArray(new int[odd.size()]);
-	return res;
+	int[] result = odd.toArray(new int[odd.size()]);
+	return result;
     }
 }
 
-//In-place
+// in-place by two pointers but do not maintain the relative order within the odd and even numbers
 public class Solution {
     public void partitionArray(int[] nums) {
         if(nums == null || nums.length == 0) return;
-        int start = 0;
-        int end = nums.length - 1;
-        while(start < end) {
-            while(nums[start] % 2 == 1) start++;
-            while(nums[end] % 2 == 0) end--;
-            if(start < end) {
-                int temp = nums[start];
-                nums[start] = nums[end];
-                nums[end] = temp;    
-                start++;
-                end--;
+        int head = 0;
+        int tail = nums.length - 1;
+        while(head < tail) {
+            while(nums[head] % 2 == 1) head++;
+            while(nums[tail] % 2 == 0) tail--;
+            if(head < tail) {
+                int temp = nums[head];
+                nums[head] = nums[tail];
+                nums[tail] = temp;    
+                head++;
+                tail--;
             }
         }
     }
