@@ -16,31 +16,35 @@ Clarification
 
 /*
 Thought process:
-    1. Use Java built-in methods (trim, split, reverse etc.)
+    1. Use Java built-in methods in the following order
+           1) Trim the string 
+           2) Split the string by space
+           3) Reverse the string array
+           4) Join the words to form a new string       
     2. Split the string by space to form a string array. 
-       Append the string array backward element by element to a string buffer.
-       Remove the first element in the string buffer which is a redundant space. 
-       NOTICE we need to check the length of the string array after the split, 
-       it could be zero, given the input is all spaces.
+       Append the string element in backward order from the string array to a string buffer.
+       Remove the last element from the string buffer, because we do not want to append a space to the last word.
+       NOTICE we need to check the length of the string array after the split, because it might be zero, if the input contains only spaces.
 */
 
-// use java built-in methods
+// method 1
 public class Solution {
     public String reverseWords(String s) {
-        String[] words = s.trim().split(" +");
+        String[] words = s.trim().split("\\s+");
         Collections.reverse(Arrays.asList(words));
         return String.join(" ", words);
     }
 }
 
-//
+// method 2
 public class Solution {
     public String reverseWords(String s) {
         if(s == null || s.length() == 0) return "";
-        String[] words = s.split(" +");
+        String[] words = s.split("\\s+");
 	if(words.length == 0) return "";
         StringBuilder sb = new StringBuilder();
-        for(int i = words.length - 1; i >= 0; i--) sb.append(words[i]).append(" ");
+        for(int i = words.length - 1; i >= 0; i--) 
+	    sb.append(words[i]).append(" ");
         return sb.substring(0, sb.length() - 1);
     }
 }
