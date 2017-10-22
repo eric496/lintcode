@@ -21,8 +21,7 @@ Example
 
 /*
 Thought process:
-    1. Use two lists: one to store all nodes less than x; one to store all nodes greater than or equals to x.
-       Merge the two lists at the end.
+    Create two lists, one storing every node whose value is less than x, the other storing those whose value is greater than or equals to x.
 */
  
 public class Solution {
