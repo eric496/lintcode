@@ -2,20 +2,25 @@
 Given a rotated sorted array, recover it to sorted array in-place.
 
 Clarification
-What is rotated array?
-    For example, the orginal array is [1,2,3,4], The rotated array of it can be [1,2,3,4], [2,3,4,1], [3,4,1,2], [4,1,2,3]
+    What is rotated array?
+        For example, the orginal array is [1,2,3,4], The rotated array of it can be [1,2,3,4], [2,3,4,1], [3,4,1,2], [4,1,2,3]
 
 Example
-[4, 5, 1, 2, 3] -> [1, 2, 3, 4, 5]
+    [4, 5, 1, 2, 3] -> [1, 2, 3, 4, 5]
+
+Challenge
+    In-place, O(1) extra space and O(n) time.
 */
 
 /*
-Thought process
-1. 3-step reversal to solve it in place. 
-   Firstly, find the verge where the head of the sorted array meets the tail of the array.
-   Second, split the array into two halves by the verge. Reverse the first and second half respectively.
-   After this step, the array is already sorted, but in descending order.
-   Lastly, reverse the entire array to get the ascending order. 
+Thought process:
+    Find the verge where the head of the sorted array meets the end of the array. 
+    Split the array into two parts with each a sorted subarray.
+    Use three-step reversal:
+    1) Reverse the first part of the array.
+    2) Reverse the second part of the array
+    After this step, the array is already sorted, but in descending order.
+    3) Reverse the entire array to make it in ascending order. 
 */
 
 public class Solution {
@@ -29,13 +34,13 @@ public class Solution {
         }
     }
     
-    public void reverse(ArrayList<Integer> nums, int start, int end) {
-	while(start < end) {
-	    int temp = nums.get(i);
+    public void reverse(ArrayList<Integer> nums, int low, int high) {
+	    while(low < high) {
+	        int temp = nums.get(i);
             nums.set(i, nums.get(j));
             nums.set(j, temp);
-	    start++;
-	    end--;
-	}        
+	        low++;
+	        high--;
+	    }        
     }
 }
