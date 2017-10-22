@@ -20,21 +20,21 @@ Example
 
 /*
 Thought process:
-    1. Create a dummy head, if the value of the current node equals the value of the next node, 
-       remove next node by point the current node to the node after next node.
+    Create a runner pointer, if the current node value equals the next node value, remove next node by cur.next = cur.next.next.
+    If not equal, keep moving the runner pointer forward at each iteration.
 */
- 
+
+// O(n) time
 public class Solution {
     public ListNode deleteDuplicates(ListNode head) {
-        if (head == null) return null;
-        ListNode node = head;
-        while (node.next != null) {
-            if (node.val == node.next.val) {
-                node.next = node.next.next;
-            } else {
-                node = node.next;
-            }
+        if(head == null) return null;
+        ListNode runner = head;
+        while(runner != null && runner.next != null) {
+            if(runner.val == runner.next.val)
+                runner.next = runner.next.next;
+            else
+                runner = runner.next;
         }
         return head;
     }
-}
+} 
