@@ -13,30 +13,33 @@ Example
 /*
 Thought process:
     1. Convert to string, then it becomes similar to 415. Valid Palindrome
-    2. If conversion is not allowed, then the solution is similar to 413. Reverse Integer
+    2. If string conversion is not allowed, then reverse the integer which is similar to 413. 
+       Do until n equals 0:
+           Take the digit at the unit place by n % 10, add it to the reverse number. 
+           The reverse number from last step needs to move one place higher by multiplication of 10.
+           The last digit is removed by n / 10 for next iteration.
 */
 
-// convert to string and check if it is a valid palindrome
+// convert to string and check palindrome
 public class Solution {
     public boolean isPalindrome(int num) {
         String s = String.valueOf(num);
-        for(int i = 0, j = s.length()-1; i < j; i++, j--) if(s.charAt(i) != s.charAt(j)) return false;
+        for(int i = 0, j = s.length()-1; i < j; i++, j--) 
+            if(s.charAt(i) != s.charAt(j)) return false;
         return true;
     }
 }
 
-// The method to flip a number: take the remainder of n divided by 10 plus result multiplied by 10 to update result until n reaches 0. Update n by n/10 as well.
+// math operation to reverse integer
 public class Solution {
     public boolean isPalindrome(int num) {
-        if(num < 0) return false;
+        if(num < 0 || (num != 0 && num % 10 == 0)) return false;
         if(num == 0) return true;
-        int result = 0;
-        int n = num; 
+        int reverse = 0, n = num; 
         while(n != 0) {
-            result = n % 10 + result * 10;
+            reverse = n % 10 + reverse * 10;
             n /= 10;
         }
-        if(result == num) return true;
-        return false;
+        return reverse == num ? true : false;
     }
 }
