@@ -8,24 +8,21 @@ Example
 */
 
 /*
-Thought process
-    1. Corner cases when the array is null or empty
-    2. The question requires not only counting the length but changing the array IN PLACE as well
+Thought process:
+    Use two pointers: Create a unique value counter, which is a position pointer as well.
+                      Iterate the array, once the current element is different from the elemtent at the position pointer,
+                      move it to the position right to the position pointer, meanwhile, keep incrementing the position pointer.
 */
 
-/*
-O(n) time and O(1) space
-loop through the integer array, compare each element with its previous element
-if they are not the same, replace the count position with the current element
-if they are the same, loop goes on but count position does not move
-*/
+// O(n) time and O(1) space
 public class Solution {
     public int removeDuplicates(int[] nums) {
         if(nums.length == 0 || nums == null) return 0;
+        // set count to 1 because there is at least one element
         int count = 1;
         for(int i = 1; i < nums.length; i++) {
-            if(nums[i] != nums[count-1]) nums[count++] = nums[i];
-            //if(nums[i] != nums[i-1]) nums[count++] = nums[i];
+            if(nums[i] != nums[count-1]) 
+                nums[count++] = nums[i];
         }
         return count;
     }
