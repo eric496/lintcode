@@ -8,9 +8,12 @@ Example
 
 /*
 Thought process:
-    1. Check integer overflow, use long integer to store intermediate value.
-    2. At the beginning of each loop, raise current number to 1 higher place by multiplying 10.
-       Then add new unit place digit by adding n % 10. Remember to reduce n to n/10 for next digit.
+    Check integer overflow, use long integer to store intermediate value.
+    Do until n equals 0:
+	1) Move the current result one place higher by multiplication of 10
+        2) Add the current digit at ones place to the result (+ n % 10)
+        3) Move n one place lower by removing the ones place (n / 10)
+    Check integer overflow again.
 */
 
 public class Solution {
