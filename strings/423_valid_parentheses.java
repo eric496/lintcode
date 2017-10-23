@@ -7,22 +7,21 @@ Example
 
 /*
 Thought process:
-    1. Use stack to pair the parentheses, if a character is '(', '{' or '[',
-       then push it to the stack. Otherwise, compare it to the topmost element.
+    Use stack to pair the parentheses, if a character is '(', '{' or '[',
+    then push it to the stack. Otherwise, check validity with the top element from the stack.
 */
 
 public class Solution {
     public boolean isValidParentheses(String s) {
         Stack<Character> stack = new Stack<Character>();
-        for(char c: s.toCharArray()) {
-            if("([{".contains(String.valueOf(c))) {
+        for(char c : s.toCharArray()) {
+            if(c == '(' || c == '{' || c== '[') {
                 stack.push(c);
             } else {
-                if(!stack.isEmpty() && isValid(stack.peek(), c)) {
+                if(!stack.isEmpty() && isValid(stack.peek(), c))
                     stack.pop();
-                } else {
+                else
                     return false;
-                }
             }
         }
         return stack.isEmpty();
@@ -30,5 +29,23 @@ public class Solution {
     
     private boolean isValid(char c1, char c2) {
         return (c1 == '(' && c2 == ')' || c1 == '[' && c2 == ']' || c1 == '{' && c2 == '}');
+    }
+}
+
+// an even shorter and smarter solution
+public class Solution {
+    public boolean isValidParentheses(String s) {
+        Stack<Character> stack = new Stack<Character>();
+        for(char c : s.toCharArray()) {
+            if(c == '(') 
+                stack.push(')');
+            else if(c == '{')
+                stack.push('}');
+            else if(c == '[') 
+                stack.push(']');
+            else if(stack.isEmpty() || c != stack.pop())
+                return false;
+        }
+        return stack.isEmpty();
     }
 }
