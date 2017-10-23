@@ -7,8 +7,11 @@ Do I need to implement KMP Algorithm in a real interview?
     Not necessary. When you meet this problem in a real interview, the interviewer may just want to test your basic implementation ability. But make sure your confirm with the interviewer first.
 
 Example
-If source = "source" and target = "target", return -1.
-If source = "abcdabcdefg" and target = "bcd", return 1.
+    If source = "source" and target = "target", return -1.
+    If source = "abcdabcdefg" and target = "bcd", return 1.
+
+Challenge
+    O(n2) is acceptable. Can you implement an O(n) algorithm? (hint: KMP)
 */
 
 /*
@@ -20,19 +23,18 @@ Thought process:
     3. KMP algorithm (TO DO)
 */
 
-// O(n2) time solution: use string methods
+// O(n^2) time using string methods
 class Solution {
     public int strStr(String source, String target) {
         if(source == null || target == null || source.length() < target.length()) return -1;
         if(target.length() == 0) return 0;
-        for(int i = 0; i <= source.length() - target.length(); i++) {
+        for(int i = 0; i <= source.length() - target.length(); i++)
             if(source.substring(i, i+target.length()).equals(target)) return i;
-        }
         return -1;
     }
 }
 
-// O(n2) time solution: do not use string methods
+// O(n^2) time solution
 class Solution {
     public int strStr(String source, String target) {
         if(source == null || target == null || source.length() < target.length()) return -1;
