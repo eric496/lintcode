@@ -16,11 +16,11 @@ Challenge
 
 /*
 Thought process:
-    1. It can be easily solved using an extra array (if ASCII) or hash map(if unicode or other encoding standards).
-    2. Notice that using an array has O(1) space complexity since the size of the array is fixed no matter how large the string is.
+    Use an extra array (if ASCII) or hash map (if unicode or other encoding standards).
+    Using an array counts towards O(1) space since it has fixed size.
 */
 
-// O(n) time and O(1) space - with an extra array
+// O(n) time and O(1) space using an extra array
 public class Solution {
     public boolean anagram(String s, String t) {
         if(s == null && t == null) return true;
@@ -38,7 +38,7 @@ public class Solution {
     }
 }
 
-// O(n) time and O(n) space - with a hash map
+// O(n) time and O(n) space using a hash map
 public class Solution {
     public boolean anagram(String s, String t) {
         if(s == null && t == null) return true;
