@@ -13,12 +13,10 @@ Example
 
 /*
 Thought process:
-    1. Typical DP problem. It is similar to 111. Climb stairs. 
-       the number of possible paths for the current position is
-       the sum of the number of possible paths of its left position 
-       and that of its up position.
-    2. Remember to handle the first row and column as they have only
-       one possible path.  
+    Similar to 111. Climb Stairs and 114. Minimum Path Sum. The total number of possible paths for the current position is
+    the sum of the number of possible paths of its left position and that of its top position,
+    because only left and down moves are allowed.
+    Remember to handle the corner cases - first row and column as they have only one possible path, because they have no top or left elements.  
 */
 
 public class Solution {
@@ -28,9 +26,8 @@ public class Solution {
         for (int i = 0; i < m; i++) matrix[i][0] = 1;
         for (int i = 0; i < n; i++) matrix[0][i] = 1;
         for (int i = 1; i < m; i++) {
-            for (int j = 1; j < n; j++) {
+            for (int j = 1; j < n; j++)
                 matrix[i][j] = matrix[i - 1][j] + matrix[i][j - 1];
-            }
         }
         return matrix[m - 1][n - 1];
     }
