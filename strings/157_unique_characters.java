@@ -2,47 +2,44 @@
 Implement an algorithm to determine if a string has all unique characters.
 
 Example
-Given "abc", return true.
-Given "aab", return false.
+    Given "abc", return true.
+    Given "aab", return false.
 
 Challenge
-What if you can not use additional data structures?
+    What if you can not use additional data structures?
 */
 
 /*
 Thought process:
-    1. Since we need to check duplication, it is easy to come up with the hash set method.
-    2. If it is only ASCII characters, use an array will save overhead.
-    3. O(1) space solution: use two for loops with O(n2) time
+    1. Use an array (for ASCII) or hash set (for other encodings) to keep track of occurence of the characters.
+    2. Iterate the array, at each iteration, check duplicates of the current element with those elements come after it only, 
+       because it is assured that there are no duplicates that comes before it (or it would break and return already).
 */
 
-// O(n) time and O(1) space - with an extra array
+// O(n) time and O(1) space using array
 public class Solution {
     public boolean isUnique(String str) {
         if(str == null || str.length() == 0) return false;
-        int[] count = new int[256];
-        for(int i = 0; i < str.length(); i++) {
-            count[str.charAt(i)]++;
-            if(count[str.charAt(i)] > 1) return false;
+        boolean[] occurred = new boolean[256];
+        for(char c : str.toCharArray()) {
+            if(occurred[c]) return false;
+            else occurred[c] = true;
         }
         return true;
     }
 }
 
-// O(n) time and O(n) space - with an extra hash set
+// O(n) time and O(n) space using hash set
 public class Solution {
     public boolean isUnique(String str) {
         if(str == null || str.length() == 0) return false;
-        HashSet<Integer> set = new HashSet<Integer>();
-        for(int i = 0; i < str.length(); i++) {
-            if(!set.contains((int)str.charAt(i))) {
-                set.add((int)str.charAt(i));
-            } else {
-                return false;
-            }
-        }
+        HashSet<Character> set = new HashSet<Character>();
+        for(char c : str.toCharArray()) {
+            if(set.contains(c)) return false;
+            else set.add(c);
+        }   
         return true;
-    }
+    }   
 }
 
 // O(n2) time and O(1) space
@@ -50,9 +47,8 @@ public class Solution {
     public boolean isUnique(String str) {
         if(str == null || str.length() == 0) return false;
         for(int i = 0; i < str.length(); i++) {
-            for(int j = i+1; j < str.length(); j++) {
+            for(int j = i + 1; j < str.length(); j++)
                 if(str.charAt(i) == str.charAt(j)) return false;
-            }
         }
         return true;
     }
