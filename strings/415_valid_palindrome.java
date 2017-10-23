@@ -48,3 +48,33 @@ public class Solution {
         return Character.toLowerCase(c1) == Character.toLowerCase(c2) ? true : false;
     }
 }
+
+// following is a failed solution with TLE
+// need to figure out why later
+public class Solution {
+    public boolean isPalindrome(String s) {
+        if(s == null || s.trim().length() == 0) return true;
+        int start = 0, end = s.length() - 1;
+        while(start < end) {
+            while(!isValid(s.charAt(start))) 
+                if(start < s.length() - 1) start++;
+            while(!isValid(s.charAt(end))) 
+                if(end > 0) end--;
+            if(isSame(s.charAt(start), s.charAt(end))) {
+                start++;
+                end--;
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    private boolean isValid(char c) {
+        return Character.isLetter(c) || Character.isDigit(c);
+    }
+    
+    private boolean isSame(char c1, char c2) {
+        return Character.toLowerCase(c1) == Character.toLowerCase(c2) ? true : false;
+    }
+}
