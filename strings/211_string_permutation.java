@@ -14,7 +14,7 @@ Thought process:
        Otherwise, they are permutation to each other.
 */
 
-// O(n) time and O(1) space
+// O(n) time and O(1) space by sorting the strings
 public class Solution {
     public boolean Permutation(String A, String B) {
         if(A == null && B == null) return true;
@@ -30,7 +30,7 @@ public class Solution {
     }
 }
 
-// O(n) time and O(n) space
+// O(n) time and O(1) space using a fixed-size array
 public class Solution {
     public boolean Permutation(String A, String B) {
         if(A == null && B == null) return true;

@@ -14,8 +14,8 @@ Example
 
 /*
 Thought process:
-    1. O(n) time O(1) space solution: use two arrays to store characters as indices, 
-       and index of first apperance as value. 
+    Use two arrays: use characters in the strings as indices, and index of first apperance of that character as values.
+    At each iteration, compare the values whose indices are the characters from two strings. Return false if they do not match. 
 */
 
 // O(n) time and O(n) space - with two hash maps
@@ -43,7 +43,7 @@ public class Solution {
     }
 }
 
-// O(n) time and O(1) space - with two arrays
+// O(n) time and O(1) space using two arrays
 public class Solution {
     public boolean isIsomorphic(String s, String t) {
         if(s == null || t == null) return false;
@@ -51,8 +51,8 @@ public class Solution {
         int[] m2 = new int[256];
         for(int i = 0; i < s.length(); i++) {
             if(m1[s.charAt(i)] != m2[t.charAt(i)]) return false;
-            m1[s.charAt(i)] = i + 1;
-            m2[t.charAt(i)] = i + 1;
+            m1[s.charAt(i)] = i;
+            m2[t.charAt(i)] = i;
         }
         return true;
     }
