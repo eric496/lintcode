@@ -2,35 +2,37 @@
 Given an integer array, find a subarray where the sum of numbers is zero. Your code should return the index of the first number and the index of the last number.
 
 Notice
-There is at least one subarray that it's sum equals to zero.
+    There is at least one subarray that it's sum equals to zero.
 
 Example
-Given [-3, 1, 2, -3, 4], return [0, 2] or [1, 3].
+    Given [-3, 1, 2, -3, 4], return [0, 2] or [1, 3].
 */
 
 /*
 Thought process
-1. Keep track of every sum, if two sums equal, then the numbers in between add up to 0
-2. Use hash map to store sums: sum as key and index as value
-3. Notice the base case - first value of the hash map. Given two sums (i and j) equals, then numbers from index i+1 to j (inclusive) add up to 0. So first index should be -1. 
+    Keep track of every sum so far. If two sums equal, then the numbers in between add up to 0.
+    Use a hash map: sum so far as key and index as value.
+    Given two sums (i and j) equals, then numbers from index i+1 to j (inclusive) add up to 0. So first index should be -1. 
 */
 
 public class Solution {
-    public ArrayList<Integer> subarraySum(int[] nums) {
-        int len = nums.length;
-        ArrayList<Integer> res = new ArrayList<Integer>();
+    public List<Integer> subarraySum(int[] nums) {
+        List<Integer> result = new ArrayList<Integer>();
+        if(nums == null || nums.length == 0) return result;
         HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        // set the default sum to 0 at index -1.
+        // think about test case [1,-1].
         map.put(0, -1);
-        int sum = 0;
-        for (int i = 0; i < len; i++) {
-            sum += nums[i];
-            if (map.containsKey(sum)) {
-                res.add(map.get(sum) + 1);
-                res.add(i);
-                return res;
+        int sumSofar = 0;
+        for(int i = 0; i < nums.length; i++) {
+            sumSofar += nums[i];
+            if(map.containsKey(sumSofar)) {
+                result.add(map.get(sumSofar)+1);
+                result.add(i);
+                return result;
             }
-            map.put(sum, i);
+            map.put(sumSofar, i);
         }
-        return res;
+        return result;
     }
 }
