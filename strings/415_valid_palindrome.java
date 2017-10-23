@@ -15,10 +15,10 @@ Challenge
 
 /*
 Thought process:
-    1. Without using extra space, we can use a head and a tail pointers.
-       Firstly, check if the head and tail elements are valid alphanumeric values. If not, move the pointer by a step.
-       Second, if both elements are valid, check if they are equal. If not, it is not a valid palindrome,
-       otherwise, move both pointers by a step respectively.
+    Two pointers: One starting from the head, one starting from the end.
+                  First, check if the head and tail elements are valid alphanumeric values. Keep moving pointers till they point to the first qualified values.
+                  Second, check if they are equal (case insensitivity by convert all to upper or lower case). 
+                  If not, it is not a valid palindrome. Otherwise, move both pointers to next elements and repeat the process until two pointers meet.
 */
 
 // O(n) time and O(1) space
@@ -27,10 +27,12 @@ public class Solution {
         if(s == null || s.length() == 0) return true;
         int start = 0, end = s.length() - 1;
         while(start < end) {
-            if(!isValid(s.charAt(start))) start++;
-            if(!isValid(s.charAt(end))) end--;
-            if(isValid(s.charAt(start)) && isValid(s.charAt(end))) {
-                if(Character.toLowerCase(s.charAt(start)) != Character.toLowerCase(s.charAt(end))) return false;
+            char c1 = s.charAt(start);
+            char c2 = s.charAt(end);
+            if(!isValid(c1)) start++;
+            if(!isValid(c2)) end--;
+            if(isValid(c1) && isValid(c2)) {
+                if(!isSame(c1, c2)) return false;
                 start++;
                 end--;
             }
@@ -40,5 +42,9 @@ public class Solution {
     
     private boolean isValid(char c) {
         return Character.isLetter(c) || Character.isDigit(c);
+    }
+    
+    private boolean isSame(char c1, char c2) {
+        return Character.toLowerCase(c1) == Character.toLowerCase(c2) ? true : false;
     }
 }
