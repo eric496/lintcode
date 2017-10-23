@@ -15,16 +15,16 @@ Challenge
 
 /*
 Thought process:
-    1. It is hard to solve it in forward order loop. 
-       But there are enough empty space at the end of the array, so we can loop backward.
-    2. Notice we have to do an extra loop to count the spaces and the total length of the new array.
+    Two passes: First pass counts the length of the new array.
+                Second pass fill in "%20" from backward.
 */
 
 public class Solution {
     public int replaceBlank(char[] string, int length) {
         if(length == 0 || string == null) return 0;
         int count = length; 
-        for(char c : string) if(c == ' ') count += 2;
+        for(char c : string)
+	    if(c == ' ') count += 2;
         int ix = count - 1;
         for(int i = length - 1; i >= 0; i--) {
             if(string[i] == ' ') {
