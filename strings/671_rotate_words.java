@@ -16,10 +16,32 @@ Example
 /*
 Thought process:
     1. Two strings str1 and str2 are rotate words if str1.length() == str2.length() and (str1+str1).indexOf(str2) != -1.
-    2. We can use either a hash set to store the unique strings or a boolean array to flag whether each string is a rotate word.
+    2. Iterate the word list, if the set does not contain the current word, save all of its rotate words in the set. Update the counter at each iteration.   
+    3. MLE: We can use either a hash set to store the unique strings or a boolean array to flag whether each string is a rotate word.
 */
 
 // method 1
+public class Solution {
+    public int countRotateWords(List<String> words) {
+        if(words == null || words.size() == 0) return 0;
+        HashSet<String> set = new HashSet<String>();
+        int count = 0;
+        for(String str : words) {
+            if(!set.contains(str)) {
+                count++;
+                for(int i = 0; i <= str.length(); i++)
+                    set.add(rotate(str, i));
+            }
+        }
+        return count;
+    }
+    
+    private String rotate(String str, int offset) {
+        return str.substring(offset, str.length()) + str.substring(0, offset);
+    }
+}
+
+// method 2 with MLE; need to figure out why later
 public class Solution {
     public int countRotateWords(List<String> words) {
         if(words == null || words.size() == 0) return 0;
@@ -42,7 +64,7 @@ public class Solution {
     }
 }
 
-// method 2
+// method 3 with MLE; need to figure out why later
 public class Solution {
     public int countRotateWords(List<String> words) {
         if(words == null || words.size() == 0) return 0;
