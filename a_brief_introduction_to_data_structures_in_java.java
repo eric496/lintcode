@@ -112,7 +112,7 @@ String.valueOf(123)                       // convert a primitive data type to st
 
 /*
 StringBuffer: a thread-safe mutable sequence of characters
-StringBuilder: 
+StringBuilder: same to StringBuffer but not thread-safe
 */
 
 sb.append(e)                              // append e at the end
