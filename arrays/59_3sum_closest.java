@@ -13,31 +13,30 @@ Challenge
 
 /*
 Thought process:
-    1. Sort the array first and then initialize a optimal sum variable. 
-    2. Loop through the whole sorted array, for each num[i], the temporary sum is 
-       num[i] plus the low end nums[low] and the high end nums[high]. 
-       Compare (target - sum) with (target - bestSum) and update bestSum.
-       If temporary sum is smaller than the target, move forward the low end. Otherwise, 
-       move backward the high end.   
+    1. Two pointers: Sort the array, create a variable to store the closest sum so far.
+    2. Iterate the array, for any fixed index i, iterate all elements to its right using two pointers (from head and from end).
+       Update closest sum if the current 3sum is closer to the target than the previous closest sum is. 
+       Otherwise, increment the head pointer if current 3sum is smaller than the target, or decrease the tail pointer if current 3sum is greater than the target.  
 */
 
+// O(n^2) time and O(1) space using two pointers
 public class Solution {
     public int threeSumClosest(int[] numbers, int target) {
         if (numbers == null || numbers.length < 3) return -1;
         Arrays.sort(numbers);
-        int bestSum = numbers[0] + numbers[1] + numbers[2];
+        int closestSum = numbers[0] + numbers[1] + numbers[2];
         for (int i = 0; i < numbers.length; i++) {
             int low = i + 1, high = numbers.length - 1;
             while (low < high) {
-                int sum = numbers[i] + numbers[low] + numbers[high];
-                if (Math.abs(target - sum) < Math.abs(target - bestSum)) bestSum = sum;
-                if (sum < target) {
+                int curSum = numbers[i] + numbers[low] + numbers[high];
+                if (Math.abs(target - curSum) < Math.abs(target - closestSum)) closestSum = curSum;
+                if (curSum < target) {
                     low++;
                 } else {
                     high--;
                 }
             }
         }
-        return bestSum;
+        return closestSum;
     }
 }
