@@ -23,15 +23,15 @@ Thought process:
 // O(n) time and O(1) space using an extra array
 public class Solution {
     public boolean anagram(String s, String t) {
-        if(s == null && t == null) return true;
-        if(s == null || t == null) return false;
-        if(s.length() != t.length()) return false;
+        if (s == null && t == null) return true;
+        if (s == null || t == null) return false;
+        if (s.length() != t.length()) return false;
         int[] count = new int[256];
-        for(int i = 0; i < s.length(); i++) {
+        for (int i = 0; i < s.length(); i++) {
             count[(int)s.charAt(i)]++;
             count[(int)t.charAt(i)]--;
         }
-        for(int n : count) {
+        for (int n : count) {
             if(n != 0) return false;
         }
         return true;
@@ -41,19 +41,19 @@ public class Solution {
 // O(n) time and O(n) space using a hash map
 public class Solution {
     public boolean anagram(String s, String t) {
-        if(s == null && t == null) return true;
-        if(s == null || t == null) return false;
-        if(s.length() != t.length()) return false;
+        if (s == null && t == null) return true;
+        if (s == null || t == null) return false;
+        if (s.length() != t.length()) return false;
         HashMap<Character, Integer> map = new HashMap<Character, Integer>();
-        for(char c : s.toCharArray()) {
-            if(map.containsKey(c)) {
+        for (char c : s.toCharArray()) {
+            if (map.containsKey(c)) {
                 map.put(c, map.get(c) + 1);
             } else {
                 map.put(c, 1);
             }
         }
-        for(char c: t.toCharArray()) {
-            if(map.containsKey(c)) {
+        for (char c: t.toCharArray()) {
+            if (map.containsKey(c)) {
                 map.put(c, map.get(c) - 1);
                 if(map.get(c) < 0) return false;
             } else {
