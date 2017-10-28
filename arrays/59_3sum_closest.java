@@ -22,14 +22,16 @@ Thought process:
 // O(n^2) time and O(1) space using two pointers
 public class Solution {
     public int threeSumClosest(int[] numbers, int target) {
-        if (numbers == null || numbers.length < 3) return -1;
+        if (numbers == null || numbers.length < 3) return Integer.MIN_VALUE;
         Arrays.sort(numbers);
         int closestSum = numbers[0] + numbers[1] + numbers[2];
         for (int i = 0; i < numbers.length; i++) {
             int low = i + 1, high = numbers.length - 1;
             while (low < high) {
                 int curSum = numbers[i] + numbers[low] + numbers[high];
-                if (Math.abs(target - curSum) < Math.abs(target - closestSum)) closestSum = curSum;
+                if (Math.abs(curSum - target) < Math.abs(closestSum - target)) {
+                    closestSum = curSum;
+                }
                 if (curSum < target) {
                     low++;
                 } else {
