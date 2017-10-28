@@ -20,52 +20,84 @@ Example
 
 /*
 Thought process:
-    1. Since it is a singly linked list, we cannot traverse to the end of the lists and add back, 
-       because there is no pointers to the previous elements in the lists.
-    2. Use 3 stacks instead: two stacks stores two lists' values. The other stack store the sum.
-       Be careful of while condition as we need to consider the cases of different list length and 
-       extra carry.
+    1. O(n) solution using 3 stacks:
+           Since it is a singly linked list, traverse the list backward is not possible, because there is no pointer to the previous element for a node.
+           Instead we can use 3 stacks, two storing the node values from the two lists, one storing the sum in reverse order.
+           Pop the top element from the stack iteratively and append it to the result list.    
+    2. O(n) solution using 2 stacks:
+           The sum stack can be saved by repeatedly swap the head pointer with a new head pointer.
 */
 
+// O(n) time using 3 stacks
 public class Solution {
     public ListNode addLists2(ListNode l1, ListNode l2) {
-        if(l1 == null) return l2;
-        if(l2 == null) return l1;
+        if (l1 == null) return l2;
+        if (l2 == null) return l1;
         Stack<Integer> s1 = new Stack<Integer>();
         Stack<Integer> s2 = new Stack<Integer>();
-        while(l1 != null) {
+        while (l1 != null) {
             s1.push(l1.val);
             l1 = l1.next;
         }
-        while(l2 != null) {
+        while (l2 != null) {
             s2.push(l2.val);
             l2 = l2.next;
         }
         Stack<Integer> s3 = new Stack<Integer>();
         int carry = 0;
-        while(!s1.isEmpty() || !s2.isEmpty()) {
-            if(!s1.isEmpty() && !s2.isEmpty()) {
+        while (!s1.isEmpty() || !s2.isEmpty()) {
+            if (!s1.isEmpty() && !s2.isEmpty()) {
                 int sum = s1.pop() + s2.pop() + carry;
                 s3.push(sum % 10);
                 carry = sum / 10;
-            } else if(!s1.isEmpty()) {
+            } else if (!s1.isEmpty()) {
                 int sum = s1.pop() + carry;
                 s3.push(sum % 10);
                 carry = sum / 10;
-            } else if(!s2.isEmpty()) {
+            } else if (!s2.isEmpty()) {
                 int sum = s2.pop() + carry;
                 s3.push(sum % 10);
                 carry = sum / 10;
             }
         }
-        if(carry != 0) s3.push(carry);
+        if (carry != 0) s3.push(carry);
         ListNode head = new ListNode(0);
         ListNode runner = head;
-        while(!s3.isEmpty()) {
+        while (!s3.isEmpty()) {
             ListNode l = new ListNode(s3.pop());
             runner.next = l;
             runner = runner.next;
         }
         return head.next;
+    }
+}
+
+// O(n) time using 2 stacks
+public class Solution {
+    public ListNode addLists2(ListNode l1, ListNode l2) {
+        if (l1 == null) return l2;
+        if (l2 == null) return l1;
+        Stack<Integer> s1 = new Stack<Integer>();
+        Stack<Integer> s2 = new Stack<Integer>();
+        while (l1 != null) {
+            s1.push(l1.val);
+            l1 = l1.next;
+        }
+        while (l2 != null) {
+            s2.push(l2.val);
+            l2 = l2.next;
+        }
+        int sum = 0;
+        ListNode list = new ListNode(Integer.MIN_VALUE);
+        while (!s1.empty() || !s2.empty()) {
+            if (!s1.empty()) sum += s1.pop();
+            if (!s2.empty()) sum += s2.pop();
+            list.val = sum % 10;
+            ListNode head = new ListNode(sum / 10);
+            head.next = list;
+            list = head;
+            sum /= 10;
+        }
+        return list.val == 0 ? list.next : list;
     }
 }
