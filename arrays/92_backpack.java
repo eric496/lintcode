@@ -29,14 +29,14 @@ Thought process:
 public class Solution {
     public int backPack(int m, int[] A) {
         int[][] dp = new int[A.length][m+1];
-        for(int i = 0; i < A.length; i++) {
+        for (int i = 0; i < A.length; i++) {
             // start from the second column because the first column is always zeros
-            for(int j = 1; j < m+1; j++) {
+            for (int j = 1; j < m + 1; j++) {
                 // initialize the first row
-                if(i == 0) {
-                    if(A[0] <= j) dp[0][j] = A[0];
+                if (i == 0) {
+                    if (A[0] <= j) dp[0][j] = A[0];
                 } else {
-                    if(A[i] > j) {
+                    if (A[i] > j) {
                         dp[i][j] = dp[i-1][j];
                     } else {
                         dp[i][j] = Math.max(dp[i-1][j], dp[i-1][j-A[i]] + A[i]);
