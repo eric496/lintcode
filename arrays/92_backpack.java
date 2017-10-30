@@ -15,14 +15,8 @@ Challenge
 
 /*
 Thought process:
-    0. Single choice + mam size
-    1. DP solution: 2-D array with each column representing backpack size from 0 - m
-       each row represent item size. 
-    2. Compare current item size plus the max previous size (backpack size - current item size) with 
-       that excluding the current item. Keep the larger one as the current element value in the 2-D array.
-    3. Keep doing this until loop through all rows and columns, then the last element is the largest 
-       size we can fulfill the backpack.
-    4. How to optimize memory? 
+    1. DP using 2D array:
+    2. DP using 1D array:
 */
 
 // O(m*n) time and O(m*n) memory
