@@ -9,6 +9,13 @@ Example
     Given an example [4,4,6,1,1,4,2,5], return 6.
 */
 
+/*
+Thought process:
+    Forward-backward traversal:
+        A forward pass to calculate the max profit so far to the left; a backward pass to calculate the max profit so far to the right.
+*/
+
+// O(n) time and O(n) space by forward-backward traversal
 public class Solution {
     public int maxProfit(int[] prices) {
         if (prices == null || prices.length <= 1) return 0;
@@ -32,7 +39,9 @@ public class Solution {
         }
 
         int profit = 0;
-        for (int i = 0; i < prices.length; i++) profit = Math.max(left[i] + right[i], profit);  
+        for (int i = 0; i < prices.length; i++) {
+	    profit = Math.max(left[i] + right[i], profit);
+	}  
         return profit;
     }
 }
