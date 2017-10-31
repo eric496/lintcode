@@ -16,13 +16,10 @@ Challenge
 
 /*
 Thought process:
-    1. O(1) time and space: in order to win, we would like leave 3 coins to the other player 
-       so that no matter 1 or 2 coins he takes, we will always win. This generalizes to each 
-       run actually, we'd like to leave 3x coins to the other player after each run. 
-       With this said, if we are the first play, win/lose completely depends on the initial number of 
-       coins, if it is not multiples of 3, we will always win by taking 1 or 2 coins to make the
-       left 3x coins. Otherwise, we will always lose because the other player will take the same 
-       strategy.
+    1. DP
+    2. Trick: in order to win, we would like leave 3 coins to the other player so that no matter 1 or 2 coins he takes, we will always win. This generalizes to each run actually, 
+       we'd like to leave 3x coins to the other player after each run. With this said, if we are the first play, win/lose completely depends on the initial number of coins, 
+       if it is not multiples of 3, we will always win by taking 1 or 2 coins to make the left 3x coins. Otherwise, we will always lose because the other player will take the same strategy.
 */
 
 // O(1) time and O(1) space
@@ -32,16 +29,18 @@ public class Solution {
     }
 }
 
-// O(n) time and O(1) space
+// O(n) time and O(n) space
 public class Solution {
     public boolean firstWillWin(int n) {
-        if(n <= 0) return false;
-        if(n <= 2) return true;
+        if (n <= 0) return false;
+        if (n <= 2) return true;
         boolean[] dp = new boolean[n+1];
         dp[0] = false; 
         dp[1] = true;
         dp[2] = true;
-        for(int i = 4; i < n + 1; i++) dp[i] = dp[i-3];
+        for (int i = 3; i < n + 1; i++) {
+	    dp[i] = dp[i-3];
+	}
         return dp[n];
     }
 }
