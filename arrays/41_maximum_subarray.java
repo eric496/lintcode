@@ -20,7 +20,7 @@ Thought process
                 2) the specific element itself, 
                 whichever is larger. 
             Iterate the array, compares each element with max sum of subarray ending at its previous element, 
-            keep the larger one and update the global maximum.
+            update the global maximum with whichever is greater.
 */
 
 // O(n) time and O(n) space by DP
