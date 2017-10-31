@@ -10,7 +10,7 @@ Example
 
 /*
 Thought process:
-    Buy and sell whenever it profitable (prices[i+1] > prices[i])
+    Greedy: Buy and sell whenever it is profitable (prices[i+1] > prices[i]).
 */
 
 class Solution {
@@ -18,7 +18,9 @@ class Solution {
         if(prices == null || prices.length == 0) return 0;
         int profit = 0;
         for(int i = 0; i < prices.length - 1; i++) {
-            if(prices[i+1] > prices[i]) profit += prices[i+1] - prices[i]; 
+            if(prices[i+1] > prices[i]) {
+                profit += prices[i+1] - prices[i]; 
+            }
         }
         return profit;
     }
