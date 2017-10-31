@@ -15,7 +15,7 @@ Challenge
 
 /*
 Thought process:
-    1. DP using 2D array: (top-down manner)
+    1. DP using 2-D array: (top-down manner)
            Say if we have 4 items with size [2, 3, 5, 7], the backpack size is 11. We can use a table to calculate the result.
            
            item size \ backpack size  |  0  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  10  |  11  |
@@ -31,7 +31,7 @@ Thought process:
            The current item size plus the corresponding max size of the current backpack size subtracts the current item size (this is including the current item), 
            whichever is greater, in order to obtain the max size so far.
            
-    2. DP using 1D array: (bottom-up manner)
+    2. DP using 1-D array: (bottom-up manner)
            
 */
 

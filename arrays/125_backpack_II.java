@@ -13,29 +13,45 @@ Challenge
 
 /*
 Thought process:
-    1. Similar to 92. backpack. The only difference is to add value instead of weight. 
+    1. DP using 2-D array: (top-down manner)
+           Similar to 92. Backpack. The only difference is to use table to store values instead of weights. 
+    2. DP using 1-D array: (bottom-up manner)
 */
 
+// O(m*n) time and O(m*n) space
 public class Solution {
-    public int backPackII(int m, int[] A, int V[]) {  
+    public int backPackII(int m, int[] A, int[] V) {
         int[][] dp = new int[A.length][m+1];
-        for(int i = 0; i < m + 1; i++) {
-            if(A[0] > i) {
-                dp[0][i] = 0;
-            } else {
-                dp[0][i] = V[0];
+        for (int i = 0; i < A.length; i++) {
+            for (int j = 0; j < m + 1; j++) {
+                if (i == 0) {
+                    if (A[0] > j) {
+                        dp[i][j] = 0;
+                    } else {
+                        dp[i][j] = V[0];
+                    }
+                } else {
+                    if (A[i] > j) {
+                        dp[i][j] = dp[i-1][j];
+                    } else {
+                        dp[i][j] = Math.max(dp[i-1][j], dp[i-1][j-A[i]] + V[i]);
+                    }
+                }
             }
         }
-        
-        for (int i = 1; i < A.length; i++) {  
-            for (int j = 1; j < m + 1; j++) {  
-                if (A[i] <= j) {  
-                    dp[i][j] = Math.max(dp[i-1][j], dp[i-1][j-A[i]] + V[i]);  
-                } else {  
-                    dp[i][j] = dp[i-1][j];  
-                }  
-            }  
-        }  
-        return dp[A.length-1][m];  
-    }  
+        return dp[A.length-1][m];
+    }
 }
+
+// O(m*n) time and O(m) space
+public class Solution {
+    public int backPackII(int m, int[] A, int[] V) {
+        int[] dp = new int[m+1];
+        for (int i = 0; i < A.length; i++) {
+            for (int j = m; j > 0; j--) {
+                if (j >= A[i]) dp[j] = Math.max(dp[j], dp[j-A[i]] + V[i]);
+            }
+        }
+        return dp[m];
+    }
+} 
