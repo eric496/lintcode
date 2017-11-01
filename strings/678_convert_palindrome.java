@@ -8,7 +8,7 @@ Example
 
 /*
 Thought process:
-    1. Recursive 
+    1. Recursive solution:
     2. KMP
 */
 
