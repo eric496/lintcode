@@ -20,9 +20,11 @@ Example
 
 /*
 Thought process: 
-    1. Similar to 135. Combination Sum. The only difference is to rule out duplicate candidate sequence
-       by if(i != index && num[i] == num[i-1]) 
-    2. dfs we should pass i+1 because each number can be used only once.
+    DFS:
+        Similar to 135. Combination Sum. The only difference is to rule out duplicate candidate sequence by if(i != index && num[i] == num[i-1]) 
+        We should pass parameter i+1 because each number can be used only once.
+
+    A template for this kind of problems: https://discuss.leetcode.com/category/47/combination-sum 
 */
 
 public class Solution {
@@ -34,11 +36,11 @@ public class Solution {
     }
     
     public void dfs(List<List<Integer>> result, List<Integer> curSeq, int[] num, int target, int index) {
-        if(target == 0) {
+        if (target == 0) {
             result.add(new ArrayList<Integer>(curSeq));
-        } else if(target > 0) {
-            for(int i = index; i < num.length; i++) {
-                if(i != index && num[i] == num[i-1]) continue;
+        } else if (target > 0) {
+            for (int i = index; i < num.length; i++) {
+                if (i != index && num[i] == num[i-1]) continue;
                 curSeq.add(num[i]);
                 dfs(result, curSeq, num, target - num[i], i+1);
                 curSeq.remove(curSeq.size()-1);

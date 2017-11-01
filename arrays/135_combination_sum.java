@@ -15,7 +15,7 @@ Example
 
 /*
 Thought process:
-    1. DFS
+    DFS
 */
 
 // O(2^n) time and O(1) space
@@ -28,11 +28,11 @@ public class Solution {
     }
     
     public void dfs(List<List<Integer>> result, List<Integer> curSeq, int[] num, int target, int index) {
-        if(target == 0) {
+        if (target == 0) {
             result.add(new ArrayList<Integer>(curSeq));
-        } else if(target > 0) {
-            for(int i = index; i < num.length; i++) {
-                if(target < num[i]) break;
+        } else if (target > 0) {
+            for (int i = index; i < num.length; i++) {
+                if (target < num[i]) break;
                 curSeq.add(num[i]);
                 dfs(result, curSeq, num, target - num[i], i);
                 curSeq.remove(curSeq.size()-1);
