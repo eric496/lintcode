@@ -9,19 +9,21 @@ Example
 
 /*
 Thought process:
-    1. Brute force: loop through all numbers, digit by digit. Keep the number of apperance of the target digit
+    1. Brute force: Iterate the array, check each element digit by digit, keep the number of apperance of the target digit.
 */
 
 // O(n^2) time and O(1) space
-class Solution {
+public class Solution {
     public int digitCounts(int k, int n) {
         if(k < 0 || k > 9 || n < 0) return 0;
         int count = 0;
-        char kChar = (char)(k + '0');
-        for (int i = k; i <= n; i++) {
-            char[] iChars = Integer.toString(i).toCharArray();
-            for (char iChar : iChars) 
-                if(kChar == iChar) count++;
+        for (int i = 0; i <= n; i++) {
+            int num = i;
+            // excute at least once in case k = 0
+            do {
+                if (num % 10 == k) count++;
+                num /= 10;
+            } while (num != 0);
         }
         return count;
     }
