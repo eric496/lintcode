@@ -10,26 +10,27 @@ Example
 
 /*
 Thought process:
-    1. Refer to: https://leetcode.com/problems/container-with-most-water/discuss/
-    2. Notice that if heights[left] == heights[right], we should move both pointers, 
-       because moving any single pointer unilaterally will reduce the area.
+    Two pointers:
+        Iterate the array from both ends, update the max area, and then move the pointer whose height is lower.  
+        Notice that if heights[left] == heights[right], we should move both pointers, because moving any single pointer unilaterally will reduce the area.
 */
 
 public class Solution {
     public int maxArea(int[] heights) {
         int left = 0, right = heights.length - 1;
-        int maxArea = 0;
-        while(left < right) {
-            maxArea = Math.max(maxArea, (right - left) * Math.min(heights[left], heights[right]));
-            if(heights[left] < heights[right]) {
+        int result = 0 ;
+        while (left <= right) {
+            int area = (right - left) * Math.min(heights[left], heights[right]);
+            result = Math.max(result, area);
+            if (heights[left] < heights[right]) {
                 left++;
-            } else if(heights[left] > heights[right]) {
+            } else if (heights[left] > heights[right]) {
                 right--;
             } else {
-                left++;
+                left++; 
                 right--;
             }
         }
-        return maxArea;
+        return result;
     }
 }
