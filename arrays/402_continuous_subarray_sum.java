@@ -7,15 +7,11 @@ Example
 
 /*
 Thought process:
-    1. Similar to 41. Subarray Sum, but need to record indices.
-    2. If previous sum is negative, then current element is the max sum.
-       So update both first and last indices to current index.
-       Otherwise, local max should include current element, and only 
-       update the last index to current index.
-       Update global index if local max is greater than global max, 
-       and update the indices accordingly.
-    3. Remember to add values to result at first, or ArrayList set() method 
-       won't work for an empty arraylist.
+    Similar to 41. Subarray Sum, but need to record indices.
+    If previous sum is negative, then current element is the max sum. So update both first and last indices to current index.
+    Otherwise, local max should include current element, and only update the last index to current index.
+    Update global index if local max is greater than global max, and update the resulting indices accordingly.
+    Remember to add values to result at first, or ArrayList set() method won't work for an empty arraylist.
 */
 
 public class Solution {
