@@ -8,12 +8,12 @@ Example
 
 public class Solution {
     public int divide(int dividend, int divisor) {
-        if(divisor == 0) return Integer.MAX_VALUE;
+        if (divisor == 0) return Integer.MAX_VALUE;
         int sign = ((dividend < 0) ^ (divisor < 0)) ? -1 : 1;
         long dvd = Math.abs((long)dividend);
         long dvs = Math.abs((long)divisor);
         long result = 0;
-        while(dvd >= dvs) {
+        while (dvd >= dvs) {
             long tmp = dvs, multiple = 1;
             while(dvd >= (tmp << 1)) {
                 tmp <<= 1;
