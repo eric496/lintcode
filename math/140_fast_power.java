@@ -21,9 +21,11 @@ public class Solution {
         }
         // (a * b) % p = ((a % p) * (b % p)) % p
         // use long to prevent overflow
-        long product = fastPower(a, b, n / 2);
+        long product = fastPower(a, b, n/2);
         product = (product * product) % b;
-        if (n % 2 == 1) product = (product * a) % b;
+        if (n % 2 == 1) {
+            product = (product * a) % b;
+        }
         // cast long to int
         return (int) product;
     }
