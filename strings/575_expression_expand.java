@@ -11,43 +11,51 @@ Challenge
     Can you do it without recursion?
 */
 
+/*
+Thought process:
+*/
+
 public class Solution {
     public String expressionExpand(String s) {
         if(s == null || s.length() == 0) return s;
         Stack<String> str = new Stack<String>();
         Stack<Integer> count = new Stack<Integer>();
-        String res = "";
+        String result = "";
         int num = 0;
-        for(int i = 0; i < s.length(); i++){
+        for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if(Character.isDigit(c)){
                 num = num * 10 + (c - '0');
                 continue;
             }
-            if(Character.isLetter(c)){
-                if(str.isEmpty())
-                    res += c;
-                else 
+            if (Character.isLetter(c)){
+                if (str.isEmpty()) {
+                    result += c;
+                } else { 
                     str.push(str.pop() + c);
+                }
                 continue;
             }
-            if(c == '[') {
+            if (c == '[') {
                 count.push(num);
                 num = 0;
                 str.push(""); 
                 continue;
             }
-            if(c == ']') {
+            if (c == ']') {
                 String t = "";
                 String temp = str.pop();
                 int dup = count.pop();
-                for(int k = 0; k < dup; k++) t += temp;
-            if(str.isEmpty())
-                res += t;
-            else 
-                str.push(str.pop() + t);
-            } 
+                for (int k = 0; k < dup; k++) {
+                    t += temp;
+                }
+                if (str.isEmpty()) {
+                    result += t;
+                } else { 
+                    str.push(str.pop() + t);
+                } 
+            }
         }
-        return res;
+        return result;
     }
 }
