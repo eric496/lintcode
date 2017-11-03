@@ -14,30 +14,32 @@ Example
 // BFS, but it raises TLE
 public class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
-        if(numCourses <= 0) return null;
+        if (numCourses <= 0) return null;
         int[] indegree = new int[numCourses];
         int[] order = new int[numCourses];
         int index = 0;
-        for(int i = 0; i < prerequisites.length; i++) indegree[prerequisites[i][0]]++;
+        for (int i = 0; i < prerequisites.length; i++) {
+	    indegree[prerequisites[i][0]]++;
+	}
         Queue<Integer> q = new LinkedList<Integer>();
-        for(int i = 0; i < numCourses; i++) {
-            if(indegree[i] == 0) {
+        for (int i = 0; i < numCourses; i++) {
+            if (indegree[i] == 0) {
                 order[index++] = i;
                 q.offer(i);
             }
         }
-        while(!q.isEmpty()) {
+        while (!q.isEmpty()) {
             int course = q.poll();
-            for(int i = 0; i < prerequisites.length; i++) {
-                if(prerequisites[i][1] == course) {
+            for (int i = 0; i < prerequisites.length; i++) {
+                if (prerequisites[i][1] == course) {
                     indegree[prerequisites[i][0]]--;
-                    if(indegree[prerequisites[i][0]] == 0) {
+                    if (indegree[prerequisites[i][0]] == 0) {
                         order[index++] = prerequisites[i][0];
                         q.offer(prerequisites[i][0]);
                     }
                 }
             }
         }
-        return  (index == numCourses) ? order : new int[0];
+        return (index == numCourses) ? order : new int[0];
     }
 }
