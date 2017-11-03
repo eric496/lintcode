@@ -20,8 +20,11 @@ Thought process:
     then any we cannot reach B starting from any station between A and B.
     This is not that intuitive but we can prove it by contradiction. Suppose the car starts from a station C which is between A and B.
     We assume that the car can reach B, since B is the first station that the car cannot reach starting from A, and C is before B, 
-    so the car can reach C. Thus, the car can reach B starting from A via C, which is a contradiction with the fact that the car cannot reach B starting from A.
-    This assures that we do not need to check the starting stations between the current starting station and its first unreachable station.   
+    so the car can reach C starting from A. Thus, the car, starting from A, can reach B via C, which is a contradiction to the fact that the car cannot reach B starting from A.
+    This assures that we can ignore all starting stations between the current starting station and its first unreachable station, because they cannot reach it either.   
+    
+    One more thing to check is the cumulative remaining gas should be greater than or equal to 0, which means at least there is enough gas
+    to traverse all stations no matter which station is the start.
 */
 
 public class Solution {
