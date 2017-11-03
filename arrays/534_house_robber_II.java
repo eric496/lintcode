@@ -9,7 +9,17 @@ Example
     nums = [3,6,4], return 6
 */
 
+/*
+Thought process:
+    DP
+*/
+
 public class Solution {
+    public int houseRobber2(int[] nums) {
+        if (nums.length == 1) return nums[0];
+        return Math.max(rob(nums, 0, nums.length - 2), rob(nums, 1, nums.length - 1));
+    }
+    
     private int rob(int[] num, int low, int high) {
         int include = 0, exclude = 0;
         for (int j = low; j <= high; j++) {
@@ -18,10 +28,5 @@ public class Solution {
             exclude = Math.max(e, i);
         }
         return Math.max(include, exclude);
-    }
-    
-    public int houseRobber2(int[] nums) {
-        if (nums.length == 1) return nums[0];
-        return Math.max(rob(nums, 0, nums.length - 2), rob(nums, 1, nums.length - 1));
     }
 }
