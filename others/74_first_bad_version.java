@@ -18,7 +18,7 @@ Challenge
 
 /*
 Thought process:
-    1. Binary search
+    Binary search
 */
 
 /**
