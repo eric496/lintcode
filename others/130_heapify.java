@@ -17,13 +17,23 @@ Challenge
     O(n) time complexity
 */
 
-// O(n) time by siftdown
+// O(n) time by sifting down
 public class Solution {
+    public void heapify(int[] A) {
+        for (int i = A.length / 2; i >= 0; i--) {
+            siftdown(A, i); 
+        }
+    }
+ 
     private void siftdown(int[] A, int k) {
         while (k < A.length) {
             int smallest = k;
-            if (k * 2 + 1 < A.length && A[k * 2 + 1] < A[smallest]) smallest = k * 2 + 1;
-            if (k * 2 + 2 < A.length && A[k * 2 + 2] < A[smallest]) smallest = k * 2 + 2;
+            if (k * 2 + 1 < A.length && A[k * 2 + 1] < A[smallest]) {
+                smallest = k * 2 + 1;
+            }
+            if (k * 2 + 2 < A.length && A[k * 2 + 2] < A[smallest]) {
+                smallest = k * 2 + 2;
+            }
             if (smallest == k) break;
             int temp = A[smallest];
             A[smallest] = A[k];
@@ -31,34 +41,28 @@ public class Solution {
             k = smallest;
         }
     }
-    
-    public void heapify(int[] A) {
-        for (int i = A.length / 2; i >= 0; i--) siftdown(A, i);
-    }
 }
 
-// O(nlogn) by siftup
+// O(nlogn) by sifting up
 public class Solution {
+    public void heapify(int[] A) {
+        for (int i = 0; i < A.length; i++) {
+            siftup(A, i);
+        }
+    }
+    
     private void swap(int[] A, int i, int j) {
         int temp = A[i];
         A[i] = A[j];
         A[j] = temp;
     }
-    
+
     private void siftup(int[] A, int k) {
         while (k != 0) {
             int parent = (k - 1) / 2;
-            if (A[k] > A[parent]) {
-                break;
-            }
+            if (A[k] > A[parent]) break;
             swap(A, k, parent);
             k = parent;
-        }
-    }
-
-    public void heapify(int[] A) {
-        for (int i = 0; i < A.length; i++) {
-            siftup(A, i);
         }
     }
 }
