@@ -11,7 +11,7 @@ Example
     Return [0,1,2,3] or [0,2,1,3]
 */
 
-// BFS, but there is a time limit error when tested on Lintcode
+// BFS, but it raises TLE
 public class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         if(numCourses <= 0) return null;
