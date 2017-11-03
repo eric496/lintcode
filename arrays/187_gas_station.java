@@ -13,18 +13,27 @@ Challenge
     O(n) time and O(1) extra space
 */
 
+/*
+Thought process:
+    Iterate the gas array, calculate the cumulative remaining gas by sum += gas[i] + cost[i]. Once sum is found smaller than 0, 
+    we should set sum to default and keep the current index, based on the fact that if the car starts at A and cannot reach B (but can reach any station before B), 
+    then any we cannot reach B starting from any station between A and B.
+    This is not that intuitive but we can prove it by contradiction. Suppose the car starts from a station C which is between A and B.
+    We assume that the car can reach B, since B is the first station that the car cannot reach starting from A, and C is before B, 
+    so the car can reach C. Thus, the car can reach B starting from A via C, which is a contradiction with the fact that the car cannot reach B starting from A.
+    This assures that we do not need to check the starting stations between the current starting station and its first unreachable station.   
+*/
+
 public class Solution {
     public int canCompleteCircuit(int[] gas, int[] cost) {
         if (gas == null || cost == null || gas.length == 0 || cost.length == 0) return -1;
-        int sum = 0;
-        int total = 0;
-        int index = -1;
-        for(int i = 0; i < gas.length; i++) {
+        int sum = 0, total = 0, index = -1;
+        for (int i = 0; i < gas.length; i++) {
             sum += gas[i] - cost[i];
             total += gas[i] - cost[i];
-            if(sum < 0) {
-                index = i;
+            if (sum < 0) {
                 sum = 0;
+                index = i;
             }
         }
         return total < 0 ? -1 : index + 1;
