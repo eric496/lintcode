@@ -8,27 +8,32 @@ Example
     return -1
 */
 
+/*
+Thought process:
+*/
+
 public class Solution {
     public int firstUniqueNumber(int[] nums, int number) {
         boolean flag = false;
-        for(int num : nums) {
-            if(num == number) {
+        for (int num : nums) {
+            if (num == number) {
                 flag = true;
                 break;
             }
         }
-        if(flag == false) return -1;
+        if (flag == false) return -1;
         HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-        for(int num : nums) {
+        for (int num : nums) {
             map.put(num, 0);
-            if(num == number) break;
+            if (num == number) break;
         }
-        for(int num : nums) {
+        for (int num : nums) {
             map.put(num, map.get(num)+1);
-            if(num == number) break;
+            if (num == number) break;
         }
-        for(int num: nums) 
-            if(map.get(num) == 1) return num;
+        for (int num: nums) { 
+            if (map.get(num) == 1) return num;
+	}
         return -1;
     }
 }
