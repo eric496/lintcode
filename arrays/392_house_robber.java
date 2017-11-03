@@ -4,19 +4,26 @@ Given a list of non-negative integers representing the amount of money of each h
 
 Example
     Given [3, 8, 4], return 8.
+
 Challenge
     O(n) time and O(1) memory.
 */
 
-// DP
+/*
+Thought process:
+    DP
+*/
+
 public class Solution {
     public long houseRobber(int[] A) {
         int n = A.length;
-        if(n == 0) return 0;
-        long[] res = new long[n+1];
-        res[0] = 0;
-        res[1] = A[0];
-        for(int i = 2; i <= n; i++) res[i] = Math.max(res[i-1], res[i-2] + A[i-1]);
-        return res[n];
+        if (n == 0) return 0;
+        long[] dp = new long[n+1];
+        dp[0] = 0;
+        dp[1] = A[0];
+        for (int i = 2; i <= n; i++) {
+            dp[i] = Math.max(dp[i-1], dp[i-2] + A[i-1]);
+        }
+        return dp[n];
     }
 }
