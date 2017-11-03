@@ -13,9 +13,24 @@ Example
 */
 
 /*
-Thought process: http://keithschwarz.com/interesting/code/?dir=find-duplicate
+Thought process: 
+    1. Sort the array and iterate it to find the duplicate by checking the equality of each two successive elements. 
+    2. http://keithschwarz.com/interesting/code/?dir=find-duplicate
 */
 
+// O(n) time and O(1) space
+public class Solution {
+    public int findDuplicate(int[] nums) {
+        if(nums == null || nums.length <= 1) return -1;
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] == nums[i+1]) return nums[i];;
+        }
+        return -1;
+    }
+}
+
+// O(n) time and O(1) space
 public class Solution {
     public int findDuplicate(int[] nums) {
         if(nums == null || nums.length <= 1) return -1;
