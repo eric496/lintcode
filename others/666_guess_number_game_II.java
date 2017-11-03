@@ -12,7 +12,12 @@ Example
     Game over. 8 is the number I picked.
     You end up paying $5 + $7 + $9 = $21.
     Given a particular n ≥ 1, find out how much money you need to have to guarantee a win.
-    So when n = ｀10, return16`
+    So when n = 10, return 16
+*/
+
+/*
+Thought process:
+    DP
 */
 
 public class Solution {
@@ -22,8 +27,9 @@ public class Solution {
             for (int i = 1; i <= n - l; i++) {
                 int j = i + l;
                 dp[i][j] = Integer.MAX_VALUE;
-                for (int k = i; k <= j; k++)
-                    dp[i][j] = Math.min(dp[i][j], k + Math.max(dp[i][k - 1], dp[k + 1][j]));
+                for (int k = i; k <= j; k++) {
+                    dp[i][j] = Math.min(dp[i][j], k + Math.max(dp[i][k-1], dp[k+1][j]));
+                }
             }
         return dp[1][n];
     }
