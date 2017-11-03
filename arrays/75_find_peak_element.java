@@ -19,12 +19,18 @@ Challenge
     Time complexity O(logN)
 */
 
+/*
+Thought process:
+    Binary search
+*/
+
+// O(logn) time and O(1) space
 class Solution {
     public int findPeak(int[] A) {
         int low = 0, high = A.length - 1;
-        while(low < high) {
+        while (low < high) {
             int mid = low + (high - low) / 2;
-            if(A[mid] < A[mid+1]) {
+            if (A[mid] < A[mid+1]) {
                 low = mid + 1;
             } else {
                 high = mid;
