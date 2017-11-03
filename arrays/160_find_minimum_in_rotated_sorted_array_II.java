@@ -10,13 +10,19 @@ Example
     Given [4,4,5,6,7,0,1,2] return 0.
 */
 
+/*
+Thought process:
+    Binary search
+*/
+
+// O(logn) time and O(1) space
 public class Solution {
     public int findMin(int[] num) {
-        if(num == null || num.length == 0) return -1;
+        if (num == null || num.length == 0) return -1;
         int low = 0, high = num.length - 1;
-        while(low < high) {
+        while (low < high) {
             int mid = low + (high - low) / 2;
-            if(num[mid] < num[high]) {
+            if (num[mid] < num[high]) {
                 high = mid;
             } else if(num[mid] > num[high]) {
                 low = mid + 1;
