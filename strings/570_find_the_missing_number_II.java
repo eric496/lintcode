@@ -9,22 +9,28 @@ Example
     return 17
 */
 
+/*
+Thought process:
+*/
+
 public class Solution {
     public boolean flag = false;
-    public int ans = 0;
+    public int result = 0;
     public int findMissing2(int n, String str) {
         boolean[] happen = new boolean[n + 1];
         dfs(0, n, str, happen);
-        return ans;
+        return result;
     }
     
     public void dfs(int i, int n, String s, boolean[] happen) {
         if (i >= s.length() || flag) {
-            if (!flag)
+        	if (!flag)
             for (int k = 1; k <= n; k++) {
-                if (!happen[k]) ans = k;
+                if (!happen[k]) {
+                    result = k;
+                }
             }
-            flag = true;
+        	flag = true;
             return;
         }
         int sum = s.charAt(i) - '0';
