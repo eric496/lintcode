@@ -8,16 +8,24 @@ Example
 
 public class Solution {
     public boolean wordBreak(String s, Set<String> dict) {
-        boolean[] f = new boolean[s.length()+1];
-        f[0] = true;
-        for(int i = 1; i <= s.length(); i++){
-            for(int j = 0; j < i; j++){
-                if(f[j] && dict.contains(s.substring(j, i))) {
-                    f[i] = true;
-                    break;
+        if (s == null || s.length() == 0) return true;
+        int n = s.length();
+        boolean [] dp = new boolean[n+1];
+        dp[0] = true ;
+        int maxLength = 0;
+        for (String t : dict) {
+            maxLength = Math.max(maxLength, t.length());
+        }
+        for (int i = 1; i <= n; i++) {
+            dp[i] = false;
+            for (int j = i - 1; j >= Math.max(0, i - maxLength) && !dp[i]; j--) {
+                if (dp[j]) {
+                    if (dict.contains(s.substring(j, i))) {
+                        dp[i] = true;
+                    }
                 }
             }
         }
-        return f[s.length()];
+        return dp[n];
     }
 }
