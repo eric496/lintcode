@@ -14,34 +14,25 @@ Example
     A = [3,2,1,0,4], return false.
 */
 
-// solution 1
+/*
+Thought process:
+    Create a variable to store the max jump (which is the largest reachable index). Iterate the array, if the max jump is smaller than the current index, 
+    which means it can not jump to the next index, return false immediately.
+    Update the max jump if sum of the current index and current jump length is greater than or equal to max jump so far.
+    Finally check if the max jump is greater than or equal to the last index of the array.
+*/
+
+// O(n) time
 public class Solution {
     public boolean canJump(int[] A) {
         if (A == null || A.length == 0) return false;
-        int farthest = A[0];
-        for (int i = 1; i < A.length; i++)
-            if (i <= farthest && A[i] + i >= farthest) farthest = A[i] + i;
-        return farthest >= A.length - 1;
-    }
-}
-
-// soulution 2
-public class Solution {
-    public boolean canJump(int[] A) {
-        int last = A.length - 1;
-        for(int i = A.length - 2; i >= 0; i--) if(i + A[i] >= last) last = i;
-        return last <= 0;
-    }
-}
-
-// solution 3
-public class Solution {
-    public boolean canJump(int[] nums) {
-        int maxLocation = 0;
-        for(int i = 0; i < nums.length; i++) {
-            if(maxLocation < i) return false; // if previous maxLocation smaller than i, meaning we cannot reach location i, thus return false.
-            maxLocation = (i + nums[i]) > maxLocation ? i + nums[i] : maxLocation; // greedy:
+        int maxJump = 0;
+        for (int i = 0; i < A.length; i++) { 
+            if (i > maxJump) return false;
+            if (A[i] + i >= maxJump) {
+                maxJump = A[i] + i;
+            }
         }
-        return true;
+        return maxJump >= A.length - 1;
     }
 }
