@@ -13,7 +13,7 @@ Example
                          c1 → c2 → c3
                        ↗            
     B:     b1 → b2 → b3
-begin to intersect at node c1.
+    begin to intersect at node c1.
 
 Challenge
     Your code should preferably run in O(n) time and use only O(1) memory.
@@ -30,35 +30,44 @@ Challenge
  *     }
  * }
  */
- 
+
+/*
+Thought process:
+    Observe that the intersection always occurs at the "tail" part of two lists. We look for the beginning node of the intersection by iteratively comparing a pair of nodes from both lists. 
+    Thus in order to let two lists reach at the beginning node of the intersection at the same time, we will let the longer list starts to traverse by n nodes, where n is the length difference 
+    between the two lists. Next, we traverse both lists of the same length, and look for the first identical node.
+*/
+
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         ListNode pointA = headA;
         ListNode pointB = headB;
-        if(headA == null || headB == null) return null;
+        if (headA == null || headB == null) return null;
         int lengthA = 0, lengthB = 0;
-        while(pointA != null) {
+        while (pointA != null) {
             pointA = pointA.next;
             lengthA++;
         }
-        while(pointB != null) {
+        while (pointB != null) {
             pointB = pointB.next;
             lengthB++;
         }
         pointA = headA;
         pointB = headB;
-        if(lengthA < lengthB) {
-            for(int i = 0; i < lengthB - lengthA; i++)
+        if (lengthA < lengthB) {
+            for (int i = 0; i < lengthB - lengthA; i++) {
                 pointB = pointB.next;
+            }
         } else if(lengthA > lengthB) {
-            for(int i = 0; i < lengthA - lengthB; i++)
+            for (int i = 0; i < lengthA - lengthB; i++) {
                 pointA = pointA.next;
+            }
         }
-        while(pointA != null) {
-            if(pointA == pointB) return pointA;
+        while (pointA != null) {
+            if (pointA == pointB) return pointA;
             pointA = pointA.next;
             pointB = pointB.next;
         }
         return null;
     }
-}
+} 
