@@ -27,21 +27,42 @@ Example
 
 /*
 Thought process:
-    1. Recursive solution: (similar to 93. Maximum depth of binary tree)
-           Base case: return true when the current node is null.
-           Recursive steps: calculate the maximum depth of the left and right subtrees,
-                            check balance of the left subtree, and that of the right subtree.
+    Recursive solution: (similar to 93. Maximum depth of binary tree)
+        1. Top-down manner:
+               Base case: return true when the current node is null.
+               Recursive steps: calculate the maximum depth of the left and right subtrees, check balance of the left subtree, and that of the right subtree.
+        2. Bottom-up manner: 
+               Base case: return true when the current node is null.
+               Recursive steps: DFS
 */
 
-// recursive 
+// O(n^2) time : top-down approach
 public class Solution {
-        public boolean isBalanced(TreeNode root) {
-                if(root == null) return true;
-                return Math.abs(maxDepth(root.right) - maxDepth(root.left)) <= 1 && isBalanced(root.left) && isBalanced(root.right);
-        }
+    public boolean isBalanced(TreeNode root) {
+        if(root == null) return true;
+        return Math.abs(maxDepth(root.right) - maxDepth(root.left)) <= 1 && isBalanced(root.left) && isBalanced(root.right);
+    }
 
-        public int maxDepth(TreeNode node) {
-                if(node == null) return 0;
-                return Math.max(maxDepth(node.right), maxDepth(node.left)) + 1;
-        }
+    public int maxDepth(TreeNode node) {
+        if(node == null) return 0;
+        return Math.max(maxDepth(node.right), maxDepth(node.left)) + 1;
+    }
+}
+
+// O(n) time: bottom-up approach
+public class Solution {
+    public boolean isBalanced(TreeNode root) {
+        if(root == null) return true;
+        return maxDepth(root) != -1;
+    }
+
+    private int maxDepth(TreeNode root) {
+        if (root == null) return 0;
+        int leftDepth = maxDepth(root.left);
+        if (leftDepth == -1) return -1;
+        int rightDepth = maxDepth(root.right);
+        if (rightDepth == -1) return -1;
+        if (Math.abs(leftDepth - rightDepth) > 1)  return -1;
+        return Math.max(leftDepth, rightDepth) + 1;
+    }
 }
