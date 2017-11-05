@@ -43,12 +43,12 @@ public class Solution {
     
     private TreeNode build(int[] postorder, int postLow, int postHigh, int[]inorder, int inLow, int inHigh) {
         if (inLow > inHigh || postLow > postHigh) return null;
-        // the last element in postorder is the root.
+        // the last element in postorder is the root
         TreeNode root = new TreeNode(postorder[postHigh]);
-        // find the index of the root from inorder.
+        // find the index of the root from inorder
         int inRootIndex = inLow;
         for (int i = inLow; i <= inHigh; i++) {
-            if (inorder[i] == postorder[postHigh]) {
+            if (inorder[i] == root.val) {
                 inRootIndex = i;
                 break;
             }

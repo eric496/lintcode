@@ -42,7 +42,9 @@ public class Solution {
     
     public TreeNode build(int[] preorder, int preLow, int preHigh, int[] inorder, int inLow, int inHigh){
         if (preLow > preHigh || inLow > inHigh) return null;
+        // the last element in postorder is the root
         TreeNode root = new TreeNode(preorder[preLow]);
+        // find the index of the root from inorde
         int inRootIndex = inLow;
         for (int i = inLow; i <= inHigh; i++) {
             if (inorder[i] == root.val) {
