@@ -34,6 +34,18 @@ Thought process:
         2. Bottom-up manner: 
                Base case: return true when the current node is null.
                Recursive steps: return -1 once it is not balanced. Otherwise return the depth of the current tree.
+   
+    Some tips about how to think recursively:
+        First, think of the base case - under what circumstances should it break the recursion?
+               think of the recursive step - what is the new input?
+        Second, think from the macro perspective - how to decompose the problem by its defition instead of the micro perspective - how to design each step in the recursion.
+                
+        Take this problem as an example. First, the base case is when the current node is null, which means we have recursively traversed the subtree and there is no "bad case",
+        so we will return true. The recursive step is about how can we solve the sub problem with the same structure. The new input is just root.left and root.right since they are 
+        subtrees with the same structure. 
+        Second, by defition, a balanced binary tree is a tree in which the depth of the two subtrees differ by at most 1 and subtrees are balanced trees as well.
+        This needs a helper function to count the depth of the subtrees, which is as well a recursive function. The max depth is the depth of the left or right subtrees whichever is greater. 
+        Remember to add 1 because we need to add the root level as well.  
 */
 
 // O(n^2) time : top-down approach
