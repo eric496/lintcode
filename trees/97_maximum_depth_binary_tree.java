@@ -37,7 +37,7 @@ Thought process:
            
 */
 
-// recursive - trivial
+// recursive
 public class Solution {
     public int maxDepth(TreeNode root) {
         if (root == null) return 0;
