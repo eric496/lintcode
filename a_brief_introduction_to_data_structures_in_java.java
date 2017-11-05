@@ -242,3 +242,16 @@ map.containsKey(key)                       // return true if map contains a mapp
 map.containsValue(value)                   // return true if map maps one or more keys to the specified value
 map.clear()                                // remove all of the mappings from map
 
+
+
+
+
+/*
+Binary Tree
+A tree data structure in which each node has at most two children, which are referred to as the left and the right child.
+
+Types of binary trees:
+    1) A full binary tree: a binary tree in which every node in the tree has either 0 or 2 children.
+    2) A perfect binary tree: a binary tree in which all interior nodes have two children and all leaves have the same depth or same level.
+    3) A complete binary tree: a binary tree in which every level, except possibly the last, is completely filled, and all nodes in the last level are as far left as possible.
+*/
