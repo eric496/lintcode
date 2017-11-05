@@ -27,11 +27,11 @@ Example
 
 /*
 Thought process:
-    Recursive solution: (similar to 93. Maximum depth of binary tree)
-        1. Top-down manner:
+    Recursive solution: (similar to 93. Maximum Depth of Binary Tree)
+        1. Top-down approach:
                Base case: return true when the current node is null.
                Recursive steps: calculate the maximum depth of the left and right subtrees, check balance of the left subtree, and that of the right subtree.
-        2. Bottom-up manner: 
+        2. Bottom-up approach: 
                Base case: return true when the current node is null.
                Recursive steps: return -1 once it is not balanced. Otherwise return the depth of the current tree.
    
