@@ -29,7 +29,9 @@ Thought process:
            Base case: return when the current node is null.
            Recursive step: run recursively on the left child first and then the right child, add the current node value to result list. 
     2. Iterative solution:
-           Reverse the process of preorder traversal.
+           Reverse the process of preorder traversal. Preorder traversal is in root-left-right order, and postorder traversal is left-right-root, which can be achieved by 
+           a slight change of preorder to become root-right-left and then reverse the result list to obtain left-right-root.
+           Notice this returns the correct result list but it is actually not a correct postorder "traversal". 
 */
 
 /**
@@ -60,7 +62,29 @@ public class Solution {
     }
 }
 
-// iterative
+// iterative method 1
+public class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<Integer>();
+        if (root == null) return result;
+        Stack<TreeNode> s = new Stack<TreeNode>();
+        s.push(root);
+        while (!s.isEmpty()) {
+            TreeNode node = s.pop();
+            result.add(node.val);
+            if (node.left != null) {
+                s.push(node.left);
+            }
+            if (node.right != null) {
+                s.push(node.right);
+            }
+        }
+        Collections.reverse(result);
+        return result;
+    }
+}
+
+// iterative method 2
 public class Solution {
     public List<Integer> postorderTraversal(TreeNode root) {
         LinkedList<Integer> result = new LinkedList<>();
