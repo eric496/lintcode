@@ -13,6 +13,27 @@ Example
     return [1,3,2].
 */
 
+/*
+Thought process:
+    0. What is inorder traversal?
+           Traverse the nodes in the tree in left-root-right order.
+           For example, 
+                        A
+                      /   \
+                     B     C
+                    / \   / \
+                   D   F G   H
+                  / \     \
+                 I   J     K
+           The inorder traversal is I-D-J-B-F-A-G-K-C-H.
+    1. Recursive solution: 
+           Base case: return when current node is null
+           Recursive step: run recursively on the left subtree first, add the node value to result list, then run recursively on the right subtree.
+    2. Iterative solution:
+           Iteratively push each left node into the stack until it reaches a leaf, where node is null.
+           Once the current node is null, it is a leaf node. Pop it and add it to result list and let the pointer point to its right child.   
+*/
+
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -25,17 +46,6 @@ Example
  * }
  */
 
-/*
-Thought process:
-    1. DFS: 
-           Base case: return when current node is null
-           Recursive steps: run recursively on the left child first, 
-                            add the value of the current node to the result list, 
-                            run recursively on the right child.
-    2. Iterative solution using stack:
-               
-*/
-
 // recursive
 public class Solution {
     public ArrayList<Integer> inorderTraversal(TreeNode root) {
@@ -45,26 +55,27 @@ public class Solution {
     }
     
     private void traverse(TreeNode root, ArrayList<Integer> result) {
-        if(root == null) return;
+        if (root == null) return;
         dfs(root.left, result);
         result.add(root.val);
         dfs(root.right, result);
     }
 }
 
-// iterative
+// iterative using stack
 public class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         Stack<TreeNode> s = new Stack<TreeNode>();
         TreeNode node = root;
-        while(!s.isEmpty() || node != null) {
-            if(node != null) {
+        while (!s.isEmpty() || node != null) {
+            if (node != null) {
                 s.push(node);
                 node = node.left;
             } else {
                 node = s.pop();
-                result.add(node.val);    // Add after all left children
+		// add node to result list before redirectly the pointer to its right child
+                result.add(node.val);
                 node = node.right;   
             }
         }
