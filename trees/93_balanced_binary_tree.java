@@ -39,12 +39,12 @@ Thought process:
 // O(n^2) time : top-down approach
 public class Solution {
     public boolean isBalanced(TreeNode root) {
-        if(root == null) return true;
+        if (root == null) return true;
         return Math.abs(maxDepth(root.right) - maxDepth(root.left)) <= 1 && isBalanced(root.left) && isBalanced(root.right);
     }
 
     public int maxDepth(TreeNode node) {
-        if(node == null) return 0;
+        if (node == null) return 0;
         return Math.max(maxDepth(node.right), maxDepth(node.left)) + 1;
     }
 }
