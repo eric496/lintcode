@@ -14,40 +14,53 @@ Example
 /*
 Thought process:
     In order to find the maximum node, we need to traverse the binary tree.
-    Tree traversal can be done recursively in a bottom-up order. 
-    Base case: return null if current node is null.
-    Recursive steps: Traverse left subtree and then the right. 
-                     If left child value is greater than root value, then set left child as root. 
-                     Similarly, if right child value is greater than root value, then set right child as root.
-                     Root node is always the current maximum node. 
+    1. Recursive solution:   
+	   Base case: return null if the current node is null.
+    	   Recursive steps: do an inorder traversal, return the max node at each recursion. 
+    2. Iterative solution: 
+	   do a level-order traversal using a queue. Update the max node in each iteration.
 */
 
 // recursive
 public class Solution {
     public TreeNode maxNode(TreeNode root) {
-        if(root == null) return null;
+        if (root == null) return null;
         TreeNode left = maxNode(root.left);
         TreeNode right = maxNode(root.right);
-        if(left != null && left.val > root.val) root = left;
-        if(right != null && right.val > root.val) root = right;
-        return root;
+        return max(root, max(left, right));
+    }
+
+    private TreeNode max(TreeNode a, TreeNode b) {
+        if (a == null) return b;
+        if (b == null) return a;
+        if (a.val > b.val) {
+            return a;
+        } else {
+            return b;
+        }
     }
 }
 
-// iterative using a queue
+// iterative
 public class Solution {
     public TreeNode maxNode(TreeNode root) {
-        if(root == null) return null;
+        if (root == null) return null;
         Queue<TreeNode> q = new LinkedList<TreeNode>();
         q.offer(root);
         TreeNode max = new TreeNode(Integer.MIN_VALUE);
-        while(!q.isEmpty()) {
+        while (!q.isEmpty()) {
             int size = q.size();
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 TreeNode node = q.poll();
-                if(node.left != null) q.offer(node.left);
-                if(node.right != null) q.offer(node.right);
-                if(node.val > max.val) max = node;
+                if (node.left != null) {
+		    q.offer(node.left);
+		}
+                if (node.right != null) {
+		    q.offer(node.right);
+		}
+                if (node.val > max.val) {
+		    max = node;
+		}
             }
         }
         return max;
