@@ -43,16 +43,16 @@ public class Solution {
     public TreeNode build(int[] preorder, int preLow, int preHigh, int[] inorder, int inLow, int inHigh){
         if (preLow > preHigh || inLow > inHigh) return null;
         TreeNode root = new TreeNode(preorder[preLow]);
-        int inorderRoot = inLow;
+        int inRootIndex = inLow;
         for (int i = inLow; i <= inHigh; i++) {
             if (inorder[i] == root.val) {
-                inorderRoot = i; 
+                inRootIndex = i; 
                 break;
             }
         }
-        int leftTreeLen = inorderRoot - inLow;
-        root.left = build(preorder, preLow+1, preLow+leftTreeLen, inorder, inLow, inorderRoot-1);
-        root.right = build(preorder, preLow+leftTreeLen+1, preHigh, inorder, inorderRoot+1, preHigh);       
+        int leftTreeLen = inRootIndex - inLow;
+        root.left = build(preorder, preLow+1, preLow+leftTreeLen, inorder, inLow, inRootIndex-1);
+        root.right = build(preorder, preLow+leftTreeLen+1, preHigh, inorder, inRootIndex+1, preHigh);       
         return root;        
     }
 }

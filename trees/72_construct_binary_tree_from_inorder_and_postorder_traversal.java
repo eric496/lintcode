@@ -42,21 +42,20 @@ public class Solution {
     }
     
     private TreeNode build(int[] postorder, int postLow, int postHigh, int[]inorder, int inLow, int inHigh) {
-        if (inLow > inHigh) return null;
+        if (inLow > inHigh || postLow > postHigh) return null;
         // the last element in postorder is the root.
         TreeNode root = new TreeNode(postorder[postHigh]);
         // find the index of the root from inorder.
-        int inIndex = inLow;
+        int inRootIndex = inLow;
         for (int i = inLow; i <= inHigh; i++) {
             if (inorder[i] == postorder[postHigh]) {
-                inIndex = i;
+                inRootIndex = i;
                 break;
             }
         }
-        // build the right and left subtrees. Again, scanning from the end to find the sections.
-        int leftTreeLen = inIndex - inLow;
-        root.left = build(postorder, postLow, postLow+leftTreeLen-1, inorder, inLow, inIndex-1);
-        root.right = build(postorder, postLow+leftTreeLen, postHigh-1, inorder, inIndex+1, inHigh);
+        int leftTreeLen = inRootIndex - inLow;
+        root.left = build(postorder, postLow, postLow+leftTreeLen-1, inorder, inLow, inRootIndex-1);
+        root.right = build(postorder, postLow+leftTreeLen, postHigh-1, inorder, inRootIndex+1, inHigh);
         return root;
     }
 }
