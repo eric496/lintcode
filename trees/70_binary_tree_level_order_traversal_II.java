@@ -33,43 +33,49 @@ Thought process:
     Traverse in top-down order and reverse the result.
 */
 
-// BFS
+// recursive
+public class Solution {
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        if (root == null) return result;
+        dfs(root, result, 0);
+        Collections.reverse(result);
+        return result;
+    }
+
+    private void dfs(TreeNode node, List<List<Integer>> result, int level) {
+        if (node == null) return;
+        if (level >= result.size()) {
+	    result.add(new ArrayList<Integer>());
+	}
+        result.get(level).add(node.val);
+        dfs(node.left, result, level+1);
+        dfs(node.right, result, level+1);
+    }
+}
+
+// iterative
 public class Solution {
     public ArrayList<ArrayList<Integer>> levelOrderBottom(TreeNode root) {
-        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
         if (root == null) return result;
         Queue<TreeNode> q = new LinkedList<TreeNode>();
         queue.offer(root);
         while (!q.isEmpty()) {
             int size = q.size();
-            ArrayList<Integer> level = new ArrayList<>();
+            ArrayList<Integer> curLevel = new ArrayList<>();
             for (int i = 0; i < size; i++) {
-                TreeNode head = queue.poll();
-                level.add(head.val);
-                if (head.left != null) queue.offer(head.left);
-                if (head.right != null) queue.offer(head.right);
+                TreeNode node = queue.poll();
+                level.add(node.val);
+                if (node.left != null) {
+		    queue.offer(node.left);
+		}
+                if (node.right != null) {
+		    queue.offer(node.right);
+		}
             }
             result.add(0, level);
         }
         return result;
-    }
-}
-
-// DFS
-public class Solution {
-    public List<List<Integer>> levelOrderBottom(TreeNode root) {
-        List<List<Integer>> result = new ArrayList<List<Integer>>();
-        if(root == null) return result;
-        dfs(root, result, 0);
-        Collections.reverse(result);
-        return result;
-    }
-    
-    private void dfs(TreeNode node, List<List<Integer>> result, int level) {
-        if(node == null) return;
-        if(level >= result.size()) result.add(new ArrayList<Integer>());
-        result.get(level).add(node.val);
-        dfs(node.left, result, level+1);
-        dfs(node.right, result, level+1);
     }
 }
