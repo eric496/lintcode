@@ -22,6 +22,18 @@ Challenge
     Challenge 2: Use DFS algorithm to do it.
 */
 
+/*
+Thought process:
+    1. Recursive solution: 
+           Observe that each sub list represents a tree level. 
+           Base case: return when current node is null.  
+           Recursive step: if current level is greater than or equals to the size of result list which means it comes to a new level, then add a new sub list to store node values on the current level. 
+                           Recursively run on the left subtree first and then the right with level incremented by one at each recursion call. 
+    2. Iterative:
+           Push the root to the queue. Iterate the queue as long as it is not empty, create a new sub list in each iteration to store node values on the current level. 
+           Pop the top node from the queue, add its value to the sub list. Push its left and then its right child into the queue.
+*/
+
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -34,22 +46,7 @@ Challenge
  * }
  */
 
-/*
-Thought process:
-    1. DFS: 
-           Observe that each sub list represents a tree level. 
-           Base case: return when current node is null.  
-           Recursive steps: if current level is greater than or equals to the result size 
-                            which means the current level is a new level, then add a new array list to store the value of the current node. 
-                            Recursively run on left child first and then right child with level parameter incremented by 1 at each step. 
-    2. BFS:
-           Use a queue data structure to solve the problem. 
-           Push the root to the queue. 
-           Pop the top node from the queue, add it to the sub list. 
-           Push its left and right children into the queue. Repeat until the queue is empty.
-*/
-
-// DFS
+// recursive 
 public class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
@@ -58,31 +55,37 @@ public class Solution {
     }
     
     private void dfs(List<List<Integer>> result, TreeNode node, int level) {
-        if(node == null) return;
-        if(level >= result.size()) result.add(new ArrayList<Integer>());
+        if (node == null) return;
+        if (level >= result.size()) {
+	    result.add(new ArrayList<Integer>());
+	}
         result.get(level).add(node.val);
         dfs(result, node.left, level+1);
         dfs(result, node.right, level+1);
     }
 }
 
-// BFS
+// iterative
 public class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
-        if(root == null) return result;
+        if (root == null) return result;
         Queue<TreeNode> q = new LinkedList<TreeNode>();
         q.offer(root);
-        while(!q.isEmpty()) {
-            ArrayList<Integer> level = new ArrayList<Integer>();
+        while (!q.isEmpty()) {
+            ArrayList<Integer> curLevel = new ArrayList<Integer>();
             int size = q.size();
-            for(int i = 0; i < size; i++) {
-                TreeNode head = q.poll();
-                level.add(head.val);
-                if(head.left != null) q.offer(head.left);
-                if(head.right != null) q.offer(head.right);
+            for (int i = 0; i < size; i++) {
+                TreeNode node = q.poll();
+                level.add(node.val);
+                if (node.left != null) {
+		    q.offer(node.left);
+		}
+                if (node.right != null) {
+		    q.offer(node.right);
+		}
             }
-            result.add(level);
+            result.add(curLevel);
         }
         return result;
     }
