@@ -33,7 +33,7 @@ Thought process:
                Recursive steps: calculate the maximum depth of the left and right subtrees, check balance of the left subtree, and that of the right subtree.
         2. Bottom-up manner: 
                Base case: return true when the current node is null.
-               Recursive steps: DFS
+               Recursive steps: return -1 once it is not balanced. Otherwise return the depth of the current tree.
 */
 
 // O(n^2) time : top-down approach
