@@ -30,15 +30,15 @@ Thought process:
            Base case: return 0 when current node is null,
                       run recursively on the right subtree when the left subtree is null
                       run recursively on the left subtree when the right subtree is null
-           Recursive step: run recursively on the left and the right children, take the smaller value PLUS ONE
+           Recursive step: run recursively on the left and the right children, return the smaller value + 1 (to count the root level).
     2. Iterative solution: (BFS order level traversal)
-           At each iteration, check if the current node has at least one child. If not, it reaches a leaf, and return the current min (number of levels). 
-           Otherwise, iterate until it reaches a leaf. Remember to increment min by 1 at each iteration.
+           At each iteration, check if the current node has at least one child. If so, push them into the queue. If not, it reaches a leaf where the minimum depth is. 
+           Return the current min (number of levels). Otherwise, increment minimum depth variable and iterate until it reaches a leaf.
 */
 
 // recursive
 public class Solution {
-    public static int minDepth(TreeNode root) {
+    public int minDepth(TreeNode root) {
         if (root == null)   return 0;
         if (root.left == null)  {
 	    return minDepth(root.right) + 1;
