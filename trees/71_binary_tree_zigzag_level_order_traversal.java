@@ -33,51 +33,58 @@ Thought process:
  * }
  */
 
-// BFS
+// recursive
+public class Solution {
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        if (root == null) return result;
+        dfs(root, result, 0);
+        return result;
+    }
+
+    private void dfs(TreeNode node, List<List<Integer>> result, int level) {
+        if (node == null) return;
+        if (level >= result.size()) {
+            result.add(new ArrayList<Integer>());
+        }
+        if (level % 2 == 0) {
+            result.get(level).add(node.val);
+        } else {
+            result.get(level).add(0, node.val);
+        }
+        dfs(node.left, result, level+1);
+        dfs(node.right, result, level+1);
+    }
+}
+
+// iterative
 public class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
-        if(root == null) return result;
+        if (root == null) return result;
         Queue<TreeNode> q = new LinkedList<TreeNode>();
         q.add(root);
         boolean order = true;
-        while(!q.isEmpty()) {
-            ArrayList<Integer> level = new ArrayList<Integer>();
+        while (!q.isEmpty()) {
+            ArrayList<Integer> curLevel = new ArrayList<Integer>();
             int size = q.size();
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 TreeNode node = q.poll();
-                if(order) {
+                if (order) {
                     level.add(node.val);
                 } else {
                     level.add(0, node.val);
                 }
-                if(node.left != null) q.add(node.left);
-                if(node.right != null) q.add(node.right);
+                if (node.left != null) {
+		    q.add(node.left);
+		}
+                if (node.right != null) {
+		    q.add(node.right);
+		}
             }
             order = !order;
-            result.add(level);
+            result.add(curLevel);
         }
         return result;
-    }
-}
-
-// DFS
-public class Solution {
-    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> result = new ArrayList<List<Integer>>();
-        if(root == null) return result;
-        dfs(root, result, 0);
-        return result;
-    }
-    
-    private void dfs(TreeNode node, List<List<Integer>> result, int level) {
-        if(node == null) return;
-        if(level >= result.size()) result.add(new ArrayList<Integer>());
-        if(level % 2 == 0) 
-            result.get(level).add(node.val);
-        else
-            result.get(level).add(0, node.val);
-        dfs(node.left, result, level+1);
-        dfs(node.right, result, level+1);
     }
 }
