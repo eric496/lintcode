@@ -77,7 +77,7 @@ public class Solution {
         if (root == null) return 0;
         Queue<TreeNode> q = new LinkedList<TreeNode>();
         q.offer(root);
-        int count = 0;
+        int max = 0;
         while (!q.isEmpty()) {
             int size = q.size();
             for (int i = 0; i < size; i++) {
@@ -89,8 +89,8 @@ public class Solution {
 		    q.offer(node.right);
 		}
             }
-            count++;
+            max++;
         }
-        return count;
+        return max;
     }
 }
