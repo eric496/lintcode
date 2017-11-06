@@ -22,18 +22,51 @@ Example
  * }
  */
 
+// O(n) time by brute-force iteration
 public class Solution {
-    private ArrayList<Integer> results;
     public List<Integer> searchRange(TreeNode root, int k1, int k2) {
-        results = new ArrayList<Integer>();
-        helper(root, k1, k2);
-        return results;
+        List<Integer> result = new ArrayList<Integer>();
+        if (root == null) return null;
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            int size = stack.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = stack.pop();
+                if (node.val >= k1 && node.val <= k2) {
+                    result.add(node.val);
+                }
+                if (node.left != null) {
+                    stack.push(node.left);
+                }
+                if (node.right != null) {
+                    stack.push(node.right);
+                }
+            }
+        }
+        Collections.sort(result);
+        return result;
     }
-    
-    private void helper(TreeNode root, int k1, int k2) {
+}
+
+// O(logn) time by recursion
+public class Solution {
+    public List<Integer> searchRange(TreeNode root, int k1, int k2) {
+        List<Integer> result = new ArrayList<Integer>();
+        dfs(root, k1, k2, result);
+        return result;
+    }
+
+    private void dfs(TreeNode root, int k1, int k2, List<Integer> result) {
         if (root == null) return;
-        if (root.val > k1) helper(root.left, k1, k2);
-        if (root.val >= k1 && root.val <= k2) results.add(root.val);
-        if (root.val < k2) helper(root.right, k1, k2);
+        if (root.val > k1) {
+            dfs(root.left, k1, k2, result);
+        }
+        if (root.val >= k1 && root.val <= k2) {
+            result.add(root.val);
+        }
+        if (root.val < k2) {
+            dfs(root.right, k1, k2, result);
+        }
     }
 }
