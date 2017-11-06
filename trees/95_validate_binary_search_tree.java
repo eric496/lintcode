@@ -35,9 +35,8 @@ public class Solution {
     }
 
     public boolean checkValidBST(TreeNode root, long min, long max) {
-        // write your code here
-        if(root == null) return true;
-        if(root.val <= min || root.val >= max) return false;
+        if (root == null) return true;
+        if (root.val <= min || root.val >= max) return false;
         return checkValidBST(root.left, min, root.val) && checkValidBST(root.right, root.val, max);
     }
 }
@@ -54,7 +53,7 @@ public class Solution {
                 root = root.left;
             }
             root = stack.pop();
-            if(pre != null && root.val <= pre.val) return false;
+            if (pre != null && root.val <= pre.val) return false;
             pre = root;
             root = root.right;
         }
