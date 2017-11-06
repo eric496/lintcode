@@ -22,6 +22,17 @@ Challenge
     Do it in-place without any extra memory.
 */
 
+/*
+Thought process:
+    1. Recursive solution:
+           Base case: return when current node is null.
+           Recursive step: (bottom up) 
+                run recursively on the right subtree and then the left, 
+                set a global variable pre, for each iteration, set the right child of the current node to pre, 
+                set the left subtree to null, and redirect  to the current node.
+    2. Iterative solution:
+*/
+
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -33,17 +44,6 @@ Challenge
  *     }
  * }
  */
-
-/*
-Thought process:
-    1. Recursive solution:
-           Base case: return when current node is null.
-           Recursive steps: (bottom up) 
-                run recursively on the right subtree and then the left, 
-                set a global variable pre, for each iteration, set the right child of the current node to pre, 
-                set the left subtree to null, and update pre by pointing to the current node.
-    2. Iterative solution:
-*/
 
 // recursive 1 (bottom-up)
 public class Solution {
@@ -66,13 +66,15 @@ public class Solution {
         flatten(root.right);
         // save current right for concatination
         TreeNode right = root.right;
-        while(root.left != null) {
+        while (root.left != null) {
             // step 1: concatinate root with left flatten subtree
             root.right = root.left;
             // set left to null
             root.left = null;
             // step 2: move to the end of new added flatten subtree
-            while(root.right != null) root = root.right;
+            while (root.right != null) {
+                root = root.right;
+            }
             // step 3: contatinate left flatten subtree with flatten right subtree
             root.right = right;
         }
@@ -85,10 +87,12 @@ public class Solution {
     public void flatten(TreeNode root) {
         if (root == null) return;
         TreeNode node = root; 
-        while(node != null) {
-            if(node.left != null) {
+        while (node != null) {
+            if (node.left != null) {
                 TreeNode pre = node.left;
-                while(pre.right != null) pre = pre.right;
+                while (pre.right != null) {
+                    pre = pre.right;
+                }
                 pre.right = node.right;
                 node.right = node.left;
                 node.left = null;
