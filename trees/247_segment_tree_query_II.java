@@ -34,21 +34,23 @@ Example
 
 public class Solution {
     public int query(SegmentTreeNode root, int start, int end) {
-        if(start > end || root==null) return 0;
-        if(start <= root.start && root.end <= end) return root.count;
-        int mid = (root.start + root.end)/2;
+        if (start > end || root==null) return 0;
+        if (start <= root.start && root.end <= end) return root.count;
+        int mid = root.start + (root.end - root.start) / 2;
         int leftsum = 0, rightsum = 0;
-        if(start <= mid) {
-            if( mid < end) 
+        if (start <= mid) {
+            if (mid < end) {
                 leftsum =  query(root.left, start, mid);
-            else 
+            } else { 
                 leftsum = query(root.left, start, end);
+	    }
         }
-        if(mid < end) {
-            if(start <= mid)
+        if (mid < end) {
+            if (start <= mid) {
                 rightsum = query(root.right, mid+1, end);
-            else
+            } else {
                 rightsum = query(root.right, start, end);
+	    }
         }
         return leftsum + rightsum;
     }

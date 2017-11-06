@@ -34,20 +34,22 @@ Example
 
 public class Solution {
     public int query(SegmentTreeNode root, int start, int end) {
-        if(start == root.start && root.end == end) return root.max;
-        int mid = (root.start + root.end) / 2;
+        if (start == root.start && root.end == end) return root.max;
+        int mid = root.start + (root.end - root.start) / 2;
         int leftmax = Integer.MIN_VALUE, rightmax = Integer.MIN_VALUE;
         if(start <= mid) {
-            if( mid < end)
+            if (mid < end) {
                 leftmax =  query(root.left, start, mid);
-            else 
+            } else { 
                 leftmax = query(root.left, start, end);
+	    }
         }
-        if(mid < end) {
-            if(start <= mid)
+        if (mid < end) {
+            if (start <= mid) {
                 rightmax = query(root.right, mid+1, end);
-            else
+            } else {
                 rightmax = query(root.right, start, end);
+	    }
         }  
         return Math.max(leftmax, rightmax);
     }

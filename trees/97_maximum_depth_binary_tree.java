@@ -83,11 +83,11 @@ public class Solution {
             for (int i = 0; i < size; i++) {
                 TreeNode node = q.poll();
                 if (node.left != null) {
-		            q.offer(node.left);
-		        }
+		    q.offer(node.left);
+		}
                 if (node.right != null) {
-		            q.offer(node.right);
-		        }
+		    q.offer(node.right);
+		}
             }
             max++;
         }

@@ -45,16 +45,18 @@ Challenge
  
 public class Solution {
     public void modify(SegmentTreeNode root, int index, int value) {
-        if(root.start == index && root.end == index) {
+        if (root.start == index && root.end == index) {
             root.max = value;
             return;
         }
         // search
-        int mid = (root.start + root.end) / 2;
-        if(root.start <= index && index <=mid)
+        int mid = root.start + (root.end - root.start) / 2;
+        if (root.start <= index && index <=mid) {
             modify(root.left, index, value);
-        if(mid < index && index <= root.end)
+	}
+        if (mid < index && index <= root.end) {
             modify(root.right, index, value);
+	}
         //update
         root.max = Math.max(root.left.max, root.right.max);
     }
