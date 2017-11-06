@@ -15,10 +15,10 @@ Example
 Thought process:
     In order to find the maximum node, we need to traverse the binary tree.
     1. Recursive solution:   
-	   Base case: return null if the current node is null.
+	       Base case: return null if the current node is null.
     	   Recursive steps: do an inorder traversal, return the max node at each recursion. 
     2. Iterative solution: 
-	   do a level-order traversal using a queue. Update the max node in each iteration.
+	       Do a level-order traversal using a queue. Update the max node in each iteration.
 */
 
 // recursive
@@ -53,14 +53,14 @@ public class Solution {
             for (int i = 0; i < size; i++) {
                 TreeNode node = q.poll();
                 if (node.left != null) {
-		    q.offer(node.left);
-		}
+		            q.offer(node.left);
+		        }
                 if (node.right != null) {
-		    q.offer(node.right);
-		}
+		            q.offer(node.right);
+		        }
                 if (node.val > maxNode.val) {
-		    maxNode = node;
-		}
+		            maxNode = node;
+		        }
             }
         }
         return maxNode;
