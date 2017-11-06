@@ -25,11 +25,12 @@ Example
 Thought process:
     1. Recursive solution: 
            Base case: return when current node is null.
-           Recursive steps: swap the left and right child. 
-                            invert the left child and then the right child.
+           Recursive steps: swap the left and right subtrees. Recursively invert the left and the right subtrees. 
+    2. Iterative solution:
+           Use either a stack or a queue to iteratively pop the current root node, swap its left and right subtree, then push them into the stack or queue.
 */
 
-// recursive - trivial
+// recursive
 public class Solution {
     public void invertBinaryTree(TreeNode root) {
         if(root == null) return;
@@ -47,31 +48,39 @@ public class Solution {
         if (root == null) return null;
         Stack<TreeNode> s = new Stack<TreeNode>();
         s.push(root);
-        while(!s.isEmpty()) {
+        while (!s.isEmpty()) {
             TreeNode node = s.pop();
             TreeNode left = node.left;
             node.left = node.right;
             node.right = left;
-            if(node.left != null) s.push(node.left);
-            if(node.right != null) s.push(node.right);
+            if (node.left != null) {
+		s.push(node.left);
+	    }
+            if (node.right != null) {
+		s.push(node.right);
+	    }
         }
         return root;
     }
 }
 
-// BFS using queue
+// iterative using queue
 public class Solution {
     public TreeNode invertBinaryTree(TreeNode root) {
         if (root == null) return null;
         Queue<TreeNode> q = new LinkedList<TreeNode>();
         q.offer(root);
-        while(!q.isEmpty()) {
+        while (!q.isEmpty()) {
             TreeNode node = q.poll();
             TreeNode left = node.left;
             node.left = node.right;
             node.right = left;
-            if(node.left != null) q.offer(node.left);
-            if(node.right != null) q.offer(node.right);
+            if (node.left != null) {
+		q.offer(node.left);
+            }
+            if (node.right != null) {
+		q.offer(node.right);
+	    }
         }
         return root;
     }
