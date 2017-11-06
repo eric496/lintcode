@@ -33,11 +33,10 @@ Example
 Thought process:
     1. Recursive solution:
            Base case: return true when both nodes are null.
-           Recursive steps: check equality of the left subtrees and the right subtrees. 
-    2. Iterative solution: (BFS)
-           Push the nodes from two trees into two stacks, 
-           check if the popped nodes are equal. 
-           Return false if a child of one node is null while that of the other node is not null.
+           Recursive step: recursively check equality of two left subtrees and two right subtrees. 
+    2. Iterative solution: 
+           Push the nodes from two trees into two stacks. At each iteration, check if the popped nodes are equal. 
+           Return false if a child node from one tree is null while that from another is not.
 */
 
 // recursive
@@ -45,8 +44,7 @@ public class Solution {
     public boolean isIdentical(TreeNode a, TreeNode b) {
         if(a == null && b == null) return true;
         if(a != null && b != null) {
-            if(a.val == b.val)
-                return isIdentical(a.left, b.left) && isIdentical(a.right, b.right);
+            return a.val == b.val && isIdentical(a.left, b.left) && isIdentical(a.right, b.right);
         }
         return false;
     }
@@ -61,20 +59,20 @@ public class Solution {
         Stack<TreeNode> s2 = new Stack<TreeNode>();
         s1.push(a);
         s2.push(b);
-        while(!s1.isEmpty() && !s2.isEmpty()) {
+        while (!s1.isEmpty() && !s2.isEmpty()) {
             TreeNode n1 = s1.pop();
             TreeNode n2 = s2.pop();
-            if(n1.val != n2.val) return false;
-            if(n1.left != null && n2.left != null) {
+            if (n1.val != n2.val) return false;
+            if (n1.left != null && n2.left != null) {
                 s1.push(n1.left);
                 s2.push(n2.left);    
-            } else if(n1.left != null || n2.left != null) {
+            } else if (n1.left != null || n2.left != null) {
                 return false;
             }
-            if(n1.right != null && n2.right != null) {
+            if (n1.right != null && n2.right != null) {
                 s1.push(n1.right);
                 s2.push(n2.right);   
-            } else if(n1.right != null || n2.right != null) {
+            } else if (n1.right != null || n2.right != null) {
                 return false;
             }
         }
