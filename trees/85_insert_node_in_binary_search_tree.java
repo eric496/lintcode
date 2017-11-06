@@ -13,6 +13,16 @@ Example
       3             3   6
 */
 
+/*
+Thought process:
+    1. Recursive solution: 
+           Base case: return the node to insert if current node is null.
+           Recursive step: if insert node value is greater than the current node value, recursively build the right subtree.
+                           Otherwise, recursively build the left subtree.
+    2. Iterative solution: 
+           Create a runner and loop through the tree to insert the node. 
+*/
+
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -25,17 +35,12 @@ Example
  * }
  */
 
-/*
-Thought process:
-    1. Recursive solution: if greater than value of the root, then recursely insert into the right subtree. Ohterwise, the left.
-    2. Iterative solution: create a runner and loop through the tree to insert the node. 
-*/
- 
 // recursive solution
 public class Solution {
     public TreeNode insertNode(TreeNode root, TreeNode node) {
-        if(root == null) return node;
-        if(root.val < node.val) {
+        if (root == null) return node;
+        if (node == null) return root;
+        if (root.val < node.val) {
             root.right = insertNode(root.right, node);
         } else {
             root.left = insertNode(root.left, node);
@@ -47,19 +52,19 @@ public class Solution {
 // iterative solution
 public class Solution {
     public TreeNode insertNode(TreeNode root, TreeNode node) {
-        if(node == null) return root;
-        if(root == null) return node;
+        if (node == null) return root;
+        if (root == null) return node;
         TreeNode runner = root;
-        while(runner != null) {
-            if(node.val >= runner.val && runner.right == null) {
+        while (runner != null) {
+            if (node.val >= runner.val && runner.right == null) {
                 runner.right = node;
                 break;
-            } else if(node.val < runner.val && runner.left == null) {
+            } else if (node.val < runner.val && runner.left == null) {
                 runner.left = node;
                 break;
-            } else if(node.val >= runner.val) {
+            } else if (node.val >= runner.val) {
                 runner = runner.right;
-            } else if(node.val < runner.val) {
+            } else if (node.val < runner.val) {
                 runner = runner.left;
             }
         }

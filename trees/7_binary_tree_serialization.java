@@ -27,7 +27,6 @@ Example
  * }
  */
 
-
 public class Solution {
     private static final String spliter = ",";
     private static final String NN = "X";
