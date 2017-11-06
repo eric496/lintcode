@@ -25,7 +25,7 @@ Example
 Thought process:
     1. Recursive solution: 
            Base case: return when current node is null.
-           Recursive steps: swap the left and right subtrees. Recursively invert the left and the right subtrees. 
+           Recursive step: swap the left and right subtrees. Recursively invert the left and the right subtrees. 
     2. Iterative solution:
            Use either a stack or a queue to iteratively pop the current root node, swap its left and right subtree, then push them into the stack or queue.
 */
