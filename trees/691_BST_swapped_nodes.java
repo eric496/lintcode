@@ -24,22 +24,23 @@ public class Solution {
         TreeNode temp = null;
         TreeNode dummy = new TreeNode(-1);
         dummy = root;
-        while(root != null){
-            if(root.left != null) {
+        while (root != null){
+            if (root.left != null) {
                 // connect threading for root
                 temp = root.left;
-                while(temp.right!=null && temp.right != root)
+                while (temp.right!=null && temp.right != root) {
                     temp = temp.right;
+                }
                 // the threading already exists
-                if(temp.right!=null){
-                    if(pre!=null && pre.val > root.val){
-                        if(first==null)
+                if (temp.right!=null) {
+                    if (pre != null && pre.val > root.val) {
+                        if (first == null) {
                             first = pre;second = root;
-                        else
+                        } else {
                             second = root;
+                        }
                     }
                     pre = root;
-                    
                     temp.right = null;
                     root = root.right;
                 } else {
@@ -48,18 +49,19 @@ public class Solution {
                     root = root.left;
                 }
             } else {
-                if(pre!=null && pre.val > root.val) {
-                    if(first==null)
+                if (pre!=null && pre.val > root.val) {
+                    if (first == null) {
                         first = pre;second = root;
-                    else
+                    } else {
                         second = root;
+                    }
                 }
                 pre = root;
                 root = root.right;
             }
         }
         // swap two node values;
-        if(first != null && second != null) {
+        if (first != null && second != null) {
             int t = first.val;
             first.val = second.val;
             second.val = t;
