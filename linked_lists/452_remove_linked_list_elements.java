@@ -7,9 +7,10 @@ Example
 
 /*
 Thought process:
-    The head pointer points to the first node in the list, which will lost track if it was removed.
-    So we introduce a dummy head "runner" and let runner.next = head. 
-    Runner iterates the whole list and remove eligible values, we return head.next which points to the real head node.
+    The head node value might equal the target value, in which the head node will be removed. 
+    In order to avoid this lost track of head problem, we introduce a dummy head whose next node is the real head.
+    Let the runner pointer points to the dummy head. Runner iterates the whole list and remove eligible values.
+    Return dummyhead.next which points to the real head node after the removal operations.
 */
 
 /**
@@ -21,16 +22,35 @@ Thought process:
  * }
  */
 
+// use a dummy head
+public class Solution {
+    public ListNode removeElements(ListNode head, int val) {
+        ListNode dummyhead = new ListNode(-1);
+        dummyhead.next = head;
+        ListNode runner = dummyhead;
+        while (runner.next != null) {
+            if (runner.next.val == val) {
+                runner.next = runner.next.next;
+            } else {
+                runner = runner.next;
+            }
+        }
+        return dummyhead.next;
+    }
+}
+
+// even simpler
 public class Solution {
     public ListNode removeElements(ListNode head, int val) {
         ListNode runner = new ListNode(Integer.MIN_VALUE);
         runner.next = head;
         head = runner;
-        while(runner.next != null) {
-            if(runner.next.val == val)
+        while (runner.next != null) {
+            if (runner.next.val == val) {
                 runner.next = runner.next.next;
-            else
+            } else {
                 runner = runner.next;
+	    }
         }
         return head.next;
     }
