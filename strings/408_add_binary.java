@@ -12,7 +12,7 @@ Thought process:
     Iterate both strings in backward order. Think about how binary addition works: it sums up two digits at the same place plus carry number from the previous place. 
     Use sum%2 as the digit for the current place, sum/2 as the number needs to be carried to the next place.    
     Iteratively run the above operations until one full pass of both strings. It is possible that there is an extra number carried to the new place, so remember to check that outside the while loop.
-    Remember to reverse the result at the end because numbers are pushed into the list in reverse order.
+    Remember to reverse the result at the end because digit is appended in reverse order.
 */
 
 public class Solution {
@@ -59,7 +59,7 @@ public class Solution {
             sb.append(sum%2);
             carry = sum / 2;
         }
-        if(carry != 0) {
+        if (carry != 0) {
 	    sb.append(carry);
 	}
         return sb.reverse().toString();
