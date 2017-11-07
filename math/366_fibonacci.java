@@ -25,20 +25,34 @@ Thought process:
            Starting at the 3rd element, iterately update the current, the previous, and the value prior to the previous.   
 */
 
-// recursive 
+// recursive (it will cause TLE) 
 class Solution {
     public int fibonacci(int n) {
-        if(n == 1) return 0;
-        if(n == 2) return 1;
-        return fibonacci(n - 1) + fibonacci(n - 2);
+        if (n == 1) return 0;
+        if (n == 2) return 1;
+        return fibonacci(n-1) + fibonacci(n-2);
     }
 }
 
-// iterative
+// O(n) time and O(n) space by DP
 public class Solution {
     public int fibonacci(int n) {
-        if(n == 1) return 0;
-        if(n == 2) return 1;
+        if (n == 1) return 0;
+        int[] dp = new int[n];
+        dp[0] = 0;
+        dp[1] = 1;
+        for (int i = 2; i < n; i++) {
+            dp[i] = dp[i-1] + dp[i-2];
+        }
+        return dp[n-1];
+    }
+}
+
+// O(n) time and O(1) space
+public class Solution {
+    public int fibonacci(int n) {
+        if (n == 1) return 0;
+        if (n == 2) return 1;
         int prevPrev = 0, prev = 1, cur = prevPrev + prev;
         for(int i = 3; i <= n; i++) {
             cur = prevPrev + prev;
