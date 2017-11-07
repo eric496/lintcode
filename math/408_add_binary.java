@@ -17,22 +17,20 @@ Thought process:
 
 public class Solution {
     public String addBinary(String a, String b) {
-        int ixa = a.length()-1;
-        int ixb = b.length()-1;
-        int carry = 0;
+        int ixa = a.length()-1, ixb = b.length()-1, carry = 0, sum = 0;
         StringBuffer sb = new StringBuffer(); 
         while (ixa >= 0 && ixb >= 0){
-            int sum = (int)(a.charAt(ixa--)-'0') + (int)(b.charAt(ixb--)-'0') + carry;
+            sum = (int)(a.charAt(ixa--)-'0') + (int)(b.charAt(ixb--)-'0') + carry;
             sb.append(sum%2);
             carry = sum / 2;
         }
         while (ixa >= 0){
-            int sum = (int)(a.charAt(ixa--)-'0') + carry;
+            sum = (int)(a.charAt(ixa--)-'0') + carry;
             sb.append(sum%2);
             carry = sum / 2;
         }       
         while (ixb >= 0) {
-            int sum = (int)(b.charAt(ixb--)-'0') + carry;
+            sum = (int)(b.charAt(ixb--)-'0') + carry;
             sb.append(sum%2);
             carry = sum / 2;
         }
@@ -47,9 +45,9 @@ public class Solution {
 public class Solution {
     public String addBinary(String a, String b) {
         StringBuffer sb = new StringBuffer();
-        int ixa = a.length() - 1, ixb = b.length() - 1, carry = 0;
+        int ixa = a.length() - 1, ixb = b.length() - 1, carry = 0, sum = 0;
         while (ixa >= 0 || ixb >= 0) {
-            int sum = carry;
+            sum = carry;
             if (ixa >= 0) {
 		sum += a.charAt(ixa--) - '0';
 	    }
