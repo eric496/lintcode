@@ -32,6 +32,7 @@ public class Solution {
             if (runner.next.val == val) {
                 runner.next = runner.next.next;
             } else {
+                // runner moves forward only if runner.next is not eligible
                 runner = runner.next;
             }
         }
