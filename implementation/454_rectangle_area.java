@@ -5,8 +5,13 @@ Implement a Rectangle class which include the following attributes and methods:
     A method getArea which would calculate the size of the rectangle and return.
 
 Example
-Rectangle rec = new Rectangle(3, 4);
-rec.getArea(); // should get 12
+    Rectangle rec = new Rectangle(3, 4);
+    rec.getArea(); // should get 12
+*/
+
+/*
+Thought process:
+    Basic implementation of class constructor and getter method.
 */
 
 public class Rectangle {
