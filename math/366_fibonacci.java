@@ -38,6 +38,7 @@ class Solution {
 public class Solution {
     public int fibonacci(int n) {
         if (n == 1) return 0;
+	if (n == 2) return 1;
         int[] dp = new int[n];
         dp[0] = 0;
         dp[1] = 1;
