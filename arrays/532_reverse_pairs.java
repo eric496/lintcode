@@ -6,46 +6,31 @@ Example
     Given A = [2, 4, 1, 3, 5] , (2, 1), (4, 1), (4, 3) are reverse pairs. return 3
 */
 
-// it causes TLE
 public class Solution {
     public long reversePairs(int[] A) {
-        return mergeSort(A, 0, A.length - 1);
+        return reversePairsSub(A, 0, A.length-1);
     }
     
-    private int mergeSort(int[] A, int start, int end) {
-        if (start >= end) return 0;
-        int mid = (start + end) / 2;
-        int sum = 0;
-        sum += mergeSort(A, start, mid);
-        sum += mergeSort(A, mid+1, end);
-        sum += merge(A, start, mid, end);
-        return sum;
-    }
-    
-    private int merge(int[] A, int start, int mid, int end) {
-        int[] temp = new int[A.length];
-        int leftIndex = start;
-        int rightIndex = mid + 1;
-        int index = start;
-        int sum = 0;
-        while (leftIndex <= mid && rightIndex <= end) {
-            if (A[leftIndex] <= A[rightIndex]) {
-                temp[index++] = A[leftIndex++];
-            } else {
-                temp[index++] = A[rightIndex++];
-                sum += mid - leftIndex + 1;
+    private int reversePairsSub(int[] nums, int low, int high) {
+        if (low >= high) return 0;
+        int mid = low + (high - low) / 2;
+        int result = reversePairsSub(nums, low, mid) + reversePairsSub(nums, mid+1, high);
+        int i = low, j = mid + 1, k = 0, p = mid + 1;
+        int[] merge = new int[high-low+1];
+        while (i <= mid) {
+            while (p <= high && nums[i] > nums[p]) {
+                p++;
             }
+            result += p - (mid + 1);
+            while (j <= high && nums[i] >= nums[j]) {
+                merge[k++] = nums[j++];
+            }
+            merge[k++] = nums[i++];
         }
-        while (leftIndex <= mid) {
-            temp[index++] = A[leftIndex++];
+        while (j <= high) {
+            merge[k++] = nums[j++];
         }
-        while (rightIndex <= end) {
-            temp[index++] = A[rightIndex++];
-        }
-        
-        for (int i = start; i <= end; i++) {
-            A[i] = temp[i];
-        }
-        return sum;
+        System.arraycopy(merge, 0, nums, low, merge.length);
+        return result;
     }
 }
