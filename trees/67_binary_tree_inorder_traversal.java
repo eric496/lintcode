@@ -48,8 +48,8 @@ Thought process:
 
 // recursive
 public class Solution {
-    public ArrayList<Integer> inorderTraversal(TreeNode root) {
-        ArrayList<Integer> result = new ArrayList<Integer>();
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<Integer>();
        	dfs(root, result);
         return result;
     }
@@ -74,7 +74,7 @@ public class Solution {
                 node = node.left;
             } else {
                 node = s.pop();
-		// add node to result list before redirectly the pointer to its right child
+		// add the node to result list before redirecting the pointer to its right child
                 result.add(node.val);
                 node = node.right;   
             }
