@@ -8,6 +8,12 @@ Example
     Return false
 */
 
+/*
+Thought process:
+    Iterate all possible values of a, within each iteration, do a binary search for eligible b.
+*/
+
+// O(nlogn) time
 public class Solution {
     public boolean checkSumOfSquareNumbers(int num) {
         for (long a = 0; a * a <= num; a++) {
@@ -17,11 +23,17 @@ public class Solution {
         return false;
     }
     
-    public boolean binarySearch(long s, long e, int n) {
-        if (s > e) return false;
-        long mid = s + (e - s) / 2;
-        if (mid * mid == n) return true;
-        if (mid * mid > n) return binarySearch(s, mid - 1, n);
-        return binarySearch(mid + 1, e, n);
+    public boolean binarySearch(long low, long high, int n) {
+        while (low <= high) {
+            long mid = low + (high - low) / 2;
+            if (mid * mid == n) {
+                return true;
+            } else if (mid * mid > n) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return false;
     }
 }
