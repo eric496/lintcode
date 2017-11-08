@@ -64,9 +64,9 @@ public class Solution {
 // iterative solution 1
 public class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer> result = new ArrayList<Integer>();
+        List<Integer> result = new ArrayList<>();
 	if (root == null) return result;
-        Stack<TreeNode> s = new Stack<TreeNode>();
+        Stack<TreeNode> s = new Stack<>();
         s.push(root);
         while (!s.isEmpty()) {
             TreeNode node = s.pop();

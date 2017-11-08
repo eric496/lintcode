@@ -65,9 +65,9 @@ public class Solution {
 // iterative method 1
 public class Solution {
     public List<Integer> postorderTraversal(TreeNode root) {
-        List<Integer> result = new ArrayList<Integer>();
+        List<Integer> result = new ArrayList<>();
         if (root == null) return result;
-        Stack<TreeNode> s = new Stack<TreeNode>();
+        Stack<TreeNode> s = new Stack<>();
         s.push(root);
         while (!s.isEmpty()) {
             TreeNode node = s.pop();
@@ -77,6 +77,28 @@ public class Solution {
             }
             if (node.right != null) {
                 s.push(node.right);
+            }
+        }
+        Collections.reverse(result);
+        return result;
+    }
+}
+
+// iterative method 2
+public class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) return result;
+        Stack<TreeNode> s = new Stack<>();
+        TreeNode node = root;
+        while (!s.isEmpty() || node != null) {
+            if (node != null) {
+                s.push(node);
+                result.add(node.val);
+                node = node.right;
+            } else {
+                node = s.pop();
+                node = node.left;
             }
         }
         Collections.reverse(result);
