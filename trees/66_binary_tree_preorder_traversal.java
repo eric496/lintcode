@@ -53,7 +53,7 @@ public class Solution {
         return result;
     }
     
-    private void dfs(TreeNode root, ArrayList<Integer> result) {
+    private void dfs(TreeNode root, List<Integer> result) {
         if (root == null) return;
         result.add(root.val);
         dfs(root.left, result);

@@ -49,12 +49,12 @@ Thought process:
 // recursive
 public class Solution {
     public ArrayList<Integer> postorderTraversal(TreeNode root) {
-        ArrayList<Integer> result = new ArrayList<>();
+        List<Integer> result = new ArrayList<>();
         dfs(root, result);
         return result;
     }
     
-    private void dfs(TreeNode node, ArrayList<Integer> result) {
+    private void dfs(TreeNode node, List<Integer> result) {
         if (node == null) return;
         dfs(node.left, result);
         dfs(node.right, result);

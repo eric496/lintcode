@@ -54,7 +54,7 @@ public class Solution {
         return result;
     }
     
-    private void traverse(TreeNode root, ArrayList<Integer> result) {
+    private void traverse(TreeNode root, List<Integer> result) {
         if (root == null) return;
         dfs(root.left, result);
         result.add(root.val);
