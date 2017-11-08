@@ -47,8 +47,8 @@ Thought process:
 
 // recursive solution
 public class Solution {
-    public ArrayList<Integer> preorderTraversal(TreeNode root) {    
-        ArrayList<Integer> result = new ArrayList<Integer>();
+    public List<Integer> preorderTraversal(TreeNode root) {    
+        List<Integer> result = new ArrayList<>();
         dfs(root, result);
         return result;
     }

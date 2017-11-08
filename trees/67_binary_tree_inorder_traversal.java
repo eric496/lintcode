@@ -49,7 +49,7 @@ Thought process:
 // recursive
 public class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> result = new ArrayList<Integer>();
+        List<Integer> result = new ArrayList<>();
        	dfs(root, result);
         return result;
     }
