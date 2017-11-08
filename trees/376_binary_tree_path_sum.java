@@ -41,7 +41,6 @@ Thought process:
 public class Solution {
     public List<List<Integer>> binaryTreePathSum(TreeNode root, int target) {
     	List<List<Integer>> result = new ArrayList<List<Integer>>();
-	if (root == null) return result; 
         List<Integer> path = new ArrayList<>(); 
         dfs(root, target, path, result);
         return result;
