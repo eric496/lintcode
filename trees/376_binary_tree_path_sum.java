@@ -18,7 +18,7 @@ Example
 
 /*
 Thought process:
-    Recursive solution:
+    Recursive solution: (backtrack)
         Base case: return null when current node is null.
         Recursive step: if current node is a leaf node and match the current target value, then add its path to result list.
                         Otherwise, recursively search its left and right subtrees.
@@ -42,19 +42,20 @@ public class Solution {
     public List<List<Integer>> binaryTreePathSum(TreeNode root, int target) {
     	List<List<Integer>> result = new ArrayList<List<Integer>>();
         List<Integer> path = new ArrayList<>(); 
-        dfs(root, target, path, result);
+        backtrack(root, target, path, result);
         return result;
     }
     
-    public void dfs(TreeNode root, int target, List<Integer> path, List<List<Integer>> result){
+    public void backtrack(TreeNode root, int target, List<Integer> path, List<List<Integer>> result){
         if (root == null) return; 
         path.add(root.val);
         if (root.left == null && root.right == null && root.val == target) {
             result.add(new ArrayList(path));
         } else {
-            dfs(root.left, target-root.val, path, result);
-            dfs(root.right, target-root.val, path, result);
+            backtrack(root.left, target-root.val, path, result);
+            backtrack(root.right, target-root.val, path, result);
         }
+	// go to the previous state for backtracking
         path.remove(path.size()-1);
     }
 }
