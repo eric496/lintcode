@@ -19,8 +19,10 @@ Example
 /*
 Thought process:
     Recursive solution:
-        Base case: 
-        Recursive step: 
+        Base case: return null when current node is null.
+        Recursive step: if current node is a leaf node and match the current target value, then add its path to result list.
+                        Otherwise, recursively search its left and right subtrees.
+                        Remember to remove the last node value in the path at the end in order to backtrack.
 */
 
 /**
@@ -35,55 +37,24 @@ Thought process:
  * }
  */
 
-// method 1
-public class Solution {
-    public List<List<Integer>> binaryTreePathSum(TreeNode root, int target) {
-        List<List<Integer>> result = new ArrayList<List<Integer>>();
-        if (root == null) return result;
-        ArrayList<Integer> path = new ArrayList<Integer>();
-        path.add(root.val);
-        traverse(result, path, root, target);
-        return result;
-    }
-
-    public void traverse(List<List<Integer>> result, ArrayList<Integer> path, TreeNode root, int target) {
-        if (root.left == null && root.right == null) {
-            if (root.val == target) {
-                result.add(new ArrayList<Integer>(path));
-            }
-            return;
-        }
-        if (root.left != null) {
-            path.add(root.left.val);
-            traverse(result, path, root.left, target-root.val);
-            path.remove(path.size()-1);
-        }
-        if (root.right != null) {
-            path.add(root.right.val);
-            traverse(result, path, root.right, target-root.val);
-            path.remove(path.size()-1);
-        }
-    }
-}
-
-// method 2
+// DFS
 public class Solution {
     public List<List<Integer>> binaryTreePathSum(TreeNode root, int target) {
     	List<List<Integer>> result = new ArrayList<List<Integer>>();
-	    if (root == null) return result; 
-        List<Integer> path = new ArrayList<Integer>(); 
-        traverse(root, target, path, result);
+	if (root == null) return result; 
+        List<Integer> path = new ArrayList<>(); 
+        dfs(root, target, path, result);
         return result;
     }
     
-    public void traverse(TreeNode root, int target, List<Integer> path, List<List<Integer>> result){
+    public void dfs(TreeNode root, int target, List<Integer> path, List<List<Integer>> result){
         if (root == null) return; 
         path.add(root.val);
         if (root.left == null && root.right == null && root.val == target) {
             result.add(new ArrayList(path));
         } else {
-            traverse(root.left, target-root.val, path, result);
-            traverse(root.right, target-root.val, path, result);
+            dfs(root.left, target-root.val, path, result);
+            dfs(root.right, target-root.val, path, result);
         }
         path.remove(path.size()-1);
     }
