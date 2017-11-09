@@ -39,10 +39,10 @@ Thought process
            Base case: return null when current nested list is null.
            Recursive step: for each element in the current nested list, add it directly to result list if it is an integer.
                            Otherwise, recursively flatten the nested list and add all its elements to result list. 
-    2. Iterative solution: use a stack
+    2. Iterative solution: use stack
            Push all elements into the stack in reverse order (in order to get the result in correct order)
-           Iterate the elements in the stack, if the top element is an integer, then pop it and append to the result list.
-           Otherwise it must be a list, then push all elements in the list into the stack in reverse order dynamically.           	
+           Iterate the stack, if the popped element is an integer, then add it to the result list directly.
+           Otherwise it must be a list, then push all elements in the list into the stack in reverse order.           	
 */
 
 // recursive
@@ -68,17 +68,17 @@ public class Solution {
         if (nestedList == null || nestedList.size() == 0) return result;
         Stack<NestedInteger> s = new Stack<>();
         for (int i = nestedList.size() - 1; i >= 0; i--) {
-            s.push(nestedList.get(i));
-	}
+            s.push(nestedList.get(i));            
+        }
         while (!s.isEmpty()) {
             NestedInteger top = s.pop();
             if (top.isInteger()) {
                 result.add(top.getInteger());
-            } else { 
+            } else {
                 for (int i = top.getList().size() - 1; i >= 0; i--) {
                     s.push(top.getList().get(i));
-		}
-	    }
+                }
+            }
         }
         return result;
     }
