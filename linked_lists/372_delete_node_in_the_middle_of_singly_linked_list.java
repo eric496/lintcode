@@ -2,7 +2,13 @@
 Implement an algorithm to delete a node in the middle of a singly linked list, given only access to that node.
 
 Example
-Linked list is 1->2->3->4, and given node 3, delete the node in place 1->2->4
+    Linked list is 1->2->3->4, and given node 3, delete the node in place 1->2->4
+*/
+
+/*
+Thought process:
+    Difficulty: in order to remove a node we need to redirect its previous node to its next node. Though we have access to its next node but we do not have access to its previous node.
+    Solution: copy the node value from its next node, then remove its next node.
 */
 
 /**
@@ -19,7 +25,7 @@ Linked list is 1->2->3->4, and given node 3, delete the node in place 1->2->4
  
 public class Solution {
     public void deleteNode(ListNode node) {
-        if(node == null) return;
+        if (node == null) return;
         node.val = node.next.val;
         node.next = node.next.next;
     }
