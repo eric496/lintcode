@@ -118,3 +118,23 @@ public class Solution {
         }
     }
 }
+
+// iterative using stack
+public class Solution {
+    public void flatten(TreeNode root) {
+        Stack<TreeNode> s = new Stack<>();
+        TreeNode node = root;
+        while (node != null || !s.empty()){
+            if (node.right != null) {
+                s.push(node.right);
+            }
+            if (node.left != null) {
+                node.right = node.left;
+                node.left = null;
+            } else if (!s.empty()) {
+                node.right = s.pop();
+            }
+            node = node.right;
+        }
+    }
+
