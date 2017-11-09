@@ -7,6 +7,9 @@ Notice
 Example
     Given [1,2,[1,2]], return [1,2,1,2].
     Given [4,[3,[2,[1]]]], return [4,3,2,1].
+
+Challenge
+    Do it in non-recursive.
 */
 
 /**
@@ -32,9 +35,10 @@ Example
 
 /*
 Thought process
-    1. Recursive solution: since the array is in a nested structure, so we can repeatedly solve the same structure by recursion
+    1. Recursive solution: since the array is in a nested structure, so we can repeatedly divide and conquar the sub structure by recursion.
            Base case: return null when current nested list is null.
-           Recursive steps: 
+           Recursive step: for each element in the current nested list, add it directly to result list if it is an integer.
+                           Otherwise, recursively flatten the nested list and add all its elements to result list. 
     2. Iterative solution: use a stack
            Push all elements into the stack in reverse order (in order to get the result in correct order)
            Iterate the elements in the stack, if the top element is an integer, then pop it and append to the result list.
@@ -44,33 +48,37 @@ Thought process
 // recursive
 public class Solution {
     public List<Integer> flatten(List<NestedInteger> nestedList) {
-        List<Integer> result = new ArrayList<Integer>();
-	if(nestedList == null || nestedList.size() == 0) return null;
-        for(NestedInteger i : nestedList) {
-            if(i.isInteger())
-                res.add(i.getInteger());
-            else
-                res.addAll(flatten(i.getList()));
+        List<Integer> result = new ArrayList<>();
+        if (nestedList == null || nestedList.size() == 0) return result;
+        for (NestedInteger i : nestedList) {
+            if (i.isInteger()) {
+                result.add(i.getInteger());
+            } else {
+                result.addAll(flatten(i.getList()));
+            }
         }
-        return res;
+        return result;
     }
 }
 
 // iterative
 public class Solution {
     public List<Integer> flatten(List<NestedInteger> nestedList) {
-        List<Integer> result = new ArrayList<Integer>();
-        if(nestedList == null || nestedList.size() == 0) return result;
-        Stack<NestedInteger> s = new Stack<NestedInteger>();
-        for(int i = nestedList.size() - 1; i >= 0; i--) 
+        List<Integer> result = new ArrayList<>();
+        if (nestedList == null || nestedList.size() == 0) return result;
+        Stack<NestedInteger> s = new Stack<>();
+        for (int i = nestedList.size() - 1; i >= 0; i--) {
             s.push(nestedList.get(i));
-        while(!s.isEmpty()) {
+	}
+        while (!s.isEmpty()) {
             NestedInteger top = s.pop();
-            if(top.isInteger())
+            if (top.isInteger()) {
                 result.add(top.getInteger());
-            else 
-                for(int i = top.getList().size() - 1; i >= 0; i--) 
+            } else { 
+                for (int i = top.getList().size() - 1; i >= 0; i--) {
                     s.push(top.getList().get(i));
+		}
+	    }
         }
         return result;
     }
