@@ -28,8 +28,8 @@ Thought process:
            Base case: return when current node is null.
            Recursive step: (bottom up) 
                 run recursively on the right subtree and then the left, 
-                set a global variable pre, for each iteration, set the right child of the current node to pre, 
-                set the left subtree to null, and redirect  to the current node.
+                set a global variable pre, for each iteration, set pre to the right child of the current node, 
+                set the left subtree to null, and redirect to the current node.
     2. Iterative solution:
 */
 
