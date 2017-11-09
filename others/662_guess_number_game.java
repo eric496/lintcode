@@ -11,23 +11,26 @@ Example
 
 /*
 Thought process:
-    1. Typical binary search
+    Binary search
+    Study the edge case.
 */
 
 public class Solution extends GuessGame {
     public int guessNumber(int n) {
         int low = 1, high = n;
-        while(low < high) {
+        // does not matter whether include edge case "="
+        while (low < high) {
             int mid = low + (high - low) / 2;
-            int res = guess(mid);
-            if(res == 0) {
+            int result = guess(mid);
+            if (res == 0) {
                 return mid;
-            } else if(res == -1) {
+            } else if (result == -1) {
                 high = mid - 1;
-            } else if(res == 1) {
+            } else if (result == 1) {
                 low = mid + 1;
             }
         }
+	// does not matter return low or high
         return low;
     }
 }
