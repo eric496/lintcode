@@ -67,15 +67,15 @@ public class Solution {
         // save current right for concatination
         TreeNode right = root.right;
         while (root.left != null) {
-            // step 1: concatinate root with left flatten subtree
+            // step 1: concatinate root with the left flattened subtree
             root.right = root.left;
             // set left to null
             root.left = null;
-            // step 2: move to the end of new added flatten subtree
+            // step 2: move to the end of new added flattened subtree
             while (root.right != null) {
                 root = root.right;
             }
-            // step 3: contatinate left flatten subtree with flatten right subtree
+            // step 3: concatinate left flattened subtree with flattened right subtree
             root.right = right;
         }
     }
