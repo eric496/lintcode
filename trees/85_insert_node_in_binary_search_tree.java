@@ -11,14 +11,17 @@ Example
     1   4   -->   1   4
        /             / \ 
       3             3   6
+
+Challenge
+    Can you do it without recursion?
 */
 
 /*
 Thought process:
     1. Recursive solution: 
            Base case: return the node to insert if current node is null.
-           Recursive step: if insert node value is greater than the current node value, recursively build the right subtree.
-                           Otherwise, recursively build the left subtree.
+           Recursive step: if insert node value is greater than the current node value, recursively insert the node into the right subtree.
+                           Otherwise, recursively insert the node into the left subtree.
     2. Iterative solution: 
            Create a runner and loop through the tree to insert the node. 
 */
