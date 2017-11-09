@@ -32,29 +32,30 @@ Thought process:
            2^2 + 0^2 = 4
            where 4 occurs twice, and the following sequence will repeat. Thus we can tell 11 is not a happy number.
            We can use two pointers, one slow runner calculating square sum once at each step, 
-           one fast runnner calculating square sum twice at each step. When slow equals fast, 
-           it is a happy number if the square sum is 1, otherwise it is not a happy number.
+           one fast runnner calculating square sum twice at each step. Once the fast runner meets the slow, 
+           if the square sum is 1 it is a happy number. Otherwise it is not.
 */
 
 // 
 public class Solution {
     public boolean isHappy(int n) {
-        if(n <= 0) return false;
-        HashSet<Integer> set = new HashSet<Integer>();
-        while(true) {
+        if (n <= 0) return false;
+        Set<Integer> set = new HashSet<>();
+        while (true) {
             int sum = 0;
-            while(n != 0) {
+            while (n != 0) {
                 sum += (n % 10) * (n % 10);
                 n /= 10;
             }
-            // decide if it is a happy number
-            if(sum == 1) break;
-            // check if square sum occurs twice. If so, it is not a happy number; if not, add it to the set
-            if(set.contains(sum)) 
-                return false;
-            else 
+            // check happy number after each iteration
+            if (sum == 1) break;
+            // check if there is a "dead" loop
+            if (set.contains(sum)) {
+		return false;
+            } else { 
                 set.add(sum);
-            // update n for next round
+	    }
+            // update n with the new sum
             n = sum;
         }
         return true;
@@ -64,19 +65,20 @@ public class Solution {
 // two pointers
 public class Solution {
     public boolean isHappy(int n) {
-        if(n <= 0) return false;
+        if (n <= 0) return false;
         int slow = n, fast = n;
         do {
             slow = squareSum(slow);
+	    // fast runner runs twice each time
             fast = squareSum(fast);
             fast = squareSum(fast);
-        } while(slow != fast);
+        } while (slow != fast);
         return slow == 1;
     }
     
     private int squareSum(int n) {
         int sum = 0;
-        while(n != 0) {
+        while (n != 0) {
             sum += (n % 10) * (n % 10);
             n /= 10;
         }
