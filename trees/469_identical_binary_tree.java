@@ -53,10 +53,10 @@ public class Solution {
 // iterative using two stacks
 public class Solution {
     public boolean isIdentical(TreeNode a, TreeNode b) {
-        if(a == null && b == null) return true;
-        if(a == null || b == null) return false;
-        Stack<TreeNode> s1 = new Stack<TreeNode>();
-        Stack<TreeNode> s2 = new Stack<TreeNode>();
+        if (a == null && b == null) return true;
+        if (a == null || b == null) return false;
+        Stack<TreeNode> s1 = new Stack<>();
+        Stack<TreeNode> s2 = new Stack<>();
         s1.push(a);
         s2.push(b);
         while (!s1.isEmpty() && !s2.isEmpty()) {
