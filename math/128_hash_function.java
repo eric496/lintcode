@@ -15,15 +15,15 @@ Example
 
 /*
 Thought process:
-    1. The key point for this question is to avoid long integer overflow as the power of 33 increases. 
-    2. 
+    Avoid long integer overflow as the power of 33 increases.
+    Cast long integer to integer as return type. 
 */
 
 class Solution {
-    public int hashCode(char[] key,int HASH_SIZE) {
-        if(key == null || key.length == 0) return -1;
+    public int hashCode(char[] key, int HASH_SIZE) {
+        if (key == null || key.length == 0) return -1;
         long result = 0;
-        for(int i = 0; i < key.length; i++) {
+        for (int i = 0; i < key.length; i++) {
             result = 33 * result + key[i];
             result %= HASH_SIZE;
         }
