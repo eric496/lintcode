@@ -19,30 +19,30 @@ Insert [3, 4] into [[1,2], [5,9]], we get [[1,2], [3,4], [5,9]].
 
 /*
 Thought process
-    1. There are 3 cases: 
-           1) new interval is strictly greater than the current interval (newInterval.start > i.end)
-           2) new interval is strictly smaller than the current interval (newInterval.end < i.start)
-           3) new interval is overlapping with the current interval (newInterval.end >= i.start or newInterval.start <= i.end)
-    2. Set a position pointer to keep track of the insertion position so we can insert interval outside the for loop.
-       The position pointer increments only in case 2).
-       For case 3), update the new interval start with new interval start or current interval start, whichever is smaller. 
-       Similarly, update the new interval end with new interval end or current interval end, whichever is greater.
+    There are 3 cases: 
+        1) new interval is strictly greater than the current interval (newInterval.start > i.end)
+        2) new interval is strictly smaller than the current interval (newInterval.end < i.start)
+        3) new interval is overlapping with the current interval (newInterval.end >= i.start or newInterval.start <= i.end)
+    Set a position pointer to keep track of the insertion position so we can insert interval outside the for loop.
+    The position pointer increments only in case 2).
+    For case 3), update the new interval start with new interval start or current interval start, whichever is smaller. 
+    Similarly, update the new interval end with new interval end or current interval end, whichever is greater.
 */
 
 public class Solution {
     public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
-        if(intervals == null || newInterval == null) return intervals;
-        List<Interval> result = new ArrayList<Interval>();
+        if (intervals == null || newInterval == null) return intervals;
+        List<Interval> result = new ArrayList<>();
         int pos = 0;
-        for(Interval i : intervals) {
+        for (Interval i : intervals) {
             // current interval is strictly smaller than new interval
             // insert current interval to result list and increment insert position index by 1
-            if(newInterval.start > i.end) {
+            if (newInterval.start > i.end) {
                 result.add(i);
                 pos++;
             // current interval is strictly greater than new interval
             // insert current interval to result list but do not change insert position index
-            } else if(newInterval.end < i.start) {
+            } else if (newInterval.end < i.start) {
                 result.add(i);
             // merge interval, take new interval start or current interval start, whichever is smaller,
             // similarly, take new interval end or current interval end, whichever is greater.
