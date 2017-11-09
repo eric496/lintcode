@@ -12,6 +12,26 @@ Example
           20     13
 */
 
+/*
+Thought process:
+    It is easy to think of using recursion given a tree structure. Notice this is not simply a tree but also a BST. For each sub-structure like:
+         A
+        / \ 
+       B   C
+    B < A < C, so after convert it to a greater tree, it becomes:
+         A+C
+        /   \
+     A+B+C   C
+    The right child does not change, while root = root + right, and left = left + root + right. We can reverse inorder traversal (left-root-right -> right-root-left) to do the recursion.
+
+    Recursive solution: 		
+        Base case: return null if current node is null
+        Recursive step: run recursively on the right subtree, 
+                        update the node value by adding the sum of all its right children,
+                        set current sum to the current node value,
+                        run recursively on the left subtree.                        
+*/
+
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -24,24 +44,6 @@ Example
  * }
  */
 
-// method 1
-public class Solution {
-    private int sum = 0;
-    public TreeNode convertBST(TreeNode root) {
-        dfs(root);
-        return root;
-    }
-
-    private void dfs(TreeNode cur) {
-        if (cur == null) return;
-        dfs(cur.right);
-        sum += cur.val;
-        cur.val = sum;
-        dfs(cur.left);
-    }
-}
-
-// method 2
 public class Solution {
     private int sum = 0;
     public TreeNode convertBST(TreeNode root) {
