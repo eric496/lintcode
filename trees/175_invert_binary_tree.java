@@ -40,6 +40,7 @@ public class Solution {
         TreeNode temp = root.left;
         root.left = root.right;
         root.right = temp;
+	// does not matter invert the left or right subtree first
         invertBinaryTree(root.left);
         invertBinaryTree(root.right);
     }
