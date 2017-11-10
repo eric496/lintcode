@@ -24,6 +24,9 @@ Thought process:
 // O(n) time and O(n) space
 public class Solution {
     public int[] intersection(int[] nums1, int[] nums2) {
+	if (nums1 == null || nums2 == null) return null;
+        if (nums1.length == 0) return nums1;
+        if (nums2.length == 0) return nums2;
         Set<Integer> set = new HashSet<>();
         for (int n : nums1) {
 	    set.add(n);
@@ -46,6 +49,9 @@ public class Solution {
 // O(n) time and O(n) space 
 public class Solution {
     public int[] intersection(int[] nums1, int[] nums2) {
+	if (nums1 == null || nums2 == null) return null;
+        if (nums1.length == 0) return nums1;
+        if (nums2.length == 0) return nums2;
         Arrays.sort(nums1);
         Arrays.sort(nums2);
         Set<Integer> set = new HashSet<>();
@@ -73,6 +79,9 @@ public class Solution {
 // O(nlogn) time and O(n) space
 public class Solution {
     public int[] intersection(int[] nums1, int[] nums2) {
+	if (nums1 == null || nums2 == null) return null;
+        if (nums1.length == 0) return nums1;
+        if (nums2.length == 0) return nums2;
         Arrays.sort(nums1);
         Set<Integer> set = new HashSet<>();
         for (int n : nums2) {
