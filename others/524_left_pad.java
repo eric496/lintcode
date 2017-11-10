@@ -5,28 +5,32 @@ You can see from github it's only 11 lines.
 You job is to implement the left pad function. If you do not know what left pad does, see examples below and guess.
 
 Example
-leftpad("foo", 5)
->> "  foo"
-leftpad("foobar", 6)
->> "foobar"
-leftpad("1", 2, "0")
->> "01"
+    leftpad("foo", 5)
+    >> "  foo"
+    leftpad("foobar", 6)
+    >> "foobar"
+    leftpad("1", 2, "0")
+    >> "01"
 */
 
 public class StringUtils {
     static public String leftPad(String originalStr, int size) {
-        int diff = size - originalStr.length();
-        if(diff <= 0) return originalStr;
+        int padLen = size - originalStr.length();
+        if (padLen <= 0) return originalStr;
         StringBuffer sb = new StringBuffer();
-        for(int i = 0; i < diff; i++) sb.append(" ");
+        for (int i = 0; i < padLen; i++) {
+	    sb.append(" ");
+	}
         return sb.append(originalStr).toString();
     }
 
     static public String leftPad(String originalStr, int size, char padChar) {
-        int diff = size - originalStr.length();
-        if(diff <= 0) return originalStr;
+        int padLen = size - originalStr.length();
+        if (padLen <= 0) return originalStr;
         StringBuffer sb = new StringBuffer();
-        for(int i = 0; i < diff; i++) sb.append(String.valueOf(padChar));
+        for (int i = 0; i < padLen; i++) {
+	    sb.append(String.valueOf(padChar));
+	}
         return sb.append(originalStr).toString();
     }
 }
