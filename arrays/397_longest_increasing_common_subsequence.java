@@ -20,29 +20,38 @@ Thought process:
     2. One pass: iterate the array only once. Keep two counters, one increasing order count, one decreasing order count.
        If the latter element is greater than the previous, increment increasing count by one, meanwhile set decreasing order to default.
        If the latter element is smaller than the previous, increment decreasing count by one, meanwhile set increasing order to default.
-       Otherwise (the latter equals the previous), set both counters to default.
+       Otherwise (the latter equals the previous), set both counters to default. Update the max count at each step.
+       How does this work? It is because we can treat the decreasing order count as the increasing order count from backward. 
+       So in one pass, we count both forward and backward traversal.
 */
 
 // two passes
 public class Solution {
     public int longestIncreasingContinuousSubsequence(int[] A) {
-        if(A == null || A.length == 0) return 0;
-        if(A.length == 1) return 1;
+        if (A == null || A.length == 0) return 0;
+        if (A.length == 1) return 1;
         int result = 0, left = 1, right = 1;
-        for(int i = 0; i < A.length - 1; i++) {
-            if(A[i] < A[i+1])
+        // forward traversal
+        for (int i = 0; i < A.length - 1; i++) {
+            if(A[i] < A[i+1]) {
                 left++;
-            else
+            } else {
                 left = 1;
-            if(left > result) result = left;
+	    }
+            if (left > result) {
+		result = left;
+	    }
         }
-        
-        for(int i = A.length - 1; i >= 1; i--) {
-            if(A[i] < A[i-1])
+        // backward traversal
+        for (int i = A.length - 1; i >= 1; i--) {
+            if (A[i] < A[i-1]) {
                 right++;
-            else
+            } else {
                 right = 1;
-            if(right > result) result = right;
+	    }
+            if (right > result) {
+		result = right;
+	    }
         }
         return result;
     }
@@ -51,20 +60,20 @@ public class Solution {
 // one pass
 public class Solution {
     public int longestIncreasingContinuousSubsequence(int[] A) {
-        if(A == null || A.length == 0) return 0;
-        if(A.length == 1) return 1;
-        int result = 0, incCount = 1, decCount = 1;
-        for(int i = 0; i < A.length - 1; i++) {
-            if(A[i] < A[i+1]) {
-                incCount++;
-                decCount = 1;
-            } else if(A[i] > A[i+1]) {
-                decCount++;
-                incCount = 1;
+        if (A == null || A.length == 0) return 0;
+        if (A.length == 1) return 1;
+        int result = 0, increaseCount = 1, decreaseCount = 1;
+        for (int i = 0; i < A.length - 1; i++) {
+            if (A[i] < A[i+1]) {
+                increaseCount++;
+                decreaseCount = 1;
+            } else if (A[i] > A[i+1]) {
+                decreaseCount++;
+                increaseCount = 1;
             } else {
-                incCount = decCount = 1;
+                increaseCount = decreaseCount = 1;
             }
-            result = Math.max(result, Math.max(incCount, decCount));
+            result = Math.max(result, Math.max(increaseCount, decreaseCount));
         }
         return result;
     }
