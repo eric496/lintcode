@@ -53,10 +53,12 @@ public class Solution {
         Stack<TreeNode> s = new Stack<>();
         s.push(root);
         while (!s.isEmpty()) {
+            // swap left and right subtrees
             TreeNode node = s.pop();
             TreeNode left = node.left;
             node.left = node.right;
             node.right = left;
+            // push left and right subtrees into stack
             if (node.left != null) {
 		s.push(node.left);
 	    }
