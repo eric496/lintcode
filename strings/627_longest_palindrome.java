@@ -14,7 +14,7 @@ Example
 Thought process:
     1. The frequency of a character can either be even or odd. If it is even, we always want it to be included in the palindrome 
        in order to extend the palindrome as far as possible. If it is odd, we always want (n-1), i.e. the largest even number to 
-       be included in the palindrome. What we need is a flag variable to keep track whether the array has odd numbered characters.
+       be included in the palindrome. What we need is a flag variable to keep track whether the array has odd numbere of characters.
        If so, the final result should increment by one in order to get the largest length. 
     2. This is equivalent to counting how many "pairs" of the same character at most. 
        Say, if we have "aa" that is one pair of "a", if we have "bbbb" that is two pairs of "b".
@@ -29,39 +29,42 @@ Thought process:
 // O(n) time and O(n) space - two passes
 public class Solution {
     public int longestPalindrome(String s) {
-        if(s == null || s.length() == 0) return 0;
-        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
-        for(char c : s.toCharArray()) {
-            if(map.containsKey(c))
+        if (s == null || s.length() == 0) return 0;
+        Map<Character, Integer> map = new HashMap<>();
+        for (char c : s.toCharArray()) {
+            if (map.containsKey(c)) {
                 map.put(c, map.get(c)+1);
-            else 
+            ] else {
                 map.put(c, 1);
+	    }
         }
-        int cnt = 0;
+        int count = 0;
         boolean hasOdd = false;
-        for(char c : map.keySet()) {
-            cnt += map.get(c) % 2 == 0 ? map.get(c) : map.get(c) - 1;
-            if(map.get(c) % 2 != 0) hasOdd = true;
+        for (char c : map.keySet()) {
+            count += map.get(c) % 2 == 0 ? map.get(c) : map.get(c) - 1;
+            if (map.get(c) % 2 != 0) {
+		hasOdd = true;
+	    }
         }
-        return hasOdd ? cnt + 1 : cnt;
+        return hasOdd ? count + 1 : count;
     }
 }
 
 // O(n) time and O(n) space - one pass
 public class Solution {
     public int longestPalindrome(String s) {
-        if(s==null || s.length()==0) return 0;
-        HashSet<Character> set = new HashSet<Character>();
+        if (s == null || s.length() == 0) return 0;
+        Set<Character> set = new HashSet<>();
         int count = 0;
-        for(int i = 0; i < s.length(); i++){
-            if(set.contains(s.charAt(i))){
+        for (int i = 0; i < s.length(); i++) {
+            if (set.contains(s.charAt(i))) {
                 set.remove(s.charAt(i));
                 count++;
             } else {
                 set.add(s.charAt(i));
             }
         }
-        if(!set.isEmpty()) return count * 2 + 1;
+        if (!set.isEmpty()) return count * 2 + 1;
         return count * 2;
     }
 }
