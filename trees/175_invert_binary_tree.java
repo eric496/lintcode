@@ -7,6 +7,9 @@ Example
     2   3  => 3   2
        /       \
       4         4
+
+Challenge
+    Do it in recursion is acceptable, can you do it without recursion?
 */
 
 /**
@@ -46,7 +49,7 @@ public class Solution {
 public class Solution {
     public TreeNode invertBinaryTree(TreeNode root) {
         if (root == null) return null;
-        Stack<TreeNode> s = new Stack<TreeNode>();
+        Stack<TreeNode> s = new Stack<>();
         s.push(root);
         while (!s.isEmpty()) {
             TreeNode node = s.pop();
@@ -68,7 +71,7 @@ public class Solution {
 public class Solution {
     public TreeNode invertBinaryTree(TreeNode root) {
         if (root == null) return null;
-        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        Queue<TreeNode> q = new LinkedList<>();
         q.offer(root);
         while (!q.isEmpty()) {
             TreeNode node = q.poll();
