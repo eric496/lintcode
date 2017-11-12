@@ -12,18 +12,12 @@ Example
 
 /*
 Thought process:
-    1. The frequency of a character can either be even or odd. If it is even, we always want it to be included in the palindrome 
-       in order to extend the palindrome as far as possible. If it is odd, we always want (n-1), i.e. the largest even number to 
-       be included in the palindrome. What we need is a flag variable to keep track whether the array has odd numbere of characters.
-       If so, the final result should increment by one in order to get the largest length. 
-    2. This is equivalent to counting how many "pairs" of the same character at most. 
-       Say, if we have "aa" that is one pair of "a", if we have "bbbb" that is two pairs of "b".
-       The final count is just number of pairs * 2. If there are even number of some characters that cannot match up a pair. 
-       Then we can add any one of them in the middle of the string to extend the palindrome by one.
-       This can be solved using a hash set. If the set does not have the character, 
-       add it to the set. If it has the character, the current character matches up a pair. We add count by one and remove the
-       existing character from the set. Remember to check if the set is empty. Empty means all characters match up pairs. 
-       If not, we should add 1 in order to make it longest.   
+    1. The frequency of any character in the string is either even or odd. If it is even, by symmetry, it should be included in the palindrome. 
+       If it is odd, we can make it an even number by subtracting 1, which can be included in the palindrome then. 
+       Detect whether the string contains a character whose frequency is even. If so, the final result should add 1, because we can extend the palindrome by adding one character in the middle.
+    2. Method 1 can be simplified with one pass by using a set data structure. The basic idea is the same, but it counts how many "pairs" of the same characters by 
+       toggling add (if it appears an odd number of times) or remove (if it appears an even number of times). When a character is removed from the set, count variable should increment by 1, 
+       because it matches a pair. If set is not empty in the end, it means there is at least one character whose frequency is odd. Thus we need to add 1 in the result as the same reason explained in method 1.
 */
 
 // O(n) time and O(n) space - two passes
