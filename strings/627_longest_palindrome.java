@@ -47,18 +47,18 @@ public class Solution {
 // O(n) time and O(n) space - one pass
 public class Solution {
     public int longestPalindrome(String s) {
-        if (s == null || s.length() == 0) return 0;
+        if (s == null) return 0;
+        if (s.length() <= 1) return s.length();
         Set<Character> set = new HashSet<>();
         int count = 0;
-        for (int i = 0; i < s.length(); i++) {
-            if (set.contains(s.charAt(i))) {
-                set.remove(s.charAt(i));
+        for (char c : s.toCharArray()) {
+            if (set.contains(c)) {
+                set.remove(c);
                 count++;
             } else {
-                set.add(s.charAt(i));
+                set.add(c);
             }
         }
-        if (!set.isEmpty()) return count * 2 + 1;
-        return count * 2;
+        return set.isEmpty() ? count * 2 : count * 2 + 1;
     }
 }
