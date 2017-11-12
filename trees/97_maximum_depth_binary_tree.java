@@ -31,7 +31,7 @@ Thought process:
            Recursive step: run recursively on the left and the right children of the current node, 
                            return the larger value PLUS ONE
     2. Iterative solution: 
-           BFS: Similar to level order traversal, with a count variable to keep the number of levels.
+           BFS: Level order traversal, with a count variable to keep the number of levels so far.
            DFS: Use two stacks, push each node into stack s, meanwhile push the current number of levels into stack v,
                 At each iteration, update the max depth. 
            
