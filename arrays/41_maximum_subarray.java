@@ -18,7 +18,7 @@ Thought process
             The maximum sum of a contiguous subarray ending at a specific element is either 
                 1) the maximum sum of a contiguous subarray ending at its previous element plus the current element, OR
                 2) the specific element itself, 
-                whichever is larger. 
+                whichever is greater. 
             Iterate the array, compares each element with max sum of subarray ending at its previous element, 
             update the global maximum with whichever is greater.
 */
