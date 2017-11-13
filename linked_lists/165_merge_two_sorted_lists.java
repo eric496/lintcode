@@ -7,9 +7,8 @@ Example
 
 /*
 Thought process:
-    Do a pair comparison, one node from each list at one time. Append the smaller node to the new list.
-    Keep three pointers moving forward accordingly.
-    Notice that we need to return the first node of the new list, so we create a dummy head to point to the first node.
+    Do a pair comparison between nodes from two lists at each position. Append the smaller node to the new list. Keep three pointers moving forward accordingly.
+    Notice that we need to return the first node of the new list, so we create a dummy head to track the head node of the new list.
 */
 
 /**
@@ -26,12 +25,12 @@ Thought process:
 
 public class Solution {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        if(l1 == null) return l2;
-        if(l2 == null) return l1;
-        ListNode runner = new ListNode(Integer.MIN_VALUE);
-        ListNode head = runner;
-        while(l1 != null && l2 != null) {
-            if(l1.val < l2.val) {
+        if (l1 == null) return l2;
+        if (l2 == null) return l1;
+        ListNode dummyhead = new ListNode(Integer.MIN_VALUE);
+        ListNode runner = dummyhead;
+        while (l1 != null && l2 != null) {
+            if (l1.val < l2.val) {
                 runner.next = l1;
                 l1 = l1.next;
             } else {
@@ -40,8 +39,12 @@ public class Solution {
             }
             runner = runner.next;
         }
-        if(l1 != null) runner.next = l1;
-        if(l2 != null) runner.next = l2;
-        return head.next;
+        if (l1 != null) {
+	    runner.next = l1;
+	}
+        if (l2 != null) {
+	    runner.next = l2;
+	}
+        return dummyhead.next;
     }
-} 
+}
