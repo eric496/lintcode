@@ -12,20 +12,24 @@ Challenge
 
 /*
 Thought process:
-    This problem is just the merge part of mergesort algorithm.
-    Create a new array whose size is size(A) + size(B). Do a pair comparison of each two elements from A and B, 
-    put the smaller one in the new array. Meanwhile, move the position pointer forward accordingly.
+    This problem is just the merge part of mergesort algorithm. Create a new array whose size is size(A) + size(B). 
+    Do a pair comparison between two elements from A and B at each position, put the smaller one in the new array. Meanwhile, move the position pointer forward accordingly.
 */
 
 class Solution {
     public int[] mergeSortedArray(int[] A, int[] B) {
         int lenA = A.length, lenB = B.length;
         int[] result = new int[lenA+lenB];
-        int pos = 0, posA = 0, posB = 0;
-        while(posA < lenA && posB < lenB)
-            result[pos++] = (A[posA] < B[posB]) ? A[posA++] : B[posB++];
-        while(posA < lenA) result[pos++] = A[posA++];
-        while(posB < lenB) result[pos++] = B[posB++];
+        int ix = 0, ixA = 0, ixB = 0;
+        while (ixA < lenA && ixB < lenB) {
+            result[ix++] = (A[ixA] < B[ixB]) ? A[ixA++] : B[ixB++];
+	}
+        while (ixA < lenA) {
+	    result[ix++] = A[ixA++]; 
+	}
+        while (ixB < lenB) {
+	    result[ix++] = B[ixB++];
+	}
         return result;
     }
 }
