@@ -13,8 +13,9 @@ Challenge
 
 /*
 Thought process
-    1. DP: 
-    2. Greedy - Kadane's algorithm: 
+    1. DP: The problem can be decomposed to the sub problem that dp[i] represents the largest sum ending at the i-th element.
+           dp[i] is either dp[i-1] plus the current element nums[i] or nums[i] itself, whichever is greater.
+    2. Greedy - Kadane's algorithm: (same to DP, but even concise because it is not necessary to store dp[i])
             The maximum sum of a contiguous subarray ending at a specific element is either 
                 1) the maximum sum of a contiguous subarray ending at its previous element plus the current element, OR
                 2) the specific element itself, 
@@ -31,7 +32,7 @@ public class Solution {
         dp[0] = nums[0];
         int max = dp[0];
         for (int i = 1; i < nums.length; i++) {
-            dp[i] = nums[i] + (dp[i-1] > 0 ? dp[i-1] : 0);
+            dp[i] = Math.max(dp[i-1]+nums[i], nums[i]);
             if (dp[i] > max) {
 		max = dp[i];
 	    }
