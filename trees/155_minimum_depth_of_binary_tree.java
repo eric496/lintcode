@@ -12,6 +12,18 @@ Example
     The minimum depth is 2.
 */
 
+/*
+Thought process:
+    1. Recursive solution: 
+           Base case: Return 0 when current node is null.
+                      Run recursively on the right subtree when the left subtree is null.
+                      Run recursively on the left subtree when the right subtree is null.
+           Recursive step: Run recursively on the left and the right subtrees, return the smaller value + 1 (to count the root level).
+    2. Iterative solution: (Order level traversal)
+           At each iteration, check if the current node has at least one child. If so, push them into the queue. If not, it reaches a leaf and return the minimum depth so far. 
+           Otherwise, increment minimum depth and iterate till it reaches a leaf.
+*/
+
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -23,18 +35,6 @@ Example
  *     }
  * }
  */
- 
-/*
-Thought process:
-    1. Recursive solution: 
-           Base case: return 0 when current node is null,
-                      run recursively on the right subtree when the left subtree is null
-                      run recursively on the left subtree when the right subtree is null
-           Recursive step: run recursively on the left and the right children, return the smaller value + 1 (to count the root level).
-    2. Iterative solution: (BFS order level traversal)
-           At each iteration, check if the current node has at least one child. If so, push them into the queue. If not, it reaches a leaf where the minimum depth is. 
-           Return the current min (number of levels). Otherwise, increment minimum depth variable and iterate until it reaches a leaf.
-*/
 
 // recursive
 public class Solution {
