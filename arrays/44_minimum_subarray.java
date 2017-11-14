@@ -11,13 +11,15 @@ Thought process:
      Refer to 41. Maximum Subarray
 */
 
-// greedy by Kadane's algorithm
+// greedy - Kadane's algorithm
 public class Solution {
     public int minSubArray(List<Integer> nums) {
         int minSofar = nums.get(0), globalMin = nums.get(0);
-        for(int i = 1; i < nums.size(); i++) {
+        for (int i = 1; i < nums.size(); i++) {
             minSofar = Math.min(minSofar + nums.get(i), nums.get(i));
-            if(minSofar < globalMin) globalMin = minSofar;
+            if (minSofar < globalMin) {
+		globalMin = minSofar;
+	    }
         }
         return globalMin;
     }
