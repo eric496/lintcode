@@ -21,18 +21,17 @@ Example
 /*
 Thought process:
     Two pointers: 
-        The basic idea is let the first pointer run at the n-th node first.
-        Then let both of them run with the same pace. When the first pointer runs at the tail, 
-        the second pointer is right at the n-th to last node.
+        Let the first pointer run n steps first. Then let both pointers run with the same pace. When the first pointer runs at the tail, the second pointer is right at the n-th to last node.
 */
 
 public class Solution {
     ListNode nthToLast(ListNode head, int n) {
-        if(head == null || n < 1) return null;
+        if (head == null || n < 1) return null;
         ListNode runner = head;
-        for(int i = 0; i < n; i++) 
+        for (int i = 0; i < n; i++) {
             head = head.next;
-        while(head != null) {
+	}
+        while (head != null) {
             head = head.next;
             runner = runner.next;
         }
