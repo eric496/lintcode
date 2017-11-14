@@ -6,6 +6,10 @@ Example
     return [["1","2","3"],["12","3"],["1","23"]]
 */
 
+/*
+Thought process:
+*/
+
 public class Solution {
     public List<List<String>> splitString(String s) {
         List<List<String>> result = new ArrayList<>();
@@ -24,7 +28,6 @@ public class Solution {
             results.add(new ArrayList<>(result));
             return;
         }
-        
         for (int i = index; i < index + 2 && i < s.length(); i++) {
             String substring = s.substring(index, i+1);
             result.add(substring);
