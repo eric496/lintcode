@@ -15,19 +15,21 @@ Challenge
 
 /*
 Thought process:
-    Two passes: First pass counts the length of the new array.
-                Second pass fill in "%20" from backward.
+    Two passes: First pass counts the length of the new array. Second pass fills in "%20" from backward.
 */
 
 public class Solution {
     public int replaceBlank(char[] string, int length) {
-        if(length == 0 || string == null) return 0;
+        if (length == 0 || string == null) return 0;
         int count = length; 
-        for(char c : string)
-	    if(c == ' ') count += 2;
+        for (char c : string) {
+	    if (c == ' ') {
+		count += 2;
+	    }
+	}
         int ix = count - 1;
-        for(int i = length - 1; i >= 0; i--) {
-            if(string[i] == ' ') {
+        for (int i = length - 1; i >= 0; i--) {
+            if (string[i] == ' ') {
                 string[ix--] = '0';
                 string[ix--] = '2';
                 string[ix--] = '%';
