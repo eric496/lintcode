@@ -7,7 +7,6 @@ Notice
     m and n will be at most 100.
 
 Example
-    For example,
     There is one obstacle in the middle of a 3x3 grid as illustrated below.
     [
       [0,0,0],
@@ -29,34 +28,37 @@ Thought process:
 
 public class Solution {
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
-        if(obstacleGrid == null || obstacleGrid.length == 0) return 0;
+        if (obstacleGrid == null || obstacleGrid.length == 0) return 0;
         int m = obstacleGrid.length;
         int n = obstacleGrid[0].length;
-        if(obstacleGrid[0][0] == 1 || obstacleGrid[m-1][n-1] == 1) return 0;
+        if (obstacleGrid[0][0] == 1 || obstacleGrid[m-1][n-1] == 1) return 0;
         int[][] dp = new int[m][n];
         dp[0][0] = 1;
-        for(int col = 1; col < n; col++) {
-            if(obstacleGrid[0][col-1] == 1) 
+        for (int col = 1; col < n; col++) {
+            if (obstacleGrid[0][col-1] == 1) {
                 dp[0][col] = 0;
-            else 
+            } else { 
                 dp[0][col] = dp[0][col-1];
+	    }
         }
-        for(int row = 1; row < m; row++) {
-            if(obstacleGrid[row-1][0] == 1) 
+        for (int row = 1; row < m; row++) {
+            if (obstacleGrid[row-1][0] == 1) {
                 dp[row][0] = 0;
-            else 
+            } else { 
                 dp[row][0] = dp[row-1][0];
+	    }
         }
-        for(int row = 1; row < m; row++) {
-            for(int col = 1; col < n; col++) {
-                if(obstacleGrid[row-1][col] == 1 && obstacleGrid[row][col-1] == 1)
+        for (int row = 1; row < m; row++) {
+            for (int col = 1; col < n; col++) {
+                if (obstacleGrid[row-1][col] == 1 && obstacleGrid[row][col-1] == 1) {
                     dp[row][col] = 0;
-                else if(obstacleGrid[row-1][col] == 1) 
+                } else if (obstacleGrid[row-1][col] == 1) { 
                     dp[row][col] = dp[row][col-1];
-                else if(obstacleGrid[row][col-1] == 1)
+                } else if (obstacleGrid[row][col-1] == 1) {
                     dp[row][col] = dp[row-1][col];
-                else 
-                    dp[row][col] = dp[row-1][col] +dp[row][col-1];
+                } else { 
+                    dp[row][col] = dp[row-1][col] + dp[row][col-1];
+		}
             }
         }
         return dp[m-1][n-1];
