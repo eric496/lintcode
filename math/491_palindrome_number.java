@@ -24,8 +24,9 @@ Thought process:
 public class Solution {
     public boolean isPalindrome(int num) {
         String s = String.valueOf(num);
-        for(int i = 0, j = s.length()-1; i < j; i++, j--) 
-            if(s.charAt(i) != s.charAt(j)) return false;
+        for (int i = 0, j = s.length()-1; i < j; i++, j--) {
+            if (s.charAt(i) != s.charAt(j)) return false;
+	}
         return true;
     }
 }
@@ -33,10 +34,10 @@ public class Solution {
 // math operation to reverse integer
 public class Solution {
     public boolean isPalindrome(int num) {
-        if(num < 0 || (num != 0 && num % 10 == 0)) return false;
-        if(num == 0) return true;
+        if (num < 0 || (num != 0 && num % 10 == 0)) return false;
+        if (num == 0) return true;
         int reverse = 0, n = num; 
-        while(n != 0) {
+        while (n != 0) {
             reverse = n % 10 + reverse * 10;
             n /= 10;
         }
