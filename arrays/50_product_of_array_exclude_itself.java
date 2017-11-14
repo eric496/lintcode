@@ -37,11 +37,13 @@ public class Solution {
         ArrayList<Long> result = new ArrayList<Long>();
         long leftMul = 1, rightMul = 1;
         for (int i = 0; i < A.size(); i++) {
+            // add before update leftMul
             result.add(leftMul);
             leftMul *= A.get(i);
         }
         for (int j = A.size() - 1; j >= 0; j--) {
-            result.set(j, res.get(j)*rightMul);
+            // add before update rightMul
+            result.set(j, result.get(j)*rightMul);
             rightMul *= A.get(j);
         }
         return result;
