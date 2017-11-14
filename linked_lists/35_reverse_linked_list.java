@@ -22,14 +22,14 @@ Challenge
 
 /*
 Thought process:
-    Better walk through the 4-step swapping by drawing a graph.
+    Better walk through the 4-step swapping by drawing a graph. 
 */
  
 public class Solution {
     public ListNode reverse(ListNode head) {
-        if(head == null) return null;
+        if (head == null) return null;
         ListNode prev = null;
-        while(head != null) {
+        while (head != null) {
              ListNode next = head.next;
              head.next = prev;
              prev = head;
