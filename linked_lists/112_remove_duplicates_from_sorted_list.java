@@ -6,6 +6,11 @@ Example
     Given 1->1->2->3->3, return 1->2->3.
 */
 
+/*
+Thought process:
+    Create a runner pointer, if the current node value equals the next node value, remove next node by cur.next = cur.next.next. If not, move the runner pointer forward.
+*/
+
 /**
  * Definition for ListNode
  * public class ListNode {
@@ -18,22 +23,17 @@ Example
  * }
  */
 
-/*
-Thought process:
-    Create a runner pointer, if the current node value equals the next node value, remove next node by cur.next = cur.next.next.
-    If not equal, keep moving the runner pointer forward at each iteration.
-*/
-
-// O(n) time
+// O(n) time and O(1) space
 public class Solution {
     public ListNode deleteDuplicates(ListNode head) {
-        if(head == null) return null;
+        if (head == null) return null;
         ListNode runner = head;
-        while(runner != null && runner.next != null) {
-            if(runner.val == runner.next.val)
+        while (runner != null && runner.next != null) {
+            if (runner.val == runner.next.val) {
                 runner.next = runner.next.next;
-            else
+            } else {
                 runner = runner.next;
+	    }
         }
         return head;
     }
