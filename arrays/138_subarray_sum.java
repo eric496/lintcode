@@ -18,15 +18,14 @@ Thought process
 public class Solution {
     public List<Integer> subarraySum(int[] nums) {
         List<Integer> result = new ArrayList<Integer>();
-        if(nums == null || nums.length == 0) return result;
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-        // set the default sum to 0 at index -1.
-        // think about test case [1,-1].
+        if (nums == null || nums.length == 0) return result;
+        Map<Integer, Integer> map = new HashMap<>();
+        // set the default sum to 0 at index -1. For better understanding, think about test case [1,-1]
         map.put(0, -1);
         int sumSofar = 0;
-        for(int i = 0; i < nums.length; i++) {
+        for (int i = 0; i < nums.length; i++) {
             sumSofar += nums[i];
-            if(map.containsKey(sumSofar)) {
+            if (map.containsKey(sumSofar)) {
                 result.add(map.get(sumSofar)+1);
                 result.add(i);
                 return result;
