@@ -10,9 +10,9 @@ Example
 Thought process:
     1. Brute-force: nested loop 
     2. Forward-backward traversal: 
-       The forward traversal will calculate the multiplication of all elements left to the current element. 
-       The backward traversal will calculate the multiplication of all elements right to the current element.
-       Multiply them together we can the correct value for the current element.    
+           The forward traversal will calculate the multiplication of all elements left to the current element. 
+           The backward traversal will calculate the multiplication of all elements right to the current element.
+           Update the each element in the result list during the backward traversal.
 */
 
 // O(n^2) time by brute-force
@@ -36,12 +36,12 @@ public class Solution {
         if(A.size() == 0 || A == null) return null;
         ArrayList<Long> result = new ArrayList<Long>();
         long leftMul = 1, rightMul = 1;
-        for(int i = 0; i < A.size(); i++) {
+        for (int i = 0; i < A.size(); i++) {
             result.add(leftMul);
             leftMul *= A.get(i);
         }
-        for(int j = A.size() - 1; j >= 0; j--) {
-            result.set(j, res.get(j) * rightMul);
+        for (int j = A.size() - 1; j >= 0; j--) {
+            result.set(j, res.get(j)*rightMul);
             rightMul *= A.get(j);
         }
         return result;
