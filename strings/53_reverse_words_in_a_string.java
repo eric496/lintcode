@@ -1,9 +1,9 @@
 /*
 Given an input string, reverse the string word by word.
 
-For example,
-Given s = "the sky is blue",
-return "blue is sky the".
+Example
+    Given s = "the sky is blue",
+    return "blue is sky the".
 
 Clarification
     What constitutes a word?
@@ -16,7 +16,7 @@ Clarification
 
 /*
 Thought process:
-    1. Use Java built-in methods in the following order
+    1. Solve with Java built-in methods
            1) Trim the string 
            2) Split the string by space
            3) Reverse the string array
@@ -39,12 +39,13 @@ public class Solution {
 // method 2
 public class Solution {
     public String reverseWords(String s) {
-        if(s == null || s.length() == 0) return "";
+        if (s == null || s.length() == 0) return "";
         String[] words = s.split("\\s+");
-	if(words.length == 0) return "";
+	if (words.length == 0) return "";
         StringBuilder sb = new StringBuilder();
-        for(int i = words.length - 1; i >= 0; i--) 
+        for (int i = words.length - 1; i >= 0; i--) {
 	    sb.append(words[i]).append(" ");
-        return sb.substring(0, sb.length() - 1);
+	}
+        return sb.substring(0, sb.length()-1);
     }
 }
