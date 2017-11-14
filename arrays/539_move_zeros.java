@@ -8,17 +8,22 @@ Notice
 
 /*
 Thought process:
-    Two pointers: One position pointer starting at 0 and incrementing by 1, 
-    the other pointer iterates the array, find the next non-zero element, and fill the position where the first pointer is at.
-    Fill all left positions with zeroes after the iteration. 
+    Two pointers: One pointer points at the current insert position for non-zero values. 
+                  The other pointer iterates the array, find the next non-zero element, and insert at the position where the first pointer points to.
+                  Fill in zeroes for all left positions after the iteration. 
 */
 
-//O(n) time and O(1) space by two pointers
+//O(n) time and O(1) space
 public class Solution {
     public void moveZeroes(int[] nums) {
         int pos = 0;
-        for(int i = 0; i < nums.length; i++)
-            if(nums[i] != 0) nums[pos++] = nums[i];
-        while(pos < nums.length) nums[pos++] = 0;
+        for (int i : nums) {
+            if (i != 0) {
+                nums[pos++] = i;
+            }
+        }
+        while (pos < nums.length) {
+            nums[pos++] = 0;
+        }
     }
 }
