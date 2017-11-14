@@ -23,29 +23,31 @@ Thought process:
 // Newton's method
 class Solution {
     public int sqrt(int x) {
-        if(x <= 0) return 0;
+        if (x <= 0) return 0;
         long r = x;
-        while(r * r > x) r = (r + x/r) / 2;
+        while (r * r > x) {
+	    r = (r + x/r) / 2;
+	}
         return (int)r;
     }
 }
 
-// iterative O(log(x)) time
+// O(log(x)) time
 class Solution {
     public int sqrt(int x) {
-        if(x <= 0) return 0;
+        if (x <= 0) return 0;
         long start = 1;
         long end = x;
-        while(start + 1 < end) {
+        while (start + 1 < end) {
             long mid = start + (end - start) / 2;
-            if(mid == x / mid) {
-                return (int) mid;
-            } else if(mid > x / mid) {
+            if (mid == x / mid) {
+                return (int)mid;
+            } else if (mid > x / mid) {
                 end = mid;
             } else {
                 start = mid;
             }
         }
-        return (int) start;
+        return (int)start;
     }
 }
