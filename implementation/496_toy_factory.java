@@ -2,13 +2,13 @@
 Factory is a design pattern in common usage. Please implement a ToyFactory which can generate proper toy based on the given type.
 
 Example
-ToyFactory tf = ToyFactory();
-Toy toy = tf.getToy('Dog');
-toy.talk(); 
->> Wow
-toy = tf.getToy('Cat');
-toy.talk();
->> Meow
+    ToyFactory tf = ToyFactory();
+    Toy toy = tf.getToy('Dog');
+    toy.talk(); 
+    >> Wow
+    toy = tf.getToy('Cat');
+    toy.talk();
+    >> Meow
 */
 
 /**
@@ -38,10 +38,10 @@ class Cat implements Toy {
 
 public class ToyFactory {
     public Toy getToy(String type) {
-        if(type == null) return null;
-        if(type.equalsIgnoreCase("Dog")) {
+        if (type == null) return null;
+        if (type.equalsIgnoreCase("Dog")) {
             return new Dog();
-        } else if(type.equalsIgnoreCase("Cat")) {
+        } else if (type.equalsIgnoreCase("Cat")) {
             return new Cat();
         }
         return null;
