@@ -15,15 +15,20 @@ Example
     return 3.
 */
 
+/*
+Thought process:
+    Iterate rows and columns, at each element recursively check its neighbors. Remember to flip true element to false.
+*/
+
 public class Solution {
     public int numIslands(boolean[][] grid) {
-        if(grid.length == 0 || grid[0].length == 0 || grid == null) return 0;
-        int m = grid.length;
-        int n = grid[0].length;
+        if (grid.length == 0 || grid[0].length == 0 || grid == null || grid[0] == null) return 0;
+        int numRows = grid.length;
+        int numCols = grid[0].length;
         int result = 0;
-        for(int i = 0; i < m; i++) {
-            for(int j = 0; j < n; j++) {
-                if(!grid[i][j]) continue;
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < numCols; j++) {
+                if (!grid[i][j]) continue;
                 dfs(grid, i, j);
                 result++;
             }
@@ -31,14 +36,14 @@ public class Solution {
         return result;
     }
     
-    private void dfs(boolean[][] grid, int i, int j) {
-        if(i < 0 || i >=grid.length || j < 0 || j >= grid[0].length) return;
-        if(grid[i][j]) {
-            grid[i][j] = false;
-            dfs(grid, i - 1, j);
-            dfs(grid, i + 1, j);
-            dfs(grid, i, j - 1);
-            dfs(grid, i, j + 1);
+    private void dfs(boolean[][] grid, int row, int col) {
+        if (row < 0 || row >= grid.length || col < 0 || col >= grid[0].length) return;
+        if (grid[row][col]) {
+            grid[row][col] = false;
+            dfs(grid, row-1, col);
+            dfs(grid, row+1, col);
+            dfs(grid, row, col-1);
+            dfs(grid, row, col+1);
         }
     }
 }
