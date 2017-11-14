@@ -14,33 +14,32 @@ Challenge
 
 /*
 Thought process:
-    Find the verge where the head of the sorted array meets the end of the array. 
-    Split the array into two parts with each a sorted subarray.
-    Use three-step reversal:
-    1) Reverse the first part of the array.
-    2) Reverse the second part of the array
-    After this step, the array is already sorted, but in descending order.
-    3) Reverse the entire array to make it in ascending order. 
+    Find where the head of the sorted array meets the end of the array (the first element whose value is greater than the next element).
+    Split the array into two parts, each a sorted subarray. Use three-step reversal:
+        1) Reverse the first part of the array.
+        2) Reverse the second part of the array
+        After this step, the array is already sorted, but in descending order.
+        3) Reverse the entire array to make it in ascending order. 
 */
 
 public class Solution {
-    public void recoverRotatedSortedArray(ArrayList<Integer> nums) {
-        for(int i = 0; i < nums.size() - 1; i++) {
-            if(nums.get(i) > nums.get(i + 1)) {
+    public void recoverRotatedSortedArray(List<Integer> nums) {
+        for (int i = 0; i < nums.size() - 1; i++) {
+            if (nums.get(i) > nums.get(i+1)) {
                 reverse(nums, 0, i);
-                reverse(nums, i + 1, nums.size() - 1);
-                reverse(nums, 0, nums.size() - 1);
+                reverse(nums, i+1, nums.size()-1);
+                reverse(nums, 0, nums.size()-1);
             }
         }
     }
-    
-    public void reverse(ArrayList<Integer> nums, int low, int high) {
-	    while(low < high) {
-	        int temp = nums.get(i);
-            nums.set(i, nums.get(j));
-            nums.set(j, temp);
-	        low++;
-	        high--;
-	    }        
+
+    public void reverse(List<Integer> nums, int low, int high) {
+        while (low < high) {
+            int temp = nums.get(low);
+            nums.set(low, nums.get(high));
+            nums.set(high, temp);
+            low++;
+            high--;
+        }    
     }
 }
