@@ -17,14 +17,29 @@ Example
     way6    1         1       0
 */
 
+/*
+Thought process:
+    DP: The first post has k choices, the second one has k choices because it can either be or not be the same color as the first one's. 
+        The total number of ways of painting the second post can be decomposed into two cases:
+            1) the second post has the same color as the first one, thus the second post has only 1 choice, by multiplication rule (MP): the total number of ways of painting is k*1.
+            2) the second post has a different color than the first one, thus the second post has (k-1) choices, by MP, the total number of ways of painting is k*(k-1).
+        The total number of ways of painting is thus k+k*(k-1).
+        From the third post on, it can either choose the same color or not as the previous post. Since no more than 2 posts can be the same color:
+            1) the current and the previous have the same color (i.e. the current has different color than the one before the previous): the total number of ways of painting is (k-1)*dp[i-2].
+            2) the current and the previous have different colors: total number of ways of painting is (k-1)*dp[i-1].
+        The total number of ways of painting is thus dp[i] = (k-1)*dp[i-1]+(k-1)*dp[i-2] = (k-1)*(dp[i-1]+dp[i-2]).
+*/
+
 public class Solution {
     public int numWays(int n, int k) {
-  	    if (n <= 1) return n * k;
-  	    int[] dp = new int[n + 1];
-  	    dp[0] = 0;
-  	    dp[1] = k;
-    	dp[2] = k + k*(k - 1);
-  	    for (int i = 3; i <= n; i++) dp[i] = (k - 1) * (dp[i - 1] + dp[i - 2]);
-  	    return dp[n];
+        if (n == 0 || k == 0) return 0;
+        if (n == 1) return k;
+        int[] dp = new int[n];
+        dp[0] = k;
+        dp[1] = k + k * (k - 1);
+        for (int i = 2; i < n; i++) {
+            dp[i] = (k - 1) * (dp[i - 1] + dp[i - 2]);
+        }
+        return dp[n-1];
     }
 }
