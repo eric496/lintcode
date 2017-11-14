@@ -11,9 +11,9 @@ Challenge
 /*
 Thought process
      Two pointers: 
-         1) Does not keep relative order: one starting at head, the other at end, swap elements when the head pointer at a non-odd value AND the tail pointer at a non-even value.
+         1) Do not preserve relative order: one starting at head, the other at end, swap elements when the head pointer at a non-odd value AND the tail pointer at a non-even value.
             Remember to check if (start < end) in each iteration, because head pointer can overstep the end pointer in the corner case.
-         2) Keep relative order: similar to 539. Move Zeroes. 
+         2) Preserve relative order: similar to 539. Move Zeroes. 
 */
 
 // relative order does not matter
