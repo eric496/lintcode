@@ -20,6 +20,16 @@ Example
            4
 */
 
+/*
+Thought process:
+    1. Recursive solution:
+           Base case: return true if both T1 and T2 are the same.
+           Recursive step: recursively check the equality of T1's left, right subtrees to T2.
+    2. Iterative solution:
+           Similar to binary tree preorder traversal using a stack. Add nodes to result StringBuffer, 
+           append a ",#" after each leaf node in order to handle same node values but different tree structures.
+*/
+
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -31,16 +41,6 @@ Example
  *     }
  * }
  */
-
-/*
-Thought process:
-    1. Recursive solution:
-           Base case: return true if both T1 and T2 are the same.
-           Recursive step: recursively check the equality of T1's left, right children and T2.
-    2. Iterative solution:
-           Similar to binary tree preorder traversal using a stack. Add nodes to result StringBuffer, 
-           append a ",#" after each leaf node in order to handle same node values but different tree structures.
-*/
 
 // recursive
 public class Solution {
@@ -70,7 +70,7 @@ public class Solution {
     
     private String genPreorder(TreeNode root) {
         StringBuffer sb = new StringBuffer();
-        Stack<TreeNode> stack = new Stack<TreeNode>();
+        Stack<TreeNode> stack = new Stack<>();
         stack.push(root);
         while (!stack.isEmpty()){
            TreeNode node = stack.pop();
