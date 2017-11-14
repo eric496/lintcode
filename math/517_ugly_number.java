@@ -13,7 +13,7 @@ Example
 
 /*
 Thought process:
-    Divide by 2, 3, 5 repeatedly until it cannot be factored any further and check if the result equals 1.
+    Divide the number by 2, 3, 5 recursively until it cannot be factored any further and check if the result equals 1.
     Can be done recursively or iteratively. 
 */
 
@@ -32,11 +32,11 @@ public class Solution {
 // iterative
 public class Solution {
     public boolean isUgly(int num) {
-        if(num <= 0) return false;
-        if(num == 1) return true;
-        while(num >= 2 && num % 2 == 0) num /= 2;
-        while(num >= 3 && num % 3 == 0) num /= 3;
-        while(num >= 5 && num % 5 == 0) num /= 5;
+        if (num <= 0) return false;
+        if (num == 1) return true;
+        while (num >= 2 && num % 2 == 0) num /= 2;
+        while (num >= 3 && num % 3 == 0) num /= 3;
+        while (num >= 5 && num % 5 == 0) num /= 5;
         return num == 1;
     }
 }
