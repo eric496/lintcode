@@ -10,37 +10,22 @@ Challenge
 
 /*
 Thought process
-     1. Use two lists to store odd and even elements separately. Return the concatenated list.
-     2. Use two pointers: one starting at head, the other at end, swap elements when the head pointer at a non-odd value AND the tail pointer at a non-even value.
-        Remember to check if(start < end) in each iteration, because head pointer can overstep the end pointer in the corner case. 
+     Two pointers: 
+         1) Does not keep relative order: one starting at head, the other at end, swap elements when the head pointer at a non-odd value AND the tail pointer at a non-even value.
+            Remember to check if (start < end) in each iteration, because head pointer can overstep the end pointer in the corner case.
+         2) Keep relative order: similar to 539. Move Zeroes. 
 */
 
-// O(n) space
-public class Solution {
-    public int[] partitionArray(int[] nums) {
-	if(nums == null || nums.length == 0) return null;
-	ArrayList<Integer> odd = new ArrayList<Integer>();
-	ArrayList<Integer> even = new ArrayList<Integer>();
-	for(int i : nums) {
-	    if(i % 2 == 0) even.add(i);
-	    if(i % 2 == 1) odd.add(i);
-	}
-	odd.addAll(even);
-	int[] result = odd.toArray(new int[odd.size()]);
-	return result;
-    }
-}
-
-// in-place by two pointers but do not maintain the relative order within the odd and even numbers
+// relative order does not matter
 public class Solution {
     public void partitionArray(int[] nums) {
-        if(nums == null || nums.length == 0) return;
+        if(nums == null || nums.length <= 1) return;
         int head = 0;
         int tail = nums.length - 1;
-        while(head < tail) {
-            while(nums[head] % 2 == 1) head++;
-            while(nums[tail] % 2 == 0) tail--;
-            if(head < tail) {
+        while (head < tail) {
+            while (nums[head] % 2 == 1) head++;
+            while (nums[tail] % 2 == 0) tail--;
+            if (head < tail) {
                 int temp = nums[head];
                 nums[head] = nums[tail];
                 nums[tail] = temp;    
@@ -48,5 +33,25 @@ public class Solution {
                 tail--;
             }
         }
+    }
+}
+
+// keep relative order
+public class Solution {
+    public void partitionArray(int[] nums) {
+        if (nums == null || nums.length <= 1) return;
+        int pos = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] % 2 != 0) {
+                swap(nums, pos, i);
+                pos++;
+            }
+        }
+    }
+    
+    private void swap(int[] nums, int ixa, int ixb) {
+        int temp = nums[ixa];
+        nums[ixa] = nums[ixb];
+        nums[ixb] = temp;
     }
 }
