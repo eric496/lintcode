@@ -14,30 +14,34 @@ Example
 
 /*
 Thought process:
-    Use two arrays: use characters in the strings as indices, and index of first apperance of that character as values.
-    At each iteration, compare the values whose indices are the characters from two strings. Return false if they do not match. 
+    Use two arrays: Use characters in the strings as indices, and index of first apperance of that character as values.
+                    At each iteration, compare the values whose indices are the characters from two strings. Return false if they do not match. 
 */
 
 // O(n) time and O(n) space - with two hash maps
 public class Solution {
     public boolean isIsomorphic(String s, String t) {
-        if(s == null || t == null) return false;
-        if(s.length() != t.length()) return false;
+        if (s == null || t == null) return false;
+        if (s.length() != t.length()) return false;
         int n = s.length();
-        HashMap<Character, Integer> map1 = new HashMap<Character, Integer>();
-        HashMap<Character, Integer> map2 = new HashMap<Character, Integer>();
+        Map<Character, Integer> map1 = new HashMap<>();
+        Map<Character, Integer> map2 = new HashMap<>();
         int[] index1 = new int[n];
         int[] index2 = new int[n];
-        for(int i = 0; i < n; i++){
-            if(!map1.containsKey(s.charAt(i))) map1.put(s.charAt(i), i);
-            if(!map2.containsKey(t.charAt(i))) map2.put(t.charAt(i), i);
+        for (int i = 0; i < n; i++){
+            if (!map1.containsKey(s.charAt(i))) {
+		map1.put(s.charAt(i), i);
+	    }
+            if (!map2.containsKey(t.charAt(i))) {
+		map2.put(t.charAt(i), i);
+	    }
         }
-        for(int i = 0; i < n; i++){
+        for (int i = 0; i < n; i++) {
             index1[i] = map1.get(s.charAt(i));
             index2[i] = map2.get(t.charAt(i));
         }
-        for(int i = 0; i < n; i++){
-            if(index1[i] != index2[i]) return false;
+        for (int i = 0; i < n; i++) {
+            if (index1[i] != index2[i]) return false;
         }
         return true;
     }
@@ -46,11 +50,12 @@ public class Solution {
 // O(n) time and O(1) space using two arrays
 public class Solution {
     public boolean isIsomorphic(String s, String t) {
-        if(s == null || t == null) return false;
+        if (s == null || t == null) return false;
+	if (s.length() != t.length()) return false;
         int[] m1 = new int[256];
         int[] m2 = new int[256];
-        for(int i = 0; i < s.length(); i++) {
-            if(m1[s.charAt(i)] != m2[t.charAt(i)]) return false;
+        for (int i = 0; i < s.length(); i++) {
+            if (m1[s.charAt(i)] != m2[t.charAt(i)]) return false;
             m1[s.charAt(i)] = i;
             m2[t.charAt(i)] = i;
         }
