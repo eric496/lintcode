@@ -26,10 +26,11 @@ Thought process:
 // O(n^2) time using string methods
 class Solution {
     public int strStr(String source, String target) {
-        if(source == null || target == null || source.length() < target.length()) return -1;
-        if(target.length() == 0) return 0;
-        for(int i = 0; i <= source.length() - target.length(); i++)
-            if(source.substring(i, i+target.length()).equals(target)) return i;
+        if (source == null || target == null || source.length() < target.length()) return -1;
+        if (target.length() == 0) return 0;
+        for (int i = 0; i <= source.length() - target.length(); i++) {
+            if (source.substring(i, i+target.length()).equals(target)) return i;
+	}
         return -1;
     }
 }
@@ -37,14 +38,17 @@ class Solution {
 // O(n^2) time solution
 class Solution {
     public int strStr(String source, String target) {
-        if(source == null || target == null || source.length() < target.length()) return -1;
-        if(target.length() == 0) return 0;
+        if (source == null || target == null || source.length() < target.length()) return -1;
+        if (target.length() == 0) return 0;
         for (int i = 0; ; i++) {
             for (int j = 0; ; j++) {
               if (j == target.length()) return i;
               if (i + j == source.length()) return -1;
-              if (target.charAt(j) != source.charAt(i + j)) break;
+              if (target.charAt(j) != source.charAt(i+j)) break;
             }
         }
     }
 }
+
+// KMP
+
