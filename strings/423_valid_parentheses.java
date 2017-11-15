@@ -13,15 +13,16 @@ Thought process:
 
 public class Solution {
     public boolean isValidParentheses(String s) {
-        Stack<Character> stack = new Stack<Character>();
-        for(char c : s.toCharArray()) {
-            if(c == '(' || c == '{' || c== '[') {
+        Stack<Character> stack = new Stack<>();
+        for (char c : s.toCharArray()) {
+            if (c == '(' || c == '{' || c== '[') {
                 stack.push(c);
             } else {
-                if(!stack.isEmpty() && isValid(stack.peek(), c))
+                if (!stack.isEmpty() && isValid(stack.peek(), c)) {
                     stack.pop();
-                else
+                } else {
                     return false;
+		}
             }
         }
         return stack.isEmpty();
@@ -32,19 +33,20 @@ public class Solution {
     }
 }
 
-// an even shorter and smarter solution
+// a shorter and smarter solution 
 public class Solution {
     public boolean isValidParentheses(String s) {
-        Stack<Character> stack = new Stack<Character>();
-        for(char c : s.toCharArray()) {
-            if(c == '(') 
+        Stack<Character> stack = new Stack<>();
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
                 stack.push(')');
-            else if(c == '{')
+            } else if (c == '{') {
                 stack.push('}');
-            else if(c == '[') 
+            } else if (c == '[') {
                 stack.push(']');
-            else if(stack.isEmpty() || c != stack.pop())
+            } else if (stack.isEmpty() || c != stack.pop()) {
                 return false;
+	    }
         }
         return stack.isEmpty();
     }
