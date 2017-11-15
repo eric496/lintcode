@@ -16,7 +16,7 @@ Challenge
 /*
 Thought process:
     Two pointers: One starting from the head, one starting from the end.
-                  First, check if the head and tail elements are valid alphanumeric values. Keep moving pointers till they point to the first qualified values.
+                  First, check if the head and tail elements are valid alphanumeric values. Keep moving pointers till they point to the first valid values.
                   Second, check if they are equal (case insensitivity by convert all to upper or lower case). 
                   If not, it is not a valid palindrome. Otherwise, move both pointers to next elements and repeat the process until two pointers meet.
 */
@@ -24,15 +24,15 @@ Thought process:
 // O(n) time and O(1) space
 public class Solution {
     public boolean isPalindrome(String s) {
-        if(s == null || s.length() == 0) return true;
+        if (s == null || s.length() == 0) return true;
         int start = 0, end = s.length() - 1;
-        while(start < end) {
+        while (start < end) {
             char c1 = s.charAt(start);
             char c2 = s.charAt(end);
-            if(!isValid(c1)) start++;
-            if(!isValid(c2)) end--;
-            if(isValid(c1) && isValid(c2)) {
-                if(!isSame(c1, c2)) return false;
+            if (!isValid(c1)) start++;
+            if (!isValid(c2)) end--;
+            if (isValid(c1) && isValid(c2)) {
+                if (!isSame(c1, c2)) return false;
                 start++;
                 end--;
             }
@@ -49,22 +49,18 @@ public class Solution {
     }
 }
 
-// following is a failed solution with TLE
-// need to figure out why later
+// another version
 public class Solution {
     public boolean isPalindrome(String s) {
-        if(s == null || s.trim().length() == 0) return true;
+        if (s == null || s.trim().length() == 0) return true;
         int start = 0, end = s.length() - 1;
-        while(start < end) {
-            while(!isValid(s.charAt(start))) 
-                if(start < s.length() - 1) start++;
-            while(!isValid(s.charAt(end))) 
-                if(end > 0) end--;
-            if(isSame(s.charAt(start), s.charAt(end))) {
+        while (start < end) {
+            while (!isValid(s.charAt(start)) && start < s.length() - 1) start++;
+            while (!isValid(s.charAt(end)) && end > 0) end--;
+            if (isValid(s.charAt(start)) && isValid(s.charAt(end))) {
+                if (!isSame(s.charAt(start), s.charAt(end))) return false;
                 start++;
                 end--;
-            } else {
-                return false;
             }
         }
         return true;
