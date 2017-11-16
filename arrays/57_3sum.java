@@ -30,7 +30,9 @@ public class Solution {
             int low = i + 1, high = num.length - 1;
             while (low < high) {
                 if (num[i] + num[low] + num[high] == 0) {
-                    result.add(Arrays.asList(num[i], num[low++], num[high--]));
+                    result.add(Arrays.asList(num[i], num[low], num[high]));
+		    low++;
+		    high--;
                     // skip duplicate element
                     while (low < high && num[low] == num[low-1]) low++;
                     while (low < high && num[high] == num[high+1]) high--;

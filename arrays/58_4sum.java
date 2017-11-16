@@ -15,7 +15,7 @@ Example
 
 /*
 Thought process:
-    Similar to 57. 3Sum, but with an extra for loop. Fix the first number, and search for qualified 3sum.
+    Similar to 57. 3Sum, but with an extra nested for loop. Fix the first number, and search for qualified 3sum.
 */
 
 // O(n^3) time - cannot be reduced
