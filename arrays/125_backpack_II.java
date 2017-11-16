@@ -22,20 +22,17 @@ Thought process:
 public class Solution {
     public int backPackII(int m, int[] A, int[] V) {
         int[][] dp = new int[A.length][m+1];
-        for (int i = 0; i < A.length; i++) {
-            for (int j = 0; j < m + 1; j++) {
-                if (i == 0) {
-                    if (A[0] > j) {
-                        dp[i][j] = 0;
-                    } else {
-                        dp[i][j] = V[0];
-                    }
+        for (int row = 0; row < A.length; row++) {
+            for (int col = 1; col < m + 1; col++) {
+                // initialize the first row
+                if (row == 0) {
+                    dp[row][col] = col < A[row] ? 0 : V[row];
                 } else {
-                    if (A[i] > j) {
-                        dp[i][j] = dp[i-1][j];
-                    } else {
-                        dp[i][j] = Math.max(dp[i-1][j], dp[i-1][j-A[i]] + V[i]);
-                    }
+                    // if current pack size is greater than current item size, we need to compare 
+                    // 1) not to include it (inherit what we have from previous row)
+                    // 2) include it (current item size + what the most value we can get from (current pack size - current item size))
+                    // whichever is greater.
+                    dp[row][col] = col < A[row] ? dp[row-1][col] : Math.max(dp[row-1][col], dp[row-1][col-A[row]]+V[row]);
                 }
             }
         }
