@@ -16,7 +16,10 @@ Thought process:
            Basic idea is for any fixed j, we would like to obtain the minimum element in nums[0 : j] (j exclusive), such that (nums[argmin], nums[j])
            gives the largest difference range possible so far. 
            Then in the inner loop, we search for the an element that is greater than the nums[argmin] and smaller than the current element nums[j].
-    3. 
+    3. Use stack: Maintain a second largest variable "second" which always stores ak in the example. Iterate the array from end, push all elements that greater than ak into the stack.
+                  If the current element is smaller than "second", we found a 132 pattern and return. 
+                  If the current element is greater than the top element in the stack, pop the top element and make it "second" repeat this until the top is greater than the current, 
+                  push the current element into the stack. This will make sure that the element in the stack is always the largest one in a 3-element sequence. 
 */
 
 // O(n^3) time brute-force
@@ -72,11 +75,11 @@ public class Solution {
 public class Solution {
     public boolean find132pattern(int[] nums) {
         Stack<Integer> stack = new Stack<>();
-        int min = Integer.MIN_VALUE;
+        int second = Integer.MIN_VALUE;
         for (int i = nums.length - 1; i >= 0; i--) {
-            if (nums[i] < min) return true;
+            if (nums[i] < second) return true;
             while (!stack.isEmpty() && nums[i] > stack.peek()) {
-                min = stack.pop();
+                second = stack.pop();
 	    }
             stack.push(nums[i]);
         }
