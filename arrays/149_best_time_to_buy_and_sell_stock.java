@@ -8,9 +8,9 @@ Example
 
 /*
 Thought process:
-    1. The basic idea is to iteratively search for minimum price so far, and maximum so far: Create a so far min and a global max variables.  
-       Iterate the array, if the current price is greater than min so far, then update the global max with (current - min so far) if it is greater than the current global max.
-       Otherwise if the current price is smaller than min so far, update min so far with the current price.
+    1. The basic idea is to maintain two variables to store minimum so far and maximum so far.
+       Iterate the array, if the current element is smaller than min so far, then update min so far with the current element.
+       Otherwise, compare the current element minus min so far with max so far, with whichever is greater update max so far.
     2. Kadane's algorithm: Refer to 41. Maximum Subarray
 */
 
@@ -19,11 +19,11 @@ public class Solution {
     public int maxProfit(int[] prices) {
         if (prices == null || prices.length == 0) return 0;
         int minSofar = prices[0], maxSofar = Integer.MIN_VALUE;
-        for (int i = 0; i < prices.length; i++) {
-            if (prices[i] < minSofar) {
-                minSofar = prices[i];
-            } else {
-                maxSofar = Math.max(prices[i] - minSofar, maxSofar);
+        for (int price : prices) {
+            if (price < minSofar) {
+                minSofar = price;
+            } else if (price - minSofar > maxSofar) {
+                maxSofar = price - minSofar;
             }
         }
         return maxSofar;
