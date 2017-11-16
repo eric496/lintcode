@@ -11,7 +11,7 @@ Example
 
 /*
 Thought process:
-    Create a hashmap, iterate the string list and sort each string in the list, use the sorted string as key and a list of its anagrams as value.
+    Use a hashmap, iterate the string list and sort each string in the list, use the sorted string as key and a list of its anagrams as value.
     Create a result list, append all lists which contains more than one anagram from the hashmap. 
 */
 
@@ -19,7 +19,7 @@ Thought process:
 public class Solution {
     public List<String> anagrams(String[] strs) {
         if (strs.length == 0 || strs == null) return null;
-        HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
+        Map<String, ArrayList<String>> map = new HashMap<>();
         for (String s : strs) {
             char[] chars = s.toCharArray();
             Arrays.sort(chars);
@@ -32,7 +32,7 @@ public class Solution {
                 map.put(key, temp);
             }
         }
-        List<String> result = new ArrayList<String>();
+        List<String> result = new ArrayList<>();
         for (Map.Entry<String, ArrayList<String>> entry : map.entrySet()) {
             if (entry.getValue().size() > 1) {
                 result.addAll(entry.getValue());   
