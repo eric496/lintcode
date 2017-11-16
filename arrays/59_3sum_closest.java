@@ -13,10 +13,10 @@ Challenge
 
 /*
 Thought process:
-    1. Two pointers: Sort the array, create a variable to store the closest sum so far.
-    2. Iterate the array, for any fixed index i, iterate all elements to its right using two pointers (from head and from end).
-       Update closest sum if the current 3sum is closer to the target than the previous closest sum is. 
-       Otherwise, increment the head pointer if current 3sum is smaller than the target, or decrease the tail pointer if current 3sum is greater than the target.  
+    Two pointers: Sort the array, create a variable to store the closest sum so far.
+                  Iterate the array, for any fixed index i, iterate all elements to its right using two pointers (from head and from end).
+                  Update closest sum if the current 3sum is closer to the target than the previous closest sum is. 
+                  Otherwise, increment the head pointer if current 3sum is smaller than the target, or decrease the tail pointer if current 3sum is greater than the target.  
 */
 
 // O(n^2) time and O(1) space using two pointers
