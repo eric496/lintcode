@@ -12,7 +12,8 @@ Example
 /*
 Thought process:
     Forward-backward traversal:
-        A forward pass to calculate the max profit so far to the left; a backward pass to calculate the max profit so far to the right.
+        A forward pass calculates the max profit so far to the left; a backward pass calculates the max profit so far to the right.
+        Iterate the dp arrays and add both elements at each position. Compare it with max, if it is greater than max, update max so far.
 */
 
 // O(n) time and O(n) space by forward-backward traversal
@@ -27,20 +28,20 @@ public class Solution {
         int min = prices[0];
         for (int i = 1; i < prices.length; i++) {
             min = Math.min(prices[i], min);
-            left[i] = Math.max(left[i - 1], prices[i] - min);
+            left[i] = Math.max(left[i-1], prices[i]-min);
         }
 
         //DP from right to left;
-        right[prices.length - 1] = 0;
-        int max = prices[prices.length - 1];
+        right[prices.length-1] = 0;
+        int max = prices[prices.length-1];
         for (int i = prices.length - 2; i >= 0; i--) {
             max = Math.max(prices[i], max);
-            right[i] = Math.max(right[i + 1], max - prices[i]);
+            right[i] = Math.max(right[i+1], max-prices[i]);
         }
 
         int profit = 0;
         for (int i = 0; i < prices.length; i++) {
-	    profit = Math.max(left[i] + right[i], profit);
+	    profit = Math.max(left[i]+right[i], profit);
 	}  
         return profit;
     }
@@ -55,8 +56,8 @@ public class Solution {
         for (int i = 1; i < dp.length; i++) {
             int maxDiff = -prices[0];
             for (int j = 1; j < dp[0].length; j++) {
-                dp[i][j] = Math.max(dp[i][j-1], prices[j] + maxDiff);
-                maxDiff = Math.max(maxDiff, dp[i-1][j] - prices[j]);
+                dp[i][j] = Math.max(dp[i][j-1], prices[j]+maxDiff);
+                maxDiff = Math.max(maxDiff, dp[i-1][j]-prices[j]);
             }
         }
         return dp[K][prices.length-1];
