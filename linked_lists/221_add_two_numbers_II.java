@@ -22,7 +22,7 @@ Example
 Thought process:
     1. O(n) solution using 3 stacks:
            Since it is a singly linked list, traverse the list backward is not possible, because there is no pointer to the previous element for a node.
-           Instead we can use 3 stacks, two storing the node values from the two lists, one storing the sum in reverse order.
+           Instead we can use 3 stacks, two storing the node values from the two lists, one storing the sum in reverse order. 
            Pop the top element from the stack iteratively and append it to the result list.    
     2. O(n) solution using 2 stacks:
            The sum stack can be saved by repeatedly swap the head pointer with a new head pointer.
@@ -33,8 +33,8 @@ public class Solution {
     public ListNode addLists2(ListNode l1, ListNode l2) {
         if (l1 == null) return l2;
         if (l2 == null) return l1;
-        Stack<Integer> s1 = new Stack<Integer>();
-        Stack<Integer> s2 = new Stack<Integer>();
+        Stack<Integer> s1 = new Stack<>();
+        Stack<Integer> s2 = new Stack<>();
         while (l1 != null) {
             s1.push(l1.val);
             l1 = l1.next;
@@ -43,32 +43,34 @@ public class Solution {
             s2.push(l2.val);
             l2 = l2.next;
         }
-        Stack<Integer> s3 = new Stack<Integer>();
-        int carry = 0;
-        while (!s1.isEmpty() || !s2.isEmpty()) {
-            if (!s1.isEmpty() && !s2.isEmpty()) {
-                int sum = s1.pop() + s2.pop() + carry;
-                s3.push(sum % 10);
-                carry = sum / 10;
-            } else if (!s1.isEmpty()) {
-                int sum = s1.pop() + carry;
-                s3.push(sum % 10);
-                carry = sum / 10;
-            } else if (!s2.isEmpty()) {
-                int sum = s2.pop() + carry;
-                s3.push(sum % 10);
-                carry = sum / 10;
-            }
+        Stack<Integer> s3 = new Stack<>();
+        int carry = 0, sum = 0;
+        while (!s1.isEmpty() && !s2.isEmpty()) {
+            sum = s1.pop() + s2.pop() + carry;
+            s3.push(sum % 10);
+            carry = sum / 10;
         }
-        if (carry != 0) s3.push(carry);
-        ListNode head = new ListNode(0);
-        ListNode runner = head;
+        while (!s1.isEmpty()) {
+            sum = s1.pop() + carry;
+            s3.push(sum%10);
+            carry = sum / 10;
+        }
+        while (!s2.isEmpty()) {
+            sum = s2.pop() + carry;
+            s3.push(sum%10);
+            carry = sum / 10;
+        }
+        if (carry != 0) {
+            s3.push(carry);
+        }
+        ListNode dummyhead = new ListNode(-1);
+        ListNode runner = dummyhead;
         while (!s3.isEmpty()) {
-            ListNode l = new ListNode(s3.pop());
-            runner.next = l;
+            ListNode node = new ListNode(s3.pop());
+            runner.next = node;
             runner = runner.next;
         }
-        return head.next;
+        return dummyhead.next;
     }
 }
 
@@ -90,10 +92,14 @@ public class Solution {
         int sum = 0;
         ListNode list = new ListNode(Integer.MIN_VALUE);
         while (!s1.empty() || !s2.empty()) {
-            if (!s1.empty()) sum += s1.pop();
-            if (!s2.empty()) sum += s2.pop();
+            if (!s1.empty()) {
+		sum += s1.pop();
+	    }
+            if (!s2.empty()) {
+		sum += s2.pop();
+	    }
             list.val = sum % 10;
-            ListNode head = new ListNode(sum / 10);
+            ListNode head = new ListNode(sum/10);
             head.next = list;
             list = head;
             sum /= 10;
