@@ -68,7 +68,9 @@ public class Solution {
         int[] dp = new int[m+1];
         for (int i = 0; i < A.length; i++) {
             for (int j = m; j > 0; j--) {
-                if (j >= A[i]) dp[j] = Math.max(dp[j], dp[j-A[i]] + A[i]);
+                if (j >= A[i]) {
+		    dp[j] = Math.max(dp[j], dp[j-A[i]]+A[i]);
+		}
             }
         }
         return dp[m];
