@@ -10,18 +10,6 @@ Example
     return 6.
 */
 
-/**
- * Definition of TreeNode:
- * public class TreeNode {
- *     public int val;
- *     public TreeNode left, right;
- *     public TreeNode(int val) {
- *         this.val = val;
- *         this.left = this.right = null;
- *     }
- * }
- */
-
 /*
 Thought process:
     Each path has a highest node, which is also the lowest common ancestor of all other nodes in the path. 
@@ -38,6 +26,18 @@ Thought process:
         Update max during recursion. 
 */
 
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+
 public class Solution {
     private int max = Integer.MIN_VALUE;
     public int maxPathSum(TreeNode root) {
@@ -50,7 +50,7 @@ public class Solution {
         int left = maxPath(root.left);
         int right = maxPath(root.right);
         // update max
-        max = Math.max(max, left + right + root.val);
+        max = Math.max(max, left+right+root.val);
         max = Math.max(max, root.val);
         return Math.max(left, right) + root.val;
     }
