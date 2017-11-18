@@ -21,7 +21,7 @@ public class Solution {
         for (int i = 0; i < prerequisites.length; i++) {
 	    indegree[prerequisites[i][0]]++;
 	}
-        Queue<Integer> q = new LinkedList<Integer>();
+        Queue<Integer> q = new LinkedList<>();
         for (int i = 0; i < numCourses; i++) {
             if (indegree[i] == 0) {
                 order[index++] = i;
@@ -47,7 +47,7 @@ public class Solution {
 // method 2
 public class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
-        ArrayList<Integer>[] adjList = new ArrayList[numCourses];
+        List<Integer>[] adjList = new ArrayList[numCourses];
         int[] inDegree = new int[numCourses];
         int[] result = new int[numCourses];
         for (int i = 0; i < numCourses; i++) {
@@ -57,25 +57,23 @@ public class Solution {
             adjList[prerequisites[i][1]].add(prerequisites[i][0]);
             inDegree[prerequisites[i][0]]++;
         }
-        Queue<Integer> queue = new LinkedList<>();
+        Queue<Integer> q = new LinkedList<>();
         for (int i = 0; i < inDegree.length; i++) {
             if (inDegree[i] == 0) {
-                queue.offer(i);
+                q.offer(i);
             }
         }
         int count = 0;
-        while (!queue.isEmpty()) {
-            int v = queue.poll();
+        while (!q.isEmpty()) {
+            int v = q.poll();
             result[count++] = v;
             for (int w : adjList[v]) {
                 inDegree[w]--;
                 if (inDegree[w] == 0) {
-                    queue.offer(w);
+                    q.offer(w);
                 }
             }
         }
-        if (numCourses == count) return result;
-        return new int[0];
+        return numCourses == count ? result : new int[0];
     }
 }
-
