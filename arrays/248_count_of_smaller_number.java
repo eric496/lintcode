@@ -20,9 +20,9 @@ Thought process:
 */
 
 public class Solution {
-    public ArrayList<Integer> countOfSmallerNumber(int[] A, int[] queries) {
+    public List<Integer> countOfSmallerNumber(int[] A, int[] queries) {
         Arrays.sort(A);
-        ArrayList<Integer> result = new ArrayList<Integer>();
+        List<Integer> result = new ArrayList<>();
         for (int q : queries) {
 	    result.add(binarySearch(A, q));
 	}
