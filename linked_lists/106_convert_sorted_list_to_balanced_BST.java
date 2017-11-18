@@ -9,9 +9,11 @@ Example
 
 /*
 Thought process:
-    1. Use two pointers (slow and fast) to find the mid point
-    2. Recursively build the BST, use prev to terminate each sub linked list
-       so that there is a null at the end of each sub linked list. 
+    Recursive solution:
+        Base case: Return null if the current node is null. Return the current node if its next node is null.
+        Recursive step: Use a slow and a fast pointers to find the mid node (root node for a subtree).
+                        Break the sub linked list by tracking the node before the slow pointer (prev), and making prev.next = null.
+                        Recursively build the left subtree (from head to slow) and the right subtree (from slow.next to end).
 */
 
 /**
@@ -37,17 +39,17 @@ Thought process:
  
 public class Solution {
     public TreeNode sortedListToBST(ListNode head) {
-        if(head == null) return null;
-        if(head.next == null) return new TreeNode(head.val);
-        ListNode prev = null;
+        if (head == null) return null;
+        if (head.next == null) return new TreeNode(head.val);
+        ListNode prevSlow = null;
         ListNode slow = head;
         ListNode fast = head;
-        while(fast != null && fast.next != null) {
-            prev = slow;
+        while (fast != null && fast.next != null) {
+            prevSlow = slow;
             fast = fast.next.next;
             slow = slow.next;
         }
-        prev.next = null;
+        prevSlow.next = null;
         TreeNode root = new TreeNode(slow.val);
         root.left = sortedListToBST(head);
         root.right = sortedListToBST(slow.next);
