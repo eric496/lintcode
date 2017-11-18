@@ -8,21 +8,21 @@ Example
 /*
 Thought process:
     Similar to 41. Subarray Sum, but need to record indices.
-    If previous sum is negative, then current element is the max sum. So update both first and last indices to current index.
+    If the previous sum is negative, then the current element is the max sum. So update both first and last indices to current index.
     Otherwise, local max should include current element, and only update the last index to current index.
     Update global index if local max is greater than global max, and update the resulting indices accordingly.
     Remember to add values to result at first, or ArrayList set() method won't work for an empty arraylist.
 */
 
 public class Solution {
-    public ArrayList<Integer> continuousSubarraySum(int[] A) {
-        ArrayList<Integer> result = new ArrayList<Integer>();
-        if(A == null || A.length == 0) return result;
+    public List<Integer> continuousSubarraySum(int[] A) {
+        List<Integer> result = new ArrayList<>();
+        if (A == null || A.length == 0) return result;
         result.add(0);
         result.add(0);
         int first = 0, last = 0, localMax = A[0], globalMax = A[0];
-        for(int i = 1; i < A.length; i++) {
-            if(localMax < 0) {
+        for (int i = 1; i < A.length; i++) {
+            if (localMax < 0) {
                 localMax = A[i];
                 first = i;
                 last = i;
@@ -30,7 +30,7 @@ public class Solution {
                 localMax += A[i];
                 last = i;
             }
-            if(localMax > globalMax) {
+            if (localMax > globalMax) {
                 globalMax = localMax;
                 result.set(0, first);
                 result.set(1, last);
