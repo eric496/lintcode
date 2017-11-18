@@ -20,6 +20,13 @@ Example
     return a deep copied graph.
 */
 
+/*
+Thought process:
+    Use a queue to store all nodes, and use a hashmap to store <original, copy> pairs. 
+    Iteratively pop and push node's neighbors into the queue. Iterate all neighbors of the current node, if it exists in hashmap keys, 
+    add it to the current copy's neighbors and continue the loop. If it does not exist as a key, add it as a key and create a copy as its value.
+*/
+
 /**
  * Definition for undirected graph.
  * class UndirectedGraphNode {
@@ -31,25 +38,24 @@ Example
 
 public class Solution {
     public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
-        if(node == null) return null;
-        UndirectedGraphNode root = null;
-        HashMap<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<UndirectedGraphNode, UndirectedGraphNode>();
-        Queue<UndirectedGraphNode> q = new LinkedList<UndirectedGraphNode>();
+        if (node == null) return null;
+        Map<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<>();
+        Queue<UndirectedGraphNode> q = new LinkedList<>();
         q.offer(node);
         UndirectedGraphNode rootCopy = new UndirectedGraphNode(node.label);
         map.put(node, rootCopy);
-        while(!q.isEmpty()) {
+        while (!q.isEmpty()) {
             UndirectedGraphNode cur = q.poll();
             UndirectedGraphNode curCopy = map.get(cur);
-            for(UndirectedGraphNode child: cur.neighbors) {
-                if(map.containsKey(child)) {
-                    curCopy.neighbors.add(map.get(child));
+            for (UndirectedGraphNode neighbor: cur.neighbors) {
+                if (map.containsKey(neighbor)) {
+                    curCopy.neighbors.add(map.get(neighbor));
                     continue;
                 }
-                q.offer(child);
-                UndirectedGraphNode childCopy = new UndirectedGraphNode(child.label);
-                curCopy.neighbors.add(childCopy);
-                map.put(child, childCopy);
+                q.offer(neighbor);
+                UndirectedGraphNode neighborCopy = new UndirectedGraphNode(neighbor.label);
+                curCopy.neighbors.add(neighborCopy);
+                map.put(neighbor, neighborCopy);
             }
         }
         return rootCopy;
