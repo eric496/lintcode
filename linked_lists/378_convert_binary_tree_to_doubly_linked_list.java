@@ -11,6 +11,11 @@ Example
     return 1<->2<->3<->4<->5
 */
 
+/*
+Thought process: 
+    Almost same to 67. Binary Tree Inorder Traversal. Only difference is to connect nodes when it is popped from the stack.
+*/
+
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -21,6 +26,7 @@ Example
  *         this.left = this.right = null;
  *     }
  * }
+
  * Definition for Doubly-ListNode.
  * public class DoublyListNode {
  *     int val;
@@ -34,25 +40,23 @@ Example
 
 public class Solution {
     public DoublyListNode bstToDoublyList(TreeNode root) {
-        if(root == null) return null;
-        Stack<TreeNode> s = new Stack<TreeNode>();
+        Stack<TreeNode> s = new Stack<>();
+        DoublyListNode dummyhead = new DoublyListNode(-1);
+        DoublyListNode runner = dummyhead;
         TreeNode node = root;
-        s.push(node);
-        DoublyListNode head = new DoublyListNode(0);
-        DoublyListNode runner = head;
-        while(!s.isEmpty()) {
-            while(node != null && node.left != null) {
-                s.push(node.left);
+        while (!s.isEmpty() || node != null) {
+            if (node != null) {
+                s.push(node);
                 node = node.left;
+            } else {
+                node = s.pop();
+                DoublyListNode cur = new DoublyListNode(node.val);
+                runner.next = cur;
+                cur.prev = runner;
+                runner = runner.next;
+                node = node.right;
             }
-            node = s.pop();
-            DoublyListNode cur = new DoublyListNode(node.val);
-            runner.next = cur;
-            cur.prev = runner;
-            runner = runner.next;
-            node = node.right;
-            if(node != null) s.push(node);
         }
-        return head.next;
+        return dummyhead.next;
     }
 }
