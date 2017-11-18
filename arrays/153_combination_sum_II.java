@@ -42,7 +42,7 @@ public class Solution {
             for (int i = index; i < num.length; i++) {
                 if (i != index && num[i] == num[i-1]) continue;
                 curSeq.add(num[i]);
-                dfs(result, curSeq, num, target - num[i], i+1);
+                dfs(result, curSeq, num, target-num[i], i+1);
                 curSeq.remove(curSeq.size()-1);
             }
         }
