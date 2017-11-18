@@ -15,7 +15,12 @@ Example
 
 /*
 Thought process:
-    DFS
+    DFS: Sort the array first. Pass in result list, sub result list, array, target, and search start index.
+         If target is 0, it means we have found one sub result list, then add it to the result list. 
+         If target is not 0, iterate the array from the current start index. 
+             If current element is greater than target, break the loop (because following elements are all greater given the array is sorted)
+             Add the current element to the sub result list. Run recursively using the target minus the current element. 
+             Remove the last sub result list because target is always 0 in the last recursion and we add an empty sub result list in the last run.
 */
 
 // O(2^n) time and O(1) space
@@ -34,10 +39,9 @@ public class Solution {
             for (int i = index; i < num.length; i++) {
                 if (target < num[i]) break;
                 curSeq.add(num[i]);
-                dfs(result, curSeq, num, target - num[i], i);
+                dfs(result, curSeq, num, target-num[i], i);
                 curSeq.remove(curSeq.size()-1);
             }
         }
-        
     }
 }
