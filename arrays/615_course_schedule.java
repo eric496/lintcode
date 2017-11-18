@@ -19,22 +19,28 @@ Thought process:
 // BFS (Topological Sort)
 public class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        HashMap<Integer, ArrayList<Integer>> map = new HashMap<Integer, ArrayList<Integer>>();
+        Map<Integer, ArrayList<Integer>> map = new HashMap<>();
         int[] indegree = new int[numCourses];
-        Queue<Integer> q = new LinkedList<Integer>();
-        for(int i = 0; i < numCourses; i++) map.put(i, new ArrayList<Integer>());
-        for(int i = 0; i < prerequisites.length; i++) {
+        Queue<Integer> q = new LinkedList<>();
+        for (int i = 0; i < numCourses; i++) {
+            map.put(i, new ArrayList<Integer>());
+        }
+        for (int i = 0; i < prerequisites.length; i++) {
             map.get(prerequisites[i][0]).add(prerequisites[i][1]);
             indegree[prerequisites[i][1]]++;
         }
-        for(int i = 0; i < numCourses; i++) {
-            if(indegree[i] == 0) q.offer(i);
+        for (int i = 0; i < numCourses; i++) {
+            if (indegree[i] == 0) {
+                q.offer(i);
+            }
         }
         int count = numCourses;
-        while(!q.isEmpty()) {
+        while (!q.isEmpty()) {
             int course = q.poll();
-            for(int i : map.get(course)) {
-                if(--indegree[i] == 0) q.offer(i);
+            for (int i : map.get(course)) {
+                if (--indegree[i] == 0) {
+                    q.offer(i);
+                }
             }
             count--;
         }
