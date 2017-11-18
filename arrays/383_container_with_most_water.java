@@ -18,10 +18,10 @@ Thought process:
 public class Solution {
     public int maxArea(int[] heights) {
         int left = 0, right = heights.length - 1;
-        int result = 0 ;
+        int maxSofar = 0 ;
         while (left <= right) {
             int area = (right - left) * Math.min(heights[left], heights[right]);
-            result = Math.max(result, area);
+            maxSofar = Math.max(maxSofar, area);
             if (heights[left] < heights[right]) {
                 left++;
             } else if (heights[left] > heights[right]) {
@@ -31,6 +31,6 @@ public class Solution {
                 right--;
             }
         }
-        return result;
+        return maxSofar;
     }
 }
