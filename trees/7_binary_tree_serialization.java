@@ -15,6 +15,14 @@ Example
     You can use other method to do serializaiton and deserialization.
 */
 
+/*
+Thought process:
+    1. Serialization: (by recursion)
+           Base case: Append void character and splitter if the current node is null
+           Recursive step: Append the current node value and splitter, then runs recursively on the left and the right subtrees.
+    2. Deserialization: 
+*/
+
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -47,7 +55,7 @@ public class Solution {
         } else {
             sb.append(node.val).append(spliter);
             buildString(node.left, sb);
-            buildString(node.right,sb);
+            buildString(node.right, sb);
         }
     }
 
@@ -59,19 +67,21 @@ public class Solution {
      * "serialize" method.
      */
     public TreeNode deserialize(String data) {
-        Deque<String> nodes = new LinkedList<>();
-        nodes.addAll(Arrays.asList(data.split(spliter)));
-        return buildTree(nodes);
+        Queue<String> q = new LinkedList<>();
+        q.addAll(Arrays.asList(data.split(spliter)));
+        return buildTree(q);
     }
     
-    private TreeNode buildTree(Deque<String> nodes) {
-        String val = nodes.remove();
-        if (val.equals(NN)) return null;
-        else {
+    private TreeNode buildTree(Queue<String> nodes) {
+        String val = nodes.poll();
+        if (val.equals(NN)) {
+             return null;
+        } else {
             TreeNode node = new TreeNode(Integer.valueOf(val));
             node.left = buildTree(nodes);
             node.right = buildTree(nodes);
             return node;
         }
     }
+
 }
