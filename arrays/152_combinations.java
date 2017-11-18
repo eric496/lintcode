@@ -8,14 +8,14 @@ Example
 
 /*
 Thought process:
-    DFS
+    DFS: 
 */
 
 public class Solution {
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
-        List<Integer> curSeq = new ArrayList<Integer>();
         if (n <= 0 || k <= 0) return result;
+        List<Integer> curSeq = new ArrayList<Integer>();
         dfs(result, curSeq, n, k, 1);
         return result;
     }
@@ -25,11 +25,10 @@ public class Solution {
             result.add(new ArrayList<Integer>(curSeq));
             return;
         }
-
         for (int i = index; i <= n; i++) {
             curSeq.add(i);
-            dfs(result, curSeq, n, k, i + 1);
-            curSeq.remove(curSeq.size() - 1);
+            dfs(result, curSeq, n, k, i+1);
+            curSeq.remove(curSeq.size()-1);
         }
     }
 }
