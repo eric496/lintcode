@@ -19,7 +19,15 @@ Example
 
 /*
 Thought process:
-    DP
+    DP: Create a dp array to store the max obtainable price given a certain length (which is just the index of the dp array).
+        Given length i, we can use a bottom-up approach to calculate dp[i]:
+            1) Cutting at length 0, we obtain prices[0] + dp[i-1]; (minus 1 because we include prices[0], so the total length should decrease by 1).
+            2) Cutting at length 1, we obtain prices[1] + dp[i-1-1];
+            3) Cutting at length 2, we obtain prices[2] + dp[i-2-1];
+            4) Cutting at length 3, we obtain prices[3] + dp[i-3-1];
+            ...
+            i) Cutting at length i-1, we obtain prices[i-1] + dp[0].
+        Select the max value from 1) to i) and use it as dp[i].
 */
 
 public class Solution {
@@ -29,7 +37,7 @@ public class Solution {
         for (int i = 1; i <= n; i++) {
             int max = Integer.MIN_VALUE;
             for (int j = 0; j < i; j++) {
-                max = Math.max(max, prices[j] + dp[i-j-1]);
+                max = Math.max(max, prices[j]+dp[i-j-1]);
             }
             dp[i] = max;
         }
