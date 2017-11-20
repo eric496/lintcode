@@ -16,31 +16,48 @@ Challenge
 
 /*
 Thought process:
-    1. Sort the array and use binary search.
+    1. Just loop
+    2. Sort the array and use binary search (return the index instead of the element).
 */
 
+// O(n^2) time
 public class Solution {
     public List<Integer> countOfSmallerNumber(int[] A, int[] queries) {
-        Arrays.sort(A);
         List<Integer> result = new ArrayList<>();
-        for (int q : queries) {
-	    result.add(binarySearch(A, q));
-	}
-        return result;
-    }
-    
-    private int binarySearch(int[] A, int val) {
-        int start = 0, end = A.length - 1;
-        int result = 0;
-        while (start <= end) {
-            int mid = start + (end - start) / 2;
-            if (A[mid] >= val) {
-                end = mid - 1;
-            } else {
-                result = mid + 1;
-                start = mid + 1;
+        for (int query : queries) {
+            int sum = 0;
+            for (int num : A) {
+                if (num < query) {
+                    sum++;
+                }
             }
+            result.add(sum);
         }
         return result;
+    }
+}
+
+// O(logn) time
+public class Solution {
+    public ArrayList<Integer> countOfSmallerNumber(int[] A, int[] queries) {
+        Arrays.sort(A);
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        for (int q : queries) {
+            result.add(binarySearch(A, q));
+        }
+        return result;
+    }
+
+    private int binarySearch(int[] A, int val) {
+        int low = 0, high = A.length - 1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (A[mid] >= val) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return low;
     }
 }
