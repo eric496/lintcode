@@ -15,7 +15,7 @@ public class Solution {
         long result = 0;
         while (dvd >= dvs) {
             long tmp = dvs, multiple = 1;
-            while(dvd >= (tmp << 1)) {
+            while (dvd >= (tmp << 1)) {
                 tmp <<= 1;
                 multiple <<= 1;
             }
