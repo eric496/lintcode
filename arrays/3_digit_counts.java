@@ -9,7 +9,7 @@ Example
 
 /*
 Thought process:
-    1. Brute force: Iterate the array, check each element digit by digit, keep the number of apperance of the target digit.
+    Iterate the array, check each digit of an element.
 */
 
 // O(n^2) time and O(1) space
@@ -21,7 +21,9 @@ public class Solution {
             int num = i;
             // excute at least once in case k = 0
             do {
-                if (num % 10 == k) count++;
+                if (num % 10 == k) {
+		    count++;
+		}
                 num /= 10;
             } while (num != 0);
         }
