@@ -9,28 +9,29 @@ Example
 
 /*
 Thought process:
-    Use a stack, push integers into the stack, once we meet an arithmetic operator, pop the top 2 elements and do the calculation and push the result back into the stack.
+    Use a stack, push integers into the stack, once we meet an arithmetic operator, pop the top 2 elements, do the calculation and push the result back into the stack.
     Finally we have only one element in the stack which is the result. Notice we use .equals() method instead of "==" to compare value instead of reference.
+    Calculation order matters for subtraction and division, so create temporary variables to store the first popped element
 */
 
 public class Solution {
     public int evalRPN(String[] tokens) {
-        Stack<Integer> s = new Stack<Integer>();
+        Stack<Integer> stack = new Stack<>();
         for (String token : tokens) {
             if (token.equals("+")) {
-                s.push(s.pop() + s.pop());
-            } else if(token.equals("-")) {
-                int num = s.pop();
-                s.push(s.pop() - num);
-            } else if(token.equals("*")) {
-                s.push(s.pop() * s.pop());
-            } else if(token.equals("/")) {
-                int num = s.pop();
-                s.push(s.pop() / num);
+                stack.push(stack.pop() + stack.pop());
+            } else if (token.equals("-")) {
+                int num = stack.pop();
+                stack.push(stack.pop()-num);
+            } else if (token.equals("*")) {
+                stack.push(stack.pop()*stack.pop());
+            } else if (token.equals("/")) {
+                int num = stack.pop();
+                stack.push(stack.pop()/num);
             } else {
-                s.push(Integer.parseInt(token));
+                stack.push(Integer.parseInt(token));
             }
         }
-        return s.pop();
+        return stack.pop();
     }
 }
