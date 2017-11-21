@@ -19,7 +19,8 @@ Example
 
 /*
 Thought process:
-    DP: Create a dp array to store the max obtainable price given a certain length (which is just the index of the dp array).
+    1. DP: (using 2-D array) Similar to Knapsack problem that allows duplicate items. 
+    2. DP: (improved memory): Create a dp array to store the max obtainable price given a certain length (which is just the index of the dp array).
         Given length i, we can use a bottom-up approach to calculate dp[i]:
             1) Cutting at length 0, we obtain prices[0] + dp[i-1]; (minus 1 because we include prices[0], so the total length should decrease by 1).
             2) Cutting at length 1, we obtain prices[1] + dp[i-1-1];
@@ -30,6 +31,25 @@ Thought process:
         Select the max value from 1) to i) and use it as dp[i].
 */
 
+// DP - 2D array
+public class Solution {
+    public int cutting(int[] prices, int n) {
+        int numRows = prices.length, numCols = n + 1;
+        int[][] dp = new int[numRows][numCols];
+        for (int row = 0; row < numRows; row++) {
+            for (int col = 1; col < numCols; col++) {
+                if (row == 0) {
+                    dp[row][col] = prices[row] * col;
+                } else {
+                    dp[row][col] = col < row + 1 ? dp[row-1][col] : Math.max(dp[row-1][col], prices[row]+dp[row][col-row-1]);
+                }
+            }
+        }
+        return dp[numRows-1][n];
+    }
+}
+
+// DP - 1D array
 public class Solution {
     public int cutting(int[] prices, int n) {
         int dp[] = new int[n+1];
