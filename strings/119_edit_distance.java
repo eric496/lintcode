@@ -24,11 +24,11 @@ Thought process:
     Add an extra row and column which represent empty strings. The row represent partial string. 
     For example, row 2 and column 5 (which is 4) represents converting from "abcd" to "a".
     There are two cases: 
-        1) the current character is different from the converted (insert, delete, replace are all possible operations)
-           draw a square of 4 elements using the current cell as the bottom right one. Use the minimum of the other 3 element, 
-           plus 1 as the result for the current cell value.
+        1) The current character is different from the converted (insert, delete, replace are all possible operations)
+           To delete, dp[i][j] = dp[i][j-1]+1. To insert, dp[i][j] = dp[i-1][j]+1. To replace, dp[i][j] = dp[i-1][j-1]+1.
+           We pick whichever is minimal as the current cell value.
         2) the current character is the same as the converted (nothing needs to be done)
-           draw the same square and use the diagonal element as the current cell value.
+           dp[i][j] = dp[i-1][j-1]
 */
 
 // O(n^2) time and O(n^2) space
