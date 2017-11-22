@@ -18,14 +18,14 @@ Challenge
 */
 
 public class Solution {
-    public ArrayList<Integer> grayCode(int n) {
-        ArrayList<Integer> result = new ArrayList<Integer>();
+    public List<Integer> grayCode(int n) {
+        List<Integer> result = new ArrayList<>();
         result.add(0);  
-        for (int i=0; i< n; i++) {  
+        for (int i = 0; i < n; i++) {  
             int highestBit = 1 << i;  
             int len = result.size();  
             for (int j = len - 1; j >= 0; j--) {
-                result.add(highestBit + result.get(j));  
+                result.add(highestBit+result.get(j));
             }
         }  
         return result;  
