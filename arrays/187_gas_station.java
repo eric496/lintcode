@@ -15,9 +15,9 @@ Challenge
 
 /*
 Thought process:
-    Iterate the gas array, calculate the cumulative remaining gas by sum += gas[i] + cost[i]. Once sum is found smaller than 0, 
-    we should set sum to default and keep the current index, based on the fact that if the car starts at A and cannot reach B (but can reach any station before B), 
-    then any we cannot reach B starting from any station between A and B.
+    Iterate the gas array, calculate the cumulative remaining gas by sum += gas[i] - cost[i]. Once sum is found smaller than 0, 
+    we should set sum to zero and keep the current index, based on the fact that if the car starts at A but cannot reach B (but can reach any station before B), 
+    then we cannot reach B starting from any station between A and B.
     This is not that intuitive but we can prove it by contradiction. Suppose the car starts from a station C which is between A and B.
     We assume that the car can reach B, since B is the first station that the car cannot reach starting from A, and C is before B, 
     so the car can reach C starting from A. Thus, the car, starting from A, can reach B via C, which is a contradiction to the fact that the car cannot reach B starting from A.
