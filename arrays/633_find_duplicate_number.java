@@ -21,7 +21,7 @@ Thought process:
 // O(n) time and O(1) space
 public class Solution {
     public int findDuplicate(int[] nums) {
-        if(nums == null || nums.length <= 1) return -1;
+        if (nums == null || nums.length <= 1) return -1;
         Arrays.sort(nums);
         for (int i = 0; i < nums.length - 1; i++) {
             if (nums[i] == nums[i+1]) return nums[i];;
@@ -33,14 +33,14 @@ public class Solution {
 // O(n) time and O(1) space
 public class Solution {
     public int findDuplicate(int[] nums) {
-        if(nums == null || nums.length <= 1) return -1;
+        if (nums == null || nums.length <= 1) return -1;
         int slow = nums[0], fast = nums[nums[0]];
-        while(slow != fast) {
+        while (slow != fast) {
             slow = nums[slow];
             fast = nums[nums[fast]];
         }
         fast = 0;
-        while(slow != fast) {
+        while (slow != fast) {
             slow = nums[slow];
             fast = nums[fast];
         }
