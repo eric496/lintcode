@@ -45,12 +45,14 @@ public class Solution {
     public int findMissing(int[] nums) {
         int n = nums.length;
         int sum = n * (n + 1) / 2;
-        for (int num : nums) sum -= num;
+        for (int num : nums) {
+	    sum -= num;
+	}
         return sum;
     }
 }
 
-// O(logn) time
+// O(n) time
 public class Solution {
     public int findMissing(int[] nums) {
         if (nums == null || nums.length == 0) return -1;
