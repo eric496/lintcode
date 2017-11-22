@@ -30,8 +30,10 @@ class Solution {
         int low = 0, high = A.length - 1;
         while (low < high) {
             int mid = low + (high - low) / 2;
+            // if A[mid] < A[mid+1], then there must be a peak in [mid+1, n] because there is at least one peak in the arary
             if (A[mid] < A[mid+1]) {
                 low = mid + 1;
+            // if A[mid] >= A[mid+1], then there must be a peak in [0, mid] because there is at least one peak in the array
             } else {
                 high = mid;
             }
