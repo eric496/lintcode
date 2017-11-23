@@ -66,8 +66,12 @@ class Solution {
         int posIndex = numPos > numNeg ? 0 : 1;
         int negIndex = numPos > numNeg ? 1 : 0;
         while (negIndex < A.length && posIndex < A.length) {  
-            while (negIndex < A.length && A[negIndex] < 0) negIndex += 2;  
-            while (posIndex < A.length && A[posIndex] > 0) posIndex += 2;
+            while (negIndex < A.length && A[negIndex] < 0) {
+		negIndex += 2;  
+	    }
+            while (posIndex < A.length && A[posIndex] > 0) {
+		posIndex += 2;
+	    }
             if (posIndex < A.length && negIndex < A.length) {
                 swap(posIndex, negIndex, A);
                 posIndex += 2;
