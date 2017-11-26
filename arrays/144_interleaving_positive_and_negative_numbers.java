@@ -81,8 +81,8 @@ class Solution {
     }
 
     void swap(int left, int right, int[] A) {
-        int tmp = A[left];
+        int temp = A[left];
         A[left] = A[right];
-        A[right] = tmp;
+        A[right] = temp;
     }
 }
