@@ -16,8 +16,7 @@ Example
 
 /*
 Thought process:
-    Create a variable to store the max jump (which is the largest reachable index). Iterate the array, if the max jump is smaller than the current index, 
-    which means it can not jump to the next index, return false immediately.
+    Create a variable to store the max jump (which is the largest reachable index). Iterate the array, if the max jump is smaller than the current index, which means it can not jump to the next index, return false immediately.
     Update the max jump if sum of the current index and current jump length is greater than or equal to max jump so far.
     Finally check if the max jump is greater than or equal to the last index of the array.
 */
