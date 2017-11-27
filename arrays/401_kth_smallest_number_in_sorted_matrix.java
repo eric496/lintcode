@@ -11,7 +11,12 @@ Example
 return 5
 
 Challenge
-    Solve it in O(k log n) time where n is the bigger one between row size and column size.
+    Solve it in O(klogn) time where n is the bigger one between row size and column size.
+*/
+
+/*
+Thought process:
+    Binary search
 */
 
 // binary search 
@@ -21,14 +26,17 @@ public class Solution {
         while(low < high) {
             int mid = low + (high - low) / 2;
             int count = 0,  j = matrix[0].length - 1;
-            for(int i = 0; i < matrix.length; i++) {
-                while(j >= 0 && matrix[i][j] > mid) j--;
+            for (int i = 0; i < matrix.length; i++) {
+                while(j >= 0 && matrix[i][j] > mid) {
+		    j--;
+		}
                 count += (j + 1);
             }
-            if(count < k) 
+            if (count < k) {
                 low = mid + 1;
-            else 
+            } else {
                 high = mid;
+	    }
         }
         return low;
     }
