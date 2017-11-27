@@ -9,7 +9,12 @@ Example
     Given nums = [1,2,4,8], return [1,2,4,8]
 */
 
-// O(n^2) time DP
+/*
+Thought process:
+    DP
+*/
+
+// O(n^2) time
 public class Solution {
     public List<Integer> largestDivisibleSubset(int[] nums) {
         int n = nums.length;
@@ -33,11 +38,11 @@ public class Solution {
                 index = i;
             }
         }
-        List<Integer> res = new ArrayList<>();
+        List<Integer> result = new ArrayList<>();
         while (index != -1) {
-            res.add(nums[index]);
+            result.add(nums[index]);
             index = pre[index];
         }
-        return res;
+        return result;
     }
 }
