@@ -12,11 +12,19 @@ Challenge
 
 /*
 Thought process:
-    DP
+    DP: Use s1 and s2 to build a DP table:
+        0  |  a  |  a  |  b  |  c  |  c  |
+     0  T     T     T     F     F     F     
+     d  F     
+     b  F        
+     b  F
+     c  F
+     a  F
 */
 
 public class Solution {
     public boolean isInterleave(String s1, String s2, String s3) {
+	if (s1 == null || s2 == null || s3 == null) return false;
         if ((s1.length() + s2.length()) != s3.length()) return false;
         boolean[][] dp = new boolean[s2.length()+1][s1.length()+1];
         dp[0][0] = true;
