@@ -7,6 +7,10 @@ Example
     return [[1,1],[2,5],[4,4]]
 */
 
+/*
+Thought process:
+*/
+
 /**
  * Definition for a point.
  * class Point {
@@ -24,18 +28,26 @@ public class Solution {
         PriorityQueue<Point> pq = new PriorityQueue<Point>(k, new Comparator<Point>() {
             public int compare(Point a, Point b) {
                 int diff = getDistance(b, globalOrigin) - getDistance(a, globalOrigin);
-                if(diff == 0) diff = b.x - a.x;
-                if (diff == 0) diff = b.y - a.y;
+                if(diff == 0) {
+		    diff = b.x - a.x;
+		}
+                if (diff == 0) {
+		    diff = b.y - a.y;
+		}
                 return diff;
             }
         });
         
         for (Point pt : points) {
             pq.add(pt);
-            if (pq.size() > k) pq.poll();
+            if (pq.size() > k) {
+		pq.poll();
+	    }
         }
         Point[] result = new Point[k];
-        while (k - 1 >= 0) result[--k] = pq.poll();
+        while (k - 1 >= 0) {
+	    result[--k] = pq.poll();
+	}
         return result;
     }
     
