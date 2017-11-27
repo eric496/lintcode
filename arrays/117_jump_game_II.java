@@ -10,6 +10,7 @@ Example
 
 /*
 Thought process:
+
 */
 
 public class Solution {
@@ -17,8 +18,10 @@ public class Solution {
 	int numJumps = 0;
         int prevJumpMax = 0;
         int curJumpMax = 0;
-        for(int i = 0; i < A.length - 1; i++) {
-            if (i + A[i] > curJumpMax) curJumpMax = i + A[i];
+        for (int i = 0; i < A.length - 1; i++) {
+            if (i + A[i] > curJumpMax) {
+		curJumpMax = i + A[i];
+	    }
             if (i == prevJumpMax) {
                 numJumps++;
                 prevJumpMax = curJumpMax;
