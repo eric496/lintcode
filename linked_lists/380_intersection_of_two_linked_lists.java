@@ -33,9 +33,9 @@ Challenge
 
 /*
 Thought process:
-    Observe that the intersection always occurs at the "tail" part of two lists. We look for the beginning node of the intersection by iteratively comparing a pair of nodes from both lists. 
-    Thus in order to let two lists reach at the beginning node of the intersection at the same time, we will let the longer list starts to traverse by n nodes, where n is the length difference 
-    between the two lists. Next, we traverse both lists of the same length, and look for the first identical node.
+    Observe that the intersection always occurs at the "tail" part of the two lists. We look for the beginning node of the intersection by iteratively comparing a pair of nodes from both lists. 
+    Thus in order to let two lists reach at the beginning node of the intersection at the same time, we will let the longer list starts to traverse by n nodes beforehand, where n is the length difference 
+    of the two lists. Next, we traverse both lists at the same pace, and look for the first identical node to return.
 */
 
 public class Solution {
@@ -58,7 +58,7 @@ public class Solution {
             for (int i = 0; i < lengthB - lengthA; i++) {
                 pointB = pointB.next;
             }
-        } else if(lengthA > lengthB) {
+        } else if (lengthA > lengthB) {
             for (int i = 0; i < lengthA - lengthB; i++) {
                 pointA = pointA.next;
             }
