@@ -5,21 +5,17 @@ Example
     For example, given the array [2,3,-2,4], the contiguous subarray [2,3] has the largest product = 6.
 */
 
-// DP
 public class Solution {
     public int maxProduct(int[] nums) {
         if (nums.length == 0) return 0;
-        int maxherepre = nums[0];
-        int minherepre = nums[0];
-        int maxsofar = nums[0];
-        int maxhere, minhere;
+        int maxPrev = nums[0], minPrev = nums[0], max = nums[0], maxSofar, minSofar;
         for (int i = 1; i < nums.length; i++) {
-            maxhere = Math.max(Math.max(maxherepre * nums[i], minherepre * nums[i]), nums[i]);
-            minhere = Math.min(Math.min(maxherepre * nums[i], minherepre * nums[i]), nums[i]);
-            maxsofar = Math.max(maxhere, maxsofar);
-            maxherepre = maxhere;
-            minherepre = minhere;
+            maxSofar = Math.max(Math.max(maxPrev*nums[i], minPrev*nums[i]), nums[i]);
+            minSofar = Math.min(Math.min(maxPrev*nums[i], minPrev*nums[i]), nums[i]);
+            max = Math.max(maxSofar, max);
+            maxPrev = maxSofar;
+            minPrev = minSofar;
         }
-        return maxsofar;
+        return max;
     }
 }
