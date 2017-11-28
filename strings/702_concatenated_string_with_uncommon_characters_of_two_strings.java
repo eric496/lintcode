@@ -49,12 +49,12 @@ public class Solution {
             if (map.containsKey(c)) {
                 map.put(c, 0);
             } else {
-                sb.append(String.valueOf(c));
+                sb.append(c);
             }
         }
         for (char c : s2.toCharArray()) {
             if (map.get(c) == 1) {
-                sb.append(String.valueOf(c));
+                sb.append(c);
             }
         }
         return sb.toString();
