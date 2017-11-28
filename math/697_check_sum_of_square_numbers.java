@@ -17,7 +17,7 @@ Thought process:
 public class Solution {
     public boolean checkSumOfSquareNumbers(int num) {
         for (long a = 0; a * a <= num; a++) {
-            int b = num - (int)(a * a);
+            int b = num - (int)(a*a);
             if (binarySearch(0, b, b)) return true;
         }
         return false;
