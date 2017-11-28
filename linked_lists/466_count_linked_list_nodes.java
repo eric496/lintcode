@@ -5,6 +5,12 @@ Example
     Given 1->3->5, return 3.
 */
 
+/*
+Thought process:
+    Create a dummyhead and link its next pointer to the real head, then traverse the list and increment the counter at each iteration.
+    We do not use the real head as the runner pointer because that will cause lost track of the list and it will be garbage collected.
+*/
+
 /**
  * Definition for ListNode.
  * public class ListNode {
