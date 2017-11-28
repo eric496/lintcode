@@ -15,27 +15,27 @@ Challenge
 
 public class Solution {
     public int maxTwoSubArrays(List<Integer> nums) {
-        if(nums == null || nums.size() == 0) return 0;
+        if (nums == null || nums.size() == 0) return 0;
         int n = nums.size();
-        int [] left = new int[n];
-        int local = 0;
-        int global = Integer.MIN_VALUE;
-        for(int i = 0; i<n; i++){
-            local = Math.max(local + nums.get(i), nums.get(i));
-            global = Math.max(global, local);
-            left[i] = global;
+        int[] leftMax = new int[n];
+        int maxSofar = 0, max = Integer.MIN_VALUE;
+        for (int i = 0; i < n; i++){
+            maxSofar = Math.max(maxSofar+nums.get(i), nums.get(i));
+            max = Math.max(max, maxSofar);
+            leftMax[i] = max;
         }
-        int [] right = new int[n];
-        local = 0;
-        global = Integer.MIN_VALUE;
-        for(int i = n-1; i>=0; i--){
-            local = Math.max(local + nums.get(i), nums.get(i));
-            global = Math.max(global, local);
-            right[i] = global;
+        int[] rightMax = new int[n];
+        maxSofar = 0;
+        max = Integer.MIN_VALUE;
+        for (int i = n - 1; i >= 0; i--){
+            maxSofar = Math.max(maxSofar+nums.get(i), nums.get(i));
+            max = Math.max(max, maxSofar);
+            rightMax[i] = max;
         }
         int result = Integer.MIN_VALUE;
-        for(int i = 0; i<n-1; i++)
-            result = Math.max(result, left[i] + right[i+1]);
+        for (int i = 0; i < n - 1; i++) {
+            result = Math.max(result, leftMax[i]+rightMax[i+1]);
+        }
         return result;
     }
 }
