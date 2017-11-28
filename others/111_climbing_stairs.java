@@ -17,7 +17,7 @@ Thought process:
     3. DP: bottom-up method
 */
 
-// recursive
+// recursive (it causes TLE)
 public class Solution {
     public int climbStairs(int n) {
         if(n <= 2) return n;
@@ -30,7 +30,7 @@ public class Solution {
     public int climbStairs(int n) {
         if(n <= 2) return n;
         int prevPrev = 1, prev = 2, cur = prevPrev + prev;
-        for(int i = 3; i <= n; i++) {
+        for (int i = 3; i <= n; i++) {
             cur = prevPrev + prev;
             prevPrev = prev;
             prev = cur;
@@ -46,7 +46,9 @@ public class Solution {
         int[] dp = new int[n+1];
         dp[0] = 1;
         dp[1] = 1;
-        for(int i = 2; i <= n; i++) dp[i] = dp[i-1] + dp[i-2];
+        for(int i = 2; i <= n; i++) {
+	    dp[i] = dp[i-1] + dp[i-2];
+	}
         return dp[n];
     }
 }
