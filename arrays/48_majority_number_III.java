@@ -15,40 +15,50 @@ Challenge
 public class Solution {
     public int majorityNumber(List<Integer> nums, int k) {
         // count at most k keys.
-        HashMap<Integer, Integer> counters = new HashMap<Integer, Integer>();
-        for (Integer i : nums) {
-            if (!counters.containsKey(i))
-                counters.put(i, 1);
-            else
-                counters.put(i, counters.get(i) + 1);
-            if (counters.size() >= k) removeKey(counters);
+        Map<Integer, Integer> countMap = new HashMap<>();
+        for (int i : nums) {
+            if (!countMap.containsKey(i)) {
+                countMap.put(i, 1);
+	    } else {
+                countMap.put(i, countMap.get(i)+1);
+	    }
+            if (countMap.size() >= k) {
+		removeKey(countMap);
+	    }
         }
         // corner case
-        if (counters.size() == 0) return Integer.MIN_VALUE;
+        if (countMap.size() == 0) return Integer.MIN_VALUE;
         // recalculate counters
-        for (Integer i : counters.keySet()) counters.put(i, 0);
-        for (Integer i : nums) {
-            if (counters.containsKey(i))
-                counters.put(i, counters.get(i) + 1);
+        for (int i : countMap.keySet()) {
+	    countMap.put(i, 0);
+	}
+        for (int i : nums) {
+            if (countMap.containsKey(i)) {
+                countMap.put(i, countMap.get(i)+1);
+	    }
         }
         // find the max key
-        int maxCounter = 0, maxKey = 0;
-        for (Integer i : counters.keySet()) {
-            if (counters.get(i) > maxCounter) {
-                maxCounter = counters.get(i);
-                maxKey = i;
+        int maxCount = 0, majority = 0;
+        for (int i : countMap.keySet()) {
+            if (countMap.get(i) > maxCount) {
+                maxCount = countMap.get(i);
+                majority = i;
             }
         }
-        return maxKey;
+        return majority;
     }
     
-    private void removeKey(HashMap<Integer, Integer> counters) {
-        Set<Integer> keySet = counters.keySet();
+    private void removeKey(Map<Integer, Integer> countMap) {
+        Set<Integer> keySet = countMap.keySet();
         List<Integer> removeList = new ArrayList<>();
-        for (Integer key : keySet) {
-            counters.put(key, counters.get(key) - 1);
-            if (counters.get(key) == 0) removeList.add(key);
+        for (int key : keySet) {
+            countMap.put(key, countMap.get(key)-1);
+            if (countMap.get(key) == 0) {
+		removeList.add(key);
+	    }
         }
-        for (Integer key : removeList) counters.remove(key);
+        for (int key : removeList) {
+	    countMap.remove(key);
+	}
     }
 }
