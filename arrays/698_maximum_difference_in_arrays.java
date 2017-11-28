@@ -34,7 +34,7 @@ public class Solution {
                 small2 = i;
             }
             if (arrs[i][arrs[i].length-1] >= arrs[large1][arrs[large1].length-1]) {
-                large2 = lIndex1;
+                large2 = large1;
                 large1 = i;
             } else if (arrs[i][arrs[i].length-1] > arrs[large2][arrs[large2].length-1]) {
                 large2 = i;
