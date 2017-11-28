@@ -8,10 +8,9 @@ Example
 
 // recursive
 public class Solution {
-    private HashSet<Integer> occupiedCols = new HashSet<Integer>();
-    private HashSet<Integer> occupiedDiag1s = new HashSet<Integer>();
-    private HashSet<Integer> occupiedDiag2s = new HashSet<Integer>();
-    
+    private Set<Integer> occupiedCols = new HashSet<>();
+    private Set<Integer> occupiedDiag1s = new HashSet<>();
+    private Set<Integer> occupiedDiag2s = new HashSet<>();
     public int totalNQueens(int n) {
         return totalNQueensHelper(0, 0, n);
     }
@@ -24,7 +23,7 @@ public class Solution {
             int diag2 = row + col;
             if (occupiedDiag2s.contains(diag2)) continue;
             // we can now place a queen here
-            if (row == n-1) {
+            if (row == n - 1) {
                 count++;
             } else {
                 occupiedCols.add(col);
