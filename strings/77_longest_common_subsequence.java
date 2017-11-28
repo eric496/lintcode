@@ -19,15 +19,16 @@ Thought process:
 
 public class Solution {
     public int longestCommonSubsequence(String A, String B) {
-        int n = A.length();
-	    int m = B.length();
-        int f[][] = new int[n + 1][m + 1];
-        for(int i = 1; i <= n; i++){
-            for(int j = 1; j <= m; j++){
-                f[i][j] = Math.max(f[i - 1][j], f[i][j - 1]);
-                if(A.charAt(i - 1) == B.charAt(j - 1)) f[i][j] = f[i - 1][j - 1] + 1;
+        int n = A.length(), m = B.length();
+        int dp[][] = new int[n+1][m+1];
+        for (int i = 1; i <= n; i++){
+            for (int j = 1; j <= m; j++){
+                dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
+                if (A.charAt(i-1) == B.charAt(j-1)) {
+                    dp[i][j] = dp[i-1][j-1] + 1;
+                }
             }
         }
-        return f[n][m];
+        return dp[n][m];
     }
 }
