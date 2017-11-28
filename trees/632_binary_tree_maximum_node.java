@@ -45,11 +45,11 @@ public class Solution {
 public class Solution {
     public TreeNode maxNode(TreeNode root) {
         if (root == null) return null;
-        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        Queue<TreeNode> q = new LinkedList<>();
         q.offer(root);
         TreeNode maxNode = new TreeNode(Integer.MIN_VALUE);
         while (!q.isEmpty()) {
-            int size = q.size();
+            int size = q.size()
             for (int i = 0; i < size; i++) {
                 TreeNode node = q.poll();
                 if (node.left != null) {
