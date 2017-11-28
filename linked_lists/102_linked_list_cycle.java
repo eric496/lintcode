@@ -9,6 +9,11 @@ Challenge
     Can you solve it without using extra space?
 */
 
+/*
+Thought process:
+    Two pointers: a slow pointer travels 1 step each time and a fast pointer travels 2 steps each time. They will meet if there is a cycle.
+*/
+
 /**
  * Definition for ListNode.
  * public class ListNode {
@@ -24,13 +29,13 @@ Challenge
 // two pointers 
 public class Solution {
     public boolean hasCycle(ListNode head) {  
-        if(head == null || head.next == null) return false;
-        ListNode walker = head;
-        ListNode runner = head.next;
-        while(runner.next != null && runner.next.next != null) {
-            if(walker == runner) return true;
-            walker = walker.next;
-            runner = runner.next.next;
+        if (head == null || head.next == null) return false;
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while (fast.next != null && fast.next.next != null) {
+            if (slow == fast) return true;
+            slow = slow.next;
+            fast = fast.next.next;
         }
         return false;
     }
