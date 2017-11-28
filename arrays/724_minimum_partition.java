@@ -21,10 +21,8 @@ public class Solution {
     }
     
     public int findMinRec(int arr[], int i, int sumCalculated, int sumTotal) {
-        if (i == 0) {
-            return Math.abs((sumTotal-sumCalculated) - sumCalculated);
-        }
-        return Math.min(findMinRec(arr, i - 1, sumCalculated + arr[i-1], sumTotal), findMinRec(arr, i-1, sumCalculated, sumTotal));
+        if (i == 0) return Math.abs((sumTotal-sumCalculated) - sumCalculated);
+        return Math.min(findMinRec(arr, i-1, sumCalculated + arr[i-1], sumTotal), findMinRec(arr, i-1, sumCalculated, sumTotal));
     }
 }
 
@@ -41,10 +39,10 @@ public class Solution {
         int[] dp = new int[sum/2+1];
         dp[0] = 0;
         for (int i = 0; i < n; i++) {
-            for (int j = sum / 2; j >= arr[i]; --j) {
-                dp[j] = dp[j - arr[i]] + arr[i] > dp[j] ? dp[j - arr[i]] + arr[i] : dp[j];
+            for (int j = sum / 2; j >= arr[i]; j--) {
+                dp[j] = dp[j-arr[i]] + arr[i] > dp[j] ? dp[j - arr[i]] + arr[i] : dp[j];
             }
         }
-        return Math.abs(sum - 2 * dp[sum/2]);
+        return Math.abs(sum-2*dp[sum/2]);
     }
 }
