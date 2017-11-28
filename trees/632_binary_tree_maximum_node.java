@@ -25,18 +25,16 @@ Thought process:
 public class Solution {
     public TreeNode maxNode(TreeNode root) {
         if (root == null) return null;
-        TreeNode left = maxNode(root.left);
-        TreeNode right = maxNode(root.right);
-        return max(root, max(left, right));
+        return max(root, max(maxNode(root.left), maxNode(root.right)));
     }
-
-    private TreeNode max(TreeNode a, TreeNode b) {
-        if (a == null) return b;
-        if (b == null) return a;
-        if (a.val > b.val) {
-            return a;
+    
+    private TreeNode max(TreeNode node1, TreeNode node2) {
+        if (node1 == null) return node2;
+        if (node2 == null) return node1;
+        if (node1.val > node2.val) {
+            return node1;
         } else {
-            return b;
+            return node2;
         }
     }
 }
