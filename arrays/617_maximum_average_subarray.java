@@ -17,31 +17,31 @@ public class Solution {
             max = Math.max(max, n);
             min = Math.min(min, n);
         }
-        double last_mid = max, error = Integer.MAX_VALUE;
-        while (max-min > 0.00001) {
+        double lastMid = max, error = Integer.MAX_VALUE;
+        while (max - min > 0.00001) {
             double mid = (max + min) / 2.0;
             if (check(nums, mid, k)) {
                 min = mid;
             } else {
                 max = mid;
             }
-            error = Math.abs(last_mid - mid);
-            last_mid = mid;
+            error = Math.abs(lastMid-mid);
+            lastMid = mid;
         }
-        return min;   
+        return min;
     }
-    
-    public boolean check(int[] nums, double mid, int k) {
-        double sum = 0, prev = 0, min_sum = 0;
+
+    private boolean check(int[] nums, double mid, int k) {
+        double sum = 0, prev = 0, minSum = 0;
         for (int i = 0; i < k; i++) {
             sum += nums[i] - mid;
         }
         if (sum >= 0) return true;
         for (int i = k; i < nums.length; i++) {
             sum += nums[i] - mid;
-            prev += nums[i - k] - mid;
-            min_sum = Math.min(prev, min_sum);
-            if (sum >= min_sum) return true;
+            prev += nums[i-k] - mid;
+            minSum = Math.min(prev, minSum);
+            if (sum >= minSum) return true;
         }
         return false;
     }
