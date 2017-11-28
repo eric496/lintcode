@@ -12,17 +12,20 @@ Challenge
     O(n) time and O(1) extra space.
 */
 
+/*
+Thought process:
+    Similar to 46. Majority Number. But keep 2 majority numbers and compare their frequency.
+*/
+
 // Boyer-Moore vote algorithm 
 public class Solution {
     public int majorityNumber(ArrayList<Integer> nums) {
-        int candidate1 = 0, candidate2 = 0;
-        int count1, count2;
-        count1 = count2 = 0;
+        int candidate1 = 0, candidate2 = 0, count1 = 0, count2 = 0;
         for (int i = 0; i < nums.size(); i++) {
             if (candidate1 == nums.get(i)) {
-                count1 ++;
+                count1++;
             } else if (candidate2 == nums.get(i)) {
-                count2 ++;
+                count2++;
             } else if (count1 == 0) {
                 candidate1 = nums.get(i);
                 count1 = 1;
