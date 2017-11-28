@@ -24,25 +24,25 @@ Thought process:
 // O(n) time and O(1) space
 public class Solution {
     public int maxDiff(int[][] arrs) {
-        if(arrs == null || arrs.length == 0) return -1;
-        int sIndex1 = 0, sIndex2 = 0, lIndex1 = 0, lIndex2 = 0;
-        for(int i = 0; i < arrs.length; i++) {
-            if(arrs[i][0] <= arrs[sIndex1][0]) { 
-                sIndex2 = sIndex1;
-                sIndex1 = i;
-            } else if(arrs[i][0] < arrs[sIndex2][0]) {
-                sIndex2 = i;
+        if (arrs == null || arrs.length == 0) return -1;
+        int small1 = 0, small2 = 0, large1 = 0, large2 = 0;
+        for (int i = 0; i < arrs.length; i++) {
+            if (arrs[i][0] <= arrs[small1][0]) { 
+                small2 = small1;
+                small1 = i;
+            } else if (arrs[i][0] < arrs[small2][0]) {
+                small2 = i;
             }
-            if(arrs[i][arrs[i].length-1] >= arrs[lIndex1][arrs[lIndex1].length-1]) {
-                lIndex2 = lIndex1;
-                lIndex1 = i;
-            } else if(arrs[i][arrs[i].length-1] > arrs[lIndex2][arrs[lIndex2].length-1]) {
-                lIndex2 = i;
+            if (arrs[i][arrs[i].length-1] >= arrs[large1][arrs[large1].length-1]) {
+                large2 = lIndex1;
+                large1 = i;
+            } else if (arrs[i][arrs[i].length-1] > arrs[large2][arrs[large2].length-1]) {
+                large2 = i;
             }
         }
-        int max1 = Math.abs(arrs[sIndex1][0] - arrs[lIndex2][arrs[lIndex2].length-1]);
-        int max2 = Math.abs(arrs[sIndex2][0] - arrs[lIndex1][arrs[lIndex1].length-1]);
-        if(sIndex1 == lIndex1) return max1 > max2 ? max1 : max2;
-        return Math.abs(arrs[sIndex1][0] - arrs[lIndex1][arrs[lIndex1].length-1]);
+        int max1 = Math.abs(arrs[small1][0] - arrs[large2][arrs[large2].length-1]);
+        int max2 = Math.abs(arrs[small2][0] - arrs[large1][arrs[large1].length-1]);
+        if (small1 == large1) return max1 > max2 ? max1 : max2;
+        return Math.abs(arrs[small1][0] - arrs[large1][arrs[large1].length-1]);
     }
 }
