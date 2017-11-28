@@ -49,13 +49,13 @@ public class Solution {
     }
 }
 
-// O(n) time and O(1) space
+// O(n) time and O(1) space by maintaining 3 variables
 public class Solution {
     public int fibonacci(int n) {
         if (n == 1) return 0;
         if (n == 2) return 1;
         int prevPrev = 0, prev = 1, cur = prevPrev + prev;
-        for(int i = 3; i <= n; i++) {
+        for (int i = 3; i <= n; i++) {
             cur = prevPrev + prev;
             prevPrev = prev;
             prev = cur;
