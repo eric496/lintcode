@@ -30,10 +30,10 @@ public class Solution {
         List<List<String>> result = new ArrayList<List<String>>();
         String[] queens = new String[n];
         char[] initial = new char[n];
-        Arrays.fill(initial,'.');
+        Arrays.fill(initial, '.');
         Arrays.fill(queens, String.valueOf(Arrays.copyOf(initial, n)));
         int[] flag = new int[5*n-2];
-        Arrays.fill(flag,1);
+        Arrays.fill(flag, 1);
         solve(result, queens, flag, 0, n);
         return result;
     }
