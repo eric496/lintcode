@@ -16,9 +16,9 @@ Thought process:
 // Bubble sort
 public class Solution {
     public void sortIntegers(int[] A) {
-        for(int i = 0; i < A.length - 1; i++) {
-            for(int j = 0; j < A.length - i - 1; j++) {
-                if(A[j] > A[j+1]) {
+        for (int i = 0; i < A.length - 1; i++) {
+            for (int j = 0; j < A.length - i - 1; j++) {
+                if (A[j] > A[j+1]) {
                     int temp = A[j];
                     A[j] = A[j+1];
                     A[j+1] = temp;
@@ -31,10 +31,12 @@ public class Solution {
 // Insertion sort
 public class Solution {
     public void sortIntegers(int[] A) {
-        for(int i = 1; i < A.length; i++) {
+        for (int i = 1; i < A.length; i++) {
             int key = A[i], j = i - 1;
             // Notice j >= 0 must come before A[j] > key, or it will possibly throw and "index out of bound" error
-            while(j >= 0 && A[j] > key) A[j+1] = A[j--];
+            while (j >= 0 && A[j] > key) {
+		A[j+1] = A[j--];
+	    }
             A[j+1] = key;
         }
     }
@@ -43,18 +45,18 @@ public class Solution {
 // Selection sort
 public class Solution {
     public void sortIntegers(int[] A) {
-        for(int i = 0; i < A.length; i++) {
+        for (int i = 0; i < A.length; i++) {
             int min = A[i];
-            int ixMin = i;
-            for(int j = i+1; j < A.length; j++) {
-                if(A[j] < min) {
+            int minIx = i;
+            for (int j = i + 1; j < A.length; j++) {
+                if (A[j] < min) {
                     min = A[j];
-                    ixMin = j;
+                    minIx = j;
                 }
             }
-	    if(min < A[i]) {
-                int temp = A[ixMin];
-                A[ixMin] = A[i];
+	    if (min < A[i]) {
+                int temp = A[minIx];
+                A[minIx] = A[i];
                 A[i] = temp;   
             }
         }
