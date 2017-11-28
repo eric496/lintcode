@@ -12,12 +12,12 @@ Challenge
 public class Solution {
     public int minimumSize(int[] nums, int s) {
         if (nums == null || nums.length == 0) return -1;
-        int sum = 0, from = 0, min = Integer.MAX_VALUE;
+        int sum = 0, start = 0, min = Integer.MAX_VALUE;
         for (int i = 0; i < nums.length; i++) {
             sum += nums[i];
             while (sum >= s) {
-                min = Math.min(min, i - from + 1);
-                sum -= nums[from++];
+                min = Math.min(min, i-start+1);
+                sum -= nums[start++];
             }
         }
         return (min == Integer.MAX_VALUE) ? -1 : min;
