@@ -9,8 +9,27 @@ Challenge
     Could you do it without any loop/recursion in O(1) runtime?
 */
 
+// method 1
 public class Solution {
     public int addDigits(int num) {
+        if (num < 10) return num;
+        int sum = num;
+        while (sum > 9) {
+            num = sum;
+            sum = 0;
+            while (num != 0) {
+                sum += num % 10;
+                num /= 10;
+            }
+        }
+        return sum;
+    }
+}
+
+// method 2
+public class Solution {
+    public int addDigits(int num) {
+	if (num < 10) return num;
         while (num / 10 != 0) {
             int sum = 0;
             while (num != 0) {
