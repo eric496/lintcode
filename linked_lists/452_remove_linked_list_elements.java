@@ -8,7 +8,7 @@ Example
 /*
 Thought process:
     The head node value might equal the target value, in which the head node will be removed. 
-    In order to avoid this lost track of head problem, we introduce a dummy head whose next node is the real head.
+    In order to avoid this lost-track-of-head problem, we introduce a dummy head whose next node is the real head.
     Let the runner pointer points to the dummy head. Runner iterates the whole list and remove eligible values.
     Return dummyhead.next which points to the real head node after the removal operations.
 */
