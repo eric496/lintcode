@@ -18,28 +18,35 @@ Challenge
 
 public class Solution {
     public String minWindow(String source , String target) {
-        HashMap<Character,Integer> map = new HashMap();
-        for(char c : source.toCharArray()) map.put(c,0);
-        for(char c : target.toCharArray()) {
-            if(map.containsKey(c))
-                map.put(c, map.get(c)+1);
-            else
-                return "";
+        Map<Character,Integer> map = new HashMap<>();
+        for (char c : source.toCharArray()) {
+            map.put(c, 0);
         }
-        int start = 0, end = 0, minStart = 0, minLen = Integer.MAX_VALUE, counter = target.length();
-        while(end < source.length()) {
+        for (char c : target.toCharArray()) {
+            if (map.containsKey(c)) {
+                map.put(c, map.get(c)+1);
+            } else {
+                return "";
+            }
+        }
+        int start = 0, end = 0, minStart = 0, minLen = Integer.MAX_VALUE, count = target.length();
+        while (end < source.length()) {
             char c1 = source.charAt(end);
-            if(map.get(c1) > 0) counter--;
+            if (map.get(c1) > 0) {
+                count--;
+            }
             map.put(c1, map.get(c1)-1);
             end++;
-            while(counter == 0) {
-                if(minLen > end - start) {
+            while (count == 0) {
+                if (minLen > end - start) {
                     minLen = end - start;
                     minStart = start;
                 }
                 char c2 = source.charAt(start);
                 map.put(c2, map.get(c2)+1);
-                if(map.get(c2) > 0) counter++;
+                if (map.get(c2) > 0) {
+                    count++;
+                }
                 start++;
             }
         }
