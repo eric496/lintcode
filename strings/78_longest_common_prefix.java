@@ -17,10 +17,13 @@ Thought process:
 // method 1
 public class Solution {
     public String longestCommonPrefix(String[] strs) {
-        if(strs == null || strs.length == 0) return "";
+        if (strs == null || strs.length == 0) return "";
         String pre = strs[0];
-        for(int i = 0; i < strs.length; i++)
-            while(strs[i].indexOf(pre) != 0) pre = pre.substring(0, pre.length()-1);
+        for (int i = 0; i < strs.length; i++) {
+            while (strs[i].indexOf(pre) != 0) {
+		pre = pre.substring(0, pre.length()-1);
+	    }
+	}
         return pre;
     }
 }
@@ -28,17 +31,18 @@ public class Solution {
 // method 2
 public class Solution {
     public String longestCommonPrefix(String[] strs) {
-        if(strs == null || strs.length == 0) return "";
+        if (strs == null || strs.length == 0) return "";
         Arrays.sort(strs);
         String first = strs[0];
         String last = strs[strs.length-1];
         StringBuffer sb = new StringBuffer();
-        for(int i = 0; i < first.length(); i++)
-            if(last.length() > i && first.charAt(i) == last.charAt(i)) {
+        for (int i = 0; i < first.length(); i++) {
+            if (last.length() > i && first.charAt(i) == last.charAt(i)) {
                 sb.append(first.charAt(i));
             } else {
                 return sb.toString();
             }
+	}
         return sb.toString();
     }
 }
