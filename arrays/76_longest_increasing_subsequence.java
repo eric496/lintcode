@@ -19,20 +19,23 @@ Challenge
 public class Solution {
     public int longestIncreasingSubsequence(int[] nums) {
         int[] tails = new int[nums.length];
-        int size = 0;
-        for (int x : nums) {
-            int i = 0, j = size;
+        int len = 0;
+        for (int n : nums) {
+            int i = 0, j = len;
             while (i != j) {
                 int m = (i + j) / 2;
-                if (tails[m] < x)
+                if (tails[m] < n) {
                     i = m + 1;
-                else
+                } else {
                     j = m;
+		}
             }
-            tails[i] = x;
-            if (i == size) ++size;
+            tails[i] = n;
+            if (i == len) {
+		len++;
+	    }
         }
-        return size;
+        return len;
     }
 }
 
@@ -41,11 +44,15 @@ public class Solution {
     public int longestIncreasingSubsequence(int[] nums) {
         int[] dp = new int[nums.length];
         int len = 0;
-        for(int x : nums) {
-            int i = Arrays.binarySearch(dp, 0, len, x);
-            if(i < 0) i = -(i + 1);
-            dp[i] = x;
-            if(i == len) len++;
+        for (int n : nums) {
+            int i = Arrays.binarySearch(dp, 0, len, n);
+            if (i < 0) {
+                i = -(i + 1);
+            }
+            dp[i] = n;
+            if (i == len) {
+                len++;
+            }
         }
         return len;
     }
