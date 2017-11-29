@@ -13,7 +13,7 @@ Example
 Thought process:
     In-place solution: It is hard to compare elements and store them in A in forward order. But since A has enough space at the end, we can compare elements from backward. 
     Do a pair comparison between each two elements starting from the end, at the end of A stores the larger one, whose position pointer should accordingly move backward by one step. 
-    !! If there are more elements in B than A, we need to append the extra elements from B to A. 
+    !! If there are more elements left in B than A, we need to append the extra elements from B to A. 
     On the other hand, we don't have to worry the extra elements in A if A has more elements than B, because they are already in the correct order (sorted!).
 */
 
