@@ -25,7 +25,7 @@ Thought process
 
 class Solution {
     public List<Interval> merge(List<Interval> intervals) {
-        if(intervals == null || intervals.size() <= 1) return intervals;
+        if (intervals == null || intervals.size() <= 1) return intervals;
         intervals.sort((i1, i2) -> Integer.compare(i1.start, i2.start));
         /*
         Collections.sort(intervals, new Comparator<Interval>() {
@@ -35,7 +35,7 @@ class Solution {
             }
         });
         */
-        List<Interval> result = new LinkedList<Interval>();
+        List<Interval> result = new LinkedList<>();
         int prevStart = intervals.get(0).start;
         int prevEnd = intervals.get(0).end;
         for (int i = 1; i < intervals.size(); i++) {
@@ -48,6 +48,7 @@ class Solution {
                 prevEnd = curInterval.end;
             }
         }
+        // add the last interval
         result.add(new Interval(prevStart, prevEnd));
         return result;
     }
