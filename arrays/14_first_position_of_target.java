@@ -15,6 +15,7 @@ Thought process
 class Solution {
     public int binarySearch(int[] nums, int target) {
         int low = 0, high = nums.length - 1;
+	// no equal sign because it is possible to have duplicates and we would like the first unique
         while (low < high) {
             int mid = low + (high - low) / 2;
             // if mid point is target, do not return immediately because it might not be the first target
