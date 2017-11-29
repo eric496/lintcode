@@ -30,10 +30,10 @@ public class Solution {
     public int longestIncreasingContinuousSubsequence(int[] A) {
         if (A == null || A.length == 0) return 0;
         if (A.length == 1) return 1;
-        int result = 0, left = 1, right = 1;
+        int result = 0, leftCount = 1, rightCount = 1;
         // forward traversal
         for (int i = 0; i < A.length - 1; i++) {
-            if(A[i] < A[i+1]) {
+            if (A[i] < A[i+1]) {
                 left++;
             } else {
                 left = 1;
@@ -62,18 +62,18 @@ public class Solution {
     public int longestIncreasingContinuousSubsequence(int[] A) {
         if (A == null || A.length == 0) return 0;
         if (A.length == 1) return 1;
-        int result = 0, increaseCount = 1, decreaseCount = 1;
+        int result = 0, leftCount = 1, rightCount = 1;
         for (int i = 0; i < A.length - 1; i++) {
             if (A[i] < A[i+1]) {
-                increaseCount++;
-                decreaseCount = 1;
+                leftCount++;
+                rightCount = 1;
             } else if (A[i] > A[i+1]) {
-                decreaseCount++;
-                increaseCount = 1;
+                rightCount++;
+                leftCount = 1;
             } else {
-                increaseCount = decreaseCount = 1;
+                leftCount = rightCount = 1;
             }
-            result = Math.max(result, Math.max(increaseCount, decreaseCount));
+            result = Math.max(result, Math.max(leftCount, rightCount));
         }
         return result;
     }
