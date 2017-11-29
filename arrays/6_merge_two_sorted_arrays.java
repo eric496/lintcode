@@ -16,13 +16,14 @@ Thought process:
     Do a pair comparison between two elements from A and B at each position, put the smaller one in the new array. Meanwhile, move the position pointer forward accordingly.
 */
 
+// method 1
 class Solution {
     public int[] mergeSortedArray(int[] A, int[] B) {
         int lenA = A.length, lenB = B.length;
         int[] result = new int[lenA+lenB];
         int ix = 0, ixA = 0, ixB = 0;
         while (ixA < lenA && ixB < lenB) {
-            result[ix++] = (A[ixA] < B[ixB]) ? A[ixA++] : B[ixB++];
+            result[ix++] = A[ixA] < B[ixB] ? A[ixA++] : B[ixB++];
 	}
         while (ixA < lenA) {
 	    result[ix++] = A[ixA++]; 
@@ -30,6 +31,25 @@ class Solution {
         while (ixB < lenB) {
 	    result[ix++] = B[ixB++];
 	}
+        return result;
+    }
+}
+
+// a more concise version
+class Solution {
+    public int[] mergeSortedArray(int[] A, int[] B) {
+        int lenA = A.length, lenB = B.length;
+        int[] result = new int[lenA + lenB];
+        int ix = 0, ixA = 0, ixB = 0;
+        while (ixA < lenA || ixB < lenB) {
+            if (ixA < lenA && ixB < lenB) {
+                result[ix++] = A[ixA] < B[ixB] ? A[ixA++] : B[ixB++];
+            } else if (ixA < lenA) {
+                result[ix++] = A[ixA++];
+            } else if (ixB < lenB) {
+                result[ix++] = B[ixB++];
+            }
+        }
         return result;
     }
 }
