@@ -47,7 +47,7 @@ public class Solution {
         if (nums == null || nums.length == 0) return 0;
         int maxSofar = nums[0], globalMax = nums[0];
         for (int i = 1; i < nums.length; i++) {
-            maxSofar = Math.max(maxSofar + nums[i], nums[i]);
+            maxSofar = Math.max(maxSofar+nums[i], nums[i]);
             if (maxSofar > globalMax) {
 		globalMax = maxSofar;
 	    }
