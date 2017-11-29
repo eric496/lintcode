@@ -10,16 +10,18 @@ Example
 
 /*
 Thought process:
-    1. XOR to check bits that needs flipping.
-    2. i & (i-1) to clear the lowest bit.
-    3. Count the number of non-zero bits.  
+    XOR to check bits that needs flipping.
+    i & (i-1) to clear the lowest bit.
+    Count the number of non-zero bits.  
 */
 
 class Solution {
     public int bitSwapRequired(int a, int b) {
-        if(a == b) return 0;
+        if (a == b) return 0;
         int count = 0;
-        for(int i = a ^ b; i != 0; i &= i-1) count++;
+        for (int i = a ^ b; i != 0; i &= i - 1) {
+	    count++;
+	}
         return count;
     }
 }
