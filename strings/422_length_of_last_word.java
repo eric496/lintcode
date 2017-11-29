@@ -60,3 +60,31 @@ public class Solution {
         return len;
     }
 }
+
+// one pass
+public class Solution {
+    public int lengthOfLastWord(String s) {
+        if (s == null || s.trim().length() == 0) return 0;
+        // a flag variable - whether the counting begins
+        boolean startCount = false;
+        int count = 0;
+        // traverse from backward
+        for (int i = s.length() - 1; i >= 0; i--) {
+            // skip all trailing spaces
+            if (s.charAt(i) == ' ' && !startCount) {
+                continue;
+            // the first character found, increment counter and change flag variable state
+            } else if (s.charAt(i) != ' ' && !startCount) {
+                count++;
+                startCount = !startCount;
+            // keep counting continuous characters
+            } else if (s.charAt(i) != ' ' && startCount) {
+                count++;
+            // the first space found, which means the last word ends
+            } else if (s.charAt(i) == ' ' && s.charAt(i+1) != ' ') {
+                break;
+            }
+        }
+        return count;
+    }
+}
