@@ -12,6 +12,18 @@ Challenge
     Do it in non-recursive.
 */
 
+/*
+Thought process
+    1. Recursive solution: since the array is in a nested structure, so we can repeatedly divide and conquar the sub structure by recursion.
+           Base case: return null when current nested list is null.
+           Recursive step: for each element in the current nested list, add it directly to result list if it is an integer.
+                           Otherwise, recursively flatten the nested list and add all its elements to result list. 
+    2. Iterative solution: use stack
+           Push all elements into the stack in reverse order (in order to get the result in correct order)
+           Iterate the stack, if the popped element is an integer, then add it to the result list directly.
+           Otherwise it must be a list, then push all elements in the list into the stack in reverse order.             
+*/
+
 /**
  * // This is the interface that allows for creating nested lists.
  * // You should not implement it, or speculate about its implementation
@@ -32,18 +44,6 @@ Challenge
  *     public List<NestedInteger> getList();
  * }
  */
-
-/*
-Thought process
-    1. Recursive solution: since the array is in a nested structure, so we can repeatedly divide and conquar the sub structure by recursion.
-           Base case: return null when current nested list is null.
-           Recursive step: for each element in the current nested list, add it directly to result list if it is an integer.
-                           Otherwise, recursively flatten the nested list and add all its elements to result list. 
-    2. Iterative solution: use stack
-           Push all elements into the stack in reverse order (in order to get the result in correct order)
-           Iterate the stack, if the popped element is an integer, then add it to the result list directly.
-           Otherwise it must be a list, then push all elements in the list into the stack in reverse order.           	
-*/
 
 // recursive
 public class Solution {
