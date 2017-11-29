@@ -30,16 +30,16 @@ public class Solution {
         if (nums == null || nums.size() == 0) return Integer.MIN_VALUE;
         if (nums.size() <= 2) return nums.get(0);
         Map<Integer, Integer> map = new HashMap<>();
-        int maxFreq = Integer.MIN_VALUE, majority = Integer.MIN_VALUE;
-        for (int i : nums) {
-            if (map.containsKey(i)) {
-                map.put(i, map.get(i)+1);
+        int maxFreq = 0, majority = nums.get(0);
+        for (int n : nums) {
+            if (map.containsKey(n)) {
+                map.put(n, map.get(n)+1);
             } else {
-                map.put(i, 1);
+                map.put(n, 1);
             }
-            if (map.get(i) > maxFreq) {
-                maxFreq = map.get(i);
-                majority = i;
+            if (map.get(n) > maxFreq) {
+                maxFreq = map.get(n);
+                majority = n;
             }
         }
         return majority;
@@ -51,16 +51,16 @@ public class Solution {
     public int majorityNumber(ArrayList<Integer> nums) {
 	if (nums == null || nums.size() == 0) return Integer.MIN_VALUE;
         if (nums.size() <= 2) return nums.get(0);
-        int majority = Integer.MIN_VALUE, count = 0;
+        int majority = nums.get(0), count = 0;
         for (int n : nums) {
             // start a new majority number if count equals 0
             if (count == 0) {
                 majority = n;
                 count++;
-            // increment count by 1 if identical number occurs
+            // increment count by 1 if identical number found
             } else if (majority == n) {
                 count++;
-            // decrease count by 1 if different number occurs
+            // decrease count by 1 if different number found
             } else if (majority != n) {
                 count--;
             }
