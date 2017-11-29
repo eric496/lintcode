@@ -16,9 +16,9 @@ Example
 
 /*
 Thought process:
-    1. Use a hashset to store square sum at each step, once any number occurs twice, it is not a happy number.
-    2. Floyd Cycle detection algorithm:
-           Observe that non-happy number's square sum always reach a cycle, e.g.
+    Use a hashset to store square sum at each step, once any number occurs twice, it is not a happy number.
+    Floyd Cycle detection algorithm:
+           Observe that non-happy number's square sum always forms a cycle, e.g.
            Given 11, 
            1^2 + 1^2 = 2
            2^2 = 4
