@@ -25,26 +25,61 @@ Thought process:
 
 public class Solution {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        if (l1 == null) return l2;
-        if (l2 == null) return l1;
-        ListNode dummyhead = new ListNode(Integer.MIN_VALUE);
-        ListNode runner = dummyhead;
-        while (l1 != null && l2 != null) {
-            if (l1.val < l2.val) {
-                runner.next = l1;
-                l1 = l1.next;
+        ListNode dummyhead = new ListNode(-1);
+        ListNode runner = dummyhead, runner1 = l1, runner2 = l2;
+        while (runner1 != null && runner2 != null) {
+            if (runner1.val < runner2.val) {
+                runner.next = new ListNode(runner1.val);
+                runner1 = runner1.next;
             } else {
-                runner.next = l2;
-                l2 = l2.next;
+                runner.next = new ListNode(runner2.val);
+                runner2 = runner2.next;
             }
             runner = runner.next;
         }
-        if (l1 != null) {
-	    runner.next = l1;
-	}
-        if (l2 != null) {
-	    runner.next = l2;
-	}
+        while (runner1 != null) {
+            runner.next = new ListNode(runner1.val);
+            runner = runner.next;
+            runner1 = runner1.next;
+        }
+        while (runner2 != null) {
+            runner.next = new ListNode(runner2.val);
+            runner = runner.next;
+            runner2 = runner2.next;
+        }
+	// terminate the list properly
+        runner.next = null;
+        return dummyhead.next;
+    }
+}
+
+// a more concise version
+public class Solution {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if (l1 == null) return l2;
+        if (l2 == null) return l1;
+        ListNode dummyhead = new ListNode(-1);
+        ListNode runner = dummyhead, runner1 = l1, runner2 = l2;
+        while (runner1 != null || runner2 != null) {
+            if (runner1 != null && runner2 != null) {
+                if (runner1.val < runner2.val) {
+                    runner.next = new ListNode(runner1.val); 
+                    runner1 = runner1.next;
+                } else {
+                    runner.next = new ListNode(runner2.val);
+                    runner2 = runner2.next;
+                }
+            } else if (runner1 != null) {
+                runner.next = new ListNode(runner1.val);
+                runner1 = runner1.next;
+            } else if (runner2 != null) {
+                runner.next = new ListNode(runner2.val);
+                runner2 = runner2.next;
+            }
+            runner = runner.next;
+        }
+	// terminate the list
+        runner.next = null;
         return dummyhead.next;
     }
 }
