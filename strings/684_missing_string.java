@@ -15,7 +15,7 @@ Thought process:
 // duplicates do not count towards missing string.
 public class Solution {
     public List<String> missingString(String str1, String str2) {
-        HashSet<String> set = new HashSet<String>();
+        Set<String> set = new HashSet<>();
         String[] arr1 = str1.split("\\s+");
         String[] arr2 = str2.split("\\s+");
         if (arr1.length < arr2.length) {
@@ -26,7 +26,7 @@ public class Solution {
         for (String s : arr2) {
 	    set.add(s);
 	}
-        List<String> result = new ArrayList<String>();
+        List<String> result = new ArrayList<>();
         for (String s : arr1) {
             if (!set.contains(s)) {
 		result.add(s);
@@ -36,11 +36,11 @@ public class Solution {
     }
 }
 
-// find the missing string including duplicate, 
+// find the missing string including duplicates, 
 // e.g. str1 = "This is is an example", str2 = "is an example", return ["This", "is"].
 public class Solution {
     public List<String> missingString(String str1, String str2) {
-        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        Map<String, Integer> map = new HashMap<>();
         String[] arr1 = str1.split("\\s+");
         String[] arr2 = str2.split("\\s+");
         if (arr1.length < arr2.length) {
@@ -55,7 +55,7 @@ public class Solution {
                 map.put(s, 1);
 	    }
         }
-        List<String> result = new ArrayList<String>();
+        List<String> result = new ArrayList<>();
         for (String s : arr1) {
             if (map.containsKey(s)) {
                 map.put(s, map.get(s)-1);
