@@ -6,6 +6,13 @@ Example
     Given a List  3->2->1->5->null and n = 2, return node  whose value is 1.
 */
 
+/*
+Thought process:
+    Two pointers: 
+        Let the first pointer traverse n steps first. Then let both pointers traverse at the same pace. 
+        When the first pointer reaches the tail, the second pointer is right at the n-th to last node.
+*/
+
 /**
  * Definition for ListNode.
  * public class ListNode {
@@ -18,23 +25,17 @@ Example
  * }
  */ 
 
-/*
-Thought process:
-    Two pointers: 
-        Let the first pointer run n steps first. Then let both pointers run with the same pace. When the first pointer runs at the tail, the second pointer is right at the n-th to last node.
-*/
-
 public class Solution {
-    ListNode nthToLast(ListNode head, int n) {
+    public ListNode nthToLast(ListNode head, int n) {
         if (head == null || n < 1) return null;
-        ListNode runner = head;
-        for (int i = 0; i < n; i++) {
-            head = head.next;
-	}
-        while (head != null) {
-            head = head.next;
-            runner = runner.next;
+        ListNode runner1 = head, runner2 = head;
+        for (int i = 0; i < n; i++) { 
+            runner1 = runner1.next;
         }
-        return runner;
+        while (runner1 != null) {
+            runner1 = runner1.next;
+            runner2 = runner2.next;
+        }
+        return runner2;
     }
 }
