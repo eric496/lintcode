@@ -19,12 +19,16 @@ Thought process
 // relative order does not matter
 public class Solution {
     public void partitionArray(int[] nums) {
-        if(nums == null || nums.length <= 1) return;
+        if (nums == null || nums.length <= 1) return;
         int head = 0;
         int tail = nums.length - 1;
         while (head < tail) {
-            while (nums[head] % 2 == 1) head++;
-            while (nums[tail] % 2 == 0) tail--;
+            while (nums[head] % 2 == 1) {
+		head++;
+	    }
+            while (nums[tail] % 2 == 0) {
+		tail--;
+	    }
             if (head < tail) {
                 int temp = nums[head];
                 nums[head] = nums[tail];
@@ -36,15 +40,15 @@ public class Solution {
     }
 }
 
-// keep relative order
+// preserve relative order
 public class Solution {
     public void partitionArray(int[] nums) {
         if (nums == null || nums.length <= 1) return;
-        int pos = 0;
+        int ix = 0;
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] % 2 != 0) {
-                swap(nums, pos, i);
-                pos++;
+                swap(nums, ix, i);
+                ix++;
             }
         }
     }

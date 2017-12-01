@@ -16,14 +16,14 @@ Thought process:
 //O(n) time and O(1) space
 public class Solution {
     public void moveZeroes(int[] nums) {
-        int pos = 0;
-        for (int i : nums) {
-            if (i != 0) {
-                nums[pos++] = i;
+        int ix = 0;
+        for (int n : nums) {
+            if (n != 0) {
+                nums[ix++] = i;
             }
         }
-        while (pos < nums.length) {
-            nums[pos++] = 0;
+        while (ix < nums.length) {
+            nums[ix++] = 0;
         }
     }
 }
