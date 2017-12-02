@@ -17,13 +17,16 @@ Thought process:
 
 // O(n^2) time by brute-force
 public class Solution {
-    public ArrayList<Long> productExcludeItself(ArrayList<Integer> A) {
-        ArrayList<Long> result = new ArrayList<Long>();
-        if(A == null || A.size() == 0) return result;
-        for(int i = 0; i < A.size(); i++) {
+    public List<Long> productExcludeItself(ArrayList<Integer> A) {
+       	List<Long> result = new ArrayList<>();
+        if (A == null || A.size() == 0) return result;
+        for (int i = 0; i < A.size(); i++) {
             long mul = 1;
-            for(int j = 0; j < A.size(); j++) 
-                if(i != j) mul *= A.get(j);
+            for (int j = 0; j < A.size(); j++) {
+                if (i != j) {
+		    mul *= A.get(j);
+		}
+	    }
             result.add(mul);
         }
         return result;
@@ -32,9 +35,9 @@ public class Solution {
 
 // O(n) time and O(1) space by forward-backward traversal
 public class Solution {
-    public ArrayList<Long> productExcludeItself(ArrayList<Integer> A) {
-        if(A.size() == 0 || A == null) return null;
-        ArrayList<Long> result = new ArrayList<Long>();
+    public List<Long> productExcludeItself(ArrayList<Integer> A) {
+        if (A.size() == 0 || A == null) return null;
+        List<Long> result = new ArrayList<>();
         long leftMul = 1, rightMul = 1;
         for (int i = 0; i < A.size(); i++) {
             // add before update leftMul
