@@ -15,7 +15,7 @@ Challenge
 /*
 Thought process:
     Find where the head of the sorted array meets the end of the array (the first element whose value is greater than the next element).
-    Split the array into two parts, each a sorted subarray. Use three-step reversal:
+    Split the array into two parts, each a sorted subarray. Use the three-step reversal method:
         1) Reverse the first part of the array.
         2) Reverse the second part of the array
         After this step, the array is already sorted, but in descending order.
