@@ -12,11 +12,12 @@ Example
 Thought process:
     There are (n-k) digits remained after removal of k digits. For the remaining (n-k) digits, we would like to find the digits at  
     higher places as small as possible. This can be done by comparing each digit with its previous digits and always store the smaller one.
-    Use a stack to perform this. Iterate the digits, if the current digit is smaller than the top digit on the stack, pop the top digit and 
+    Use a stack for this task. Iterate the digits, if the current digit is smaller than the top digit on the stack, pop the top digit and 
     keep the delete count updated. Push the current digit onto the stack at each iteration. 
     Remember to check the corner cases like "1111" (delete counter is greater than 0) and "0200" where the heading zeroes should be removed.
 */
 
+// method 1
 public class Solution {
     public String DeleteDigits(String A, int k) {
         int n = A.length();
@@ -38,9 +39,25 @@ public class Solution {
         while (!s.isEmpty()) {
             sb.append(s.pop());
         }
-        while(sb.length() > 1 && sb.charAt(sb.length()-1) == '0') {
+        while (sb.length() > 1 && sb.charAt(sb.length()-1) == '0') {
             sb.deleteCharAt(sb.length()-1);
         }
         return sb.reverse().toString();
+    }
+}
+
+// method 2
+public class Solution {
+    public String DeleteDigits(String A, int k) {
+        StringBuffer sb = new StringBuffer(A);
+	int i, j;
+	for (i = 0; i < k; i++) {
+	    for (j = 0; j < sb.length() - 1 && sb.charAt(j) <= sb.charAt(j+1); j++) {}
+	    sb.delete(j, j+1);
+	}
+        while (sb.length() > 1 && sb.charAt(0)=='0') {
+            sb.delete(0, 1);
+        }
+	return sb.toString();
     }
 }
