@@ -29,7 +29,7 @@ public class Solution {
             int low = i + 1, high = numbers.length - 1;
             while (low < high) {
                 int curSum = numbers[i] + numbers[low] + numbers[high];
-                if (Math.abs(curSum - target) < Math.abs(closestSum - target)) {
+                if (Math.abs(curSum-target) < Math.abs(closestSum-target)) {
                     closestSum = curSum;
                 }
                 if (curSum < target) {
