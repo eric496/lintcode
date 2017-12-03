@@ -24,9 +24,7 @@ public class Solution {
         Arrays.sort(A);
         int pos = 1;
         while (pos < A.length) {
-            if (A[pos] != A[pos-1]) {
-                return A[pos-1];
-            }
+            if (A[pos] != A[pos-1]) return A[pos-1];
             pos += 2;
         }
         return A[A.length-1];
@@ -37,9 +35,10 @@ public class Solution {
 public class Solution {
     public int singleNumber(int[] A) {
         if (A == null || A.length == 0) return 0;
+	int result = A[0];
         for (int i = 1; i < A.length; i++) {
-	    A[0] ^= A[i];
+	    result ^= A[i];
 	}
-        return A[0];
+        return result;
     }
 }
