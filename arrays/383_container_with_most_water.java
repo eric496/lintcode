@@ -19,7 +19,7 @@ public class Solution {
     public int maxArea(int[] heights) {
         int left = 0, right = heights.length - 1;
         int maxSofar = 0 ;
-        while (left <= right) {
+        while (left < right) {
             int area = (right - left) * Math.min(heights[left], heights[right]);
             maxSofar = Math.max(maxSofar, area);
             if (heights[left] < heights[right]) {
