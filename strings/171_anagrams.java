@@ -11,7 +11,7 @@ Example
 
 /*
 Thought process:
-    Use a hashmap, iterate the string list and sort each string in the list, use the sorted string as key and a list of its anagrams as value.
+    Use a hashmap, iterate the string list and sort each string in the list, use the sorted string as key and a list of its anagrams as values.
     Create a result list, append all lists which contains more than one anagram from the hashmap. 
 */
 
