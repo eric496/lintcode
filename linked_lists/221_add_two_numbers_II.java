@@ -45,18 +45,14 @@ public class Solution {
         }
         Stack<Integer> s3 = new Stack<>();
         int carry = 0, sum = 0;
-        while (!s1.isEmpty() && !s2.isEmpty()) {
-            sum = s1.pop() + s2.pop() + carry;
-            s3.push(sum % 10);
-            carry = sum / 10;
-        }
-        while (!s1.isEmpty()) {
-            sum = s1.pop() + carry;
-            s3.push(sum%10);
-            carry = sum / 10;
-        }
-        while (!s2.isEmpty()) {
-            sum = s2.pop() + carry;
+        while (!s1.isEmpty() || !s2.isEmpty()) {
+            sum = carry;
+            if (!s1.isEmpty()) {
+                sum += s1.pop();
+            }
+            if (!s2.isEmpty()) {
+                sum += s2.pop();
+            }
             s3.push(sum%10);
             carry = sum / 10;
         }
@@ -74,13 +70,14 @@ public class Solution {
     }
 }
 
+
 // O(n) time using 2 stacks
 public class Solution {
     public ListNode addLists2(ListNode l1, ListNode l2) {
         if (l1 == null) return l2;
         if (l2 == null) return l1;
-        Stack<Integer> s1 = new Stack<Integer>();
-        Stack<Integer> s2 = new Stack<Integer>();
+        Stack<Integer> s1 = new Stack<>();
+        Stack<Integer> s2 = new Stack<>();
         while (l1 != null) {
             s1.push(l1.val);
             l1 = l1.next;
@@ -89,9 +86,10 @@ public class Solution {
             s2.push(l2.val);
             l2 = l2.next;
         }
-        int sum = 0;
-        ListNode list = new ListNode(Integer.MIN_VALUE);
+        int sum = 0, carry = 0
+        ListNode list = new ListNode(-1);
         while (!s1.empty() || !s2.empty()) {
+	    sum = carry;
             if (!s1.empty()) {
 		sum += s1.pop();
 	    }
@@ -102,7 +100,7 @@ public class Solution {
             ListNode head = new ListNode(sum/10);
             head.next = list;
             list = head;
-            sum /= 10;
+	    carry = sum / 10;
         }
         return list.val == 0 ? list.next : list;
     }
