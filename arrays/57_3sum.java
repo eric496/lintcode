@@ -34,8 +34,12 @@ public class Solution {
 		    low++;
 		    high--;
                     // skip duplicate element
-                    while (low < high && num[low] == num[low-1]) low++;
-                    while (low < high && num[high] == num[high+1]) high--;
+                    while (low < high && num[low] == num[low-1]) {
+			low++;
+		    }
+                    while (low < high && num[high] == num[high+1]) {
+			high--;
+		    }
                 } else if (num[i] + num[low] + num[high] < 0) {
                     low++;
                 } else {
