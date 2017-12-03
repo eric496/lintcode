@@ -20,29 +20,26 @@ Thought process:
 public class Solution {
     public int maxProfit(int[] prices) {
         if (prices == null || prices.length <= 1) return 0;
-        int[] left = new int[prices.length];
-        int[] right = new int[prices.length];
-
+        int[] leftMax = new int[prices.length];
+        int[] rightMax = new int[prices.length];
         // DP from left to right;
-        left[0] = 0;
-        int min = prices[0];
+        leftMax[0] = 0;
+        int minSofar = prices[0];
         for (int i = 1; i < prices.length; i++) {
-            min = Math.min(prices[i], min);
-            left[i] = Math.max(left[i-1], prices[i]-min);
+            minSofar = Math.min(prices[i], minSofar);
+            leftMax[i] = Math.max(leftMax[i-1], prices[i]-minSofar);
         }
-
         //DP from right to left;
-        right[prices.length-1] = 0;
-        int max = prices[prices.length-1];
+        rightMax[prices.length-1] = 0;
+        int maxSofar = prices[prices.length-1];
         for (int i = prices.length - 2; i >= 0; i--) {
-            max = Math.max(prices[i], max);
-            right[i] = Math.max(right[i+1], max-prices[i]);
+            maxSofar = Math.max(prices[i], maxSofar);
+            rightMax[i] = Math.max(rightMax[i+1], maxSofar-prices[i]);
         }
-
         int profit = 0;
         for (int i = 0; i < prices.length; i++) {
-	    profit = Math.max(left[i]+right[i], profit);
-	}  
+            profit = Math.max(leftMax[i]+rightMax[i], profit);
+        }
         return profit;
     }
 }
