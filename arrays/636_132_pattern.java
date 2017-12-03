@@ -63,7 +63,9 @@ public class Solution {
         int top = nums.length;
         for (int j = nums.length - 1; j >= 0; j--) {
             if (nums[j] <= minSofar[j]) continue;
-            while (top < nums.length && minSofar[top] <= minSofar[j]) top++;
+            while (top < nums.length && minSofar[top] <= minSofar[j]) {
+		top++;
+	    }
             if (top < nums.length && nums[j] > minSofar[top]) return true;
             minSofar[--top] = nums[j];
         }
