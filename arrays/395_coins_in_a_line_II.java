@@ -44,7 +44,7 @@ public class Solution {
         dp[len-3] = values[len-3] + values[len-2];
         // if there are four coins left, you have strategies. you can take one and the other player will take two and you will take the last one
         // or you can take two and the other player will take the rest
-        // game theory: you always maximize your result while your competitor always minimizes your result
+        // game theory: you always want to maximize your result while your competitor always wants to minimize your result
         for (int i = len - 4; i >= 0; i--) {
             int value1 = values[i] + Math.min(dp[i+2], dp[i+3]);
             int value2 = values[i] + values[i+1] + Math.min(dp[i+3], dp[i+4]);
