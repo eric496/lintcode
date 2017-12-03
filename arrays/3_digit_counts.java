@@ -15,7 +15,7 @@ Thought process:
 // O(n^2) time and O(1) space
 public class Solution {
     public int digitCounts(int k, int n) {
-        if(k < 0 || k > 9 || n < 0) return 0;
+        if (k < 0 || k > 9 || n < 0) return 0;
         int count = 0;
         for (int i = 0; i <= n; i++) {
             int num = i;
