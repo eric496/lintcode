@@ -14,7 +14,7 @@ Example
 /*
 Thought process:
     1. Linear search
-    2. Binary search: include "=" in the while condition.
+    2. Binary search: include "=" in the while condition, because there is no duplicate and two pointers should meet at the same position for the unique value.
 */
 
 // O(n) time by linear search
@@ -37,12 +37,13 @@ public class Solution {
         int low = 0, high = A.length - 1;
         while (low <= high) {
             int mid = low + (high - low) / 2;
-            if (target == A[mid])
+            if (target == A[mid]) {
                 return mid;
-            else if (target < A[mid])
+            } else if (target < A[mid]) {
                 high = mid - 1;
-            else if (target > A[mid])
+            } else if (target > A[mid]) {
                 low = mid + 1;
+	    }
         }
         return low;
     }
