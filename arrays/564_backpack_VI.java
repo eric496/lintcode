@@ -34,7 +34,7 @@ public class Solution {
         int result = 0;
         for (int i = 0; i < nums.length; i++) {
             if (target >= nums[i]) {
-                result += backPackVI(nums, target - nums[i]);
+                result += backPackVI(nums, target-nums[i]);
             }
         }
         return result;
