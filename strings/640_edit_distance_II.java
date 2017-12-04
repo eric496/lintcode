@@ -9,11 +9,11 @@ Example
 /*
 Thought process:
     There are two cases that two strings are one edit distance away from each other:
-        1) one string is one character less than the other, and the relative order of other characters are the same for the two strings
-           so by inserting an character in the short string (or by deleting an character in the long string) we can convert one to the other. 
-        2) two strings are of the same length with only one character different. Conversion can be done by replacement.
+        1) One string is one character less than the other, and the relative order of other characters is the same for the two strings.
+           By inserting an character in the short string (or by deleting an character in the long string) can we convert one to the other. 
+        2) Two strings are of the same length with only one character different. Conversion can be done by replacement of the different character.
     Notice two corner cases: return false if difference of lengths is greater than 1 or two strings are extactly the same (no distance)
-    Differentiate the shorter string from the longer one. Create two index variables and a count variable to keep the number of different characters.
+    Differentiate the shorter string from the longer one. Create two index variables and a counter variable to keep the number of different characters.
     If the current characters are the same, increment both short and long indices. Otherwise, if two strings have the same length, increment both indices as well.
     If they have different length, increment only the long index. Finally check if count of different characters are less than or equals one 
     (there is a corner case that diff == 0 when the last character of the long string is the only different character).
