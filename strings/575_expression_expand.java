@@ -17,45 +17,45 @@ Thought process:
 
 public class Solution {
     public String expressionExpand(String s) {
-        if(s == null || s.length() == 0) return s;
-        Stack<String> str = new Stack<String>();
-        Stack<Integer> count = new Stack<Integer>();
-        String result = "";
+        if (s == null || s.length() == 0) return s;
+        Stack<String> stack = new Stack<>();
+        Stack<Integer> count = new Stack<>();
+        StringBuffer result = new StringBuffer();
         int num = 0;
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            if(Character.isDigit(c)){
-                num = num * 10 + (c - '0');
+            if (Character.isDigit(c)) {
+                num = num * 10 + (int)(c-'0');
                 continue;
             }
-            if (Character.isLetter(c)){
-                if (str.isEmpty()) {
-                    result += c;
+            if (Character.isLetter(c)) {
+                if (stack.isEmpty()) {
+                    result.append(c);
                 } else { 
-                    str.push(str.pop() + c);
+                    stack.push(stack.pop()+c);
                 }
                 continue;
             }
             if (c == '[') {
                 count.push(num);
                 num = 0;
-                str.push(""); 
+                stack.push(""); 
                 continue;
             }
             if (c == ']') {
-                String t = "";
-                String temp = str.pop();
-                int dup = count.pop();
-                for (int k = 0; k < dup; k++) {
-                    t += temp;
+                StringBuffer t = new StringBuffer();
+                String temp = stack.pop();
+                int numDuplicates = count.pop();
+                for (int k = 0; k < numDuplicates; k++) {
+                    t.append(temp);
                 }
-                if (str.isEmpty()) {
-                    result += t;
+                if (stack.isEmpty()) {
+                    result.append(t.toString());
                 } else { 
-                    str.push(str.pop() + t);
+                    stack.push(stack.pop()+t);
                 } 
             }
         }
-        return result;
+        return result.toString();
     }
 }
