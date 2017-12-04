@@ -24,13 +24,14 @@ public class Solution {
     
     public void dfs(int i, int n, String s, boolean[] happen) {
         if (i >= s.length() || flag) {
-        	if (!flag)
-            for (int k = 1; k <= n; k++) {
-                if (!happen[k]) {
-                    result = k;
+            if (!flag) {
+                for (int k = 1; k <= n; k++) {
+                    if (!happen[k]) {
+                        result = k;
+                    }
                 }
-            }
         	flag = true;
+	    }
             return;
         }
         int sum = s.charAt(i) - '0';
