@@ -27,7 +27,7 @@ public class Solution {
             } else if(num[mid] > num[high]) {
                 low = mid + 1;
             } else {
-            // num[high] == num[mid]
+            // num[high] == num[mid] but it might not be the first
                 high--;
             }
         }
