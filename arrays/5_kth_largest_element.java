@@ -12,7 +12,7 @@ Challenge
     O(n) time, O(1) extra memory.
 */
 
-// O(logn) time and O(1) space by sorting the array
+// O(nlogn) time and O(1) space by sorting the array
 class Solution {
     public int kthLargestElement(int k, int[] nums) {
         if (nums == null || nums.length == 0) return 0;
