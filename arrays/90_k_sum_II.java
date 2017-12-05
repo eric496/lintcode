@@ -16,24 +16,23 @@ Thought process:
 */
 
 public class Solution {
-    List<List<Integer> > ans;
-
+    List<List<Integer> > result;
     public List<List<Integer>> kSumII(int[] A, int k, int target) {
-        ans = new ArrayList<List<Integer>>();
-        List<Integer> tans = new ArrayList<Integer>();
-        dfs(A, k, target, A.length-1, tans);
-        return ans;
+        result = new ArrayList<List<Integer>>();
+        List<Integer> curList = new ArrayList<>();
+        dfs(A, k, target, A.length-1, curList);
+        return result;
     }
 
-    public void dfs(int[] A, int k, int target, int index, List<Integer> tans) {
+    public void dfs(int[] A, int k, int target, int index, List<Integer> curList) {
         if (k == 0 && target == 0) {
-            ans.add(new ArrayList<Integer>(tans));
-            return ;
+            result.add(new ArrayList<Integer>(curList));
+            return;
         }
-        if(k < 0 || target < 0 || index < 0) return ;
-        dfs(A, k, target, index-1, tans);
-        tans.add(A[index]);
-        dfs(A, k-1, target-A[index], index-1, tans);
-        tans.remove(tans.size()-1);
+        if (k < 0 || target < 0 || index < 0) return;
+        dfs(A, k, target, index-1, curList);
+        curList.add(A[index]);
+        dfs(A, k-1, target-A[index], index-1, curList);
+        curList.remove(curList.size()-1);
     }
 }
