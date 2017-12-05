@@ -80,7 +80,7 @@ class Solution {
         }
     }
 
-    void swap(int left, int right, int[] A) {
+    private void swap(int left, int right, int[] A) {
         int temp = A[left];
         A[left] = A[right];
         A[right] = temp;
