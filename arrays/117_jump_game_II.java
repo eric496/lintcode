@@ -15,9 +15,7 @@ Thought process:
 
 public class Solution {
     public int jump(int[] A) {
-	int numJumps = 0;
-        int prevJumpMax = 0;
-        int curJumpMax = 0;
+	int numJumps = 0, prevJumpMax = 0, curJumpMax = 0;
         for (int i = 0; i < A.length - 1; i++) {
             if (i + A[i] > curJumpMax) {
 		curJumpMax = i + A[i];
