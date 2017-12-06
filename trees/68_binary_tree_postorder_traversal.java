@@ -106,7 +106,7 @@ public class Solution {
     }
 }
 
-// iterative method 2
+// iterative method 3
 public class Solution {
     public List<Integer> postorderTraversal(TreeNode root) {
         LinkedList<Integer> result = new LinkedList<>();
