@@ -11,7 +11,7 @@ Challenge
 /*
 Thought process:
     Use two pointers traversing the list with one step and two steps at a time respectively.
-    Reverse the first half and compare it with the second half, return false if any different node value found. 
+    Reverse the second half and compare it with the first half, return false if any different node value found. 
 */
 
 /**
@@ -31,6 +31,7 @@ public class Solution {
             fast = fast.next.next;
             slow = slow.next;
         }
+	// if number of node is odd, move the pointer one step further to pass the middle (single) node
         if (fast != null) {
             slow = slow.next;
 	}
