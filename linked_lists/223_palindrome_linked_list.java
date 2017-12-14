@@ -8,6 +8,12 @@ Challenge
     Could you do it in O(n) time and O(1) space?
 */
 
+/*
+Thought process:
+    Use two pointers traversing the list with one step and two steps at a time respectively.
+    Reverse the first half and compare it with the second half, return false if any different node value found. 
+*/
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -19,14 +25,15 @@ Challenge
  
 public class Solution {
     public boolean isPalindrome(ListNode head) {
-        if(head == null) return true;
+        if (head == null) return true;
         ListNode fast = head, slow = head;
         while (fast != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;
         }
-        if (fast != null) // odd nodes: let right half smaller
+        if (fast != null) {
             slow = slow.next;
+	}
         slow = reverse(slow);
         fast = head;
         while (slow != null) {
@@ -48,4 +55,3 @@ public class Solution {
         return prev;
     }
 }
-
