@@ -15,43 +15,59 @@ Challenge
     Could you come up with an one-pass algorithm using only constant space?
 */
 
+/*
+Thought process:
+    1. Two passes:
+    2. One pass:
+*/
+
 // two passes
 public class Solution {
     public void sortColors(int[] A) {
+	if (A == null || A.length < 2) return;
         int num0 = 0, num1 = 0, num2 = 0;
-        for(int i = 0; i < A.length; i++) {
-            if (A[i] == 0) ++num0;
-            else if (A[i] == 1) ++num1;
-            else if (A[i] == 2) ++num2;
+        for (int i = 0; i < A.length; i++) {
+            if (A[i] == 0) {
+		num0++;
+	    } else if (A[i] == 1) {
+		num1++;
+	    } else {
+		num2++;	
+	    }
         }
-        for(int i = 0; i < num0; ++i) A[i] = 0;
-        for(int i = 0; i < num1; ++i) A[num0+i] = 1;
-        for(int i = 0; i < num2; ++i) A[num0+num1+i] = 2;
+	for (int i = 0; i < A.length; i++) {
+	    if (i < num0) {
+		A[i] = 0;
+	    } else if (i < num0 + num1) {
+		A[i] = 1;
+	    } else {
+		A[i] = 2;	
+	    }
+	}
     }
 }
 
 // one pass
 public class Solution {
     public void sortColors(int[] A) {
-        if(A==null || A.length < 2) return;
-        int low = 0; 
-        int high = A.length-1;
-        for(int i = low; i<=high;) {
-            if(A[i]==0) {
-                // swap A[i] and A[low] and i,low both ++
-                int temp = A[i];
-                A[i] = A[low];
-                A[low]=temp;
-                i++;
+        if (A==null || A.length < 2) return;
+        int low = 0, high = A.length - 1, pos = 0;
+        while (pos <= high) {
+            if (A[pos] == 0) {
+                // swap A[i] and A[low] and pos,low both ++
+                int temp = A[pos];
+                A[pos] = A[low];
+                A[low] = temp;
+                pos++;
                 low++;
-            } else if(A[i]==2) {
-               //swap A[i] and A[high] and high--;
-                int temp = A[i];
-                A[i] = A[high];
-                A[high]=temp;
+            } else if (A[pos] == 2) {
+               //swap A[pos] and A[high] and high--;
+                int temp = A[pos];
+                A[pos] = A[high];
+                A[high] = temp;
                 high--;
             } else {
-                i++;
+                pos++;
             }
         }
     }
