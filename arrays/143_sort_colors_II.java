@@ -12,38 +12,41 @@ Challenge
     A rather straight forward solution is a two-pass algorithm using counting sort. That will cost O(k) extra memory. Can you do it without using extra memory?
 */
 
+/*
+Thought process:
+
+*/
+
 public class Solution {
     public void sortColors2(int[] colors, int k) {
-        int count = 0;
-        int left = 0;
-        int right = colors.length - 1;
+        int count = 0, low = 0, high = colors.length - 1;
         while (count < k) {
             int min = Integer.MAX_VALUE;
             int max = Integer.MIN_VALUE;
-            for (int i = left; i <= right; i++) {
+            for (int i = low; i <= high; i++) {
                 min = Math.min(min, colors[i]);
                 max = Math.max(max, colors[i]);
             }
-            int cur = left;
-            while(cur <= right) {
-                if (colors[cur] == min) {
-                    swap(left, cur, colors);
-                    cur++;
-                    left++;
-                } else if (colors[cur] > min && colors[cur] < max) {
-                    cur++;
+            int pos = low;
+            while (pos <= high) {
+                if (colors[pos] == min) {
+                    swap(low, pos, colors);
+                    pos++;
+                    low++;
+                } else if (colors[pos] > min && colors[pos] < max) {
+                    pos++;
                 } else {
-                    swap(cur, right, colors);
-                    right--;
+                    swap(pos, high, colors);
+                    high--;
                 }
             }
             count += 2;
         }
     }
     
-    private void swap(int left, int right, int[] colors) {
-        int tmp = colors[left];
-        colors[left] = colors[right];
-        colors[right] = tmp;
+    private void swap(int low, int high, int[] colors) {
+        int temp = colors[low];
+        colors[low] = colors[high];
+        colors[high] = temp;
     }
 }
