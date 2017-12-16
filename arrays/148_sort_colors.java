@@ -50,25 +50,27 @@ public class Solution {
 // one pass
 public class Solution {
     public void sortColors(int[] A) {
-        if (A==null || A.length < 2) return;
+        if (A == null || A.length < 2) return;
         int low = 0, high = A.length - 1, pos = 0;
         while (pos <= high) {
             if (A[pos] == 0) {
-                // swap A[i] and A[low] and pos,low both ++
-                int temp = A[pos];
-                A[pos] = A[low];
-                A[low] = temp;
+                // swap A[pos] and A[low] and pos,low both ++
+                swap(pos, low, A);
                 pos++;
                 low++;
             } else if (A[pos] == 2) {
                //swap A[pos] and A[high] and high--;
-                int temp = A[pos];
-                A[pos] = A[high];
-                A[high] = temp;
+                swap(pos, high, A);
                 high--;
             } else {
                 pos++;
             }
         }
+    }
+    
+    private void swap(int low, int high, int[] A) {
+        int temp = A[low];
+        A[low] = A[high];
+        A[high] = temp;
     }
 }
