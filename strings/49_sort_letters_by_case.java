@@ -11,21 +11,33 @@ Challenge
     Do it in one-pass and in-place.
 */
 
+/*
+Thought process:
+    Two pointers: traversing from both ends of the array, the head pointer keeps pointing to the next upper case character, while the tali pointer pointing to the next lower case character. 
+                  Swap the two characters in place.
+*/
+
 public class Solution {
     public void sortLetters(char[] chars) {
-        int i = 0, j = chars.length - 1;
-	char tmp ;
-	while(i <= j) {
-	    while (i <= j && Character.isLowerCase(chars[i]) ) i++;
-	    while (i <= j && Character.isUpperCase(chars[j]) ) j--;
-	    if (i <= j) {
-		tmp = chars[i];
-		chars[i] = chars[j];
-		chars[j] = tmp;
-		i++; 
-		j--;
+        int low = 0, high = chars.length - 1;
+	while (low <= high) {
+	    while (low <= high && Character.isLowerCase(chars[low])) {
+		low++;
+	    }
+	    while (low <= high && Character.isUpperCase(chars[high])) {
+	        high--;
+	    }
+	    if (low <= high) {
+		swap(low, high, chars);
+		low++;
+		high--;
 	    }
 	}
-	return ;
+    }
+    
+    private void swap(int ix1, int ix2, char[] chars) {
+        char temp = chars[ix1];
+        chars[ix1] = chars[ix2];
+        chars[ix2] = temp;
     }
 }
