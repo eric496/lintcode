@@ -18,8 +18,9 @@ Thought process:
 // O(n) time and O(n) space using hashmap
 public class Solution {
     public List<String> anagrams(String[] strs) {
-        if (strs.length == 0 || strs == null) return null;
-        Map<String, ArrayList<String>> map = new HashMap<>();
+        List<String> result = new ArrayList<>();
+        if (strs.length == 0 || strs == null) return result;
+        Map<String, List<String>> map = new HashMap<>();
         for (String s : strs) {
             char[] chars = s.toCharArray();
             Arrays.sort(chars);
@@ -27,15 +28,14 @@ public class Solution {
             if (map.containsKey(key)) {
                 map.get(key).add(s);
             } else {
-                ArrayList<String> temp = new ArrayList<String>();
+                List<String> temp = new ArrayList<>();
                 temp.add(s);
                 map.put(key, temp);
             }
         }
-        List<String> result = new ArrayList<>();
-        for (Map.Entry<String, ArrayList<String>> entry : map.entrySet()) {
+        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
             if (entry.getValue().size() > 1) {
-                result.addAll(entry.getValue());   
+                result.addAll(entry.getValue());
             }
         }
         return result;
