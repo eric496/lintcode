@@ -20,7 +20,7 @@ Thought process:
 // recursive (it causes TLE)
 public class Solution {
     public int climbStairs(int n) {
-        if(n <= 2) return n;
+        if (n <= 2) return n;
         return climbStairs(n-1) + climbStairs(n-2);
     }
 }
@@ -28,7 +28,7 @@ public class Solution {
 // iterative
 public class Solution {
     public int climbStairs(int n) {
-        if(n <= 2) return n;
+        if (n <= 2) return n;
         int prevPrev = 1, prev = 2, cur = prevPrev + prev;
         for (int i = 3; i <= n; i++) {
             cur = prevPrev + prev;
@@ -42,7 +42,7 @@ public class Solution {
 // DP - bottom up
 public class Solution {
     public int climbStairs(int n) {
-        if(n <= 2) return n;
+        if (n <= 2) return n;
         int[] dp = new int[n+1];
         dp[0] = 1;
         dp[1] = 1;
