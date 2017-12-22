@@ -9,6 +9,13 @@ Example
     Return 15.667 // (-6 + 50 + 3) / 3 = 15.667
 */
 
+/*
+Thought process:
+    Iterate the array with a sliding window whose length is 4 (remove the first element and include a new element at each time).
+    Update the max value of the sliding windows.
+*/
+
+// method 1
 public class Solution {
     public double maxAverage(int[] nums, int k) {
         double max = Double.MIN_VALUE;
@@ -44,5 +51,21 @@ public class Solution {
             if (sum >= minSum) return true;
         }
         return false;
+    }
+}
+
+// method 2
+public class Solution {
+    public double maxAverage(int[] nums, int k) {
+        long sum = 0;
+        for (int i = 0; i < k; i++) {
+            sum += nums[i];
+        }
+        long max = sum;
+        for (int i = k; i < nums.length; i++) {
+            sum += nums[i] - nums[i-k];
+            max = Math.max(max, sum);
+        }
+        return max / 1.0 / k;
     }
 }
