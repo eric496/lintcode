@@ -14,9 +14,9 @@ Example
 
 /*
 Thought process:
-    Intuitively, we should subtract the largest value by the smallest value from all arrays.
-    But there is a case that both extreme values comes from the same array which is not allowed. 
-    So, what we need to do is create four variables to keep smallest, the second smallest, largest, the second largest values.
+    Intuitively, we should subtract the largest value by the smallest value of all elements from the arrays.
+    But there is a case that both extreme values come from the same array in which the second smallest or largest values should be considered. 
+    Create four variables to keep smallest, the second smallest, largest, the second largest values.
     If the extreme values come from the same array, then compare |the second largest - smallest| with |largest - the second smallest|, 
     and return whichever is smaller. Otherwise just return |the largest - the smallest|.
 */
@@ -42,7 +42,9 @@ public class Solution {
         }
         int max1 = Math.abs(arrs[small1][0] - arrs[large2][arrs[large2].length-1]);
         int max2 = Math.abs(arrs[small2][0] - arrs[large1][arrs[large1].length-1]);
+	// both extreme values come from the same array
         if (small1 == large1) return max1 > max2 ? max1 : max2;
+	// the extreme values come from different arrays
         return Math.abs(arrs[small1][0] - arrs[large1][arrs[large1].length-1]);
     }
 }
