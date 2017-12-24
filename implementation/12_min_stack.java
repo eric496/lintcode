@@ -18,7 +18,7 @@ Example
 /*
 Thought process:
     In order to make pop in O(1) cost, which means no iteration search for min after the min is popped, we should consider extra data structure. 
-    Use two stacks, one to store all pushed values, the other one to store min so far. Keep two stacks the same pace of operations (push, pop).
+    Use two stacks, one to store all pushed values, the other one to store min so far. Keep operations (push, pop) synchronized for both stacks.
 */
 
 public class MinStack {
@@ -26,8 +26,8 @@ public class MinStack {
     private Stack<Integer> minStack;
     
     public MinStack() {
-        stack = new Stack<Integer>();
-        minStack = new Stack<Integer>();
+        stack = new Stack<>();
+        minStack = new Stack<>();
     }
 
     public void push(int number) {
