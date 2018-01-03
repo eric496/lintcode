@@ -13,5 +13,28 @@ Example
 
 /*
 Thought process:
-
+    Brute force
 */
+
+// TLE
+public class Solution {
+    public List<Integer> digitDivideNums(int lower, int upper) {
+        List<Integer> result = new ArrayList<>();
+        if (lower < 1 || upper > Integer.MAX_VALUE) return result;
+        for (int i = lower; i <= upper; i++) {
+            if (isDigitDivide(i)) {
+                result.add(i);
+            }
+        }
+        return result;
+    }
+    
+    private boolean isDigitDivide(int n) {
+        int num = n;
+        while (num != 0) {
+            if (num % 10 == 0 || n % (num % 10) != 0) return false;
+            num /= 10;
+        }
+        return true;
+    }
+}
