@@ -9,9 +9,9 @@ Example
 
 /*
 Thought process:
-    Iterate both strings in backward order. Think about how binary addition works: it sums up two digits at the same place plus carry number from the previous place. 
+    Iterate both strings in backward order. Think about how binary addition works: it sums up two digits at the same place plus carry obtained from the previous place. 
     Use sum%2 as the digit for the current place, sum/2 as the number needs to be carried to the next place.    
-    Iteratively run the above operations until one full pass of both strings. It is possible that there is an extra number carried to the new place, so remember to check that outside the while loop.
+    Iteratively run the above operations until at least one full pass of the shorter string. It is possible that there is an extra number carried to the new place, so remember to check that outside the while loop.
     Remember to reverse the result at the end because digit is appended in reverse order.
 */
 
@@ -24,6 +24,7 @@ public class Solution {
             sb.append(sum%2);
             carry = sum / 2;
         }
+        // the following code is somewhat duplicated, there is way to make it concise in only one while loop
         while (ixa >= 0){
             sum = (int)(a.charAt(ixa--)-'0') + carry;
             sb.append(sum%2);
