@@ -35,13 +35,14 @@ public class Solution {
 public class Solution {
     public int addDigits(int num) {
 	if (num < 10) return num;
+	// while (num > 9) is valid as well
         while (num / 10 != 0) {
             int sum = 0;
             while (num != 0) {
                 sum += num % 10;
                 num /= 10;
             }
-            // update num value by its digit sum
+            // update num value by the sum of all its digits
             num = sum;
         }
         return num;
