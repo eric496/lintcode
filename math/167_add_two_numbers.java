@@ -9,7 +9,7 @@ Example
 
 /*
 Thought process:
-    It is the same trick applied to 408 and 655, except that here we need a linked list implementation.
+    Similar to 408 and 655. Use a dummy head to track the head of the linked list.
 */
 
 /**
@@ -27,11 +27,13 @@ Thought process:
 public class Solution {
     public ListNode addLists(ListNode l1, ListNode l2) {
         if (l1 == null && l2 == null) return null;
-        ListNode dummyhead = new ListNode(Integer.MIN_VALUE);
-        ListNode runner = dummyhead;
-        int carry = 0;
+	if (l1 == null) return l2;
+	if (l2 == null) return l1;
+        ListNode sentinel = new ListNode(-1);
+        ListNode runner = sentinel;
+        int sum = 0, carry = 0;
         while (l1 != null && l2 != null) {
-            int sum = l1.val + l2.val + carry;
+            sum = l1.val + l2.val + carry;
             runner.next = new ListNode(sum%10);
             carry = sum / 10;
             l1 = l1.next;
@@ -39,14 +41,14 @@ public class Solution {
             runner = runner.next;
         }
         while (l1 != null) {
-            int sum = l1.val + carry;
+            sum = l1.val + carry;
             runner.next = new ListNode(sum%10);
             carry = sum / 10;
             l1 = l1.next;
             runner = runner.next;
         }
         while (l2 != null) {
-            int sum = l2.val + carry;
+            sum = l2.val + carry;
             runner.next = new ListNode(sum%10);
             carry = sum / 10;
             l2 = l2.next;
@@ -55,16 +57,18 @@ public class Solution {
         if (carry != 0) {
             runner.next = new ListNode(carry);
         }
-        return dummyhead.next;
+        return sentinel.next;
     }
 }
 
 // a concise version
 public class Solution {
     public ListNode addLists(ListNode l1, ListNode l2) {
-        if (l1 == null || l2 == null) return null;
-        ListNode dummyhead = new ListNode(Integer.MIN_VALUE);
-        ListNode runner = dummyhead;
+        if (l1 == null && l2 == null) return null;
+	if (l1 == null) return l2;
+	if (l2 == null) return l1;
+        ListNode sentinel = new ListNode(-1);
+        ListNode runner = sentinel;
         int sum = 0, carry = 0; 
         while (l1 != null || l2 != null) {
             sum = carry;
@@ -83,6 +87,6 @@ public class Solution {
         if (carry != 0) {
             runner.next = new ListNode(carry);
         }
-        return dummyhead.next;
+        return sentinel.next;
     }
 }
