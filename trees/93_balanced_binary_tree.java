@@ -13,18 +13,6 @@ Example
     The binary tree A is a height-balanced binary tree, but B is not.
 */
 
-/**
- * Definition of TreeNode:
- * public class TreeNode {
- *     public int val;
- *     public TreeNode left, right;
- *     public TreeNode(int val) {
- *         this.val = val;
- *         this.left = this.right = null;
- *     }
- * }
- */
-
 /*
 Thought process:
     Recursive solution: (similar to 93. Maximum Depth of Binary Tree)
@@ -48,6 +36,18 @@ Thought process:
         Remember to add 1 because we need to add the root level as well.  
 */
 
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+
 // O(n^2) time : top-down approach
 public class Solution {
     public boolean isBalanced(TreeNode root) {
@@ -64,7 +64,7 @@ public class Solution {
 // O(n) time: bottom-up approach
 public class Solution {
     public boolean isBalanced(TreeNode root) {
-        if(root == null) return true;
+        if (root == null) return true;
         return maxDepth(root) != -1;
     }
 
