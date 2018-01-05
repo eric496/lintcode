@@ -13,7 +13,7 @@ Example
 
 /*
 Thought process:
-    Similar to 408. Add Binary
+    Similar to 408 and 167. Use a string buffer to store the result in reverse order.
 */
 
 // O(n) time and O(1) space
@@ -22,17 +22,17 @@ public class Solution {
         int carry = 0, sum = 0, ix1 = num1.length() - 1, ix2 = num2.length() - 1;
         StringBuffer sb = new StringBuffer();
         while (ix1 >= 0 && ix2 >= 0) {
-            sum = (int)(num1.charAt(ix1--)-'0') + (int)(num2.charAt(ix2--)-'0') + carry;
+            sum = (num1.charAt(ix1--) - '0') + (num2.charAt(ix2--) - '0') + carry;
             sb.append(sum%10);
             carry = sum / 10;
         }
         while (ix1 >= 0) {
-            sum = carry + (int)(num1.charAt(ix1--)-'0');
+            sum = carry + (num1.charAt(ix1--) - '0');
             sb.append(sum%10);
             carry = sum / 10;
         }
         while (ix2 >= 0) {
-            sum = carry + (int)(num2.charAt(ix2--)-'0');
+            sum = carry + (num2.charAt(ix2--) - '0');
             sb.append(sum%10);
             carry = sum / 10;
         }
@@ -51,10 +51,10 @@ public class Solution {
         while (ix1 >= 0 || ix2 >= 0) {
             sum = carry;
             if (ix1 >= 0) {
-                sum += (int)(num1.charAt(ix1--)-'0');
+                sum += num1.charAt(ix1--) - '0';
             }
             if (ix2 >= 0) {
-                sum += (int)(num2.charAt(ix2--)-'0');
+                sum += num2.charAt(ix2--) - '0';
             }
             sb.append(sum%10);
             carry = sum / 10;
