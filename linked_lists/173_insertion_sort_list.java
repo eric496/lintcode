@@ -7,6 +7,7 @@ Example
 
 /*
 Thought process:
+    4-step swap, better draw a graph to visualize the process.
 */
 
 /**
@@ -23,9 +24,9 @@ Thought process:
     
 public class Solution {
     public ListNode insertionSortList(ListNode head) {
-        ListNode dummyhead = new ListNode(Integer.MIN_VALUE);
+        ListNode sentinel = new ListNode(-1);
         while (head != null) {
-            ListNode node = dummyhead;
+            ListNode node = sentinel;
             while (node.next != null && node.next.val < head.val) {
 		node = node.next;
 	    }
@@ -34,6 +35,6 @@ public class Solution {
             node.next = head;
             head = temp;
         }
-        return dummyhead.next;
+        return sentinel.next;
     }
 }
