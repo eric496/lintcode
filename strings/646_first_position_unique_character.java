@@ -14,7 +14,7 @@ Thought process:
     2. Use hash map if given a much larger or complicated encoding standard.
 */
 
-// O(n) time and O(1) space using array
+// O(n) time and O(1) space using an array
 public class Solution {
     public int firstUniqChar(String s) {
 	if (s == null || s.length() == 0) return -1;
@@ -29,7 +29,7 @@ public class Solution {
     }
 }
 
-// O(n) time and O(n) space using hashmap
+// O(n) time and O(n) space using a hashmap
 public class Solution {
     public int firstUniqChar(String s) {
         if (s == null || s.length() == 0) return -1;
@@ -42,7 +42,7 @@ public class Solution {
 	    }
         }
         for (char c : s.toCharArray()) {
-            if(map.get(c) == 1) return s.indexOf(c);
+            if (map.get(c) == 1) return s.indexOf(c);
 	}
         return -1;
     }
