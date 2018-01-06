@@ -65,7 +65,7 @@ public class Solution {
 public class Solution {
     public int lengthOfLastWord(String s) {
         if (s == null || s.trim().length() == 0) return 0;
-        // a flag variable - whether the counting begins
+        // a flag variable - count begins or not
         boolean startCount = false;
         int count = 0;
         // traverse from backward
