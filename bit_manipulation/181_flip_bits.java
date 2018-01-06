@@ -10,18 +10,21 @@ Example
 
 /*
 Thought process:
-    XOR to check bits that needs flipping.
-    i & (i-1) to clear the lowest bit.
-    Count the number of non-zero bits.  
+    Brian Kernighan’s Algorithm:
+    Subtraction of 1 from a number toggles all the bits (from right to left) till the rightmost set bit(including the righmost set bit). 
+    So if we subtract a number by 1 and do bitwise & with itself (n & (n-1)), we unset the righmost set bit. 
+    If we do n & (n-1) in a loop and count the no of times loop executes we get the set bit count.
+    (source: https://www.geeksforgeeks.org/count-set-bits-in-an-integer/)
 */
 
 class Solution {
     public int bitSwapRequired(int a, int b) {
         if (a == b) return 0;
-        int count = 0;
-        for (int i = a ^ b; i != 0; i &= i - 1) {
-	    count++;
-	}
+        int count = 0, numSetBits = a ^ b;
+        while (numSetBits != 0) {
+            numSetBits &= numSetBits - 1;
+            count++;
+        }
         return count;
     }
 }
