@@ -24,9 +24,7 @@ Thought process:
 // O(n) time and O(n) space 
 public class Solution {
     public int[] intersection(int[] nums1, int[] nums2) {
-        if (nums1 == null || nums2 == null) return null;
-        if (nums1.length == 0) return nums1;
-        if (nums2.length == 0) return nums2;
+        if (nums1 == null || nums2 == null || nums1.length == 0 || nums2.length == 0) return new int[0];
         Map<Integer, Integer> map = new HashMap<>();
         List<Integer> resultList = new ArrayList<>();
         // first pass maps numbers to the number of occurence 
@@ -53,12 +51,10 @@ public class Solution {
     }
 }
 
-// O(n) time and O(n) space 
+// O(nlogn) time and O(n) space 
 public class Solution {
     public int[] intersection(int[] nums1, int[] nums2) {
-        if (nums1 == null || nums2 == null) return null;
-        if (nums1.length == 0) return nums1;
-        if (nums2.length == 0) return nums2;
+        if (nums1 == null || nums2 == null || nums1.length == 0 || nums2.length == 0) return new int[0];
         Arrays.sort(nums1);
         Arrays.sort(nums2);
         List<Integer> resultList = new ArrayList<>();
