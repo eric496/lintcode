@@ -8,7 +8,7 @@ Example
 
 /*
 Thought process
-    It is similar to classical binary search with some tiny variations. We should be careful about that the return of "first" index of the target number. 
+    It is a variation to the classical binary search. Using vanilla binary search, we can find the element but not necessarily the first if there is duplicate.
     So after the while loop, it is possible the low-end and high-end runners can be both the target number. We need to check the low-end first, and then the high-end.
 */
 
@@ -20,7 +20,7 @@ class Solution {
             int mid = low + (high - low) / 2;
             // if mid point is target, do not return immediately because it might not be the first target
             if (nums[mid] == target) {
-                // set high to mid, because the first target could only occurs before mid rather than behind it`
+                // set high to mid, because the first target could only occurs before mid rather than behind it
                 high = mid;
             } else if (nums[mid] > target) {
                 high = mid - 1;
