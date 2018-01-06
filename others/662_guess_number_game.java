@@ -12,9 +12,9 @@ Example
 /*
 Thought process:
     Binary search
-    Study the edge case.
 */
 
+// O(logn) time
 public class Solution extends GuessGame {
     public int guessNumber(int n) {
         int low = 1, high = n;
@@ -22,7 +22,7 @@ public class Solution extends GuessGame {
         while (low < high) {
             int mid = low + (high - low) / 2;
             int result = guess(mid);
-            if (res == 0) {
+            if (result == 0) {
                 return mid;
             } else if (result == -1) {
                 high = mid - 1;
