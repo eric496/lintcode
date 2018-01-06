@@ -7,16 +7,6 @@ Example
     Insert [3, 4] into [[1,2], [5,9]], we get [[1,2], [3,4], [5,9]].
 */
 
-/**
- * Definition of Interval:
- * public class Interval {
- *     int start, end;
- *     Interval(int start, int end) {
- *         this.start = start;
- *         this.end = end;
- *     }
- */
-
 /*
 Thought process
     There are 3 cases: 
@@ -28,6 +18,16 @@ Thought process
     For case 3), update the new interval start with new interval start or current interval start, whichever is smaller. 
     Similarly, update the new interval end with new interval end or current interval end, whichever is greater.
 */
+
+/**
+ * Definition of Interval:
+ * public class Interval {
+ *     int start, end;
+ *     Interval(int start, int end) {
+ *         this.start = start;
+ *         this.end = end;
+ *     }
+ */
 
 public class Solution {
     public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
