@@ -12,11 +12,11 @@ Example
 
 /*
 Thought process:
-    1. The frequency of any character in the string is either even or odd. If it is even, by symmetry, it should be included in the palindrome. 
+    1. The frequency of any character in the string is either even or odd. If it is even, it should be included in the palindrome by symmetry. 
        If it is odd, we can make it an even number by subtracting 1, which can be included in the palindrome then. 
        Detect whether the string contains a character whose frequency is even. If so, the final result should add 1, because we can extend the palindrome by adding one character in the middle.
-    2. Method 1 can be simplified with one pass by using a set data structure. The basic idea is the same, but it counts how many "pairs" of the same characters by 
-       toggling add (if it appears an odd number of times) or remove (if it appears an even number of times). When a character is removed from the set, count variable should increment by 1, 
+    2. Method 1 can be simplified using only one pass by a set data structure. The basic idea is the same, but it counts how many "pairs" of the same characters by 
+       toggling add (if it appears an odd number of times) and remove (if it appears an even number of times). When a character is removed from the set, count variable should increment by 1, 
        because it matches a pair. If set is not empty in the end, it means there is at least one character whose frequency is odd. Thus we need to add 1 in the result as the same reason explained in method 1.
 */
 
