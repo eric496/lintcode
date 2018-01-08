@@ -8,7 +8,7 @@ Example
 /*
 Thought process:
     Do a pair comparison between nodes from two lists at each position. Append the smaller node to the new list. Keep three pointers moving forward accordingly.
-    Notice that we need to return the first node of the new list, so we create a dummy head to track the head node of the new list.
+    Notice that we need to return the first node of the new list, so we create a sentinel to track the head node of the new list.
 */
 
 /**
@@ -25,8 +25,8 @@ Thought process:
 
 public class Solution {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        ListNode dummyhead = new ListNode(-1);
-        ListNode runner = dummyhead, runner1 = l1, runner2 = l2;
+        ListNode sentinel = new ListNode(-1);
+        ListNode runner = sentinel, runner1 = l1, runner2 = l2;
         while (runner1 != null && runner2 != null) {
             if (runner1.val < runner2.val) {
                 runner.next = new ListNode(runner1.val);
@@ -49,7 +49,7 @@ public class Solution {
         }
 	// terminate the list properly
         runner.next = null;
-        return dummyhead.next;
+        return sentinel.next;
     }
 }
 
@@ -58,8 +58,8 @@ public class Solution {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         if (l1 == null) return l2;
         if (l2 == null) return l1;
-        ListNode dummyhead = new ListNode(-1);
-        ListNode runner = dummyhead, runner1 = l1, runner2 = l2;
+        ListNode sentinel = new ListNode(-1);
+        ListNode runner = sentinel, runner1 = l1, runner2 = l2;
         while (runner1 != null || runner2 != null) {
             if (runner1 != null && runner2 != null) {
                 if (runner1.val < runner2.val) {
@@ -80,6 +80,6 @@ public class Solution {
         }
 	// terminate the list
         runner.next = null;
-        return dummyhead.next;
+        return sentinel.next;
     }
 }
