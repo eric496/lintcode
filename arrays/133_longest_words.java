@@ -29,9 +29,8 @@ Thought process
     1. A trivial solution: two passes
            First pass counts the max length of all words. Second pass adds all strings of the max length to the result list. 
     2. One-pass method:
-           Iterate the dictionary, if the length of the current string is greater than that of the strings in the result list, 
-           then clear the result list and add the current string and update the max length.
-           If the length of the current string equals that of the strings in the result list, then append it to the result list.
+           Iterate the dictionary, if the length of the current string is greater than that of the strings in the result list, then clear the result list and add the current string and update the max length.
+           If the length of the current string equals the max length, then append it to the result list.
 */
 
 // two passes
