@@ -16,6 +16,7 @@ Challenge
 
 /*
 Thought process
+    Similar to 30. Insert Interval
     Sort the interval list by interval start values.
     Two pointers: Compare the current interval with the previous interval.
 		  If current start value is smaller than the previous end value (overlapping occurs), compare the previous end value with the current end value, store the greater one.
