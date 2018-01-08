@@ -13,7 +13,7 @@ Challenge
 
 /*
 Thought process
-    1. DP: The problem can be decomposed to the sub problem that dp[i] represents the largest sum ending at the i-th element.
+    1. DP: The problem can be decomposed into the sub problem that dp[i] represents the largest sum ending at the i-th element.
            dp[i] is either dp[i-1] plus the current element nums[i] or nums[i] itself, whichever is greater.
     2. Greedy - Kadane's algorithm: (same to DP, but even concise because it is not necessary to store dp[i])
             The maximum sum of a contiguous subarray ending at a specific element is either 
