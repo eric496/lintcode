@@ -8,9 +8,8 @@ Example
 
 /*
 Thought process:
-    Two pointers: 
-        Let the first pointer traverse n steps first. Then let both pointers traverse at the same pace. 
-        When the first pointer reaches the tail, the second pointer is right at the n-th to last node.
+    Two pointers: Let the first pointer traverse n steps first. Then let both pointers traverse at the same pace. 
+                  When the first pointer reaches the tail, the second pointer is right at the n-th to last node.
 */
 
 /**
@@ -28,14 +27,15 @@ Thought process:
 public class Solution {
     public ListNode nthToLast(ListNode head, int n) {
         if (head == null || n < 1) return null;
-        ListNode runner1 = head, runner2 = head;
+        ListNode runner = head;
         for (int i = 0; i < n; i++) { 
-            runner1 = runner1.next;
+            runner = runner.next;
         }
-        while (runner1 != null) {
-            runner1 = runner1.next;
-            runner2 = runner2.next;
+	ListNode target = head;
+        while (runner != null) {
+            runner = runner.next;
+            target = target.next;
         }
-        return runner2;
+        return target;
     }
 }
