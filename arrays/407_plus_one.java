@@ -13,10 +13,10 @@ Thought process
        1) sum = current number + carry;
        2) sum % 10 as the number at ones place / tens place / hundreds place ...
        3) carry sum / 10 to the next higher place.
-   Be careful: 
+   Notice: 
        First, the default value of carry is 1, because 1 will be added to the number.
        Second, iterate the array in backward order because addition operates from ones place, tens place, ...
-       Third, because of the second, the result array is in reverse order, we need to reverse it so for the correct order.  
+       Third, because of the second point above, the result array is the final result in its reverse order, so we need to reverse it to make it in correct order.  
 */
 
 public class Solution {
