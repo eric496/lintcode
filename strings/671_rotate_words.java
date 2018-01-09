@@ -23,7 +23,7 @@ Thought process:
 public class Solution {
     public int countRotateWords(List<String> words) {
         if (words == null || words.size() == 0) return 0;
-        HashSet<String> set = new HashSet<String>();
+        Set<String> set = new HashSet<>();
         int count = 0;
         for (String str : words) {
             if (!set.contains(str)) {
@@ -37,24 +37,26 @@ public class Solution {
     }
     
     private String rotate(String str, int offset) {
-        return str.substring(offset, str.length())+str.substring(0, offset);
+        return str.substring(offset, str.length()) + str.substring(0, offset);
     }
 }
 
 // method 2 with MLE; need to figure out why later
 public class Solution {
     public int countRotateWords(List<String> words) {
-        if(words == null || words.size() == 0) return 0;
-        HashSet<String> set = new HashSet<String>();
-        for(int i = 0; i < words.size(); i++) {
+        if (words == null || words.size() == 0) return 0;
+        Set<String> set = new HashSet<>();
+        for (int i = 0; i < words.size(); i++) {
             boolean isRotate = false;
-            for(String str : set) {
-                if(isRotateWords(words.get(i), str)) {
+            for (String str : set) {
+                if (isRotateWords(words.get(i), str)) {
                     isRotate = true;
                     break;
                 }
             }
-            if(!isRotate) set.add(words.get(i));
+            if (!isRotate) {
+		set.add(words.get(i));
+	    }
         }
         return set.size();
     }
@@ -67,18 +69,22 @@ public class Solution {
 // method 3 with MLE; need to figure out why later
 public class Solution {
     public int countRotateWords(List<String> words) {
-        if(words == null || words.size() == 0) return 0;
+        if (words == null || words.size() == 0) return 0;
         boolean[] isRotate = new boolean[words.size()];
-        for(int i = 0; i < words.size(); i++) {
-            if(isRotate[i]) continue;
-            for(int j = i + 1; j < words.size(); j++) {
-                if(isRotateWords(words.get(i), words.get(j)))
+        for (int i = 0; i < words.size(); i++) {
+            if (isRotate[i]) continue;
+            for (int j = i + 1; j < words.size(); j++) {
+                if (isRotateWords(words.get(i), words.get(j))) {
                     isRotate[j] = true;
+		}
             }
         }
         int count = 0;
-        for(boolean bool : isRotate)
-            if(!bool) count++;
+        for (boolean bool : isRotate) {
+            if (!bool) {
+		count++;
+	    }
+	}
         return count;
     }
 
