@@ -10,7 +10,7 @@ Example
 /*
 Thought process:
     Create two lists, one storing every node whose value is less than x, the other storing those whose value is greater than or equals to x.
-    Two dummy heads and two running pointers will be needed because:
+    Two sentinels and two running pointers will be needed because:
         1) The head of the first list will be returned as the result.
         2) The head of the second list will be appended to the tail of the first list.
     Don't forget to set the second list's tail to null for the proper ending of the linked list.
@@ -31,24 +31,22 @@ Thought process:
 public class Solution {
     public ListNode partition(ListNode head, int x) {
         if (head == null) return null;
-        ListNode smallDummyhead = new ListNode(-1);
-        ListNode smallRunner = smallDummyhead;
-        ListNode largeDummyhead = new ListNode(-1);
-        ListNode largeRunner = largeDummyhead;
-        ListNode runner = head;
-        while (runner != null) {
-            if (runner.val < x) {
-                smallRunner.next = runner;
+        ListNode smallRunner = new ListNode(-1);
+        ListNode smallSentinel = smallRunner;
+        ListNode largeRunner = new ListNode(-1);
+        ListNode largeSentinel = largeRunner;
+        while (head != null) {
+            if (head.val < x) {
+                smallRunner.next = head;
                 smallRunner = smallRunner.next;
             } else {
-                largeRunner.next = runner;
+                largeRunner.next = head;
                 largeRunner = largeRunner.next;
             }
-            runner = runner.next;
+            head = head.next;
         }
-        // end the list with null or it will cause MLE
         largeRunner.next = null;
-        smallRunner.next = largeDummyhead.next;
-        return smallDummyhead.next;
+        smallRunner.next = largeSentinel.next;
+        return smallSentinel.next;
     }
 }
