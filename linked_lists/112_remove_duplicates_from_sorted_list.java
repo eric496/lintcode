@@ -8,7 +8,8 @@ Example
 
 /*
 Thought process:
-    Create a runner pointer, if the current node value equals the next node value, remove next node by cur.next = cur.next.next. If not, move the runner pointer forward.
+    Create a moving pointer, if the current node value equals the next node value, remove next node by cur.next = cur.next.next. 
+    If not, move the pointer forward.
 */
 
 /**
