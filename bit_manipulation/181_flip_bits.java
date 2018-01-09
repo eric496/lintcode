@@ -13,7 +13,7 @@ Thought process:
     Brian Kernighan’s Algorithm:
     Subtraction of 1 from a number toggles all the bits (from right to left) till the rightmost set bit(including the righmost set bit). 
     So if we subtract a number by 1 and do bitwise & with itself (n & (n-1)), we unset the righmost set bit. 
-    If we do n & (n-1) in a loop and count the no of times loop executes we get the set bit count.
+    If we do n & (n-1) in a loop and count the number of times the loop executes until it becomes zero, we get the number of set bit.
     (source: https://www.geeksforgeeks.org/count-set-bits-in-an-integer/), see another explanation: http://www.techiedelight.com/brian-kernighans-algorithm-count-set-bits-integer/
 */
 
