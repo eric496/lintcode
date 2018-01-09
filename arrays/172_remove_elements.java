@@ -9,7 +9,7 @@ Example
 
 /*
 Thought process:
-    Two pointers: Similar to 539. Move Zeroes & 373. Partition Array by Odd and Even.
+    Two pointers: Similar to 539. Move Zeroes & 373. Partition Array by Odd and Even & 100. Remove Duplicates from Sorted Array.
 */
 
 // two pointers
