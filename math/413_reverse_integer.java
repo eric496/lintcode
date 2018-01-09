@@ -8,12 +8,12 @@ Example
 
 /*
 Thought process:
-    Check integer overflow, use long integer to store intermediate value.
+    Check integer overflow, use long integer to store intermediate values.
     Do until n equals 0:
 	1) Move the current result one place higher by multiplication of 10
         2) Add the current digit at ones place to the result (+ n % 10)
         3) Move n one place lower by removing the ones place (n / 10)
-    Check integer overflow again.
+    Check integer overflow again. The key point of this question is how to handle the edge case of integer overflow.
 */
 
 public class Solution {
