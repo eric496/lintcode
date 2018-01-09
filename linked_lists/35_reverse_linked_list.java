@@ -8,6 +8,11 @@ Challenge
     Reverse it in-place and in one-pass
 */
 
+/*
+Thought process:
+    Better walk through the 4-step swapping by drawing a graph for better understanding. 
+*/
+
 /**
  * Definition for ListNode.
  * public class ListNode {
@@ -20,11 +25,6 @@ Challenge
  * }
  */ 
 
-/*
-Thought process:
-    Better walk through the 4-step swapping by drawing a graph. 
-*/
- 
 public class Solution {
     public ListNode reverse(ListNode head) {
         if (head == null) return null;
