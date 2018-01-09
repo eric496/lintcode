@@ -9,8 +9,8 @@ Example
 /*
 Thought process:
     O(1) time -> we should use bit operations.
-    If an integer n is a power of 2, then there is only one 1 in its binary form. (n-1) is flipping all its bits. n & (n-1) will always be 0 if n is a power of 2. 
-    In general, given a random integer n, what n & (n-1) does is just unset its rightmost set bit (which means switching its rightmost 1 to 0).
+    If an integer n is a power of 2, then there is only one 1 in its binary form. (n-1) is flipping all its bits. 
+    n & (n-1) unsets n's rightmost set bit (which means switching its rightmost 1 to 0), which results in a sequence of zeroes if there is only one 1 in the binary form.
 */
 
 class Solution {
