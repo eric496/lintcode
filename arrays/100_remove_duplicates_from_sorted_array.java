@@ -10,14 +10,14 @@ Example
 /*
 Thought process:
     Two pointers: Create a unique value counter, which is a position pointer as well.
-                  Iterate the array, once the current element is different from the elemtent at the position pointer, move it to the position right to the position pointer. 
-                  Meanwhile, increment the position pointer.
+                  Iterate the array, once the current element is different from the elemtent at the position pointer, 
+                  move it to the position right to the position pointer. Meanwhile, increment the position pointer.
 */
 
 // O(n) time and O(1) space
 public class Solution {
     public int removeDuplicates(int[] nums) {
-        if (nums.length == 0 || nums == null) return 0;
+        if (nums.length <= 1 || nums == null) return 0;
         // set count to 1 because there is at least one element
         int count = 1;
         for (int i = 1; i < nums.length; i++) {
