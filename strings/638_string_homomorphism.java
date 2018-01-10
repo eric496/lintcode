@@ -18,7 +18,7 @@ Thought process:
                     At each iteration, compare the values whose indices are the characters from two strings. Return false if they do not match. 
 */
 
-// O(n) time and O(n) space - with two hash maps
+// O(n) time and O(n) space using two hash maps
 public class Solution {
     public boolean isIsomorphic(String s, String t) {
         if (s == null || t == null) return false;
@@ -26,8 +26,6 @@ public class Solution {
         int n = s.length();
         Map<Character, Integer> map1 = new HashMap<>();
         Map<Character, Integer> map2 = new HashMap<>();
-        int[] index1 = new int[n];
-        int[] index2 = new int[n];
         for (int i = 0; i < n; i++){
             if (!map1.containsKey(s.charAt(i))) {
 		map1.put(s.charAt(i), i);
@@ -36,12 +34,13 @@ public class Solution {
 		map2.put(t.charAt(i), i);
 	    }
         }
+	int[] indices1 = new int[n], indices2 = new int[n];
         for (int i = 0; i < n; i++) {
-            index1[i] = map1.get(s.charAt(i));
-            index2[i] = map2.get(t.charAt(i));
+            indices1[i] = map1.get(s.charAt(i));
+            indices2[i] = map2.get(t.charAt(i));
         }
         for (int i = 0; i < n; i++) {
-            if (index1[i] != index2[i]) return false;
+            if (indices1[i] != indices2[i]) return false;
         }
         return true;
     }
