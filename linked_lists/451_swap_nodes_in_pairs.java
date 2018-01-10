@@ -7,7 +7,7 @@ Example
 
 /*
 Thought process:
-    Two pointers. Be careful of the order of swap. Better draw a graph to understand how it works.
+    Two pointers. Be careful about the process of swapping especially the order. Better draw a graph to understand how it works.
 */
 
 /**
@@ -22,9 +22,9 @@ Thought process:
 public class Solution {
     public ListNode swapPairs(ListNode head) {
         if (head == null) return null;
-        ListNode dummyhead = new ListNode(-1);
-        dummyhead.next = head;
-        ListNode runner = dummyhead;
+        ListNode sentinel = new ListNode(-1);
+        sentinel.next = head;
+        ListNode runner = sentinel;
         ListNode next = null;
         ListNode nextNext = null;
         while (runner.next != null && runner.next.next != null) {
@@ -35,6 +35,6 @@ public class Solution {
             runner.next = nextNext;
             runner = next;
         }
-        return dummyhead.next;
+        return sentinel.next;
     }
 }
