@@ -17,7 +17,7 @@ Thought process:
     1. Use Newton's method: Let f(x) = x^2 - n, and calculate f(x) = 0
        by using the formula x_n+1 = x_n - f(x_n) / f'(x_n) = x_n - (x^2 - n) / (2x) = 1/2 (x_n + n / x_n)
     2. Since requirement is O(log(x)) time complexity, it is easy to come up with binary search. 
-       So we can write a typical iterative binary search solution.
+       So we can write an iterative binary search solution.
 */
 
 // Newton's method
@@ -36,18 +36,17 @@ class Solution {
 class Solution {
     public int sqrt(int x) {
         if (x <= 0) return 0;
-        long start = 1;
-        long end = x;
-        while (start + 1 < end) {
-            long mid = start + (end - start) / 2;
-            if (mid == x / mid) {
+        long low = 1, high = x;
+        while (low + 1 < high) {
+            long mid = low + (high - low) / 2;
+            if (mid * mid == x) {
                 return (int)mid;
-            } else if (mid > x / mid) {
-                end = mid;
+            } else if (mid * mid > x) {
+                high = mid;
             } else {
-                start = mid;
+                low = mid;
             }
         }
-        return (int)start;
+        return (int)low;
     }
 }
