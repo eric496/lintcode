@@ -16,7 +16,7 @@ Challenge
 
 /*
 Thought process:
-    Use an extra array (if ASCII) or hash map (if unicode or other encoding standards).
+    Use an extra array (for ASCII encoding) or hash map (for unicode or other encoding standards).
     Using an array counts towards O(1) space since it has fixed size.
 */
 
