@@ -22,6 +22,7 @@ Thought process:
     Retrieve the indices of these two numbers - the first is the matched key, the second is just the current index. 
 */
 
+// O(n) time and O(n) space
 public class Solution {
     public int[] twoSum(int[] numbers, int target) {
         int[] result = new int[2];
