@@ -83,3 +83,32 @@ public class Solution {
         return sentinel.next;
     }
 }
+
+// early stopping - a tiny change but might save time
+public class Solution {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if (l1 == null) return l2;
+        if (l2 == null) return l1;
+        ListNode sentinel = new ListNode(-1);
+        ListNode runner = sentinel, runner1 = l1, runner2 = l2;
+        while (runner1 != null || runner2 != null) {
+            if (runner1 != null && runner2 != null) {
+                if (runner1.val < runner2.val) {
+                    runner.next = new ListNode(runner1.val);
+                    runner1 = runner1.next;
+                } else {
+                    runner.next = new ListNode(runner2.val);
+                    runner2 = runner2.next;
+                }
+            } else if (runner1 != null) {
+                runner.next = runner1;
+                break;
+            } else if (runner2 != null) {
+                runner.next = runner2;
+                break;
+            }
+            runner = runner.next;
+        }
+        return sentinel.next;
+    }
+}
